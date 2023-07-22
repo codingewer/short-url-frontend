@@ -1,0 +1,280 @@
+.navbar {
+  width: 100%;
+  height: 80px;
+  position: absolute;
+  top: 0;
+  background-color: brown;
+  color: white;
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  font-family: "Courier New", Courier, monospace;
+}
+.shorturl {
+  width: 100%;
+  height: 100vh;
+  overflow: auto;
+  display: grid;
+}
+
+.signout-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  top: 2px;
+  right: 0;
+  position: absolute;
+  color: white;
+  background: none;
+  border: solid 1px rgb(255, 255, 255);
+  width: 70px;
+  height: 30px;
+  border-radius: 10px;
+}
+
+.user-icon {
+  position: absolute;
+  right: 20px;
+  top: 0;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  gap: 10px;
+}
+
+.title {
+  position: relative;
+  left: 20px;
+  font-size: 24px;
+}
+.short-url-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  height: 250px;
+  background-color: rgb(255, 255, 255);
+  position: relative;
+  top: 100px;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0px 0px 11px rgba(0, 0, 0, 0.2);
+}
+
+.short-url-form input {
+  height: 30px;
+  font-size: 14px;
+  text-align: center;
+  border: 1px solid rgb(194, 29, 29);
+  width: 100%;
+  border-radius: 10px;
+  background: none;
+}
+
+.form-btn {
+  max-width: 150px;
+  min-width: 100px;
+  border: 1px solid brown;
+  color: brown;
+  background: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  height: 30px;
+}
+
+.content {
+  display: flex;
+  width: 100%;
+  position: absolute;
+  top: 50px;
+  height: 100vh;
+}
+
+.how-work {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+  height: 100%;
+  position: relative;
+  top: 100px;
+  text-align: left;
+  padding: 20px;
+}
+
+.form-div {
+  width: 50%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+h3 {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 18px;
+}
+
+.last-shorted {
+  position: relative;
+  padding-top: 50px;
+  width: 100%;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow: scroll;
+  padding-bottom: 200px;
+  align-items: center;
+}
+
+.last-shorted::-webkit-scrollbar {
+  display: none;
+}
+
+.link-card {
+  display: flex;
+  position: relative;
+  padding: 20px;
+  width: 80%;
+  gap: 10px;
+  background-color: rgb(250, 250, 250);
+  border-radius: 10px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.card-btn {
+  position: relative;
+}
+
+.link-card input {
+  width: 100px;
+  height: 30px;
+  overflow: hidden;
+  border: none;
+  font-size: 14px;
+  background: none;
+  position: relative;
+  color: rgb(117, 117, 255);
+}
+
+.btn-div {
+  width: 20%;
+  height: 100%;
+  right: 0;
+  display: grid;
+  place-items: center;
+}
+
+@media only screen and (max-width: 1000px) {
+  .content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .link-card {
+    flex-direction: column;
+    height: 200px;
+    align-items: center;
+    position: relative;
+  }
+
+  .btn-div {
+    width: 100%;
+    position: relative;
+    display: grid;
+    height: 50px;
+    place-items: center;
+  }
+
+  .form-div {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .last-shorted {
+    top: 100px;
+  }
+
+  .inputs-and-btn {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .short-url-form {
+    width: 80%;
+    height: 500px;
+  }
+  .how-work {
+    width: 90%;
+    height: 100%;
+    padding: 20px;
+    top: 150px;
+    background-color: white;
+    text-align: center;
+  }
+}
+
+@media only screen and (min-width: 1001px) {
+  .short-url-form {
+    width: 80%;
+    left: 20px;
+  }
+  .last-shorted {
+    top: 50px;
+    height: 100vh;
+  }
+
+  .link-card a {
+    width: 100%;
+  }
+
+  .btn-div {
+    position: absolute;
+    top: 0;
+  }
+
+  .link-card {
+    height: 50px;
+    left: -50px;
+    align-items: center;
+  }
+
+
+  .link-card a {
+    height: 100%;
+    width: 100px;
+  }
+
+  .how-work {
+    width: 45%;
+    height: 100%;
+    top: 100px;
+    text-align: left;
+  }
+  .link-card-content{
+    width: 25%;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    padding: 10px;
+    overflow: scroll;
+  }
+  .link-card-content::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.goto-statics{
+  position: relative;
+  top: 100px;
+  width: 100%;
+  color: brown;
+  text-decoration: none;
+  font-weight: 700;
+}
