@@ -17,7 +17,7 @@ function Login() {
   //Kullanıcıyı API'de sorgulayıp dönen  fonksiyon
   const Login = (e) => {
     axios
-      .post("https://short-url-jvcp.onrender.com/user/login", {
+      .post("https://shorturlbackend-1-y8099896.deta.app/user/login", {
         UserName: info.username,
         Password: info.password,
       })

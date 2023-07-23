@@ -41,7 +41,7 @@ function ShortUrl() {
   //link kısalmak için veriyi alıp API'ye ileten fonksiyon
   const ShortLink = (e) => {
     axios
-      .post("https://short-url-jvcp.onrender.com/url/add", {
+      .post("https://shorturlbackend-1-y8099896.deta.app/add", {
         OrginalUrl: url,
         ShortenedUrl: shortenedUrl,
         CreatedBy: username,
@@ -72,7 +72,7 @@ function ShortUrl() {
 
   const DeleteLink = (id) => {
     axios
-      .delete("https://short-url-jvcp.onrender.com/url/delete/"+id, {
+      .delete("https://shorturlbackend-1-y8099896.deta.app/delete/"+id, {
        data:{ CreatedBy: username}
       })
       .then(function (response) {
@@ -87,7 +87,7 @@ function ShortUrl() {
   useEffect(() => {
     axios
       .get(
-        "https://short-url-jvcp.onrender.com/url/getbycreatedby/" +
+        "https://shorturlbackend-1-y8099896.deta.app/getbycreatedby/" +
           username
       )
       .then(function (response) {
