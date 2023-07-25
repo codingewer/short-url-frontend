@@ -11,7 +11,7 @@ function ShortUrl() {
     var copyText = document.getElementById(id);
     copyText.select();
     copyText.setSelectionRange(0, 99999);
-    const currentUrl = window.location
+    const currentURL = window.location
     const domain = currentURL.split("/")[0] + "/";
     navigator.clipboard.writeText(
       domain + copyText.value
