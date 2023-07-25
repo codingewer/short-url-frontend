@@ -6,13 +6,15 @@ import "./ShortUrl.css";
 import trashicon from "../trash24.png";
 
 function ShortUrl() {
+
   //link kopyalayan  fonksiyon
   const CopyContent = (id) => {
     var copyText = document.getElementById(id);
     copyText.select();
     copyText.setSelectionRange(0, 99999);
-    const currentURL = window.location
-    const domain = currentURL.split("/")[0] + "/";
+    const currentURL = window.location.href;
+    const domain = currentURL.split('/')[0] + '/';
+    console.log(domain)
     navigator.clipboard.writeText(
       domain + copyText.value
     );
@@ -20,6 +22,7 @@ function ShortUrl() {
       "Kopyalandı: " + domain + copyText.value
     );
   };
+
 
   //kullanılan değişkenleri tanımladık
   const [items, setItems] = useState([]);
