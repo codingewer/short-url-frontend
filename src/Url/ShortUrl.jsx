@@ -41,7 +41,7 @@ function ShortUrl() {
   //link kısalmak için veriyi alıp API'ye ileten fonksiyon
   const ShortLink = (e) => {
     axios
-      .post("https://shorturl-ptsr.onrender.com/add", {
+      .post("https://shorturl-ptsr.onrender.com/url/add", {
         OrginalUrl: url,
         ShortenedUrl: shortenedUrl,
         CreatedBy: username,
@@ -72,7 +72,7 @@ function ShortUrl() {
 
   const DeleteLink = (id) => {
     axios
-      .delete("https://shorturl-ptsr.onrender.com/delete/"+id, {
+      .delete("https://shorturl-ptsr.onrender.com/url/delete/"+id, {
        data:{ CreatedBy: username}
       })
       .then(function (response) {
@@ -87,7 +87,7 @@ function ShortUrl() {
   useEffect(() => {
     axios
       .get(
-        "https://shorturl-ptsr.onrender.com/getbycreatedby/" +
+        "https://shorturl-ptsr.onrender.com/url/getbycreatedby/" +
           username
       )
       .then(function (response) {
