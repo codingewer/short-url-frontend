@@ -11,11 +11,13 @@ function ShortUrl() {
     var copyText = document.getElementById(id);
     copyText.select();
     copyText.setSelectionRange(0, 99999);
+    const currentUrl = window.location
+    const domain = currentURL.split("/")[0] + "/";
     navigator.clipboard.writeText(
-      "https://linkkisalt.netlify.app/url/" + copyText.value
+      domain + copyText.value
     );
     alert(
-      "Kopyalandı: " + "https://linkkisalt.netlify.app/url/" + copyText.value
+      "Kopyalandı: " + domain + copyText.value
     );
   };
 
