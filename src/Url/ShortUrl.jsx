@@ -46,7 +46,7 @@ function ShortUrl() {
   //link kısalmak için veriyi alıp API'ye ileten fonksiyon
   const ShortLink = (e) => {
     axios
-      .post("https://shorturl-ptsr.onrender.com/url/add", {
+      .post("http://localhost:8180/url/add", {
         OrginalUrl: url,
         ShortenedUrl: shortenedUrl,
         CreatedBy: username,
@@ -77,7 +77,7 @@ function ShortUrl() {
 
   const DeleteLink = (id) => {
     axios
-      .delete("https://shorturl-ptsr.onrender.com/url/delete/"+id, {
+      .delete("http://localhost:8180/url/delete/"+id, {
        data:{ CreatedBy: username}
       })
       .then(function (response) {
@@ -92,7 +92,7 @@ function ShortUrl() {
   useEffect(() => {
     axios
       .get(
-        "https://shorturl-ptsr.onrender.com/url/getbycreatedby/" +
+        "http://localhost:8180/url/getbycreatedby/" +
           username
       )
       .then(function (response) {
@@ -125,51 +125,24 @@ function ShortUrl() {
   return (
     //sayfa tasarımı
     <div className="shorturl">
-      <div className="navbar">
-        <div className="title">Link Kısalt</div>
-        <div onClick={() => UsersBtns("signouttn")} className="user-icon">
-          <img src={usericon} alt="" /> <p>{username}</p>
-          <button
-            id="signouttn"
-            className="signout-btn"
-            onClick={() => Signout()}
-          >
-            Çıkış
-          </button>
-        </div>
-      </div>
-      <div className="content">
+      <div className="shorturl-bg-banner"></div>
+      <div className="short-url-content">
         <div className="form-div">
-        <a className="goto-statics" target="_blank" href="https://shorturlcounts.netlify.app/">İstasitklere git</a>
           <form className="short-url-form">
             {error && <p style={{ color: "red" }}>{message}</p>}
             <h3>Linki kısalt</h3>
+            <div
+              className="inputs-and-btn"
+              style={{ display: "flex", width: "100%", alignItems:"center", justifyContent:"center", gap: "20px" }}
+            >
             <input
               type="url"
               onChange={(e) => setUrl(e.target.value)}
               value={url}
               placeholder="Url(zorunlu)"
             />
-            <div
-              className="inputs-and-btn"
-              style={{ display: "flex", width: "100%", gap: "20px" }}
-            >
-              <input
-                type="number"
-                onChange={(e) => setDay(e.target.value)}
-                value={day}
-                min="0"
-                placeholder="Geçerilik Süresi(Gün)"
-              />
-              <input
-                onChange={(e) => ShortenedUrlInput(e.target.value)}
-                value={shortenedUrl}
-                type="text"
-                maxLength="10"
-                placeholder="isim(opsiyonel)"
-              />
               <button
-                className="form-btn"
+                className="form-short-btn"
                 disabled={url == "" ? true : false}
                 type="submit"
                 onClick={(e) => ShortLink(e)}
@@ -230,8 +203,8 @@ function ShortUrl() {
           </p>
         </div>
       </div>
-      {!logined && <Navigate to="/home" />}
-      {status && <Navigate to="/home" />}
+      {/*!logined && <Navigate to="/home" />}
+      {status && <Navigate to="/home" />*/}
     </div>
   );
 }

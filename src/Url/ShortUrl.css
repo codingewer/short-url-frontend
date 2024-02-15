@@ -1,22 +1,16 @@
-.navbar {
-  width: 100%;
-  height: 80px;
-  position: absolute;
-  top: 0;
-  background-color: brown;
-  color: white;
-  display: flex;
-  align-items: center;
-  font-weight: 700;
-  font-family: "Courier New", Courier, monospace;
-}
 .shorturl {
   width: 100%;
-  height: 100vh;
-  overflow: auto;
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
 
+.shorturl-bg-banner{
+  background-image: url(../assets/background.webp);
+  position: relative;
+  height: 600px;
+  width: 100vw;
+}
 .signout-btn {
   display: none;
   align-items: center;
@@ -50,46 +44,55 @@
 .short-url-form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 24px;
   align-items: center;
   justify-content: center;
-  height: 250px;
+  height: auto;
   background-color: rgb(255, 255, 255);
   position: relative;
-  top: 100px;
   border-radius: 20px;
   padding: 20px;
-  box-shadow: 0px 0px 11px rgba(0, 0, 0, 0.2);
 }
 
 .short-url-form input {
-  height: 30px;
+  height: 36px;
   font-size: 14px;
   text-align: center;
-  border: 1px solid rgb(194, 29, 29);
-  width: 100%;
-  border-radius: 10px;
+  border: 2px solid var(--shadow-color);
+  width: 80%;
+  padding: 6px;
+  border-radius: 99px;
   background: none;
 }
+.short-url-form input:focus{
+  outline: none;
 
-.form-btn {
-  max-width: 150px;
+}
+
+
+.form-short-btn {
+  max-width: 200px;
   min-width: 100px;
-  border: 1px solid brown;
-  color: brown;
-  background: none;
-  border-radius: 10px;
-  font-size: 14px;
-  font-weight: 500;
-  height: 30px;
+  background-color: var(--color-1);
+  color: white;
+  border: none;
+  padding: 8px;
+  border-radius: 999px;
+  font-size: 18px;
+  height: 50px;
+  font-weight: 700;
+  position: relative;
+  right: 120px;
 }
 
-.content {
+.short-url-content {
   display: flex;
+  flex-direction:column ;
   width: 100%;
-  position: absolute;
-  top: 50px;
-  height: 100vh;
+  position: relative;
+  align-items: center;
+  top: -150px;
+  height: auto;
 }
 
 .how-work {
@@ -104,7 +107,7 @@
 }
 
 .form-div {
-  width: 50%;
+  width: 70%;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -168,7 +171,7 @@ h3 {
 }
 
 @media only screen and (max-width: 1000px) {
-  .content {
+  .short-url-content {
     flex-direction: column;
     align-items: center;
   }
@@ -227,12 +230,8 @@ h3 {
   }
   .last-shorted {
     top: 50px;
-    height: 100vh;
   }
 
-  .link-card a {
-    width: 100%;
-  }
 
   .btn-div {
     position: absolute;

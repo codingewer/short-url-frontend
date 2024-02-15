@@ -10,7 +10,7 @@ function ShortenedUrl() {
   //Sayfa yükleninice linki alıp orjinal linke yönlendiren fonksiyon
   useEffect(() => {
     axios
-      .get("https://shorturl-ptsr.onrender.com/url/get/" + shortenedUrl)
+      .get("http://localhost:8180/url/get/" + shortenedUrl)
       .then(function (response) {
         setUrl(response.data);
         console.log(response);
