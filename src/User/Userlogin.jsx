@@ -25,7 +25,9 @@ function Userlogin() {
             <Login />
           </div>
       </div>
-      {logined && <Navigate to={"/shorturl"}/>}
+      {
+      /*logined && <Navigate to={"/shorturl"}/>
+      */}
     </div>
   );
 }

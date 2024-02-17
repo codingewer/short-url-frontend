@@ -8,12 +8,14 @@
   z-index: 1;
   top: 0;
   font-family: "Montserrat", sans-serif;
-  background-image: url("../assets/background.webp");
   background-repeat: no-repeat;
 }
 
+.window-scrolled{
+  background-color: white;
+}
+
 .navbar-container {
-  width: 80%;
   color: white;
   display: flex;
   align-items: center;
@@ -41,9 +43,9 @@
   align-items: center;
 }
 
-.bar-btns a {
+.menu-login-btn {
   text-decoration: none;
-  background-color: coral;
+  background-color: var(--color-3);
   padding: 6px;
   min-width: 80px;
   align-items: center;
@@ -53,4 +55,58 @@
   font-weight: 700;
   font-size: 16px;
   justify-content: center;
+}
+
+@media only screen and (max-width: 1080px) {
+  .bar-btns{
+    display: none;
+  }
+  .navbar-container {
+    width: 90%;
+  }
+  .menu-btn{
+    border: none;
+    background:none;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .menu-bar{
+    background-color: var(--color-1);
+    width: 35px;
+    height: 5px;
+    border-radius: 99px;
+  }
+
+  .link-drop-menu{
+    background-color: rgb(255, 255, 255);
+    position: relative;
+    height: fit-content;
+    padding: 80px 24px 24px 24px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    top: 0;
+    gap: 24px;
+  }
+  .topbar-url{
+    text-decoration: none;
+    color: var(--color-1);
+    opacity: 0.5;
+    font-size: 16px;
+    font-weight: 500;
+  }
+}
+
+@media only screen and (min-width: 1080px) {
+
+  .navbar-container {
+    width: 60%;
+  }
+  .menu-btn{
+    display: none;
+  }
+  .link-drop-menu{
+    display: none;
+  }
 }

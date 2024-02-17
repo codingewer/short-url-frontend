@@ -7,6 +7,8 @@ import copyicon from "../assets/icons/copy-icon.png";
 import economyicon from "../assets/icons/economy.png";
 import freeicon from "../assets/icons/free-pay.png";
 import quickicon from "../assets/icons/quick-start.png";
+import { Link } from "react-router-dom";
+import Footer from "../Bars/Footer";
 
 function ShortUrl() {
   const currentURL = window.location.href;
@@ -145,6 +147,22 @@ function ShortUrl() {
       <div className="shorturl-bg-banner"></div>
       <div className="short-url-content">
         <div className="form-div">
+          <div className="get-started">
+            <div className="get-started-texts">
+              <span className="gs-title">Hızlı kolay ve anlışılır</span>
+              <span className="gs-sub-title">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                Necessitatibus distinctio, autem esse saepe quibusdam molestias
+                porro? adipisci.
+              </span>
+            </div>
+            <div className="gs-links">
+              <a href="#work-with-us">Daha fazla bilgi edinin</a>
+              <Link className="gs-login-link" to="/login">
+                Şimdi başlayın
+              </Link>
+            </div>
+          </div>
           <form className="short-url-form">
             {error && <p style={{ color: "red" }}>{message}</p>}
             <span className="form-title">Linkinizi kısaltın</span>
@@ -164,58 +182,67 @@ function ShortUrl() {
               </button>
             </div>
           </form>
-          { items.length !== 0 &&
+          {items.length !== 0 && (
             <div className="last-shortened-urls">
-              <span className="contents-titles" >Son Linkler</span>
-             { items.map((item, index) => (
-              <div key={index} className="last-shortened-url">
-                <h3 className="card-index">{index + 1}</h3>
-                <a
-                  target="_blank"
-                  rel="noreferrer"
-                  className="url-name"
-                  href={domain + item.ShortenedUrl}
-                >
-                  {domain + item.ShortenedUrl}
-                </a>
-                <div className="card-btns">
-                  <button
-                    className="copy-btn"
-                    onClick={() => CopyContent(item.ShortenedUrl)}
+              <span className="contents-titles">Son Linkler</span>
+              {items.map((item, index) => (
+                <div key={index} className="last-shortened-url">
+                  <h3 className="card-index">{index + 1}</h3>
+                  <a
+                    target="_blank"
+                    rel="noreferrer"
+                    className="url-name"
+                    href={domain + item.ShortenedUrl}
                   >
-                    <img src={copyicon} alt="Kopyala" />
-                  </button>
-                  <button
-                    className="delete-btn"
-                    onClick={() => DeleteLink(item.ID)}
-                  >
-                    <img src={trashicon} alt="Sil" />
-                  </button>
+                    {domain + item.ShortenedUrl}
+                  </a>
+                  <div className="card-btns">
+                    <button
+                      className="copy-btn"
+                      onClick={() => CopyContent(item.ShortenedUrl)}
+                    >
+                      <img src={copyicon} alt="Kopyala" />
+                    </button>
+                    <button
+                      className="delete-btn"
+                      onClick={() => DeleteLink(item.ID)}
+                    >
+                      <img src={trashicon} alt="Sil" />
+                    </button>
+                  </div>
                 </div>
-              </div>
               ))}
             </div>
-          }
-          <div className="work-with-us">
-          <span className="contents-titles" >bizimle çalışın</span>
-          <div style={{width:"100%", display:"flex", justifyContent:"center", flexWrap:"wrap", gap:48 }} >
-            {wwu.map((item, index) => (
-              <div key={index} className="wwu-card">
-                <div className="wwu-card-icon">
-                  <img src={item.iconUrl} alt={item.title} />
+          )}
+          <div id="work-with-us" className="work-with-us">
+            <span className="contents-titles">bizimle çalışın</span>
+            <div
+              style={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+                flexWrap: "wrap",
+                gap: 48,
+              }}
+            >
+              {wwu.map((item, index) => (
+                <div key={index} className="wwu-card">
+                  <div className="wwu-card-icon">
+                    <img src={item.iconUrl} alt={item.title} />
+                  </div>
+                  <div className="wwu-content">
+                    <span className="wwu-title">{item.title}</span>
+                    <span className="wwu-sub-title">{item.subTitle}</span>
+                  </div>
                 </div>
-                <div className="wwu-content">
-                  <span className="wwu-title">{item.title}</span>
-                  <span className="wwu-sub-title">{item.subTitle}</span>
-                </div>
-              </div>
-            ))}
+              ))}
             </div>
           </div>
         </div>
       </div>
       {/*!logined && <Navigate to="/home" />}
       {status && <Navigate to="/home" />*/}
+      <Footer />
     </div>
   );
 }

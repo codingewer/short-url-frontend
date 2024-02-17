@@ -1,0 +1,42 @@
+.footer-bar{
+    width: calc(100vw - 48px);
+    padding: 24px;
+    background-color: var(--color-2);
+    position: relative;
+    bottom: -200px;
+    display: flex;
+    justify-content: center;
+}
+
+.footer-container{
+    width: 70%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 48px;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-urls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 48px;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-urls a{
+text-decoration: none;
+color: white;
+opacity: 0.5;
+font-size: 16px;
+font-weight: 500;
+}
+
+.footer-company{
+    color: white;
+}
+
+.footer-company span{
+    opacity: 0.5;
+}

@@ -7,6 +7,7 @@ import Login from "./User/Login";
 import Register from "./User/Register";
 import TopBar from "./Bars/TopBar";
 import Userlogin from "./User/Userlogin";
+import Footer from "./Bars/Footer";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Routes>
           <Route path="/login" element={<Userlogin />} />
           <Route path="/shorturl" element={<ShortUrl />} />
+          <Route path="/" element={<Navigate to="/shorturl" />} />
           <Route path="/:shortenedUrl" element={<ShortenedUrl />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
