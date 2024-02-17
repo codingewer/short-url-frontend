@@ -12,9 +12,9 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
+      <TopBar/>
         <Routes>
-          <Route path="/home" element={<Userlogin />} />
-          <Route path="/" element={<Navigate to = {"/home"} />} />
+          <Route path="/login" element={<Userlogin />} />
           <Route path="/shorturl" element={<ShortUrl />} />
           <Route path="/:shortenedUrl" element={<ShortenedUrl />} />
           <Route path="/register" element={<Register />} />
@@ -22,7 +22,6 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
-      <TopBar/>
     </div>
   );
 }

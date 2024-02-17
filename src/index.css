@@ -7,12 +7,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
 :root{
-  --color-1:#6C22A6;
-  --shadow-color:#6d22a650;
+  --color-1:#7215FC;
+  --shadow-color:rgba(113, 21, 252, 0.1);
 }

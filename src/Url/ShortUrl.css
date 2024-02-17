@@ -5,12 +5,13 @@
   position: relative;
 }
 
-.shorturl-bg-banner{
+.shorturl-bg-banner {
   background-image: url(../assets/background.webp);
   position: relative;
   height: 600px;
   width: 100vw;
 }
+
 .signout-btn {
   display: none;
   align-items: center;
@@ -26,32 +27,32 @@
   border-radius: 10px;
 }
 
-.user-icon {
-  position: absolute;
-  right: 20px;
-  top: 0;
-  display: flex;
-  align-items: center;
-  height: 100%;
-  gap: 10px;
+.short-url-form {
+  height: auto;
+  position: relative;
+  height: 300px;
 }
 
-.title {
-  position: relative;
-  left: 20px;
-  font-size: 24px;
+.contents-titles{
+  font-size: 32px;
+  font-weight: 500;
+  opacity: 0.7;
+  padding: 12px;
+  margin-bottom: 24px;
 }
-.short-url-form {
+
+.short-url-form,
+.last-shortened-urls {
+  box-shadow: 0px 6px 11px var(--shadow-color);
+  width: 80%;
+  padding: 24px;
+  gap: 24px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
   align-items: center;
   justify-content: center;
-  height: auto;
+  border-radius: 24px;
   background-color: rgb(255, 255, 255);
-  position: relative;
-  border-radius: 20px;
-  padding: 20px;
 }
 
 .short-url-form input {
@@ -59,35 +60,86 @@
   font-size: 14px;
   text-align: center;
   border: 2px solid var(--shadow-color);
-  width: 80%;
+  width: 70%;
   padding: 6px;
   border-radius: 99px;
   background: none;
 }
-.short-url-form input:focus{
+
+.short-url-form input:focus {
   outline: none;
 
 }
 
+.work-with-us{
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding-top: 100PX;
+  align-items: center;
+  justify-content: center;
+}
+.wwu-card{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  padding: 12px;
+  width: 250px;
+  border-radius: 12px;
+  gap: 12px;
+}
+.wwu-content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+}
+.wwu-title{
+  font-size: 18px;
+  font-weight: 500;
+  opacity: 0.7;
+}
+.wwu-sub-title{
+  opacity: 0.6;
+}
 
 .form-short-btn {
-  max-width: 200px;
-  min-width: 100px;
+  width: 80px;
   background-color: var(--color-1);
+  display: grid;
+  place-content: center;
   color: white;
   border: none;
   padding: 8px;
   border-radius: 999px;
-  font-size: 18px;
+  font-size: 16px;
   height: 50px;
-  font-weight: 700;
+  font-weight: 600;
   position: relative;
-  right: 120px;
+}
+.wwu-card-icon img{
+  height: 76px;
+}
+
+.form-short-btn img {
+  height: 36px;
+  width: 36px;
+}
+.inputs-and-btn{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center
 }
 
 .short-url-content {
   display: flex;
-  flex-direction:column ;
+  flex-direction: column;
   width: 100%;
   position: relative;
   align-items: center;
@@ -101,38 +153,62 @@
   width: 45%;
   height: 100%;
   position: relative;
-  top: 100px;
   text-align: left;
-  padding: 20px;
+  padding: 24px;
 }
 
 .form-div {
   width: 70%;
-  height: 100vh;
+  gap: 48px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-}
-
-h3 {
-  font-family: "Courier New", Courier, monospace;
-  font-size: 18px;
-}
-
-.last-shorted {
-  position: relative;
-  padding-top: 50px;
-  width: 100%;
-  left: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  overflow: scroll;
-  padding-bottom: 200px;
   align-items: center;
 }
 
-.last-shorted::-webkit-scrollbar {
+.form-title {
+  font-size: 28px;
+}
+
+/* Last Shorted*/
+.last-shortened-url {
+  display: flex;
+  padding: 12px;
+  width: calc(100% - 24px);
+  border-radius: 12px;
+  box-shadow: 0px 0px 6px var(--shadow-color);
+}
+
+.card-index {
+  font-size: 24px;
+  opacity: 0.7;
+  padding-left: 12px;
+}
+
+.card-btns {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  padding-right: 12px;
+}
+.url-name{
+  overflow: hidden;
+  text-decoration: none;
+  color: var(--color-1);
+  font-weight: 600;
+  font-size: 16px
+}
+.card-btns img {
+  height: 24px;
+  width: auto;
+}
+
+.delete-btn,
+.copy-btn {
+  background: none;
+  border: none;
+}
+
+.last-shorted-urls::-webkit-scrollbar {
   display: none;
 }
 
@@ -170,7 +246,7 @@ h3 {
   place-items: center;
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1080px) {
   .short-url-content {
     flex-direction: column;
     align-items: center;
@@ -200,38 +276,34 @@ h3 {
     gap: 20px;
   }
 
-  .last-shorted {
-    top: 100px;
-  }
 
   .inputs-and-btn {
     flex-direction: column;
     align-items: center;
+    gap: 12px;
   }
 
   .short-url-form {
-    width: 80%;
-    height: 500px;
+    height: 300px;
   }
+  
+  
   .how-work {
-    width: 90%;
-    height: 100%;
-    padding: 20px;
-    top: 150px;
-    background-color: white;
+    width: 80%;
+    padding: 24px;
     text-align: center;
+  }
+
+  .last-shortened-url {
+    height: 250px;
+    gap: 24px;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
   }
 }
 
-@media only screen and (min-width: 1001px) {
-  .short-url-form {
-    width: 80%;
-    left: 20px;
-  }
-  .last-shorted {
-    top: 50px;
-  }
-
+@media only screen and (min-width: 1080px) {
 
   .btn-div {
     position: absolute;
@@ -251,12 +323,12 @@ h3 {
   }
 
   .how-work {
-    width: 45%;
+    width: 70%;
     height: 100%;
-    top: 100px;
     text-align: left;
   }
-  .link-card-content{
+
+  .link-card-content {
     width: 25%;
     display: flex;
     text-align: center;
@@ -264,16 +336,25 @@ h3 {
     padding: 10px;
     overflow: scroll;
   }
+
   .link-card-content::-webkit-scrollbar {
     display: none;
   }
-}
 
-.goto-statics{
-  position: relative;
-  top: 100px;
-  width: 100%;
-  color: brown;
-  text-decoration: none;
-  font-weight: 700;
+  .last-shortened-url {
+    height: 52px;
+    gap: 24px;
+    flex-direction: row;
+    text-align: center;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .form-short-btn {
+    right: 80px;
+  }
+  .short-url-form input {
+    padding-right: 72px;
+  }
+
 }
