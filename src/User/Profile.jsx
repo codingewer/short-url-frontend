@@ -7,6 +7,8 @@ import {
   LinearScale,
   PointElement,
   BarElement,
+  BarController,
+  LineController,
 } from "chart.js";
 
 import "./Profile.css";
@@ -16,7 +18,10 @@ ChartJS.register(
   CategoryScale,
   LinearScale,
   PointElement,
-  BarElement
+  BarElement,
+  BarController,
+  LineController
+
 );
 
 function Profile() {
