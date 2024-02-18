@@ -23,8 +23,9 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<NotFound />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/dashboard" element={<Profile />} />
         </Routes>
+        <Footer/>
       </BrowserRouter>
     </div>
   );

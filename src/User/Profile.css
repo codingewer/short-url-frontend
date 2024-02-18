@@ -1,24 +1,130 @@
-.profile-container{
+.profile-container {
     display: flex;
     align-items: start;
     justify-content: center;
     width: 100vw;
     padding-top: 100px;
-    gap: 48px;
+    gap: 24px;
 }
 
-.profile-chart{
-    width: 30%;
-    height: 8%;
+.profile-chart {
+    width: calc(40% - 72px);
+    height: auto;
 }
 
-.chart-container{
+.chart-container {
     width: 100%;
     height: auto;
 }
 
-.profile-details{
-    width: 25%;
-    height: 50vh;
-    background-color: aqua;
+.profile-details {
+    width: 20%;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    color: gray;
+}
+
+.profile-chart,
+.profile-details, .urls-detail {
+    background-color: white;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0px 0px 11px var(--shadow-color);
+}
+
+.urls-details {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    gap: 12px;
+    flex-wrap: wrap;
+
+}
+
+.urls-detail {
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    min-width: 80px;
+    text-align: center;
+    gap: 6px;
+    
+}
+
+
+.chart-legends {
+    display: flex;
+    align-items: center;
+    padding: 24px;
+    justify-content: space-between;
+}
+
+.chart-select {
+    border: none;
+    background: none;
+    margin: 12px 24px 12px 24px;
+    width: calc(100% - 48px);
+    text-align: center;
+    font-size: 16px;
+    padding: 6px;
+}
+
+.chart-select:focus{
+    outline: none;
+}
+
+.account-details {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.account-detail {
+    display: flex;
+    align-items: center;
+    line-height: 1px;
+    flex-wrap: wrap;
+    text-wrap: wrap;
+}
+
+@media only screen and (min-width: 1080px) {
+    
+    .profile-chart {
+        width: calc(40% - 72px);
+    }
+    
+    .profile-details {
+        width: 20%;
+        height: fit-content;
+        display: flex;
+    }
+}
+
+@media only screen and (max-width: 1080px) {
+    .profile-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+    }
+    .account-detail{
+        justify-content: start;
+        align-items: center;
+        flex-direction: column;
+        
+    }
+    
+    .profile-chart,.profile-details  {
+        width: calc(100% - 48px);
+    }
+    
+    .profile-details {
+        height: fit-content;
+        display: flex;    }
+
+    .urls-detail h2, .urls-detail span{
+        font-size: 16px;
+    }
 }

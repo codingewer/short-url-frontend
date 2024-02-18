@@ -44,26 +44,28 @@ function ShortUrl() {
 
   //link kısalmak için veriyi alıp API'ye ileten fonksiyon
   const ShortLink = (e) => {
-    axios
-      .post("http://localhost:8180/url/add", {
-        OrginalUrl: url,
-        ShortenedUrl: shortenedUrl,
-        CreatedBy: username,
-      })
-      .then(function (response) {
-        console.log(response.data);
-        setUrl(response.data.ShortenedUrl);
-        setStatus(true);
-        setItems((items) => [...items, response.data]);
-      })
-      .catch(function (error) {
-        console.log(error);
-        setMessage(error.response.data.ERROR);
-        setError(true);
-        setStatus(false);
-      });
-    setShortenedUrl("");
-    setUrl("");
+    logined === true
+      ? axios
+          .post("http://localhost:8180/url/add", {
+            OrginalUrl: url,
+            ShortenedUrl: shortenedUrl,
+            CreatedBy: username,
+          })
+          .then(function (response) {
+            console.log(response.data);
+            setUrl(response.data.ShortenedUrl);
+            setShortenedUrl("");
+            setUrl("");
+            setStatus(true);
+            setItems((items) => [...items, response.data]);
+          })
+          .catch(function (error) {
+            console.log(error);
+            setMessage(error.response.data.ERROR);
+            setError(true);
+            setStatus(false);
+          })
+      : window.location.replace("/login");
     e.preventDefault();
   };
   const removeObjectWithId = (id) => {
@@ -242,7 +244,6 @@ function ShortUrl() {
       </div>
       {/*!logined && <Navigate to="/home" />}
       {status && <Navigate to="/home" />*/}
-      <Footer />
     </div>
   );
 }
