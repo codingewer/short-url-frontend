@@ -169,7 +169,7 @@ function Profile() {
             <option value="weekly">Weekly</option>
             <option value="monthly">Monthly</option>
           </select>
-          <Chart height="300px" type="line" data={data} options={options} />
+          <Chart height="300px" data={data} options={options} />
         </div>
         <div className="chart-legends">
           {legendItems.map((item, index) => (
