@@ -8,6 +8,7 @@ import Register from "./User/Register";
 import TopBar from "./Bars/TopBar";
 import Userlogin from "./User/Userlogin";
 import Footer from "./Bars/Footer";
+import Profile from "./User/Profile";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<NotFound />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </BrowserRouter>
     </div>
