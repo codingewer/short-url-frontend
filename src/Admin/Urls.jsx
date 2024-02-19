@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "../Url/ShortUrl.css";
 import axios from "axios";
-import trashicon from "../assets/icons/trash-icon.png";
+import "./ControlPanelGlobalStyle.css";
 import copyicon from "../assets/icons/copy-icon.png";
 
 function Urls() {
   const currentURL = window.location.href;
-  const domain = currentURL.split("shorturl")[0];
+  const domain = currentURL.split("controlpanel/all-urls")[0];
   const [error, setError] = useState(false);
   const [message, setMessage] = useState("");
   const CopyContent = (urll) => {
@@ -36,10 +36,9 @@ function Urls() {
   return (
     <div>
       {items.length !== 0 && (
-        <div className="last-shortened-urls">
-          <span className="contents-titles">Son Linkler</span>
+        <div className="cp-data-container">
           {items.map((item, index) => (
-            <div key={index} className="last-shortened-url">
+            <div key={index} className="cp-data-card">
               <h3 className="card-index">{index + 1}</h3>
               <a
                 target="_blank"

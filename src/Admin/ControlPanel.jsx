@@ -1,9 +1,13 @@
-import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import React from "react";
 import "./ControlPanel.css";
-import UpdateUser from '../User/UpdateUser';
-import NotFound from '../Url/NotFound';
-import Urls from './Urls';
+import UpdateUser from "../User/UpdateUser";
+import NotFound from "../Url/NotFound";
+import Urls from "./Urls";
+import AllUsers from "./AllUsers";
+import AllFaq from "./AllFaq";
+import BalanceRequests from "./BalanceRequests";
+import HelpRequests from "./HelpRequests";
 
 function ControlPanel() {
   return (
@@ -44,18 +48,23 @@ function ControlPanel() {
         </div>
       </div>
       <div className="requests">
-        <div className='request-navbar'  >
-          <Link to="/controlpanel/balance-requests" >Okunmuş Para Çekme</Link>
-          <Link to="/controlpanel/help-requests" > Okunmamış Para Çekme </Link>
-          <Link to="/controlpanel/help-requests" > Destek</Link>
-          <Link to="/controlpanel/help-requests" >Tüm Kullanıcılar</Link>
-          <Link to="/controlpanel/all-urls" >Tüm Linkler</Link>
-          <Link to="/controlpanel/help-requests" >Sıkça sorulan Sorular</Link>
+        <div className="request-navbar">
+          <Link to="/controlpanel/balance-requests-paid">Ödendi</Link>
+          <Link to="/controlpanel/balance-requests-notpaid"> Ödenmedi </Link>
+          <Link to="/controlpanel/help-requests-answered">Cevaplanmış Destekler</Link>
+          <Link to="/controlpanel/help-requests-notanswered">Cevaplanmamış Destekler</Link>
+          <Link to="/controlpanel/AllUsers">Tüm Kullanıcılar</Link>
+          <Link to="/controlpanel/all-urls">Tüm Linkler</Link>
+          <Link to="/controlpanel/allfaq">Sıkça sorulan Sorular</Link>
         </div>
         <Routes>
-          <Route path="/balance-requests" element={<NotFound/>} />
-          <Route path="/help-requests" element={<div>b</div>} />
-          <Route path="/all-urls" element={<Urls/>} />
+          <Route path="/balance-requests-paid" element={<BalanceRequests paid={true} />} />
+          <Route path="/balance-requests-notpaid" element={<BalanceRequests paid={false} />} />
+          <Route path="/help-requests-answered" element={<HelpRequests answered={true} />} /> 
+          <Route path="/help-requests-notanswered" element={<HelpRequests asnswered= {false}/>} />
+          <Route path="/AllUsers" element={<AllUsers />} />
+          <Route path="/all-urls" element={<Urls />} />
+          <Route path="/allfaq" element={<AllFaq />} />
         </Routes>
       </div>
     </div>

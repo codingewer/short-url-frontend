@@ -153,9 +153,7 @@ function ShortUrl() {
             <div className="get-started-texts">
               <span className="gs-title">Hızlı kolay ve anlışılır</span>
               <span className="gs-sub-title">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Necessitatibus distinctio, autem esse saepe quibusdam molestias
-                porro? adipisci.
+                Linklerini kısalt paylaş linklerle reklam göster ve reklamlardan kazanç elde et hem başlaması çok kolay!
               </span>
             </div>
             <div className="gs-links">
