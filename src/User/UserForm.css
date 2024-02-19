@@ -1,13 +1,14 @@
-.register-form{
+.register-form {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 24px;
-    width: 300px;
+    max-width: 300px;
     padding: 24px;
 
 }
-.switch-form-btn{
+
+.switch-form-btn {
     color: var(--color-1);
     background-color: var(--shadow-color);
     padding: 8px;
@@ -17,7 +18,8 @@
     min-width: 120px;
     border-radius: 99px;
 }
-.register-form input{
+
+.register-form input {
     height: 36px;
     border-radius: 10px;
     text-align: center;
@@ -28,25 +30,36 @@
     border: 2px solid var(--shadow-color);
 }
 
-.register-form input:focus{
+.register-form input:focus {
     outline: none;
 }
 
-.user-form-div{
+.user-form-div,.update-from-div  {
     width: fit-content;
     gap: 24px;
+    padding: 24px;
     height: max-content;
-    display: flex;
     flex-direction: column;
     align-items: center;
     position: relative;
-    box-shadow:  0px 0px 11px var(--shadow-color);
+    box-shadow: 0px 0px 11px var(--shadow-color);
     background-color: white;
     border-radius: 24px;
     overflow: hidden;
 }
 
-.fom-bar{
+.user-form-div{
+    display: flex;
+}
+
+.update-from-div{
+    display: none;
+    margin-top: 48px;
+}
+
+.update-from-div
+
+.fom-bar {
     width: 100%;
     display: flex;
     padding-top: 24px;
@@ -55,7 +68,7 @@
     gap: 20px;
 }
 
-.login-register{
+.login-register {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -64,7 +77,7 @@
     background-image: url(../assets/background.png);
 }
 
-.form-btn{
+.form-btn {
     border: none;
     color: white;
     background-color: var(--color-1);

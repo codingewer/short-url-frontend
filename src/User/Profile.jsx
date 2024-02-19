@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { Bar, Chart, Line } from "react-chartjs-2";
+import { Chart } from "react-chartjs-2";
+import editicon from "../assets/icons/edit-icon.png";
+import cancelicon from "../assets/icons/close-icon.png";
 import {
   Chart as ChartJS,
   LineElement,
@@ -12,6 +14,8 @@ import {
 } from "chart.js";
 
 import "./Profile.css";
+import BalanceRequestPopUp from "./BalanceRequestPopUp";
+import UpdateUser from "./UpdateUser";
 
 ChartJS.register(
   LineElement,
@@ -21,7 +25,6 @@ ChartJS.register(
   BarElement,
   BarController,
   LineController
-
 );
 
 function Profile() {
@@ -34,17 +37,20 @@ function Profile() {
   const getLastDays = (num) => {
     const result = [];
     const today = new Date();
-
-    for (let i = num; i >= 0; i--) {
-      const day = new Date(today);
-      day.setDate(today.getDate() - i);
-      result.push(day.toDateString());
+    for (let i = 0; i < num; i++) {
+      const date = new Date(
+        today.getFullYear(),
+        today.getMonth(),
+        today.getDate() - i
+      );
+      const options = { day: "numeric", weekday: "long", month: "long" };
+      result.push(date.toLocaleDateString("tr-TR", options));
     }
 
     return result;
   };
 
-  const labels = selectedOption === "weekly" ? getLastDays(6) : getLastDays(29);
+  const labels = selectedOption === "weekly" ? getLastDays(7) : getLastDays(30);
   const data0 = {
     labels: labels,
     datasets: [
@@ -56,8 +62,8 @@ function Profile() {
           selectedOption === "weekly"
             ? [65, 59, 80, 81, 56, 55, 40]
             : [
-                25, 39, 50, 71, 86, 97, 120, 25, 39, 50, 71, 86, 97, 120, 25,
-                39, 50, 71, 86, 97, 120, 25, 39, 50, 71, 86, 97, 120, 12, 29,
+                25, 39, 50, 71, 86, 97, 120, 10, 300, 46, 90, 86, 70, 120, 12,
+                39, 50, 71, 86, 10, 120, 25, 39, 50, 0, 86, 97, 1, 12, 29,
               ],
         backgroundColor: "rgba(252, 103, 54, 1)",
         borderColor: "rgba(252, 103, 54, 1)",
@@ -71,8 +77,8 @@ function Profile() {
           selectedOption === "weekly"
             ? [65, 59, 80, 81, 56, 55, 40]
             : [
-                25, 39, 50, 71, 86, 97, 120, 25, 39, 50, 71, 86, 97, 120, 25,
-                39, 50, 71, 86, 97, 120, 25, 39, 50, 71, 86, 97, 120, 12, 29,
+                25, 39, 50, 71, 86, 97, 120, 10, 300, 46, 90, 86, 70, 120, 12,
+                39, 50, 71, 86, 10, 120, 25, 39, 50, 0, 86, 97, 1, 12, 29,
               ],
         backgroundColor: "rgba(114, 20, 252, 1)",
         borderColor: "rgba(114, 20, 252, 1)",
@@ -86,8 +92,8 @@ function Profile() {
           selectedOption === "weekly"
             ? [65, 59, 80, 81, 56, 55, 40]
             : [
-                25, 39, 50, 71, 86, 97, 120, 25, 39, 50, 71, 86, 97, 120, 25,
-                39, 50, 71, 86, 97, 120, 25, 39, 50, 71, 86, 97, 120, 12, 29,
+                25, 39, 50, 71, 86, 97, 120, 10, 300, 46, 90, 86, 70, 120, 12,
+                39, 50, 71, 86, 10, 120, 25, 39, 50, 0, 86, 97, 1, 12, 29,
               ],
         backgroundColor: "rgba(100, 10, 100, 1)",
         borderColor: "rgba(100, 10, 100, 1)",
@@ -123,11 +129,32 @@ function Profile() {
       },
     },
   };
+  const [isToggled, setToggled] = useState(true);
+  const [isToggled2, setToggled2] = useState(true);
+  const handleTogleMenu = () => {
+    const linksMenu = document.getElementById("balance-request-form");
+    setToggled(!isToggled);
+    isToggled
+      ? (linksMenu.style.display = "flex")
+      : (linksMenu.style.display = "none");
+  };
 
+  const handleTogleForm = () => {
+    const linksMenu = document.getElementById("update-user-form");
+    setToggled2(!isToggled2);
+    isToggled2
+      ? (linksMenu.style.display = "flex")
+      : (linksMenu.style.display = "none");
+  };
   return (
     <div className="profile-container">
       <div className="profile-details">
+        <button className="edit-btn" onClick={handleTogleForm}>
+          <img src={isToggled2 ? editicon : cancelicon } alt="Güncelle" />
+        </button>
+        <UpdateUser />
         <div className="account-details">
+          <h4>Profil Bilgileri</h4>
           <div className="account-detail">
             <h4>username: </h4>
             <span>userrrname</span>
@@ -149,19 +176,54 @@ function Profile() {
             <span>TR330006100519786457841326</span>
           </div>
         </div>
+        <div className="balance-requests">
+          <BalanceRequestPopUp balance={200} />
+          <h4>Para çekme istekleri</h4>
+          <button onClick={handleTogleMenu} className="balance-request-btn">
+            {isToggled ? <span>Para Çek</span> : <span>İptal</span>}
+          </button>
+          <div className="balance-request">
+            <span style={{ color: "red", fontWeight: "bold" }}>-125 TL</span>
+            <span>12.02.24</span>
+            <span style={{ color: "orange", fontWeight: "bold" }}>
+              Onay bekliyor...
+            </span>
+          </div>{" "}
+          <div className="balance-request">
+            <span style={{ color: "red", fontWeight: "bold" }}>-125 TL</span>
+            <span>12.02.24</span>
+            <span style={{ color: "green", fontWeight: "bold" }}>
+              Onaylandı
+            </span>
+          </div>{" "}
+          <div className="balance-request">
+            <span style={{ color: "red", fontWeight: "bold" }}>-125 TL</span>
+            <span>12.02.24</span>
+            <span style={{ color: "green", fontWeight: "bold" }}>
+              Onaylandı
+            </span>
+          </div>
+          <div className="balance-request">
+            <span style={{ color: "red", fontWeight: "bold" }}>-125 TL</span>
+            <span>12.02.24</span>
+            <span style={{ color: "green", fontWeight: "bold" }}>
+              Onaylandı
+            </span>
+          </div>
+        </div>
       </div>
       <div className="profile-chart">
         <div className="urls-details">
           <div className="urls-detail">
-            <h2>123</h2>
+            <h4>123</h4>
             <span>Link</span>
           </div>
           <div className="urls-detail">
-            <h2>123</h2>
+            <h4>123</h4>
             <span>Tıklama</span>
           </div>
           <div className="urls-detail">
-            <h2>123</h2>
+            <h4>123</h4>
             <span>görüntülenme</span>
           </div>
         </div>

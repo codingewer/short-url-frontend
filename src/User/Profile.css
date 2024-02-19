@@ -7,6 +7,16 @@
     gap: 24px;
 }
 
+.edit-btn{
+    border: none;
+    background: none;
+}
+
+.edit-btn img  {
+    height: 24px;
+    width: 24px;
+}
+
 .profile-chart {
     width: calc(40% - 72px);
     height: auto;
@@ -21,11 +31,14 @@
     width: 20%;
     height: fit-content;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     color: gray;
+    padding: 24px;
 }
 
-.profile-chart,
+.profile-chart, .balance-request,
 .profile-details, .urls-detail {
     background-color: white;
     padding: 24px;
@@ -87,8 +100,42 @@
     line-height: 1px;
     flex-wrap: wrap;
     text-wrap: wrap;
+    gap: 6px;
 }
 
+.balance-requests{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: calc(100% - 48px);
+    padding: 24px;
+    align-items: center;
+    margin-top: 50px;
+    height: 500px;
+    overflow: auto;
+}
+
+.balance-requests::-webkit-scrollbar{
+    display: none;
+}
+
+.balance-request{
+    width: calc(100% - 48px);
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.balance-request-btn{
+    border: none;
+    background-color: var(--color-3);
+    color: white;
+    padding: 12px;
+    border-radius: 99px;
+    font-size: 14px;
+    font-weight: 500;
+}
 @media only screen and (min-width: 1080px) {
     
     .profile-chart {
