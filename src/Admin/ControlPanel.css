@@ -1,0 +1,81 @@
+.control-panel{
+    padding-top: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100vw;
+    gap: 24px;
+    justify-content: center;
+}
+
+.site-details-faq{
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.help-request{
+    background-color: aqua;
+}
+
+.requests{
+    width: calc(40% - 72px);
+    display: flex;
+    flex-direction: column;
+    align-items:center ;
+}
+.site-details-faq, .requests{
+    background-color: white;
+    box-shadow: 0px 0px 11px var(--shadow-color);
+    border-radius: 12px;
+    padding: 24px;
+}
+
+.cp-details-form{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    width: 100%;
+}
+
+.cp-form-inputs{
+    border: 1px solid var(--shadow-color);
+    padding: 6px;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 6px;
+}
+
+.cp-form-inputs:focus{
+    outline-style: none;
+}
+
+.cp-form-btn{
+    border: none;
+    background-color: var(--color-1);
+    min-width: 100px;
+    padding: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 99px;
+    color: white;
+}
+
+.request-navbar{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 24px 0px 24px 0px;
+    justify-content: center;
+}
+
+.request-navbar a {
+    text-decoration: none;
+    color: var(--color-1);
+    font-size: 16px;
+    background-color: white;
+    padding: 12px;
+    border-radius: 12px;
+    box-shadow: 0px 0px 11px var(--shadow-color);
+}

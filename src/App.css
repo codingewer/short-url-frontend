@@ -4,4 +4,6 @@
 
 input:focus{
     outline: none;
+    -moz-appearance: textfield;
+
 }
