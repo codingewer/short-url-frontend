@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Chart } from "react-chartjs-2";
 import editicon from "../assets/icons/edit-icon.png";
 import cancelicon from "../assets/icons/close-icon.png";
+import logouticon from "../assets/icons/logout.png";
 import {
   Chart as ChartJS,
   LineElement,
@@ -147,13 +148,25 @@ function Profile() {
       ? (linksMenu.style.display = "flex")
       : (linksMenu.style.display = "none");
   };
+
+  const handlelogout = ()=>{
+    localStorage.removeItem("logined")
+    localStorage.removeItem("user")
+    alert("Çıkış yapıldı")
+      window.location.href ="/shorturl"
+  }
   return (
     <>
     <div className="profile-container">
       <div className="profile-details">
+        <div  style={{display:"flex", width:"100%", justifyContent:"end"}} >
         <button className="edit-btn" onClick={handleTogleForm}>
           <img src={isToggled2 ? editicon : cancelicon } alt="Güncelle" />
         </button>
+        <button className="edit-btn" onClick={handlelogout}>
+          <img src={logouticon} alt="Güncelle" />
+        </button>
+        </div>
         <UpdateUser />
         <div className="account-details">
           <h4>Profil Bilgileri</h4>
