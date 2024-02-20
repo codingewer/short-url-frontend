@@ -2,9 +2,11 @@ import { useParams } from "react-router";
 import "./Ads.css";
 import AdsComponent from "./AdsComponent";
 import Footer from "../Bars/Footer";
+import { useDetectAdBlock } from "adblock-detect-react";
 
 function ShortenedUrl() {
   const { adIndex } = useParams();
+  const adBlockDetected = useDetectAdBlock();
 
   const currentURL = window.location.href;
   const domain = currentURL.split("r/" + adIndex)[0];
@@ -17,17 +19,21 @@ function ShortenedUrl() {
     } else {
     }
   };
-  console.log(adIndex);
+  console.log(adBlockDetected);
   return (
     <>
       <div className="ads-container">
         <div className="ad-content">
           <AdsComponent dataAdSlot="3634852612" />
           <h1>Reklam</h1>
-          <button onClick={handleSkip}>
+          <button disabled={adBlockDetected} onClick={handleSkip}>
             {index > 3 ? "Linke Git!" : "Reklamı Geç"}
           </button>
-          <span>Reklamları geçtikten sonra linke yönledirileceksiniz!</span>
+          {adBlockDetected ? (
+            <span>Reklam engelleme sistemi aktif, reklamı geçemediniz!</span>
+          ) : (
+            <span>Reklamları geçtikten sonra linke yönledirileceksiniz!</span>
+          )}
           <span>{index} / 4</span>
         </div>
       </div>
