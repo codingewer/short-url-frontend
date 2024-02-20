@@ -21,3 +21,17 @@
     padding:48px 0px 48px 0px ;
 
 }
+.cp-card-btns button{
+    background:none;
+    border: none;
+}
+.cp-card-btns img{
+    height: 28px;
+}
+
+.cp-card-btns{
+    width: 100%;
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
