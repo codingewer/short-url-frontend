@@ -20,7 +20,7 @@ function App() {
           <Route path="/shorturl/login" element={<Userlogin />} />
           <Route path="/shorturl" element={<ShortUrl />} />
           <Route path="/" element={<Navigate to="/shorturl" />} />
-          <Route path="/:shortenedUrl" element={<ShortenedUrl />} />
+          <Route path="/l/:shortenedUrl/r/:adIndex" element={<ShortenedUrl />} />
           <Route path="*" element={<NotFound />} />
           <Route path="/shorturl/dashboard" element={<Profile />} />
           <Route path="/controlpanel/*" element={<ControlPanel />} />

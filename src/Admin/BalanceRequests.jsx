@@ -92,7 +92,7 @@ function BalanceRequests(props) {
           <h4>{balancereq.name}</h4>
           <p>{balancereq.email}</p>
           <p>{balancereq.iban}</p>
-          <p>{balancereq.balance}</p>
+          <p>{balancereq.balance} <span> &#8378;</span></p>
           <p>{balancereq.date}</p>
           <p style={{ color: balancereq.paid ? "green" : "red" }}>
             {balancereq.paid ? "ödendi" : "Ödenmedi"}

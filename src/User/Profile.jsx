@@ -35,8 +35,7 @@ function Profile() {
   const handleOptionChange = (e) => {
     setSelectedOption(e.target.value);
   };
-
-  const getLastDays = (num) => {
+  const getlastDays = (num) => {
     const result = [];
     const today = new Date();
     for (let i = 0; i < num; i++) {
@@ -52,7 +51,7 @@ function Profile() {
     return result;
   };
 
-  const labels = selectedOption === "weekly" ? getLastDays(7) : getLastDays(30);
+  const labels = selectedOption === "weekly" ? getlastDays(7) : getlastDays(30);
   const data0 = {
     labels: labels,
     datasets: [
@@ -168,7 +167,7 @@ function Profile() {
           </div>
           <div className="account-detail">
             <h4>Bakiye: </h4>
-            <span>125 TL</span>
+            <span>125  &#8378;</span>
           </div>
           <div className="account-detail">
             <h4>Alıcı Ad Soyad: </h4>
@@ -186,28 +185,28 @@ function Profile() {
             {isToggled ? <span>Para Çek</span> : <span>İptal</span>}
           </button>
           <div className="balance-request">
-            <span style={{ color: "red", fontWeight: "bold" }}>-125 TL</span>
+            <span style={{ color: "red", fontWeight: "bold" }}>-125  &#8378;</span>
             <span>12.02.24</span>
             <span style={{ color: "orange", fontWeight: "bold" }}>
               Onay bekliyor...
             </span>
           </div>{" "}
           <div className="balance-request">
-            <span style={{ color: "red", fontWeight: "bold" }}>-125 TL</span>
+            <span style={{ color: "red", fontWeight: "bold" }}>-125  &#8378;</span>
             <span>12.02.24</span>
             <span style={{ color: "green", fontWeight: "bold" }}>
               Onaylandı
             </span>
           </div>{" "}
           <div className="balance-request">
-            <span style={{ color: "red", fontWeight: "bold" }}>-125 TL</span>
+            <span style={{ color: "red", fontWeight: "bold" }}>-125  &#8378;</span>
             <span>12.02.24</span>
             <span style={{ color: "green", fontWeight: "bold" }}>
               Onaylandı
             </span>
           </div>
           <div className="balance-request">
-            <span style={{ color: "red", fontWeight: "bold" }}>-125 TL</span>
+            <span style={{ color: "red", fontWeight: "bold" }}>-125  &#8378;</span>
             <span>12.02.24</span>
             <span style={{ color: "green", fontWeight: "bold" }}>
               Onaylandı
