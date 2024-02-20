@@ -112,7 +112,7 @@ function TopBar() {
         <Link to="/contactus" onClick={handleCloseMenu} className="topbar-url">
           İletişim
         </Link>
-        <Link to="faq" onClick={handleCloseMenu} className="topbar-url">
+        <Link to="/faq" onClick={handleCloseMenu} className="topbar-url">
           S.S.S
         </Link>
         <Link
