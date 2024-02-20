@@ -42,11 +42,55 @@ function TopBar() {
             </Link>
           </div>
           <button onClick={handleTogleMenu} type="button" className="menu-btn">
-            <div className="menu-bar"></div>
-            <div className="menu-bar"></div>
-            <div className="menu-bar"></div>
+            <div
+              className={
+                scrollPosition > 300 || !isToggled
+                  ? "menu-bar-scrolled menu-bar"
+                  : "menu-bar"
+              }
+            ></div>
+            <div
+              className={
+                scrollPosition > 300 || !isToggled
+                  ? "menu-bar-scrolled menu-bar"
+                  : "menu-bar"
+              }
+            ></div>
+            <div
+              className={
+                scrollPosition > 300 || !isToggled
+                  ? "menu-bar-scrolled menu-bar"
+                  : "menu-bar"
+              }
+            ></div>
           </button>
           <div className="bar-btns">
+            <Link
+              onClick={handleCloseMenu}
+              to="/shorturl/dashboard"
+              className={
+                scrollPosition > 300 ? "window-scrolled-links" : "topbar-links"
+              }
+            >
+              Dashboard
+            </Link>
+            <Link
+              className={
+                scrollPosition > 300 ? "window-scrolled-links" : "topbar-links"
+              }
+              to="/faq"
+            >
+              S.S.S
+            </Link>
+            <Link
+              to="/contactus"
+              onClick={handleCloseMenu}
+              className={
+                scrollPosition > 300 ? "window-scrolled-links" : "topbar-links"
+              }
+            >
+              İletişim
+            </Link>
             <Link
               className="menu-login-btn"
               to={logined ? "/shorturl/dashboard" : "/shorturl/login"}
@@ -65,10 +109,10 @@ function TopBar() {
         >
           Dashboard
         </Link>
-        <Link onClick={handleCloseMenu} className="topbar-url">
+        <Link to="/contactus" onClick={handleCloseMenu} className="topbar-url">
           İletişim
         </Link>
-        <Link onClick={handleCloseMenu} className="topbar-url">
+        <Link to="faq" onClick={handleCloseMenu} className="topbar-url">
           S.S.S
         </Link>
         <Link

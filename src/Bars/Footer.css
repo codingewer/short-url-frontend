@@ -1,10 +1,11 @@
 .footer-bar{
     width: calc(100vw - 48px);
-    padding: 24px;
+    padding: 50px 24px 50px 24px;
     background-color: var(--color-2);
     position: relative;
-    bottom: -200px;
     display: flex;
+    bottom: -200px;
+    paddingbottom: 50px;
     justify-content: center;
 }
 

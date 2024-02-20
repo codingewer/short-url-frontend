@@ -1,34 +1,38 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import AdSense from "react-adsense";
 import "./Ads.css";
 import AdsComponent from "./AdsComponent";
+import Footer from "../Bars/Footer";
 
 function ShortenedUrl() {
-  const { shortenedUrl } = useParams();
   const { adIndex } = useParams();
-  const [url, setUrl] = useState();
 
   const currentURL = window.location.href;
   const domain = currentURL.split("r/" + adIndex)[0];
   console.log(domain);
+  const index = parseInt(adIndex);
   const handleSkip = () => {
-    const nextIndex = parseInt(adIndex) + 1;
+    const nextIndex = index + 1;
     if (nextIndex < 5) {
       window.location.href = domain + "r/" + nextIndex;
     } else {
-      window.location.href = "https://github.com";
     }
   };
   console.log(adIndex);
   return (
-    <div className="ads-container">
-      <div className="ad-content">
+    <>
+      <div className="ads-container">
+        <div className="ad-content">
+          <AdsComponent dataAdSlot="3634852612" />
+          <h1>Reklam</h1>
+          <button onClick={handleSkip}>
+            {index > 3 ? "Linke Git!" : "Reklamı Geç"}
+          </button>
+          <span>Reklamları geçtikten sonra linke yönledirileceksiniz!</span>
+          <span>{index} / 4</span>
+        </div>
       </div>
-      <AdsComponent dataAdSlot = "3634852612"/>
-      <button onClick={handleSkip}>Reklamı Göster</button>
-    </div>
+      <Footer />
+    </>
   );
 }
 

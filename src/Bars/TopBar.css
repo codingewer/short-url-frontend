@@ -1,18 +1,20 @@
 .navbar {
   width: 100vw;
-  height: 80px;
+  height: 72px;
   display: flex;
   justify-content: center;
   position: fixed;
   position: -webkit-sticky;
   z-index: 99;
   top: 0;
+  color: white;
   font-family: "Montserrat", sans-serif;
   background-repeat: no-repeat;
 }
 
 .window-scrolled{
   background-color: white;
+  color: var(--color-1);
 }
 
 .navbar-container {
@@ -57,6 +59,20 @@
   justify-content: center;
 }
 
+.window-scrolled-links{
+  color: var(--color-1);
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.topbar-links{
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+}
+
 @media only screen and (max-width: 1080px) {
   .bar-btns{
     display: none;
@@ -72,10 +88,14 @@
     gap: 5px;
   }
   .menu-bar{
-    background-color: gray;
+    background-color: rgb(255, 255, 255);
     width: 35px;
     height: 5px;
     border-radius: 99px;
+  }
+
+  .menu-bar-scrolled{
+    background-color: gray;
   }
 
   .link-drop-menu{
@@ -91,7 +111,7 @@
     right: 0;
     z-index: 98;
     width: calc(100vw - 48px);
-    border-radius: 0px 12px 12px 12px;
+    border-radius: 0px 0px 12px 12px;
     gap: 24px;
   }
   .topbar-url{

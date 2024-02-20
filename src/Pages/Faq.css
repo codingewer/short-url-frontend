@@ -1,0 +1,82 @@
+.faq-page {
+    width: 100vw;
+    min-height: calc(70vh - 200px);
+    color: gray;
+    position: relative;
+    z-index: 0;
+}
+
+.faq-banner{
+    background-color: var(--color-1);
+    height: 200px;
+    width: 100vw;
+}
+
+.faq-content,
+.faq-card,
+.faq-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.faq-content {
+    gap: 12px;
+    width: 100%;
+    padding-top: 100px;
+}
+
+.faq-card button {
+    background: none;
+    border: none;
+    color: gray;
+    font-size: 18px;
+
+}
+
+.faq-card {
+    color: gray;
+    text-align: center;
+    padding: 24px;
+    gap: 12px;
+    border-radius: 12px;
+    border: 1px solid var(--shadow-color)
+}
+
+.faq-card-content {
+    display: none;
+}
+
+.pages-links{
+    text-decoration: none;
+    color: var(--color-1);
+    margin-top: 24px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+@media only screen and (max-width: 1080px) {
+    .faq-content {
+        width: 100%;
+    }
+
+    .faq-card {
+        width: calc(100% - 72px);
+        color: gray;
+        text-align: center;
+        gap: 12px;
+        border-radius: 12px;
+        border: 1px solid var(--shadow-color)
+    }
+}
+
+@media only screen and (min-width: 1080px) {
+    .faq-content {
+        width: 60%;
+    }
+
+    .faq-card {
+        width:60%;
+        color: gray;
+    }
+}

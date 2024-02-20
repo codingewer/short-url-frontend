@@ -8,7 +8,6 @@ const AdsComponent = (props) => {
       (window.adsbygoogle = window.adsbygoogle || []).push({});
     } catch (e) {}
   }, []);
-
   return (
     <>
       <ins

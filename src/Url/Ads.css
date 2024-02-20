@@ -3,14 +3,38 @@
      flex-direction: column;
      align-items: center;
      justify-content: center;
-     height: 100vh;
      width: 100vw;
-     background-color: slategrey;
 }
 
 .ad-content{
     background-color: white;
-    height: fit-content;
+    height: 50%;
+    max-width: calc(100% - 72px);
     padding: 24px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
     width: fit-content;
+    border-radius: 24px;
+    text-align: center;
+}
+
+.ad-content button{
+    border: none;
+    background-color: var(--color-1);
+    color: white;
+    padding: 12px;
+    border-radius: 99px;
+    font-weight: 500;
+    font-size: 15px;
+
+}
+
+.ad-content span{
+    font-weight: 600;
+    margin-top: 24px;
+    color: var(--color-1);
+    font-size: 18px;
 }

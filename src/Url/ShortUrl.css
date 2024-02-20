@@ -110,7 +110,7 @@
   width: 80%;
   flex-wrap: wrap;
   gap: 24px;
-  padding-top: 100PX;
+  padding-top: 100px;
   align-items: center;
   justify-content: center;
 }
@@ -177,6 +177,7 @@
   position: relative;
   align-items: center;
   top: 150px;
+  padding-bottom: 50px;
 }
 
 .how-work {
