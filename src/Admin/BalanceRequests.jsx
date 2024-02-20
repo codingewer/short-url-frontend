@@ -16,7 +16,7 @@ function BalanceRequests(props) {
     {
       id: 2,
       name: "John Doe",
-      iban: "TR123456678909876543",
+      iban: "TR1234566789fgjgf09876543",
       email: "john@example.com",
       balance: 24,
       date: "12.01.2024",
@@ -62,7 +62,6 @@ function BalanceRequests(props) {
       paid: false,
     },
   ]);
-  //find item by id from array
 
   const balancereqs = props.paid ? balancereqsTrue : balancereqsFalse;
   const changePaid = (id) => {
@@ -74,7 +73,7 @@ function BalanceRequests(props) {
       )
     ) {
       request.paid = !request.paid;
-      if ((request.paid === true)) {
+      if (request.paid === true) {
         const updateReqs = balancereqsFalse.filter((requ) => requ.id !== id);
         setbalancereqsFalse(updateReqs);
         balancereqsTrue.push(request);

@@ -16,6 +16,8 @@ import {
 import "./Profile.css";
 import BalanceRequestPopUp from "./BalanceRequestPopUp";
 import UpdateUser from "./UpdateUser";
+import Footer from "../Bars/Footer";
+import TopBar from "../Bars/TopBar";
 
 ChartJS.register(
   LineElement,
@@ -147,6 +149,7 @@ function Profile() {
       : (linksMenu.style.display = "none");
   };
   return (
+    <>
     <div className="profile-container">
       <div className="profile-details">
         <button className="edit-btn" onClick={handleTogleForm}>
@@ -270,6 +273,9 @@ function Profile() {
         </div>
       </div>
     </div>
+     <Footer />
+     <TopBar />
+    </>
   );
 }
 

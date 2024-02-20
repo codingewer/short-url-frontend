@@ -9,6 +9,7 @@ import freeicon from "../assets/icons/free-pay.png";
 import quickicon from "../assets/icons/quick-start.png";
 import { Link } from "react-router-dom";
 import Footer from "../Bars/Footer";
+import TopBar from "../Bars/TopBar";
 
 function ShortUrl() {
   const currentURL = window.location.href;
@@ -145,6 +146,7 @@ function ShortUrl() {
 
   return (
     //sayfa tasarımı
+    <>
     <div className="shorturl">
       <div className="shorturl-bg-banner"></div>
       <div className="short-url-content">
@@ -153,7 +155,8 @@ function ShortUrl() {
             <div className="get-started-texts">
               <span className="gs-title">Hızlı kolay ve anlışılır</span>
               <span className="gs-sub-title">
-                Linklerini kısalt paylaş linklerle reklam göster ve reklamlardan kazanç elde et hem başlaması çok kolay!
+                Linklerini kısalt paylaş linklerle reklam göster ve reklamlardan
+                kazanç elde et hem başlaması çok kolay!
               </span>
             </div>
             <div className="gs-links">
@@ -172,12 +175,12 @@ function ShortUrl() {
                 onChange={(e) => setUrl(e.target.value)}
                 value={url}
                 placeholder="Url(zorunlu)"
-              />
+                />
               <button
                 className="form-short-btn"
                 type="submit"
                 onClick={(e) => ShortLink(e)}
-              >
+                >
                 <img src={sendicon} alt="" />
               </button>
             </div>
@@ -193,20 +196,20 @@ function ShortUrl() {
                     rel="noreferrer"
                     className="url-name"
                     href={domain + item.ShortenedUrl}
-                  >
+                    >
                     {domain + item.ShortenedUrl}
                   </a>
                   <div className="card-btns">
                     <button
                       className="copy-btn"
                       onClick={() => CopyContent(item.ShortenedUrl)}
-                    >
+                      >
                       <img src={copyicon} alt="Kopyala" />
                     </button>
                     <button
                       className="delete-btn"
                       onClick={() => DeleteLink(item.ID)}
-                    >
+                      >
                       <img src={trashicon} alt="Sil" />
                     </button>
                   </div>
@@ -224,7 +227,7 @@ function ShortUrl() {
                 flexWrap: "wrap",
                 gap: 48,
               }}
-            >
+              >
               {wwu.map((item, index) => (
                 <div key={index} className="wwu-card">
                   <div className="wwu-card-icon">
@@ -240,9 +243,13 @@ function ShortUrl() {
           </div>
         </div>
       </div>
+     
       {/*!logined && <Navigate to="/home" />}
       {status && <Navigate to="/home" />*/}
     </div>
+    <Footer />
+      <TopBar />
+      </>
   );
 }
 

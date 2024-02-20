@@ -28,7 +28,7 @@ function TopBar() {
   const handleCloseMenu = () => {
     const linksMenu = document.getElementById("link-drop-menu");
     linksMenu.style.display = "none";
-  }
+  };
   const logined = Boolean(localStorage.getItem("logined"));
   return (
     <div>
@@ -47,19 +47,38 @@ function TopBar() {
             <div className="menu-bar"></div>
           </button>
           <div className="bar-btns">
-            <Link className="menu-login-btn" to={logined ?"/dashboard" : "/login</div>"}  relative="path">
+            <Link
+              className="menu-login-btn"
+              to={logined ? "/shorturl/dashboard" : "/shorturl/login"}
+              relative="path"
+            >
               {logined ? "Dashbord" : "Giriş Yap"}
             </Link>
           </div>
         </div>
       </div>
       <div id="link-drop-menu" className="link-drop-menu">
-        <Link onClick={handleCloseMenu} to="/dashboard" className="topbar-url" >Dashboard</Link>
-        <Link onClick={handleCloseMenu} className="topbar-url" >İletişim</Link>
-        <Link onClick={handleCloseMenu} className="topbar-url" >S.S.S</Link>
-        <Link onClick={handleCloseMenu} className="menu-login-btn" to={logined ?"/dashboard" : "/login</div>"}  relative="path">
-              {logined ? "Dashbord" : "Giriş Yap"}
-            </Link>
+        <Link
+          onClick={handleCloseMenu}
+          to="/shorturl/dashboard"
+          className="topbar-url"
+        >
+          Dashboard
+        </Link>
+        <Link onClick={handleCloseMenu} className="topbar-url">
+          İletişim
+        </Link>
+        <Link onClick={handleCloseMenu} className="topbar-url">
+          S.S.S
+        </Link>
+        <Link
+          onClick={handleCloseMenu}
+          className="menu-login-btn"
+          to={logined ? "/shorturl/dashboard" : "/shorturl/login"}
+          relative="path"
+        >
+          {logined ? "Dashbord" : "Giriş Yap"}
+        </Link>
       </div>
     </div>
   );

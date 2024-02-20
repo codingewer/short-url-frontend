@@ -16,19 +16,16 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-      <TopBar/>
         <Routes>
-          <Route path="/login" element={<Userlogin />} />
+          <Route path="/shorturl/login" element={<Userlogin />} />
           <Route path="/shorturl" element={<ShortUrl />} />
           <Route path="/" element={<Navigate to="/shorturl" />} />
           <Route path="/:shortenedUrl" element={<ShortenedUrl />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
           <Route path="*" element={<NotFound />} />
-          <Route path="/dashboard" element={<Profile />} />
-          <Route path="/controlpanel/*" element={<ControlPanel/>} />
+          <Route path="/shorturl/dashboard" element={<Profile />} />
+          <Route path="/controlpanel/*" element={<ControlPanel />} />
         </Routes>
-        <Footer/>
+
       </BrowserRouter>
     </div>
   );

@@ -17,6 +17,7 @@
     font-weight: 600;
     min-width: 120px;
     border-radius: 99px;
+    margin: 12px;
 }
 
 .register-form input {

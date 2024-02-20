@@ -10,7 +10,7 @@ function Footer() {
           <span>2024 tüm hakları saklıdır</span>
         </div>
         <div className="footer-urls">
-          <Link to="/login">Kayıt Ol</Link>
+          <Link to="/shorturl/login">Kayıt Ol</Link>
           <Link>Hakkımızda</Link>
           <Link>İletişim</Link>
           <Link>S.S.S</Link>
