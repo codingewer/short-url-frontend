@@ -19,14 +19,14 @@ function ShortenedUrl() {
     } else {
     }
   };
+
   console.log(adBlockDetected);
   return (
     <>
       <div className="ads-container">
         <div className="ad-content">
           <AdsComponent dataAdSlot="3634852612" />
-          <h1>Reklam</h1>
-          <button disabled={adBlockDetected} onClick={handleSkip}>
+1          <button disabled={adBlockDetected} onClick={handleSkip}>
             {index > 3 ? "Linke Git!" : "Reklamı Geç"}
           </button>
           {adBlockDetected ? (

@@ -27,7 +27,7 @@
     height: auto;
 }
 
-.profile-details {
+.profile-nav {
     width: 20%;
     height: fit-content;
     display: flex;
@@ -37,16 +37,40 @@
     color: gray;
     padding: 24px;
 }
+.navlinks{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: column;
+    padding: 48px 0px 48px 0px;
+}
 
-.profile-chart, .balance-request,
-.profile-details, .urls-detail {
+.navlink{
+    color: var(--color-1);
+    background-color: white;
+}
+.navlink-active, .navlink{
+    text-decoration: none;
+    text-align: left;
+    width: 100%;
+    display: flex;
+    font-size: 12px;
+    padding: 12px 0px 12px 0px;
+    justify-content: center;
+}
+.navlink-active{
+    background-color: var(--color-1);
+    color: white;
+}
+.profile-pages, .balance-request,
+.profile-nav {
     background-color: white;
     padding: 24px;
     border-radius: 12px;
     box-shadow: 0px 0px 11px var(--shadow-color);
 }
 
-.urls-details {
+.urls-nav {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -55,14 +79,17 @@
     flex-wrap: wrap;
 
 }
+.urls-details{
+    display: flex;
+    justify-content: space-between;
 
+}
 .urls-detail {
     display: flex;
     flex-direction: column;
-    padding: 24px;
-    min-width: 80px;
+    padding: 12px;
+    font-size: 12px;
     text-align: center;
-    gap: 6px;
     
 }
 
@@ -80,7 +107,7 @@
     margin: 12px 24px 12px 24px;
     width: calc(100% - 48px);
     text-align: center;
-    font-size: 16px;
+    font-size: 12px;
     padding: 6px;
 }
 
@@ -88,7 +115,7 @@
     outline: none;
 }
 
-.account-details {
+.account-nav {
     display: flex;
     flex-direction: column;
     gap: 6px;
@@ -103,46 +130,14 @@
     gap: 6px;
 }
 
-.balance-requests{
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    width: calc(100% - 48px);
-    padding: 24px;
-    align-items: center;
-    margin-top: 50px;
-    height: 500px;
-    overflow: auto;
-}
 
-.balance-requests::-webkit-scrollbar{
-    display: none;
-}
-
-.balance-request{
-    width: calc(100% - 48px);
-    font-size: 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.balance-request-btn{
-    border: none;
-    background-color: var(--color-3);
-    color: white;
-    padding: 12px;
-    border-radius: 99px;
-    font-size: 14px;
-    font-weight: 500;
-}
 @media only screen and (min-width: 1080px) {
     
-    .profile-chart {
+    .profile-pages {
         width: calc(40% - 72px);
     }
     
-    .profile-details {
+    .profile-nav {
         width: 20%;
         height: fit-content;
         display: flex;
@@ -163,15 +158,15 @@
         
     }
     
-    .profile-chart,.profile-details  {
+    .profile-pages,.profile-nav  {
         width: calc(100% - 48px);
     }
     
-    .profile-details {
+    .profile-nav {
         height: fit-content;
         display: flex;    }
 
     .urls-detail h2, .urls-detail span{
-        font-size: 16px;
+        font-size: 12px;
     }
 }

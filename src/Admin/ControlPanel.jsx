@@ -52,7 +52,7 @@ function ControlPanel() {
         </div>
         <div className="requests">
           <div className="request-navbar">
-            <Link to="/controlpanel/balance-requests-paid">Ödendi</Link>
+            <Link to="/controlpanel/">Ödendi</Link>
             <Link to="/controlpanel/balance-requests-notpaid"> Ödenmedi </Link>
             <Link to="/controlpanel/help-requests-answered">
               Cevaplanmış Destekler
@@ -66,7 +66,7 @@ function ControlPanel() {
           </div>
           <Routes>
             <Route
-              path="/balance-requests-paid"
+              path="/"
               element={<BalanceRequests paid={true} />}
             />
             <Route

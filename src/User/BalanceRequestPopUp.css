@@ -1,47 +1,87 @@
-.popup-form form{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-radius:12px ;
-    gap: 12px;
+.balance-container{
+    width: 100%;
 }
 
 
-.popup-form{
+.balance-form{
     width: calc(100% - 48px);
     height: auto;
-    display: none;
+    display: flex;
     position: relative;
     align-items: center;
     justify-content: center;
     border-radius: 12px;
     padding: 24px;
     font-size: 18px;
-    background-color: rgb(255, 255, 255);
-    box-shadow: 0px 0px 11px var(--shadow-color);
-    
+    background-color: rgb(255, 255, 255);    
 }
 
-.popup-form button{
-    margin-top: 12px;
+.balance-form button{
     border: none;
     background-color: var(--color-1);
     color: white;
     padding: 6px;
     font-size: 16px;
     min-width: 80px;
-    border-radius: 99px;
+    height: 44px;
+    border-radius: 0px 99px 99px 0px ;
+    position: relative;
 }
 
-.popup-form input{
+.balance-form input{
     border: 1px solid var(--shadow-color);
-    border-radius: 12px;
+    border-radius: 99px 0px 0px 99px;
     height: 32px;
     text-align: center;
     padding: 6px;
     width: 100%;
 }
-.popup-form label{
+.balance-form label{
     font-weight: 600;
+}
+
+.balance-requests{
+    display: flex;
+    flex-direction: column;
+
+    gap: 24px;
+    width: calc(100% - 48px);
+    padding: 24px;
+    align-items: center;
+    margin-top: 50px;
+    height: 500px;
+    overflow: auto;
+}
+
+.balance-requests::-webkit-scrollbar{
+    display: none;
+}
+
+.balance-request{
+    width: calc(100% - 48px);
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.balance-amount{
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+}
+
+.balance-info{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    font-size: 14px;
+}
+.balance-bar{
+    width: 200px;
+    overflow: hidden;
 }

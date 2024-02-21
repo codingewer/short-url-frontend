@@ -13,20 +13,22 @@ import ControlPanel from "./Admin/ControlPanel";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Faq from "./Pages/Faq";
 import ContactUs from "./Pages/ContactUs";
+import BalanceRequest from "./User/BalanceRequest";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/shorturl/login" element={<Userlogin />} />
-          <Route path="/shorturl" element={<ShortUrl />} />
+          <Route path="/login" element={<Userlogin />} />
+          <Route path="/" element={<ShortUrl />} />
           <Route path="/faq" element={<Faq />} />
           <Route path="/contactus" element={<ContactUs />} />
           <Route path="/" element={<Navigate to="/shorturl" />} />
           <Route path="/l/:shortenedUrl/r/:adIndex" element={<ShortenedUrl />} />
           <Route path="*" element={<NotFound />} />
-          <Route path="/shorturl/dashboard" element={<Profile />} />
+          <Route path="/dashboard/*" element={<Profile />} />
+          <Route path="/balancereqs" element={<BalanceRequest/> } />
           <Route path="/controlpanel/*" element={<ControlPanel />} />
         </Routes>
 
