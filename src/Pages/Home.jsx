@@ -123,7 +123,7 @@ function Home() {
               </div>
             </div>
             <div id="work-with-us" className="work-with-us">
-              <span className="contents-titles">bizimle çalışın</span>
+              <span className="contents-titles">Bizimle çalışın</span>
               <div
                 style={{
                   width: "100%",

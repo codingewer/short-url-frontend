@@ -11,8 +11,8 @@
     background-color: rgb(50, 50, 50);
     align-items: center;
     top: 0;
-    left: -358px; /* Menüyü ekranın solundan dışarı çıkar */
-    transition: left 0.3s ease; /* Geçiş efekti */
+    left: -600px; /* Menüyü ekranın solundan dışarı çıkar */
+    transition: left 0.5s ease; /* Geçiş efekti */
   }
   
   .side-bar-open {
@@ -31,3 +31,4 @@
         display: flex;
     }
 }
+ 
