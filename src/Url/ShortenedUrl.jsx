@@ -8,8 +8,7 @@ import axios from 'axios';
 
 function ShortenedUrl() {
   const { adIndex, shortenedUrl } = useParams();
-  const adBlockDetected = useDetectAdBlock();
-const [url, setUrl] = useState(null);
+  const [adBlockDetected, setAdBlockDetected] = useState(false);const [url, setUrl] = useState(null);
   const currentURL = window.location.href;
   const domain = currentURL.split("r/" + adIndex)[0];
   console.log(domain);
@@ -19,7 +18,7 @@ const [url, setUrl] = useState(null);
     if (nextIndex < 5) {
       window.location.href = domain + "r/" + nextIndex;
     } else {
-      window.location.href= url.originalurl
+      window.location.href= url.OrginalUrl
     }
   };
 
@@ -31,9 +30,19 @@ const [url, setUrl] = useState(null);
       })
       .catch(function (error) {
       });
+      const hasAdBlockClass = () => {
+        const elementsWithAdBlockClass = document.getElementsByClassName('ad');
+        if (elementsWithAdBlockClass.length === 0) {
+          setAdBlockDetected(true);
+        }
+      };
+  
+      hasAdBlockClass();
   }, []);
+  if(adBlockDetected){
+    alert("Reklam engellendi. Lütfen reklam engelini kaldırın!")
+  }
 
-  console.log(url);
   return (
     <>
       <div className="ads-container">
