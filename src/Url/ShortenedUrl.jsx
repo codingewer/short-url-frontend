@@ -39,12 +39,13 @@ function ShortenedUrl() {
       };
   
       hasAdBlockClass();
+      if(adBlockDetected){
+        alert("Reklam engellendi. Lütfen reklam engelini kaldırın!")
+      }else{
+        alert("Reklam engelleyici kullanmayın")
+      }
   }, []);
-  if(adBlockDetected){
-    alert("Reklam engellendi. Lütfen reklam engelini kaldırın!")
-  }else{
-    alert("Reklam engelleyici kullanmayın")
-  }
+  
 
   return (
     <>
