@@ -4,23 +4,14 @@ const AdsComponent = (props) => {
   const { dataAdSlot } = props;
 
   useEffect(() => {
-    const adElements = document.querySelectorAll('.adsbygoogle');
-  
-    if (adElements.length === 0) {
-      console.log('Reklam engelleyici algılandı.');
-    } else {
-     console.log('Reklam engelleyici algılanmadı.');
-    }
     const script = document.createElement('script');
-    script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
+    script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4301229156748291";
     script.async = true;
     document.body.appendChild(script);
 
     return () => {
       document.body.removeChild(script);
     };
-    
-    
   }, []);
 
   return (
@@ -29,9 +20,9 @@ const AdsComponent = (props) => {
         className="adsbygoogle"
         style={{ display: "block" }}
         data-ad-client="ca-pub-4301229156748291"
-        data-ad-slot="3634852612"
+        data-ad-slot='3634852612'
         data-ad-format="auto"
-        data-adtest="on"W
+        data-adtest="on"
         data-full-width-responsive="true"
       >Reklam</ins>
     </>
