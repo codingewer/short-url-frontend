@@ -3,6 +3,7 @@ import "./TopBar.css";
 import logo from "../assets/logo.jpeg";
 import { Link } from "react-router-dom";
 import Profile from "../User/Profile";
+import SideBar from "./SideBar";
 
 function TopBar() {
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -17,21 +18,22 @@ function TopBar() {
     };
   }, [scrollPosition]);
 
-  const [isToggled, setToggled] = useState(false);
+  const [isToggled, setToggled] = useState(true);
   const handleTogleMenu = () => {
-    const linksMenu = document.getElementById("link-drop-menu");
+    const linksMenu = document.getElementById("side-bar-options");
     setToggled(!isToggled);
     isToggled
-      ? (linksMenu.style.display = "flex")
-      : (linksMenu.style.display = "none");
+      ? linksMenu.classList.add("side-bar-open")
+      : linksMenu.classList.remove("side-bar-open");
   };
   const handleCloseMenu = () => {
     const linksMenu = document.getElementById("link-drop-menu");
-    linksMenu.style.display = "none";
+    linksMenu.classList.add("side-bar-open");
   };
   const logined = Boolean(localStorage.getItem("logined"));
   return (
     <div>
+      <SideBar />
       <div
         className={scrollPosition > 300 ? "window-scrolled navbar" : "navbar"}
       >
@@ -44,29 +46,22 @@ function TopBar() {
           <button onClick={handleTogleMenu} type="button" className="menu-btn">
             <div
               className={
-                scrollPosition > 300 || !isToggled
-                  ? "menu-bar-scrolled menu-bar"
-                  : "menu-bar"
+                scrollPosition > 300 ? "menu-bar-scrolled menu-bar" : "menu-bar"
               }
             ></div>
             <div
               className={
-                scrollPosition > 300 || !isToggled
-                  ? "menu-bar-scrolled menu-bar"
-                  : "menu-bar"
+                scrollPosition > 300 ? "menu-bar-scrolled menu-bar" : "menu-bar"
               }
             ></div>
             <div
               className={
-                scrollPosition > 300 || !isToggled
-                  ? "menu-bar-scrolled menu-bar"
-                  : "menu-bar"
+                scrollPosition > 300 ? "menu-bar-scrolled menu-bar" : "menu-bar"
               }
             ></div>
           </button>
           <div className="bar-btns">
             <Link
-              onClick={handleCloseMenu}
               to="/shorturl/dashboard"
               className={
                 scrollPosition > 300 ? "window-scrolled-links" : "topbar-links"
@@ -100,29 +95,6 @@ function TopBar() {
             </Link>
           </div>
         </div>
-      </div>
-      <div id="link-drop-menu" className="link-drop-menu">
-        <Link
-          onClick={handleCloseMenu}
-          to="/shorturl/dashboard"
-          className="topbar-url"
-        >
-          Dashboard
-        </Link>
-        <Link to="/contactus" onClick={handleCloseMenu} className="topbar-url">
-          İletişim
-        </Link>
-        <Link to="/faq" onClick={handleCloseMenu} className="topbar-url">
-          S.S.S
-        </Link>
-        <Link
-          onClick={handleCloseMenu}
-          className="menu-login-btn"
-          to={logined ? "/shorturl/dashboard" : "/shorturl/login"}
-          relative="path"
-        >
-          {logined ? "Dashbord" : "Giriş Yap"}
-        </Link>
       </div>
     </div>
   );

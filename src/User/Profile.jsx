@@ -1,16 +1,15 @@
 import React, { useState } from "react";
-import editicon from "../assets/icons/edit-icon.png";
-import cancelicon from "../assets/icons/close-icon.png";
 import logouticon from "../assets/icons/logout.png";
 
 import "./Profile.css";
-import UpdateUser from "./UpdateUser";
 import Footer from "../Bars/Footer";
 import TopBar from "../Bars/TopBar";
 import { Route, Routes } from "react-router";
 import BalanceRequest from "./BalanceRequest";
 import DataChart from "./DataChart";
 import { Link } from "react-router-dom";
+import SideBar from "../Bars/SideBar";
+import ShortUrl from "../Url/ShortUrl";
 
 function Profile() {
   const [isToggled, setToggled] = useState(true);
@@ -23,26 +22,19 @@ function Profile() {
       : (linksMenu.style.display = "none");
   };
 
-  const handleTogleForm = () => {
-    const linksMenu = document.getElementById("update-user-form");
-    setToggled2(!isToggled2);
-    isToggled2
-      ? (linksMenu.style.display = "flex")
-      : (linksMenu.style.display = "none");
+  const [selected, setSelect] = useState("/");
+  const handleActiveLink = (select) => {
+    setSelect(select);
   };
-
   const handlelogout = () => {
     localStorage.removeItem("logined");
     localStorage.removeItem("user");
     alert("Çıkış yapıldı");
     window.location.href = "";
   };
-  const [selected, setSelect] = useState("/");
-  const handleActiveLink = (select) => {
-    setSelect(select);
-  };
   return (
     <>
+      <SideBar />
       <div className="profile-container">
         <div className="profile-nav">
           <div className="navlinks">
@@ -50,9 +42,7 @@ function Profile() {
               to="/dashboard"
               onClick={() => handleActiveLink("/dashboard")}
               className={
-                selected === "/dashboard"
-                  ? "navlink-active"
-                  : "navlink"
+                selected === "/dashboard" ? "navlink-active" : "navlink"
               }
             >
               İstatikler
@@ -72,9 +62,7 @@ function Profile() {
               to="/dashboard/balance"
               onClick={() => handleActiveLink("/dashboard/balance")}
               className={
-                selected === "/dashboard/balance"
-                  ? "navlink-active"
-                  : "navlink"
+                selected === "/dashboard/balance" ? "navlink-active" : "navlink"
               }
             >
               Bakiye
@@ -83,9 +71,7 @@ function Profile() {
               to="dashboard/help"
               onClick={() => handleActiveLink("/dashboard/help")}
               className={
-                selected === "/dashboard/help"
-                  ? "navlink-active"
-                  : "navlink"
+                selected === "/dashboard/help" ? "navlink-active" : "navlink"
               }
             >
               Destek
@@ -103,18 +89,19 @@ function Profile() {
             </Link>
           </div>
           <div
-            style={{ display: "flex", width: "100%", justifyContent: "end" }}
+            style={{ display: "flex", width: "100%", justifyContent: "center" }}
           >
-            <button className="edit-btn" onClick={handlelogout}>
+            <button style={{color:"red"}} className="edit-btn" onClick={handlelogout}>
+              Çıkış Yap
               <img src={logouticon} alt="Güncelle" />
             </button>
           </div>
-          <UpdateUser />
         </div>
         <div className="profile-pages">
           <Routes>
             <Route path="/" element={<DataChart />} />
             <Route path="/balance" element={<BalanceRequest />} />
+            <Route path="/shorturl" element={<ShortUrl />} />
           </Routes>
         </div>
       </div>

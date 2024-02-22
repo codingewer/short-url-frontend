@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./BalanceRequestPopUp.css";
+import "./BalanceRequest.css";
 
 function BalanceRequest(props) {
   const balanceM = 10;

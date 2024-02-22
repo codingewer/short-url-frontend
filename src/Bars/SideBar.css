@@ -1,0 +1,33 @@
+.side-bar{
+    position: fixed;
+    position: -webkit-sticky;
+    height:100vh;
+    padding: 0px 24px 0px 24px;
+    width:50vw;
+    z-index: 99;
+    left: 0;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgb(50, 50, 50);
+    align-items: center;
+    top: 0;
+    left: -358px; /* Menüyü ekranın solundan dışarı çıkar */
+    transition: left 0.3s ease; /* Geçiş efekti */
+  }
+  
+  .side-bar-open {
+    left: 0; /* Menüyü ekranın soluna doğru kaydır */
+  }
+
+  @media only screen and (min-width: 1080px) {
+    
+    .side-bar{
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 1080px) {
+    .side-bar{
+        display: flex;
+    }
+}

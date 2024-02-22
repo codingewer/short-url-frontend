@@ -4,6 +4,13 @@ const AdsComponent = (props) => {
   const { dataAdSlot } = props;
 
   useEffect(() => {
+    const adElements = document.querySelectorAll('.adsbygoogle');
+  
+    if (adElements.length === 0) {
+      console.log('Reklam engelleyici algılandı.');
+    } else {
+     console.log('Reklam engelleyici algılanmadı.');
+    }
     const script = document.createElement('script');
     script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4301229156748291";
     script.async = true;
@@ -12,6 +19,8 @@ const AdsComponent = (props) => {
     return () => {
       document.body.removeChild(script);
     };
+    
+    
   }, []);
 
   return (

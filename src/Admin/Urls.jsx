@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "../Url/ShortUrl.css";
 import axios from "axios";
 import "./ControlPanelGlobalStyle.css";
 import copyicon from "../assets/icons/copy-icon.png";

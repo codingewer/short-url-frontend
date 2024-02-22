@@ -1,397 +1,339 @@
-.shorturl {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  position: relative;
+.short-url-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
-
-
-.shorturl-bg-banner {
-  background-image: url(../assets/background.jpg);
-  position: absolute;
-  height: 800px;
-  width: 100vw;
-  filter: brightness(0.6);
-  background-position: center;
-}
-.get-started{
-  width: 80%;
-  padding: 24px;
-  height: auto;
-  display: flex;
-  gap: 24px;
-  flex-direction: column ;
-  justify-content:start;
-}
-
-.get-started-texts{
-  display: flex;
-  flex-direction:column ;
-  gap: 12px;
-  color: white;
-}
-.gs-title{
-  font-size: 56px;
-  font-weight: 400;
-  line-height: 1.5;
-}
-.gs-sub-title{
-  line-height: 2;
-  font-size: 18px;
-  font-weight: 300
-}
-
-.gs-links{
-  display: flex;
-  gap: 24px;
-  flex-wrap: wrap;
-}
-
-.gs-links a{
-  text-decoration: none;
-  color: white;
-  padding: 12px;
-  border-radius: 99px;
-  border: 1.5px solid var(--color-3);
-}
-
-.gs-login-link{
-  background-color: var(--color-3);
-}
-
-
 .short-url-form {
-  height: auto;
-  position: relative;
-  height: 300px;
-}
-
-.contents-titles{
-  font-size: 32px;
-  font-weight: 500;
-  opacity: 0.7;
-  padding: 12px;
-  margin-bottom: 24px;
+    height: auto;
+    position: relative;
+    height: 300px;
 }
 
 .short-url-form,
 .last-shortened-urls {
-  box-shadow: 0px 6px 11px var(--shadow-color);
-  width: 80%;
-  padding: 24px;
-  gap: 24px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border-radius: 24px;
-  background-color: rgb(255, 255, 255);
+    width: 80%;
+    padding: 24px;
+    gap: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 24px;
+    background-color: rgb(255, 255, 255);
 }
 
 .short-url-form input {
-  height: 36px;
-  font-size: 14px;
-  text-align: center;
-  border: 2px solid var(--shadow-color);
-  width: 70%;
-  padding: 6px;
-  border-radius: 99px;
-  background: none;
+    height: 36px;
+    font-size: 14px;
+    text-align: center;
+    border: 2px solid var(--shadow-color);
+    width: 70%;
+    padding: 6px;
+    border-radius: 99px;
+    background: none;
 }
 
 .short-url-form input:focus {
-  outline: none;
+    outline: none;
 
-}
-
-.work-with-us{
-  display: flex;
-  flex-direction: column;
-  width: 80%;
-  flex-wrap: wrap;
-  gap: 24px;
-  padding-top: 100px;
-  align-items: center;
-  justify-content: center;
-}
-.wwu-card{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: white;
-  padding: 12px;
-  width: 250px;
-  border-radius: 12px;
-  gap: 12px;
-}
-.wwu-content{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 12px;
-}
-.wwu-title{
-  font-size: 18px;
-  font-weight: 500;
-  opacity: 0.7;
-}
-.wwu-sub-title{
-  opacity: 0.6;
-}
-
-.form-short-btn {
-  width: 80px;
-  background-color: var(--color-1);
-  display: grid;
-  place-content: center;
-  color: white;
-  border: none;
-  padding: 8px;
-  border-radius: 999px;
-  font-size: 16px;
-  height: 50px;
-  font-weight: 600;
-  position: relative;
-}
-.wwu-card-icon img{
-  height: 76px;
 }
 
 .form-short-btn img {
-  height: 36px;
-  width: 36px;
+    height: 36px;
+    width: 36px;
 }
-.inputs-and-btn{
-  display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: center
+
+.inputs-and-btn {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center
 }
 
 .short-url-content {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  position: relative;
-  align-items: center;
-  top: 150px;
-  padding-bottom: 50px;
-}
-
-.how-work {
-  display: flex;
-  flex-direction: column;
-  width: 45%;
-  height: 100%;
-  position: relative;
-  text-align: left;
-  padding: 24px;
-}
-
-.form-div {
-  width: 70%;
-  gap: 48px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+    align-items: center;
+    top: 150px;
+    padding-bottom: 50px;
 }
 
 .form-title {
-  font-size: 28px;
+    font-size: 28px;
 }
 
 /* Last Shorted*/
 .last-shortened-url {
-  display: flex;
-  padding: 12px;
-  width: calc(100% - 24px);
-  border-radius: 12px;
-  box-shadow: 0px 0px 6px var(--shadow-color);
+    display: flex;
+    padding: 12px;
+    width: calc(100% - 24px);
+    border-radius: 12px;
+    box-shadow: 0px 0px 6px var(--shadow-color);
 }
 
 .card-index {
-  font-size: 24px;
-  opacity: 0.7;
-  padding-left: 12px;
+    font-size: 24px;
+    opacity: 0.7;
+    padding-left: 12px;
 }
 
 .card-btns {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  padding-right: 12px;
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    padding-right: 12px;
 }
-.url-name{
-  overflow: hidden;
-  text-decoration: none;
-  color: var(--color-1);
-  font-weight: 600;
-  font-size: 16px
+
+.url-name {
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--color-1);
+    font-weight: 600;
+    font-size: 16px
 }
+
 .card-btns img {
-  height: 24px;
-  width: auto;
+    height: 24px;
+    width: auto;
 }
 
 .delete-btn,
 .copy-btn {
-  background: none;
-  border: none;
+    background: none;
+    border: none;
 }
 
 .last-shorted-urls::-webkit-scrollbar {
-  display: none;
+    display: none;
 }
 
 .link-card {
-  display: flex;
-  position: relative;
-  padding: 20px;
-  width: 80%;
-  gap: 10px;
-  background-color: rgb(250, 250, 250);
-  border-radius: 10px;
-  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+    display: flex;
+    position: relative;
+    padding: 20px;
+    width: 80%;
+    gap: 10px;
+    background-color: rgb(250, 250, 250);
+    border-radius: 10px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 .card-btn {
-  position: relative;
+    position: relative;
 }
 
 .link-card input {
-  width: 100px;
-  height: 30px;
-  overflow: hidden;
-  border: none;
-  font-size: 14px;
-  background: none;
-  position: relative;
-  color: rgb(117, 117, 255);
+    width: 100px;
+    height: 30px;
+    overflow: hidden;
+    border: none;
+    font-size: 14px;
+    background: none;
+    position: relative;
+    color: rgb(117, 117, 255);
 }
 
 .btn-div {
-  width: 20%;
-  height: 100%;
-  right: 0;
-  display: grid;
-  place-items: center;
+    width: 20%;
+    height: 100%;
+    right: 0;
+    display: grid;
+    place-items: center;
+}
+
+.form-short-btn {
+    width: 80px;
+    background-color: var(--color-1);
+    display: grid;
+    place-content: center;
+    color: white;
+    border: none;
+    padding: 8px;
+    border-radius: 999px;
+    font-size: 16px;
+    height: 50px;
+    font-weight: 600;
+    position: relative;
+}
+
+.form-short-btn img {
+    height: 36px;
+    width: 36px;
+}
+
+.inputs-and-btn {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center
+}
+
+/* Last Shorted*/
+.last-shortened-url {
+    display: flex;
+    padding: 12px;
+    width: calc(100% - 24px);
+    border-radius: 12px;
+    box-shadow: 0px 0px 6px var(--shadow-color);
+}
+
+.card-index {
+    font-size: 24px;
+    opacity: 0.7;
+    padding-left: 12px;
+}
+
+.card-btns {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    padding-right: 12px;
+}
+
+.url-name {
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--color-1);
+    font-weight: 600;
+    font-size: 16px
+}
+
+.card-btns img {
+    height: 24px;
+    width: auto;
+}
+
+.delete-btn,
+.copy-btn {
+    background: none;
+    border: none;
+}
+
+.last-shorted-urls::-webkit-scrollbar {
+    display: none;
+}
+
+.link-card {
+    display: flex;
+    position: relative;
+    padding: 20px;
+    width: 80%;
+    gap: 10px;
+    background-color: rgb(250, 250, 250);
+    border-radius: 10px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.card-btn {
+    position: relative;
+}
+
+.link-card input {
+    width: 100px;
+    height: 30px;
+    overflow: hidden;
+    border: none;
+    font-size: 14px;
+    background: none;
+    position: relative;
+    color: rgb(117, 117, 255);
+}
+
+.btn-div {
+    width: 20%;
+    height: 100%;
+    right: 0;
+    display: grid;
+    place-items: center;
 }
 
 @media only screen and (max-width: 1080px) {
-  .short-url-content {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .link-card {
-    flex-direction: column;
-    height: 200px;
-    align-items: center;
-    position: relative;
-  }
-
-  .btn-div {
-    width: 100%;
-    position: relative;
-    display: grid;
-    height: 50px;
-    place-items: center;
-  }
-
-  .form-div {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-  }
-
-
-  .inputs-and-btn {
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .short-url-form {
-    height: 300px;
-  }
+    .link-card {
+      flex-direction: column;
+      height: 200px;
+      align-items: center;
+      position: relative;
+    }
+  
+    .btn-div {
+      width: 100%;
+      position: relative;
+      display: grid;
+      height: 50px;
+      place-items: center;
+    }
   
   
-  .how-work {
-    width: 80%;
-    padding: 24px;
-    text-align: center;
+    .inputs-and-btn {
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+  
+    .short-url-form {
+      height: 300px;
+    }
+    
+    
+
+    .last-shortened-url {
+      height: 250px;
+      gap: 24px;
+      flex-direction: column;
+      text-align: center;
+      justify-content: center;
+    }
   }
-
-  .last-shortened-url {
-    height: 250px;
-    gap: 24px;
-    flex-direction: column;
-    text-align: center;
-    justify-content: center;
+  
+  @media only screen and (min-width: 1080px) {
+  
+    .btn-div {
+      position: absolute;
+      top: 0;
+    }
+  
+    .link-card {
+      height: 50px;
+      left: -50px;
+      align-items: center;
+    }
+  
+  
+    .link-card a {
+      height: 100%;
+      width: 100px;
+    }
+  
+    .link-card-content {
+      width: 25%;
+      display: flex;
+      text-align: center;
+      justify-content: center;
+      padding: 10px;
+      overflow: scroll;
+    }
+  
+    .link-card-content::-webkit-scrollbar {
+      display: none;
+    }
+  
+    .last-shortened-url {
+      height: 52px;
+      gap: 24px;
+      flex-direction: row;
+      text-align: center;
+      align-items: center;
+      justify-content: space-between;
+    }
+  
+    .form-short-btn {
+      right: 80px;
+    }
+    .short-url-form input {
+      padding-right: 72px;
+    }
+  
   }
-}
-
-@media only screen and (min-width: 1080px) {
-
-  .btn-div {
-    position: absolute;
-    top: 0;
-  }
-
-  .get-started-texts{
-    width: 50%;
-  }
-
-  .link-card {
-    height: 50px;
-    left: -50px;
-    align-items: center;
-  }
-
-
-  .link-card a {
-    height: 100%;
-    width: 100px;
-  }
-
-  .how-work {
-    width: 70%;
-    height: 100%;
-    text-align: left;
-  }
-
-  .link-card-content {
-    width: 25%;
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    padding: 10px;
-    overflow: scroll;
-  }
-
-  .link-card-content::-webkit-scrollbar {
-    display: none;
-  }
-
-  .last-shortened-url {
-    height: 52px;
-    gap: 24px;
-    flex-direction: row;
-    text-align: center;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .form-short-btn {
-    right: 80px;
-  }
-  .short-url-form input {
-    padding-right: 72px;
-  }
-
-}

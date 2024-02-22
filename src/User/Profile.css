@@ -10,11 +10,14 @@
 .edit-btn{
     border: none;
     background: none;
+    display: flex;
+    gap: 16px;
+    font-size: 16px;
+    align-items: center;
 }
-
 .edit-btn img  {
-    height: 24px;
-    width: 24px;
+    height: 18px;
+    width: 18px;
 }
 
 .profile-chart {
@@ -46,15 +49,15 @@
 }
 
 .navlink{
-    color: var(--color-1);
-    background-color: white;
+    color: var(--color-3);
 }
 .navlink-active, .navlink{
     text-decoration: none;
     text-align: left;
     width: 100%;
     display: flex;
-    font-size: 12px;
+    font-size: 16px;
+    font-weight: 600;
     padding: 12px 0px 12px 0px;
     justify-content: center;
 }
@@ -88,7 +91,7 @@
     display: flex;
     flex-direction: column;
     padding: 12px;
-    font-size: 12px;
+    font-size: 14px;
     text-align: center;
     
 }
@@ -159,7 +162,7 @@
     }
     
     .profile-pages,.profile-nav  {
-        width: calc(100% - 48px);
+        width: calc(100% - 72px);
     }
     
     .profile-nav {
@@ -168,5 +171,8 @@
 
     .urls-detail h2, .urls-detail span{
         font-size: 12px;
+    }
+    .profile-nav{
+        display: none;
     }
 }
