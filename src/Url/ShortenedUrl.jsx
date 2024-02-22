@@ -8,7 +8,8 @@ import axios from 'axios';
 
 function ShortenedUrl() {
   const { adIndex, shortenedUrl } = useParams();
-  const [adBlockDetected, setAdBlockDetected] = useState(false);const [url, setUrl] = useState(null);
+  const [adBlockDetected, setAdBlockDetected] = useState(false);
+  const [url, setUrl] = useState(null);
   const currentURL = window.location.href;
   const domain = currentURL.split("r/" + adIndex)[0];
   console.log(domain);
@@ -41,6 +42,8 @@ function ShortenedUrl() {
   }, []);
   if(adBlockDetected){
     alert("Reklam engellendi. Lütfen reklam engelini kaldırın!")
+  }else{
+    alert("Reklam engelleyici kullanmayın")
   }
 
   return (
@@ -48,9 +51,12 @@ function ShortenedUrl() {
       <div className="ads-container">
         <div className="ad-content">
           <AdsComponent dataAdSlot="3634852612" />
-        <button  onClick={handleSkip}>
+        <button disabled={adBlockDetected}  onClick={handleSkip}>
             {index > 3 ? "Linke Git!" : "Reklamı Geç"}
           </button>
+          {
+            adBlockDetected && <span>Reklam engellendi. Lütfen reklam engelini kaldırın!</span>
+          }
             <span>Reklamları geçtikten sonra linke yönledirileceksiniz!</span>
           
           <span>{index} / 4</span>
