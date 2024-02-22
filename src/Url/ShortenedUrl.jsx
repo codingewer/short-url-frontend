@@ -2,13 +2,14 @@ import { useParams } from "react-router";
 import "./Ads.css";
 import AdsComponent from "./AdsComponent";
 import Footer from "../Bars/Footer";
+import { useDetectAdBlock } from "adblock-detect-react";
 import { useEffect, useState } from "react";
 import axios from 'axios';
-import { useDetectAdBlock } from "adblock-detect-react";
 
 function ShortenedUrl() {
   const { adIndex, shortenedUrl } = useParams();
-  const [url, setUrl] = useState(null);
+  const adBlockDetected = useDetectAdBlock();
+const [url, setUrl] = useState(null);
   const currentURL = window.location.href;
   const domain = currentURL.split("r/" + adIndex)[0];
   console.log(domain);
@@ -21,38 +22,28 @@ function ShortenedUrl() {
       window.location.href= url.originalurl
     }
   };
-  const adBlockDetected = useDetectAdBlock();
-  console.log(adBlockDetected)
+
   useEffect(() => {
     axios
-    .get("http://localhost:8180/url/get/" + shortenedUrl)
-    .then(function (response) {
-      setUrl(response.data);
-    })
-    .catch(function (error) {
-    });
-      const adElements = document.querySelectorAll('.adsbygoogle');
-
-      if (adElements.length === 0) {
-        console.log('Reklam engelleyici algılandı.');
-      } else {
-       console.log('Reklam engelleyici algılanmadı.');
-      }
+      .get("http://localhost:8180/url/get/" + shortenedUrl)
+      .then(function (response) {
+        setUrl(response.data);
+      })
+      .catch(function (error) {
+      });
   }, []);
 
   console.log(url);
-  if (!adBlockDetected) {
-   alert("Merhaba reklam engelleyici");
-  }
+  console.log(adBlockDetected)
   return (
     <>
       <div className="ads-container">
         <div className="ad-content">
           <AdsComponent dataAdSlot="3634852612" />
-        <button disabled={!adBlockDetected} onClick={handleSkip}>
+        <button disabled={adBlockDetected} onClick={handleSkip}>
             {index > 3 ? "Linke Git!" : "Reklamı Geç"}
           </button>
-          {!adBlockDetected ? (
+          {adBlockDetected ? (
             <span>Reklam engelleme sistemi aktif, reklamı geçemediniz!</span>
           ) : (
             <span>Reklamları geçtikten sonra linke yönledirileceksiniz!</span>
