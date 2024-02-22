@@ -44,7 +44,7 @@ function ShortenedUrl() {
       }else{
         alert("Reklam engelleyici kullanmayın")
       }
-  }, []);
+  }, [adBlockDetected]);
   
 
   return (
