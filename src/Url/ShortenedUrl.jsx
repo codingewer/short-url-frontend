@@ -41,6 +41,9 @@ function ShortenedUrl() {
   }, []);
 
   console.log(url);
+  if (adBlockDetected) {
+   alert("Merhaba reklam engelleyici");
+  }
   return (
     <>
       <div className="ads-container">
