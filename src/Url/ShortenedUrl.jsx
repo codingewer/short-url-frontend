@@ -42,7 +42,6 @@ function ShortenedUrl() {
       if(adBlockDetected){
         alert("Reklam engellendi. Lütfen reklam engelini kaldırın!")
       }else{
-        alert("Reklam engelleyici kullanmayın")
       }
   }, [adBlockDetected]);
   
