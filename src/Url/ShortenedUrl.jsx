@@ -34,20 +34,16 @@ const [url, setUrl] = useState(null);
   }, []);
 
   console.log(url);
-  console.log(adBlockDetected)
   return (
     <>
       <div className="ads-container">
         <div className="ad-content">
           <AdsComponent dataAdSlot="3634852612" />
-        <button disabled={adBlockDetected} onClick={handleSkip}>
+        <button  onClick={handleSkip}>
             {index > 3 ? "Linke Git!" : "Reklamı Geç"}
           </button>
-          {adBlockDetected ? (
-            <span>Reklam engelleme sistemi aktif, reklamı geçemediniz!</span>
-          ) : (
             <span>Reklamları geçtikten sonra linke yönledirileceksiniz!</span>
-          )}
+          
           <span>{index} / 4</span>
         </div>
       </div>
