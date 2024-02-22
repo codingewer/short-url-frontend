@@ -41,7 +41,7 @@ function ShortenedUrl() {
   }, []);
 
   console.log(url);
-  if (adBlockDetected) {
+  if (!adBlockDetected) {
    alert("Merhaba reklam engelleyici");
   }
   return (
@@ -49,10 +49,10 @@ function ShortenedUrl() {
       <div className="ads-container">
         <div className="ad-content">
           <AdsComponent dataAdSlot="3634852612" />
-        <button disabled={adBlockDetected} onClick={handleSkip}>
+        <button disabled={!adBlockDetected} onClick={handleSkip}>
             {index > 3 ? "Linke Git!" : "Reklamı Geç"}
           </button>
-          {adBlockDetected ? (
+          {!adBlockDetected ? (
             <span>Reklam engelleme sistemi aktif, reklamı geçemediniz!</span>
           ) : (
             <span>Reklamları geçtikten sonra linke yönledirileceksiniz!</span>
