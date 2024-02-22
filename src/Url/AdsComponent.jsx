@@ -22,7 +22,7 @@ const AdsComponent = (props) => {
         data-ad-client="ca-pub-4301229156748291"
         data-ad-slot='3634852612'
         data-ad-format="auto"
-        data-adtest="on"
+        data-ad-test="on"
         data-full-width-responsive="true"
       >Reklam</ins>
     </>
