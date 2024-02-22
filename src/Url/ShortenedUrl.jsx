@@ -31,7 +31,7 @@ function ShortenedUrl() {
       .catch(function (error) {
       });
       const hasAdBlockClass = () => {
-        const elementsWithAdBlockClass = document.getElementsByClassName('ad');
+        const elementsWithAdBlockClass = document.getElementsByClassName('adsbygoogle');
         if (elementsWithAdBlockClass.length === 0) {
           setAdBlockDetected(true);
         }
