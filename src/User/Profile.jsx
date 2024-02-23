@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import SideBar from "../Bars/SideBar";
 import ShortUrl from "../Url/ShortUrl";
 import HelpReq from "./HelpReq";
+import UpdateUser from "./UpdateUser";
 
 function Profile() {
   const [isToggled, setToggled] = useState(true);
@@ -104,6 +105,7 @@ function Profile() {
             <Route path="/balance" element={<BalanceRequest />} />
             <Route path="/shorturl" element={<ShortUrl />} />
             <Route path="/help" element={<HelpReq />} />
+            <Route path="/settings" element={<UpdateUser />} />
           </Routes>
         </div>
       </div>

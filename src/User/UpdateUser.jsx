@@ -74,7 +74,7 @@ function UpdateUser() {
         {formik.errors.iban && formik.touched.iban ? (
           <div>{formik.errors.iban}</div>
         ) : null}
-        <label htmlFor="ibanName">IBAN Adı</label>
+        <label htmlFor="ibanName">IBAN Alıcı Adı</label>
         <input
           type="text"
           id="ibanName"

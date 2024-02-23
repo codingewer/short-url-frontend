@@ -56,7 +56,20 @@ function ShortUrl() {
         : window.location.replace("/login");
       e.preventDefault();
     };
-  
+
+    const demoİtems = [
+      {
+        ID: 1,
+        OrginalUrl: "https://instagram.com",
+        ShortenedUrl: "/insta",
+      },
+      {
+        ID: 2,
+        OrginalUrl: "https://x.com",
+        ShortenedUrl: "/twitter",
+      },
+    ]
+  const displayItems =  logined ? items : demoİtems;
     const DeleteLink = (id) => {
       axios
         .delete("http://localhost:8180/url/delete/" + id, {
@@ -88,6 +101,10 @@ items.reverse()
        <form className="short-url-form">
               {error && <p style={{ color: "red" }}>{message}</p>}
               <span className="form-title">Linkinizi kısaltın</span>
+              <div  style={{display:"flex", flexDirection:"column", gap:14, width:"100%", alignItems:"center"}} >
+                <input type="text" placeholder="Kısaltma Adı(opsiyonel)" />
+                <input type="text" placeholder="Açıklama(opsiyonel)" />
+              </div>
               <div className="inputs-and-btn">
                 <input
                   type="url"
@@ -104,17 +121,17 @@ items.reverse()
                 </button>
               </div>
             </form>
-            {items.length !== 0 && (
+            {displayItems.length !== 0 && (
               <div className="last-shortened-urls">
                 <span className="contents-titles">Son Linkler</span>
-                {items.map((item, index) => (
+                {displayItems.map((item, index) => (
                   <div key={index} className="last-shortened-url">
                     <h3 className="card-index">{index + 1}</h3>
                     <a
                       target="_blank"
                       rel="noreferrer"
                       className="url-name"
-                      href={domain + item.ShortenedUrl}
+                      href={domain + "/l" +  item.ShortenedUrl +"/r/1"}
                     >
                       {domain + item.ShortenedUrl}
                     </a>

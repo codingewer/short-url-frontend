@@ -46,7 +46,7 @@ function BalanceRequest(props) {
       </form>
 
       <div className="balance-requests">
-        <h4>Para çekm geçmişi</h4>
+        <h4>Para çekme geçmişi</h4>
         <div className="balance-request">
           <span style={{ color: "red", fontWeight: "bold" }}>-125 &#8378;</span>
           <span>12.02.24</span>

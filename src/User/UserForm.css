@@ -36,7 +36,7 @@
     outline: none;
 }
 
-.user-form-div,.update-from-div  {
+.user-form-div  {
     width: fit-content;
     gap: 24px;
     padding: 24px;
@@ -55,8 +55,9 @@
 }
 
 .update-from-div{
-    display: none;
-    margin-top: 48px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
 .update-from-div
