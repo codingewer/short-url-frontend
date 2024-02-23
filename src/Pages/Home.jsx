@@ -15,87 +15,13 @@ function Home() {
       iconUrl: quickicon,
     },
     {
-      title: "Başlaması çok kolay",
-      subTitle: `Hemen kaydolun ve kısalttığınız linklere basıldıkça para
-      kazanın`,
+      title: "Herhangi bir ücret ödemenize gerek yok!",
+      subTitle: `Kayıt olurken veya link kısaltırken herhangi bir ücret ödemenize gerek yok!`,
       iconUrl: freeicon,
     },
     {
-      title: "Başlaması çok kolay",
-      subTitle: `Hemen kaydolun ve kısalttığınız linklere basıldıkça para
-      kazanın`,
-      iconUrl: economyicon,
-    },
-    {
-      title: "Başlaması çok kolay",
-      subTitle: `Hemen kaydolun ve kısalttığınız linklere basıldıkça para
-      kazanın`,
-      iconUrl: freeicon,
-    },
-    {
-      title: "Başlaması çok kolay",
-      subTitle: `Hemen kaydolun ve kısalttığınız linklere basıldıkça para
-      kazanın`,
-      iconUrl: quickicon,
-    },
-    {
-      title: "Başlaması çok kolay",
-      subTitle: `Hemen kaydolun ve kısalttığınız linklere basıldıkça para
-      kazanın`,
-      iconUrl: economyicon,
-    },
-    {
-      title: "Başlaması çok kolay",
-      subTitle: `Hemen kaydolun ve kısalttığınız linklere basıldıkça para
-      kazanın`,
-      iconUrl: freeicon,
-    },
-    {
-      title: "Başlaması çok kolay",
-      subTitle: `Hemen kaydolun ve kısalttığınız linklere basıldıkça para
-      kazanın`,
-      iconUrl: quickicon,
-    },
-    {
-      title: "Başlaması çok kolay",
-      subTitle: `Hemen kaydolun ve kısalttığınız linklere basıldıkça para
-      kazanın`,
-      iconUrl: economyicon,
-    },
-    {
-      title: "Başlaması çok kolay",
-      subTitle: `Hemen kaydolun ve kısalttığınız linklere basıldıkça para
-      kazanın`,
-      iconUrl: freeicon,
-    },
-    {
-      title: "Başlaması çok kolay",
-      subTitle: `Hemen kaydolun ve kısalttığınız linklere basıldıkça para
-      kazanın`,
-      iconUrl: quickicon,
-    },
-    {
-      title: "Başlaması çok kolay",
-      subTitle: `Hemen kaydolun ve kısalttığınız linklere basıldıkça para
-      kazanın`,
-      iconUrl: economyicon,
-    },
-    {
-      title: "Başlaması çok kolay",
-      subTitle: `Hemen kaydolun ve kısalttığınız linklere basıldıkça para
-      kazanın`,
-      iconUrl: freeicon,
-    },
-    {
-      title: "Başlaması çok kolay",
-      subTitle: `Hemen kaydolun ve kısalttığınız linklere basıldıkça para
-      kazanın`,
-      iconUrl: quickicon,
-    },
-    {
-      title: "Başlaması çok kolay",
-      subTitle: `Hemen kaydolun ve kısalttığınız linklere basıldıkça para
-      kazanın`,
+      title: "Linklerinizi kısaltın ve pasif gelir elde edin!",
+      subTitle: `Linklerinizi kısaltıp insanları bu linke yönlendirmeniz yeterli! Kazancınızı almak için IBAN bilgisi girip bakiyenizden çekmek istediğiniz miktarı belirtmeniz yeterli`,
       iconUrl: economyicon,
     },
   ];

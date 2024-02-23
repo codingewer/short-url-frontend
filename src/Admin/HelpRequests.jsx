@@ -2,8 +2,34 @@ import React, { useState } from "react";
 import rejecticon from "../assets/icons/close-icon.png";
 import doneicon from "../assets/icons/done-icon.png";
 import "./ControlPanelGlobalStyle.css";
+import * as yup from "yup";
+import { useFormik } from "formik";
+
+const validationSchema = yup.object({
+  message: yup.string().required("Mesaj boş olamaz"),
+});
 
 function Helphelpreqs(props) {
+  const formik = useFormik({
+    initialValues: [
+      {
+        id: 1,
+        message: "",
+      },
+      {
+        id: 2,
+        message: "",
+      },
+      {
+        id: 3,
+        message: "",
+      },
+    ],
+    validationSchema: validationSchema,
+    onSubmit: (values) => {
+      console.log(values);
+    },
+  });
   const [helpreqsTrue, sethelpreqsTrue] = useState([
     {
       id: 1,
@@ -107,14 +133,29 @@ function Helphelpreqs(props) {
           <p style={{ color: helpreq.answered ? "green" : "red" }}>
             {helpreq.answered ? "cevaplandı" : "cevaplanmadı"}
           </p>
-          <div className="cp-card-btns">
-            <button onClick={() => changeAnswered(helpreq.id)}>
-              <img
-                src={helpreq.answered ? rejecticon : doneicon}
-                alt="ödendi/ödenmedi"
-              />
-            </button>
-          </div>
+          {!helpreq.answered && (
+            <div className="help-form-container">
+              <form
+                className="helpreq-form"
+                onSubmit={() => changeAnswered(helpreq.id)}
+              >
+                <textarea
+                  className="contacus-from-inputs"
+                  name={`${helpreq.id}.message`}
+                  value={formik.values.message}
+                  onChange={formik.handleChange}
+                  id="message"
+                  cols="30"
+                  placeholder="Cevap"
+                  rows="5"
+                ></textarea>
+                {formik.errors.message && formik.touched.message ? (
+                  <div>{formik.errors.message}</div>
+                ) : null}
+                <button type="submit">Cevapla</button>
+              </form>
+            </div>
+          )}
         </div>
       ))}
     </div>

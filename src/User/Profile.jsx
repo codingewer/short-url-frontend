@@ -32,7 +32,7 @@ function Profile() {
     localStorage.removeItem("logined");
     localStorage.removeItem("user");
     alert("Çıkış yapıldı");
-    window.location.href = "";
+    window.location.href = "/";
   };
   return (
     <>
