@@ -41,7 +41,6 @@ function ShortUrl() {
               CreatedBy: username,
             })
             .then(function (response) {
-              console.log(response.data);
               setUrl(response.data.ShortenedUrl);
               setShortenedUrl("");
               setUrl("");
@@ -83,7 +82,7 @@ function ShortUrl() {
           setError(true);
         });
     }, []);
-     
+items.reverse()
   return (
     <div className="short-url-container" >
        <form className="short-url-form">

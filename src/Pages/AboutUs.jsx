@@ -1,10 +1,10 @@
 import React from "react";
-import "./ContacUs.css";
+import "./AboutUs.css";
 import TopBar from "../Bars/TopBar";
 import Footer from "../Bars/Footer";
 import "./Faq.css";
 
-function ContactUs() {
+function AboutUs() {
   return (
     <>
       <TopBar />
@@ -26,31 +26,6 @@ function ContactUs() {
               quo excepturi quod culpa porro?
             </p>
           </div>
-          <div className="contacktus-form-container">
-            <form className="contactus-form" action="">
-              <span style={{ fontSize: 24, fontWeight: 500, marginBottom: 50 }}>
-                İletişim Formu
-              </span>
-              <label htmlFor="name">İsim Soyisim:</label>
-              <input
-                className="contacus-from-inputs"
-                type="text"
-                name="name"
-                id="name"
-              />
-              <label htmlFor="emain">Mail Adresiniz:</label>
-              <input className="contacus-from-inputs" type="email" />
-              <label htmlFor="Metin">Mesajınız:</label>
-              <textarea
-                className="contacus-from-inputs"
-                name="message"
-                id="message"
-                cols="30"
-                rows="10"
-              />
-              <button>Gönder</button>
-            </form>
-          </div>
         </div>
       </div>
       <Footer />
@@ -58,4 +33,4 @@ function ContactUs() {
   );
 }
 
-export default ContactUs;
+export default AboutUs;

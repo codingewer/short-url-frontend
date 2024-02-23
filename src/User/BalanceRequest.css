@@ -71,6 +71,7 @@
     gap: 12px;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .balance-info{
@@ -82,5 +83,6 @@
 }
 .balance-bar{
     width: 200px;
+    border-radius: 999px;
     overflow: hidden;
 }

@@ -172,6 +172,11 @@
 }
 
 /* Last Shorted*/
+.last-shortened-urls{
+    display: flex;
+    flex-direction: column;
+
+}
 .last-shortened-url {
     display: flex;
     padding: 12px;

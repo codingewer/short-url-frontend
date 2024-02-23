@@ -3,13 +3,16 @@ import "./Ads.css";
 import AdsComponent from "./AdsComponent";
 import Footer from "../Bars/Footer";
 import { useDetectAdBlock } from "adblock-detect-react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 function ShortenedUrl() {
-  const { adIndex } = useParams();
+  const { adIndex, shortenedUrl } = useParams();
   const adBlockDetected = useDetectAdBlock();
 
   const currentURL = window.location.href;
   const domain = currentURL.split("r/" + adIndex)[0];
+  const [url, setUrl] = useState();
   console.log(domain);
   const index = parseInt(adIndex);
   const handleSkip = () => {
@@ -17,9 +20,17 @@ function ShortenedUrl() {
     if (nextIndex < 5) {
       window.location.href = domain + "r/" + nextIndex;
     } else {
+      window.location.href = url.OrginalUrl;
     }
   };
-
+  useEffect(() => {
+    axios
+      .get("http://localhost:8180/url/get/" + shortenedUrl)
+      .then(function (response) {
+        setUrl(response.data);
+      })
+      .catch(function (error) {});
+  }, []);
   console.log(adBlockDetected);
   return (
     <>

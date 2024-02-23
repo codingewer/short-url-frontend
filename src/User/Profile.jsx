@@ -10,6 +10,7 @@ import DataChart from "./DataChart";
 import { Link } from "react-router-dom";
 import SideBar from "../Bars/SideBar";
 import ShortUrl from "../Url/ShortUrl";
+import HelpReq from "./HelpReq";
 
 function Profile() {
   const [isToggled, setToggled] = useState(true);
@@ -68,7 +69,7 @@ function Profile() {
               Bakiye
             </Link>
             <Link
-              to="dashboard/help"
+              to="/dashboard/help"
               onClick={() => handleActiveLink("/dashboard/help")}
               className={
                 selected === "/dashboard/help" ? "navlink-active" : "navlink"
@@ -77,7 +78,7 @@ function Profile() {
               Destek
             </Link>
             <Link
-              to="dashboard/settings"
+              to="/dashboard/settings"
               onClick={() => handleActiveLink("/dashboard/settings")}
               className={
                 selected === "/dashboard/settings"
@@ -102,6 +103,7 @@ function Profile() {
             <Route path="/" element={<DataChart />} />
             <Route path="/balance" element={<BalanceRequest />} />
             <Route path="/shorturl" element={<ShortUrl />} />
+            <Route path="/help" element={<HelpReq />} />
           </Routes>
         </div>
       </div>

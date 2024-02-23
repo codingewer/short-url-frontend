@@ -1,5 +1,5 @@
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
-import React from "react";
+import React, { useState } from "react";
 import "./ControlPanel.css";
 import UpdateUser from "../User/UpdateUser";
 import NotFound from "../Url/NotFound";
@@ -11,64 +11,86 @@ import HelpRequests from "./HelpRequests";
 import TopBar from "../Bars/TopBar";
 
 function ControlPanel() {
+  const [selected, setSelect] = useState("/");
+  const handleActiveLink = (select) => {
+    setSelect(select);
+  };
+  const notPaid = 12
   return (
     <>
       <TopBar />
       <div className="control-panel">
         <div className="site-details-faq">
-          <div className="site-details">
-            <form className="cp-details-form">
-              <h4>Site Detayları</h4>
-              <label htmlFor="">Görüntülenme başı kazanç:</label>
-              <input
-                min={0.0}
-                className="cp-form-inputs"
-                type="number"
-                step="0.01"
-              />
-              <label htmlFor="">Hakkımızda:</label>
-              <textarea
-                className="cp-form-inputs"
-                name="aboutUs"
-                id="aboutUs"
-              ></textarea>
-              <button className="cp-form-btn">Kaydet</button>
-            </form>
-          </div>
-          <div className="faq-container">
-            <form className="cp-details-form">
-              <h4>Sıkça Sorulan Sorular</h4>
-              <label htmlFor="">Soru:</label>
-              <textarea className="cp-form-inputs" type="text" />
-              <label htmlFor="">Cevap:</label>
-              <textarea
-                className="cp-form-inputs"
-                name="answer"
-                id="answer"
-              ></textarea>
-              <button className="cp-form-btn">Yeni Soru Ekle</button>
-            </form>
+          <div className="request-navbar">
+            <Link
+              className={
+                selected === "/" ? "cp-navbar-item-selected" : "cp-navbar-item"
+              }
+              onClick={() => handleActiveLink("/")}
+              to="/controlpanel/"
+            >
+              Ödendi  { " (" + notPaid + ")"}
+            </Link>
+            <Link
+              className={
+                selected === "balance-requests-notpaid"
+                  ? "cp-navbar-item-selected"
+                  : "cp-navbar-item"
+              }
+              onClick={() => handleActiveLink("balance-requests-notpaid")}
+              to="/controlpanel/balance-requests-notpaid"
+            >
+              Ödenmedi{ " (" + notPaid + ")"}
+            </Link>
+            <Link
+              className={
+                selected === "help-requests-answered"
+                  ? "cp-navbar-item-selected"
+                  : "cp-navbar-item"
+              }
+              onClick={() => handleActiveLink("help-requests-answered")}
+              to="/controlpanel/help-requests-answered"
+            >
+              Cevaplanmış Destekler
+            </Link>
+            <Link
+              className={
+                selected === "help-requests-notanswered"
+                  ? "cp-navbar-item-selected"
+                  : "cp-navbar-item"
+              }
+              onClick={() => handleActiveLink("help-requests-notanswered")}
+              to="/controlpanel/help-requests-notanswered"
+            >
+              Cevaplanmamış Destekler
+            </Link>
+            <Link
+              className={
+                selected === "allusers"
+                  ? "cp-navbar-item-selected"
+                  : "cp-navbar-item"
+              }
+              onClick={() => handleActiveLink("allusers")}
+              to="/controlpanel/allusers"
+            >
+              Tüm Kullanıcılar
+            </Link>
+            <Link
+              className={
+                selected === "allfaq"
+                  ? "cp-navbar-item-selected"
+                  : "cp-navbar-item"
+              }
+              onClick={() => handleActiveLink("allfaq")}
+              to="/controlpanel/allfaq"
+            >
+              Sıkça sorulan Sorular
+            </Link>
           </div>
         </div>
         <div className="requests">
-          <div className="request-navbar">
-            <Link to="/controlpanel/">Ödendi</Link>
-            <Link to="/controlpanel/balance-requests-notpaid"> Ödenmedi </Link>
-            <Link to="/controlpanel/help-requests-answered">
-              Cevaplanmış Destekler
-            </Link>
-            <Link to="/controlpanel/help-requests-notanswered">
-              Cevaplanmamış Destekler
-            </Link>
-            <Link to="/controlpanel/AllUsers">Tüm Kullanıcılar</Link>
-            <Link to="/controlpanel/all-urls">Tüm Linkler</Link>
-            <Link to="/controlpanel/allfaq">Sıkça sorulan Sorular</Link>
-          </div>
           <Routes>
-            <Route
-              path="/"
-              element={<BalanceRequests paid={true} />}
-            />
+            <Route path="/" element={<BalanceRequests paid={true} />} />
             <Route
               path="/balance-requests-notpaid"
               element={<BalanceRequests paid={false} />}
@@ -82,7 +104,6 @@ function ControlPanel() {
               element={<HelpRequests asnswered={false} />}
             />
             <Route path="/AllUsers" element={<AllUsers />} />
-            <Route path="/all-urls" element={<Urls />} />
             <Route path="/allfaq" element={<AllFaq />} />
           </Routes>
         </div>

@@ -19,11 +19,11 @@ function BalanceRequest(props) {
         <div className="balance-amount">
           <span>
             Bakiyeniz: {" "}
-            {balanceM}/ {balanceW} &#8378;
+            { balanceM < 10 &&  balanceM + "/"} {balanceW} &#8378;
           </span>
           <div className="balance-bar">
             <div
-              style={{ height: 20, width: barWidht, backgroundColor: balanceM >= 10 ? "green" : "red"}}
+              style={{ height: 20, width: barWidht, backgroundColor: balanceM >= 10 ? "#7215fc" : "red"}}
             ></div>
           </div>
         </div>

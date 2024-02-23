@@ -62,7 +62,7 @@ function TopBar() {
           </button>
           <div className="bar-btns">
             <Link
-              to="/shorturl/dashboard"
+              to="/dashboard"
               className={
                 scrollPosition > 300 ? "window-scrolled-links" : "topbar-links"
               }
@@ -78,17 +78,17 @@ function TopBar() {
               S.S.S
             </Link>
             <Link
-              to="/contactus"
+              to="/aboutus"
               onClick={handleCloseMenu}
               className={
                 scrollPosition > 300 ? "window-scrolled-links" : "topbar-links"
               }
             >
-              İletişim
+              Hakkımızda
             </Link>
             <Link
               className="menu-login-btn"
-              to={logined ? "/shorturl/dashboard" : "/shorturl/login"}
+              to={logined ? "/dashboard" : "/login"}
               relative="path"
             >
               {logined ? "Dashbord" : "Giriş Yap"}
