@@ -1,5 +1,5 @@
 .side-bar{
-    position: fixed;
+    position: absolute;
     position: -webkit-sticky;
     height:100vh;
     padding: 0px 24px 0px 24px;
