@@ -33,7 +33,6 @@ function TopBar() {
   const logined = Boolean(localStorage.getItem("logined"));
   return (
     <div>
-      <SideBar />
       <div
         className={scrollPosition > 300 ? "window-scrolled navbar" : "navbar"}
       >
