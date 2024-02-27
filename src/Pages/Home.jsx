@@ -29,6 +29,7 @@ function Home() {
   return (
     //sayfa tasarımı
     <>
+      <TopBar/>
       <div className="home">
         <div className="home-bg-banner"></div>
         <div className="home-content">
@@ -79,7 +80,6 @@ function Home() {
       {status && <Navigate to="/home" />*/}
       </div>
       <Footer />
-      <TopBar />
     </>
   );
 }
