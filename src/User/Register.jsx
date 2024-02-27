@@ -84,7 +84,7 @@ function Register() {
         />
         <button className="form-btn" type="submit">Kayıt ol</button>
       </form>
-      {status && <Navigate to="/shorturl" />}
+      {status && <Navigate to="/login" />}
     </div>
   );
 }
