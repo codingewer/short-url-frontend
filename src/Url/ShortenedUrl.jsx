@@ -24,12 +24,14 @@ function ShortenedUrl() {
     }
   };
   useEffect(() => {
-    axios
-      .get("http://localhost:8180/url/get/" + shortenedUrl)
+    if(index === 4) {
+      axios
+      .get("https://shorturl-backend-vn3o.onrender.com/url/get/" + shortenedUrl)
       .then(function (response) {
         setUrl(response.data);
       })
       .catch(function (error) {});
+    }
   }, []);
   console.log(adBlockDetected);
   return (

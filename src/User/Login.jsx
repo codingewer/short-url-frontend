@@ -4,6 +4,7 @@ import "./UserForm.css";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { LoginAsync } from '../Api/User/UserSlice';
+import { Navigate } from 'react-router';
 
 const validationSchema = Yup.object({
   userName: Yup.string().required("Kullanıcı adı gerekli"),
@@ -12,6 +13,8 @@ const validationSchema = Yup.object({
 function Login() {
   const success = useSelector((state) => state.users.success)
   const error = useSelector((state) => state.users.error)
+  const logined = localStorage.getItem("logined")
+  const status = logined || success
 const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
@@ -52,7 +55,7 @@ const dispatch = useDispatch();
         />
         <button className="form-btn" type="submit">Giriş yap </button>
       </form>
-     
+     { status && <Navigate to="/dashboard"/>}
     </div>
   );
 }

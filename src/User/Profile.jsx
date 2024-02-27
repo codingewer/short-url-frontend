@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import logouticon from "../assets/icons/logout.png";
-
 import "./Profile.css";
 import Footer from "../Bars/Footer";
 import TopBar from "../Bars/TopBar";
-import { Route, Routes } from "react-router";
+import { Navigate, Route, Routes } from "react-router";
 import BalanceRequest from "./BalanceRequest";
 import DataChart from "./DataChart";
 import { Link } from "react-router-dom";
@@ -12,10 +11,9 @@ import SideBar from "../Bars/SideBar";
 import ShortUrl from "../Url/ShortUrl";
 import HelpReq from "./HelpReq";
 import UpdateUser from "./UpdateUser";
-import { useSelector } from "react-redux";
 
 function Profile() {
-
+  const logined = Boolean(localStorage.getItem("logined"));
   const [selected, setSelect] = useState("/");
   const handleActiveLink = (select) => {
     setSelect(select);
@@ -23,9 +21,11 @@ function Profile() {
   const handlelogout = () => {
     localStorage.removeItem("logined");
     localStorage.removeItem("user");
+    localStorage.removeItem("token");
     alert("Çıkış yapıldı");
     window.location.href = "/";
   };
+
   return (
     <>
       <SideBar />
@@ -103,6 +103,7 @@ function Profile() {
       </div>
       <Footer />
       <TopBar />
+      {!logined && <Navigate to="/" />}
     </>
   );
 }
