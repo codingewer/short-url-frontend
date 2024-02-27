@@ -17,7 +17,7 @@ function Register() {
 
   //Kullanıcıyı API'ye kayeden fonksiyon
   const SaveUser = (e) => {
-    axios.post("http://localhost:8180/user/new", {
+    axios.post("https://shorturl-backend-vn3o.onrender.com/user/new", {
         UserName: info.username,
         Password: info.password,
       }
