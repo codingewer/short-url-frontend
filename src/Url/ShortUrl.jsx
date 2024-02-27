@@ -41,7 +41,7 @@ function ShortUrl() {
   useEffect(() => {
     dispatch(GetUrlByCreatedByAsync(user.UserName));
   }, [dispatch]);
-  const displayItems = success ? items : [];
+  const displayItems = success && items !== null ? items : [];
   console.log(user.UserName);
   return (
     <div className="short-url-container">
