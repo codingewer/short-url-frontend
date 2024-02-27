@@ -21,7 +21,7 @@ function SideBar() {
   return (
     <div id="side-bar-options" className="side-bar">
       {
-        !logined &&
+        logined &&
       <div className="navlinks">
         <Link
           to="/dashboard"

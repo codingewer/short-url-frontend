@@ -70,35 +70,43 @@ const UserSlice = createSlice({
     builder
       .addCase(LoginAsync.fulfilled, (state, action) => {
         localStorage.setItem("token", action.payload.token);
-        localStorage.setItem("user", JSON.stringify(action.payload.userName));
+        localStorage.setItem("user", JSON.stringify(action.payload.user));
         state.success = true;
+        localStorage.setItem("logined", true);
       })
       .addCase(LoginAsync.rejected, (state, action) => {
-        state.error = action.payload.ERROR;
+        console.log(action);
+        state.error =
+          "Giriş başarısız şifrenizi ve Kullanıcı adınızı kontrol edin";
+        state.success = false;
       })
       .addCase(GetUserByUserNameAsync.fulfilled, (state, action) => {
         state.success = true;
       })
       .addCase(GetUserByUserNameAsync.rejected, (state, action) => {
-        state.error = action.payload.ERROR;
+        state.success = false;
       })
       .addCase(UpdateUserAsync.fulfilled, (state, action) => {
         state.success = true;
       })
       .addCase(UpdateUserAsync.rejected, (state, action) => {
-        state.error = action.payload.ERROR;
+        state.error = "Bilgiler güncellenirken hata oluştu";
+        state.success = false;
       })
       .addCase(UpdatePasswordAsync.fulfilled, (state, action) => {
         state.success = true;
       })
       .addCase(UpdatePasswordAsync.rejected, (state, action) => {
-        state.error = action.payload.ERROR;
+        state.success = false;
+        state.error = "Eski şifre hatalı";
       })
       .addCase(NewUserAsync.fulfilled, (state, action) => {
         state.success = true;
       })
       .addCase(NewUserAsync.rejected, (state, action) => {
-        state.error = action.payload.ERROR;
+        state.success = false;
+        state.error =
+          "Kayıt olunurken hata oluştu kullanıcı adı daha önce kullanılmış olabilir";
       });
   },
 });

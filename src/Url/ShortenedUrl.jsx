@@ -20,7 +20,7 @@ function ShortenedUrl() {
     if (nextIndex < 5) {
       window.location.href = domain + "r/" + nextIndex;
     } else {
-      window.location.href = "https://x.com";
+      window.location.href = url.OrginalUrl;
     }
   };
   useEffect(() => {

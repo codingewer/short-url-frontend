@@ -1,75 +1,58 @@
-import axios from "axios";
-import React, { useState } from "react";
-import { Navigate } from "react-router";
+import { useDispatch, useSelector } from 'react-redux';
+import React from "react";
 import "./UserForm.css";
+import * as Yup from "yup";
+import { useFormik } from "formik";
+import { LoginAsync } from '../Api/User/UserSlice';
 
+const validationSchema = Yup.object({
+  userName: Yup.string().required("Kullanıcı adı gerekli"),
+  password: Yup.string().required("Şifre gerekli"),
+})
 function Login() {
-  const [info, setInfo] = useState({
-    username: "",
-    password: "",
-  });
-
-  //Değişkenler
-  const [status, setStatus] = useState(Boolean)
-  const [error, setError] = useState(false)
-  const [message, setMessage] = useState("")
-
-  //Kullanıcıyı API'de sorgulayıp dönen  fonksiyon
-  const Login = (e) => {
-    axios
-      .post("http://localhost:8180/user/login", {
-        UserName: info.username,
-        Password: info.password,
-      })
-      .then(function (response) {
-        console.log(response.data);
-        localStorage.setItem("user", response.data.UserName)
-        localStorage.setItem("logined", true)
-        setStatus(true)
-      })
-      .catch(function (error) {
-        setMessage(error.response.data.ERROR);
-        setError(true)
-      });
-    setInfo({
-      username: "",
+  const success = useSelector((state) => state.users.success)
+  const error = useSelector((state) => state.users.error)
+const dispatch = useDispatch();
+  const formik = useFormik({
+    initialValues: {
+      userName: "",
       password: "",
-    });
-    e.preventDefault();
-  };
+    },
+    validationSchema: validationSchema,
+    onSubmit: async () => {
+      dispatch(LoginAsync(formik.values))
+    },
+  });
+  console.log(success);
+  console.log(error);
   return (
     //SAyfa tasarımı
     <div className="register-form-div">
-      <form className="register-form" onSubmit={(e)=>Login(e)}>
+      <form className="register-form" onSubmit={formik.handleSubmit}>
         { 
-        error&&<p style={{color:"red"}} >{message}</p>
+        !success &&
+        <p style={{color:"red"}} >{error}</p>
         }
         <h3>Giriş Yap</h3>
         <input
           type="text"
-          value={info.username}
-          onChange={(e) =>
-            setInfo({
-              username: e.target.value,
-              password: info.password,
-            })
-          }
+          id="userName"
+          name="userName"
+          value={formik.values.userName}
+          onChange={formik.handleChange}
           placeholder="Kullanıcı adı"
         />
         <input
           type="password"
-          value={info.password}
-          onChange={(e) =>
-            setInfo({
-              password: e.target.value,
-              username: info.username,
-            })
-          }
+          id="password"
+          name="password"
+          value={formik.values.password}
+          onChange={formik.handleChange}
           placeholder="Şifre"
         />
         <button className="form-btn" type="submit">Giriş yap </button>
       </form>
-      {status && <Navigate to="/shorturl" />}
+     
     </div>
   );
 }

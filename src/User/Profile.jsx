@@ -12,17 +12,9 @@ import SideBar from "../Bars/SideBar";
 import ShortUrl from "../Url/ShortUrl";
 import HelpReq from "./HelpReq";
 import UpdateUser from "./UpdateUser";
+import { useSelector } from "react-redux";
 
 function Profile() {
-  const [isToggled, setToggled] = useState(true);
-  const [isToggled2, setToggled2] = useState(true);
-  const handleTogleMenu = () => {
-    const linksMenu = document.getElementById("balance-request-form");
-    setToggled(!isToggled);
-    isToggled
-      ? (linksMenu.style.display = "flex")
-      : (linksMenu.style.display = "none");
-  };
 
   const [selected, setSelect] = useState("/");
   const handleActiveLink = (select) => {

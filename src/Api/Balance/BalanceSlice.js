@@ -25,7 +25,7 @@ export const NewBalanceRequestAsync = createAsyncThunk(
 
 export const GetBalanceByUserIDAsync = createAsyncThunk(
     "balance/GetBalanceByUserIDAsync",
-    async () => {
+    async ({rejectWithValue}) => {
         try {
         const response = await axios.get(
           `${apiUrl}/balance/getbyuserId`,
@@ -44,7 +44,7 @@ export const GetBalanceByUserIDAsync = createAsyncThunk(
 
 export const UpdateBalanceStatusAsync = createAsyncThunk(
     "balance/UpdateBalanceStatusAsync",
-    async (status) => {
+    async (status,{rejectWithValue}) => {
         try {
         const response = await axios.put(
           `${apiUrl}/balance/update/${status}`,
@@ -63,7 +63,7 @@ export const UpdateBalanceStatusAsync = createAsyncThunk(
 
 export const UpdateUserBalanceInfoAsync = createAsyncThunk(
     "balance/UpdateUserBalanceInfoAsync",
-    async (data) => {
+    async (data,{rejectWithValue}) => {
         try {
         const response = await axios.put(
           `${apiUrl}/balance/update`,
@@ -83,7 +83,7 @@ export const UpdateUserBalanceInfoAsync = createAsyncThunk(
 
 export const GetByStatusBalanceRequestsAsync = createAsyncThunk(
     "balance/GetByStatusBalanceRequestsAsync",
-    async (status) => {
+    async (status, {rejectWithValue}) => {
         try {
         const response = await axios.get(
           `${apiUrl}/balance/getbystatus/${status}`,

@@ -1,9 +1,10 @@
-.short-url-container{
+.short-url-container {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
 .short-url-form {
     height: auto;
     display: flex;
@@ -138,13 +139,6 @@
     color: rgb(117, 117, 255);
 }
 
-.btn-div {
-    width: 20%;
-    height: 100%;
-    right: 0;
-    display: grid;
-    place-items: center;
-}
 
 .form-short-btn {
     width: 80px;
@@ -158,7 +152,6 @@
     font-size: 16px;
     height: 50px;
     font-weight: 600;
-    position: relative;
 }
 
 .form-short-btn img {
@@ -174,11 +167,12 @@
 }
 
 /* Last Shorted*/
-.last-shortened-urls{
+.last-shortened-urls {
     display: flex;
     flex-direction: column;
 
 }
+
 .last-shortened-url {
     display: flex;
     padding: 12px;
@@ -249,98 +243,80 @@
     color: rgb(117, 117, 255);
 }
 
-.btn-div {
-    width: 20%;
-    height: 100%;
-    right: 0;
-    display: grid;
-    place-items: center;
-}
-
 @media only screen and (max-width: 1080px) {
     .link-card {
-      flex-direction: column;
-      height: 200px;
-      align-items: center;
-      position: relative;
+        flex-direction: column;
+        height: 200px;
+        align-items: center;
+        position: relative;
     }
-  
-    .btn-div {
-      width: 100%;
-      position: relative;
-      display: grid;
-      height: 50px;
-      place-items: center;
-    }
-  
-  
+
+
     .inputs-and-btn {
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        position: relative;
     }
-  
+
     .short-url-form {
-      height: 300px;
+        height: 300px;
     }
-    
-    
+
+
 
     .last-shortened-url {
-      height: 250px;
-      gap: 24px;
-      flex-direction: column;
-      text-align: center;
-      justify-content: center;
+        height: 250px;
+        gap: 24px;
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
     }
-  }
-  
-  @media only screen and (min-width: 1080px) {
-  
-    .btn-div {
-      position: absolute;
-      top: 0;
-    }
-  
+}
+
+@media only screen and (min-width: 1080px) {
+
     .link-card {
-      height: 50px;
-      left: -50px;
-      align-items: center;
+        height: 50px;
+        left: -50px;
+        align-items: center;
     }
-  
-  
+
+
     .link-card a {
-      height: 100%;
-      width: 100px;
+        height: 100%;
+        width: 100px;
     }
-  
+
     .link-card-content {
-      width: 25%;
-      display: flex;
-      text-align: center;
-      justify-content: center;
-      padding: 10px;
-      overflow: scroll;
+        width: 25%;
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        padding: 10px;
+        overflow: scroll;
     }
-  
+
     .link-card-content::-webkit-scrollbar {
-      display: none;
+        display: none;
     }
-  
+
     .last-shortened-url {
-      height: 52px;
-      gap: 24px;
-      flex-direction: row;
-      text-align: center;
-      align-items: center;
-      justify-content: space-between;
+        height: 52px;
+        gap: 24px;
+        flex-direction: row;
+        text-align: center;
+        align-items: center;
+        justify-content: space-between;
     }
-  
+
     .form-short-btn {
-      right: 80px;
+        position: absolute;
+        right: 60px;
     }
+
     .short-url-form input {
-      padding-right: 72px;
+        padding-right: 72px;
     }
-  
-  }
+
+}
