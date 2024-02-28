@@ -1,17 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./BalanceRequest.css";
+import { useFormik } from "formik";
+import { useDispatch, useSelector } from "react-redux";
+import { GetBalanceByUserIDAsync, NewBalanceRequestAsync } from "../Api/Balance/BalanceSlice";
+import { formatDate } from "./Profile";
 
 function BalanceRequest(props) {
+  const usersuccess = useSelector((state)=> state.users.success);
+  const user0 =  useSelector((state)=> state.users.userrealtime);
+  const user = usersuccess ? user0 : {};
+  const items = useSelector((state)=> state.balance.balanceRequests);
   const balanceM = 10;
-  const balanceW = 10;
-  const barWidht = (balanceM / balanceW) * 100 + "%";
-  const [balance, setBalance] = useState(null);
+  const balanceW = user.Balance;
+  const barWidht = (balanceW / balanceM) * 100 + "%";
   const [status, setStatus] = useState(false);
-
-  const handleChangeBalance = (e) => {
-    setBalance(e.target.value);
-    e.target.value > balanceM ? setStatus(true) : setStatus(false);
-  };
+const dispatch = useDispatch()
+  const formik = useFormik({
+    initialValues: {
+      amount: 0,
+    },
+    onSubmit: async (values) => {
+      await dispatch(NewBalanceRequestAsync(values));
+      formik.resetForm();
+    }
+  })
+useEffect(()=>{
+  dispatch(GetBalanceByUserIDAsync())  
+},[dispatch])
+console.log(items)
   return (
     <div className="balance-container">
       <div className="balance-info">
@@ -28,17 +44,18 @@ function BalanceRequest(props) {
           </div>
         </div>
       </div>
-      <form className="balance-form" action="">
+      <form className="balance-form" onSubmit={formik.handleSubmit}>
         {status && (
           <span style={{ color: "red", fontSize: 12 }}>
-            bakiye yetersiz! En fazla {balanceM} TL çekebilirisiniz.
+            bakiye yetersiz! En fazla {balanceW} TL çekebilirisiniz.
           </span>
         )}
         <input
           min={10}
-          max={props.balance}
-          value={balance}
-          onChange={(e) => handleChangeBalance(e)}
+          max={balanceW}
+          value={formik.values.amount}
+          name="amount"
+          onChange={formik.handleChange}
           type="number"
           placeholder="Çekmek istediğiniz tutar"
         />
@@ -47,29 +64,25 @@ function BalanceRequest(props) {
 
       <div className="balance-requests">
         <h4>Para çekme geçmişi</h4>
+        {
+          items.length > 0 && items.map((item,index)=>(
         <div className="balance-request">
-          <span style={{ color: "red", fontWeight: "bold" }}>-125 &#8378;</span>
-          <span>12.02.24</span>
+          <span style={{ color: "red", fontWeight: "bold" }}>-{item.amount} &#8378;</span>
+          <span>{formatDate(item.createdAt)}</span>
+          {
+            item.status ? 
+            <span style={{ color: "green", fontWeight: "bold" }}>
+              Onaylandı
+            </span>
+            :
           <span style={{ color: "orange", fontWeight: "bold" }}>
             Onay bekliyor...
           </span>
-        </div>{" "}
-        <div className="balance-request">
-          <span style={{ color: "red", fontWeight: "bold" }}>-125 &#8378;</span>
-          <span>12.02.24</span>
-          <span style={{ color: "green", fontWeight: "bold" }}>Onaylandı</span>
-        </div>{" "}
-        <div className="balance-request">
-          <span style={{ color: "red", fontWeight: "bold" }}>-125 &#8378;</span>
-          <span>12.02.24</span>
-          <span style={{ color: "green", fontWeight: "bold" }}>Onaylandı</span>
+          }
         </div>
-        <div className="balance-request">
-          <span style={{ color: "red", fontWeight: "bold" }}>-125 &#8378;</span>
-          <span>12.02.24</span>
-          <span style={{ color: "green", fontWeight: "bold" }}>Onaylandı</span>
+          ))
+        }
         </div>
-      </div>
     </div>
   );
 }

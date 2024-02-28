@@ -61,7 +61,7 @@ const UserSlice = createSlice({
   initialState: {
     loading: false,
     error: null,
-    user: null,
+    userrealtime: null,
     success: false,
     message: null,
   },
@@ -82,6 +82,7 @@ const UserSlice = createSlice({
       })
       .addCase(GetUserByUserNameAsync.fulfilled, (state, action) => {
         state.success = true;
+        state.userrealtime = action.payload;
       })
       .addCase(GetUserByUserNameAsync.rejected, (state, action) => {
         state.success = false;

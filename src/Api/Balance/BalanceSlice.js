@@ -25,10 +25,10 @@ export const NewBalanceRequestAsync = createAsyncThunk(
 
 export const GetBalanceByUserIDAsync = createAsyncThunk(
     "balance/GetBalanceByUserIDAsync",
-    async ({rejectWithValue}) => {
+    async () => {
         try {
         const response = await axios.get(
-          `${apiUrl}/balance/getbyuserId`,
+          `${apiUrl}/balance/getbyuser`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -37,7 +37,7 @@ export const GetBalanceByUserIDAsync = createAsyncThunk(
         );
         return response.data;
       } catch (error) {
-        return rejectWithValue(error.response.data);
+        return error.response.data;
       }
     }
 )
@@ -106,6 +106,7 @@ const BalanceSlice = createSlice({
         items:[],
       loading: false,
       error: null,
+      balanceRequests:[],
       balance: null,
       success: false,
       message: null,
@@ -115,15 +116,16 @@ const BalanceSlice = createSlice({
       builder
         .addCase(NewBalanceRequestAsync.fulfilled, (state, action) => {
           state.success = true;
+          state.balanceRequests.unshift(action.payload)
         })
         .addCase(NewBalanceRequestAsync.rejected, (state, action) => { 
             state.error = action.payload.ERROR;
         })
         .addCase(GetBalanceByUserIDAsync.fulfilled, (state, action) => {
-            state.items = action.payload;
+            state.balanceRequests = action.payload;
         })
         .addCase(GetBalanceByUserIDAsync.rejected, (state, action) => {
-            state.error = action.payload.ERROR;
+            state.error = "Hata";
         })
         .addCase(UpdateBalanceStatusAsync.fulfilled, (state, action) => {
             state.success = true;

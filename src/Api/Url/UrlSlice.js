@@ -66,6 +66,7 @@ const UrlSlice = createSlice({
     builder
       .addCase(NewUrlAsync.fulfilled, (state, action) => {
         state.success = true;
+        state.items.unshift(action.payload);
       })
       .addCase(NewUrlAsync.rejected, (state, action) => {
         state.success = false;

@@ -7,6 +7,7 @@ import {
   GetHelpRequestsByUserAsync,
   NewHelpRequestAsync,
 } from "../Api/Help/HelpSlice";
+import { formatDate } from "./Profile";
 
 const validationSchema = yup.object({
   Content: yup.string().required("Mesaj boş olamaz"),
@@ -16,13 +17,6 @@ function HelpReq() {
   const items = useSelector((state) => state.help.items);
   const success = useSelector((state) => state.help.success);
   const dispatch = useDispatch();
-const formatDate = (date) =>{
-  const d = new Date(date);
-  const year = d.getFullYear();
-  const month = d.toLocaleString('tr-TR', { month: 'long' }); 
-   const day = d.getDate();
-  return `${day}-${month}-${year}`;
-}
   const formik = useFormik({
     initialValues: {
       Title: "",
@@ -36,8 +30,8 @@ const formatDate = (date) =>{
   });
   useEffect(() => {
     dispatch(GetHelpRequestsByUserAsync());
-  },[dispatch]);
-  success &&  console.log(items);
+    console.log("uese effect");
+  }, [dispatch]);
   return (
     <div className="help-container">
       <div className="help-form-container">
@@ -69,26 +63,25 @@ const formatDate = (date) =>{
         </form>
       </div>
       <div className="last-helpreqs">
-        {
-        success &&
-        items.map((req, index) => (
-          <div key={index} className="helpreq-card">
-            <span className="helpreq-card-titles">Mesajınız: </span>
-            <p>{req.Content}</p>
-            <span className="helpreq-card-titles">Tarih: </span>
-            <p>{formatDate(req.createdAt)}</p>
-            {req.answered ? (
-              <>
-                <span className="helpreq-card-titles">Cevaplandı: </span>
-                <p>{req.status}</p>
-              </>
-            ) : (
-              <p style={{ color: "orange", fontSize: 14, fontWeight: 500 }}>
-                Cevap bekliyor...
-              </p>
-            )}
-          </div>
-        ))}
+        {success &&
+          items.map((req, index) => (
+            <div key={index} className="helpreq-card">
+              <span className="helpreq-card-titles">Mesajınız: </span>
+              <p>{req.Content}</p>
+              <span className="helpreq-card-titles">Tarih: </span>
+              <p>{formatDate(req.createdAt)}</p>
+              {req.answered ? (
+                <>
+                  <span className="helpreq-card-titles">Cevaplandı: </span>
+                  <p>{req.status}</p>
+                </>
+              ) : (
+                <p style={{ color: "orange", fontSize: 14, fontWeight: 500 }}>
+                  Cevap bekliyor...
+                </p>
+              )}
+            </div>
+          ))}
       </div>
     </div>
   );

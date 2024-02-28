@@ -12,6 +12,7 @@ function ShortUrl() {
   const dispatch = useDispatch();
   const items = useSelector((state) => state.url.items);
   const success = useSelector((state) => state.url.success);
+  const item = useSelector((state) => state.url.URL);
   const user = JSON.parse(localStorage.getItem("user"));
   const currentURL = window.location.href;
   const domain = currentURL.split("/dashboard/shorturl")[0];
@@ -35,9 +36,9 @@ function ShortUrl() {
     },
     onSubmit: async () => {
       dispatch(NewUrlAsync(formik.values));
+      formik.resetForm();
     },
   });
-
   useEffect(() => {
     dispatch(GetUrlByCreatedByAsync(user.UserName));
   }, [dispatch]);

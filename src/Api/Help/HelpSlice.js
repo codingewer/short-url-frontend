@@ -82,6 +82,7 @@ const HelpSlice = createSlice({
     builder
       .addCase(NewHelpRequestAsync.fulfilled, (state, action) => {
         state.success = true;
+        state.items.unshift(action.payload)
       })
       .addCase(NewHelpRequestAsync.rejected, (state, action) => {
         state.error = action.payload.ERROR;

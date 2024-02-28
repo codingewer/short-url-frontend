@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logouticon from "../assets/icons/logout.png";
 import "./Profile.css";
 import Footer from "../Bars/Footer";
@@ -11,10 +11,15 @@ import SideBar from "../Bars/SideBar";
 import ShortUrl from "../Url/ShortUrl";
 import HelpReq from "./HelpReq";
 import UpdateUser from "./UpdateUser";
+import { GetUserByUserNameAsync } from "../Api/User/UserSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 function Profile() {
   const logined = Boolean(localStorage.getItem("logined"));
   const [selected, setSelect] = useState("/");
+  const balancesatatus = useSelector((state) => state.balance.success);
+  const user = JSON.parse(localStorage.getItem("user"));
+  const dispatch = useDispatch();
   const handleActiveLink = (select) => {
     setSelect(select);
   };
@@ -25,7 +30,9 @@ function Profile() {
     alert("Çıkış yapıldı");
     window.location.href = "/";
   };
-
+  useEffect(() => {
+    dispatch(GetUserByUserNameAsync(user.UserName));
+  }, [dispatch,balancesatatus]);
   return (
     <>
       <SideBar />
@@ -85,7 +92,11 @@ function Profile() {
           <div
             style={{ display: "flex", width: "100%", justifyContent: "center" }}
           >
-            <button style={{color:"red"}} className="edit-btn" onClick={handlelogout}>
+            <button
+              style={{ color: "red" }}
+              className="edit-btn"
+              onClick={handlelogout}
+            >
               Çıkış Yap
               <img src={logouticon} alt="Güncelle" />
             </button>
@@ -109,3 +120,11 @@ function Profile() {
 }
 
 export default Profile;
+
+export const formatDate = (date) => {
+  const d = new Date(date);
+  const year = d.getFullYear();
+  const month = d.toLocaleString("tr-TR", { month: "long" });
+  const day = d.getDate();
+  return `${day}-${month}-${year}`;
+};

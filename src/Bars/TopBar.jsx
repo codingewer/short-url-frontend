@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./TopBar.css";
 import logo from "../assets/logo.jpeg";
 import { Link } from "react-router-dom";
-import Profile from "../User/Profile";
-import SideBar from "./SideBar";
+
 
 function TopBar() {
   const user =  JSON.parse(localStorage.getItem("user"));

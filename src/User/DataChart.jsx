@@ -123,8 +123,8 @@ function DataChart() {
           value={selectedOption}
           onChange={handleOptionChange}
         >
-          <option value="weekly">Weekly</option>
-          <option value="monthly">Monthly</option>
+          <option value="weekly">Son bir hafta</option>
+          <option value="monthly">Son bir ay</option>
         </select>
         <Chart height="300px" data={data0} options={options} />
       </div>
