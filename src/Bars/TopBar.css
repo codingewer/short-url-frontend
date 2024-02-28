@@ -3,7 +3,7 @@
   height: 72px;
   display: flex;
   justify-content: center;
-  position: absolute;
+  position: fixed;
   position: -webkit-sticky;
   z-index: 99;
   top: 0;
