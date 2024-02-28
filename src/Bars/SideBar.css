@@ -1,5 +1,6 @@
 .side-bar{
-    position: absolute;
+    position: fixed;
+    transform: translateX(0);
     height:100vh;
     padding: 0px 24px 0px 24px;
     width:50vw;
