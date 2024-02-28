@@ -6,6 +6,7 @@ import Profile from "../User/Profile";
 import SideBar from "./SideBar";
 
 function TopBar() {
+  const user =  JSON.parse(localStorage.getItem("user"));
   const [scrollPosition, setScrollPosition] = useState(0);
   useEffect(() => {
     const handleScroll = () => {
@@ -61,14 +62,17 @@ function TopBar() {
             ></div>
           </button>
           <div className="bar-btns">
-            <Link
-              to="/dashboard"
+            {
+              user && user.Role === "admin" &&
+              <Link
+              to="/controlpanel"
               className={
                 scrollPosition > 300 ? "window-scrolled-links" : "topbar-links"
               }
-            >
-              Dashboard
+              >
+              Controlpanel
             </Link>
+            }
             <Link
               className={
                 scrollPosition > 300 ? "window-scrolled-links" : "topbar-links"

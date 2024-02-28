@@ -87,10 +87,12 @@ const HelpSlice = createSlice({
         state.error = action.payload.ERROR;
       })
       .addCase(GetHelpRequestsByUserAsync.fulfilled, (state, action) => {
+        state.success= true;
         state.items = action.payload;
-      })
+      }) 
       .addCase(GetHelpRequestsByUserAsync.rejected, (state, action) => {
-        state.error = action.payload.ERROR;
+        state.error = "hata";
+        state.success = false;
       })
       .addCase(GetHelpRequestsByStatusAsync.fulfilled, (state, action) => {
         state.items = action.payload;

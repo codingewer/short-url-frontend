@@ -1,92 +1,91 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./HelpReq.css";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  GetHelpRequestsByUserAsync,
+  NewHelpRequestAsync,
+} from "../Api/Help/HelpSlice";
 
 const validationSchema = yup.object({
-  message: yup.string().required("Mesaj boş olamaz"),
+  Content: yup.string().required("Mesaj boş olamaz"),
 });
 
 function HelpReq() {
-  // use formik for form
-
+  const items = useSelector((state) => state.help.items);
+  const success = useSelector((state) => state.help.success);
+  const dispatch = useDispatch();
+const formatDate = (date) =>{
+  const d = new Date(date);
+  const year = d.getFullYear();
+  const month = d.toLocaleString('tr-TR', { month: 'long' }); 
+   const day = d.getDate();
+  return `${day}-${month}-${year}`;
+}
   const formik = useFormik({
     initialValues: {
-      message: "",
+      Title: "",
+      Content: "",
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: async (values) => {
+      await dispatch(NewHelpRequestAsync(values));
+      formik.resetForm();
     },
   });
-
-  const helpreqs = [
-    {
-      id: 1,
-      answer: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quia cum ab sunt provident maiores sint, tempore dolorem rem nostrum eum, iste ut, qui consequuntur libero. Laudantium laboriosam ratione in numquam?`,
-      content: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-      Asperiores velit explicabo cumque repellendus, numquam vel aut eius dolores consequuntur, 
-      facere neque! Quis maiores sint, temporibus tempora alias fugiat rem provident!`,
-      date: "12.01.2024",
-      answered: true,
-    },
-    {
-      id: 2,
-      answer: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quia cum ab sunt provident maiores sint, tempore dolorem rem nostrum eum, iste ut, qui consequuntur libero. Laudantium laboriosam ratione in numquam?`,
-      content: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-      Asperiores velit explicabo cumque repellendus, numquam vel aut eius dolores consequuntur, 
-      facere neque! Quis maiores sint, temporibus tempora alias fugiat rem provident!`,
-      date: "12.01.2024",
-      answered: true,
-    },
-    {
-      id: 3,
-      answer: ``,
-      content: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-      Asperiores velit explicabo cumque repellendus, numquam vel aut eius dolores consequuntur, 
-      facere neque! Quis maiores sint, temporibus tempora alias fugiat rem provident!`,
-      date: "12.01.2024",
-      answered: false,
-    },
-  ];
-
-  helpreqs.reverse()
-
+  useEffect(() => {
+    dispatch(GetHelpRequestsByUserAsync());
+  },[dispatch]);
+  success &&  console.log(items);
   return (
     <div className="help-container">
       <div className="help-form-container">
         <form className="helpreq-form" onSubmit={formik.handleSubmit}>
           <h2>Destek Talebi Oluştur</h2>
+          <input
+            type="text"
+            name="Title"
+            id="Title"
+            onChange={formik.handleChange}
+            value={formik.values.Title}
+            placeholder="Konu"
+            className="contacus-from-inputs"
+          />
           <textarea
             className="contacus-from-inputs"
-            name="message"
-            value={formik.values.message}
+            name="Content"
+            value={formik.values.Content}
             onChange={formik.handleChange}
-            id="message"
+            id="Content"
             cols="30"
             placeholder="Mesajınız"
             rows="5"
           ></textarea>
-          {formik.errors.message && formik.touched.message ? (
-            <div>{formik.errors.message}</div>
+          {formik.errors.Content && formik.touched.Content ? (
+            <div>{formik.errors.Content}</div>
           ) : null}
           <button type="submit">Gönder</button>
         </form>
       </div>
       <div className="last-helpreqs">
-        {helpreqs.map((req, index) => (
+        {
+        success &&
+        items.map((req, index) => (
           <div key={index} className="helpreq-card">
             <span className="helpreq-card-titles">Mesajınız: </span>
-            <p>{req.content}</p>
+            <p>{req.Content}</p>
             <span className="helpreq-card-titles">Tarih: </span>
-            <p>{req.date}</p>
+            <p>{formatDate(req.createdAt)}</p>
             {req.answered ? (
               <>
                 <span className="helpreq-card-titles">Cevaplandı: </span>
-                <p>{req.answer}</p>
+                <p>{req.status}</p>
               </>
             ) : (
-              <p style={{color:"orange", fontSize:14, fontWeight:500}} >Cevap bekliyor...</p>
+              <p style={{ color: "orange", fontSize: 14, fontWeight: 500 }}>
+                Cevap bekliyor...
+              </p>
             )}
           </div>
         ))}

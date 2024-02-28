@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 
 function SideBar() {
   const logined = Boolean(localStorage.getItem("logined"));
+  const user =  JSON.parse(localStorage.getItem("user"));
   const [selected, setSelect] = useState("/");
   const handlelogout = () => {
     localStorage.removeItem("logined");
@@ -57,6 +58,18 @@ function SideBar() {
           >
           Destek
         </Link>
+        {
+          user.Role === "admin" && 
+        <Link
+          to="/controlpanel"
+          onClick={() => handleActiveLink("/controlpanel")}
+          className={
+            selected === "/controlpanel" ? "navlink-active" : "navlink"
+          }
+          >
+          Control Panel
+        </Link>
+        }
         <Link
           to="/dashboard/settings"
           onClick={() => handleActiveLink("/dashboard/settings")}
