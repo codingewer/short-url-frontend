@@ -5,6 +5,7 @@
   justify-content: center;
   position: fixed;
   position: -webkit-sticky;
+  transform: translateY(0) translateZ(0);
   z-index: 99;
   top: 0;
   color: white;
