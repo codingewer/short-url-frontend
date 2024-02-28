@@ -1,11 +1,9 @@
 .side-bar{
-    position: fixed;
-    position: -webkit-sticky;
+    position: absolute;
     height:100vh;
     padding: 0px 24px 0px 24px;
     width:50vw;
     z-index: 99;
-    left: 0;
     flex-direction: column;
     justify-content: center;
     background-color: rgb(50, 50, 50);

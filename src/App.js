@@ -2,6 +2,7 @@ import "./App.css";
 import NotFound from "./Url/NotFound";
 import ShortenedUrl from "./Url/ShortenedUrl";
 import Login from "./User/Login";
+import SideBar from "./Bars/SideBar"
 import Register from "./User/Register";
 import TopBar from "./Bars/TopBar";
 import Userlogin from "./User/Userlogin";
@@ -18,6 +19,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
+    <SideBar/>
         <Routes>
           <Route path="/login" element={<Userlogin />} />
           <Route path="/" element={<Home />} />
