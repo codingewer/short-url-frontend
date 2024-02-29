@@ -15,7 +15,6 @@ function ControlPanel() {
   const handleActiveLink = (select) => {
     setSelect(select);
   };
-  const notPaid = 12
   return (
     <>
       <TopBar />
@@ -29,7 +28,7 @@ function ControlPanel() {
               onClick={() => handleActiveLink("/")}
               to="/controlpanel/"
             >
-              Ödendi  { " (" + notPaid + ")"}
+              Ödendi
             </Link>
             <Link
               className={
@@ -40,7 +39,7 @@ function ControlPanel() {
               onClick={() => handleActiveLink("balance-requests-notpaid")}
               to="/controlpanel/balance-requests-notpaid"
             >
-              Ödenmedi{ " (" + notPaid + ")"}
+              Ödenmedi
             </Link>
             <Link
               className={

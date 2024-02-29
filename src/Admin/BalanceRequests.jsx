@@ -21,8 +21,8 @@ function BalanceRequests(props) {
 
 
  console.log(status)
-
   const changePaid = async (status, id ) => {
+    window.confirm("Bu işlemi gerçekleştirmek istediğinize emin misiniz?") &&
      dispatch(UpdateBalanceStatusAsync({
       ID: id,
       status: !status

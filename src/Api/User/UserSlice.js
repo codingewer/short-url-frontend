@@ -124,8 +124,11 @@ const UserSlice = createSlice({
         state.error = "Eski şifre hatalı";
       })
       .addCase(NewUserAsync.fulfilled, (state, action) => {
+        localStorage.setItem("token", action.payload.token);
+        localStorage.setItem("user", JSON.stringify(action.payload.user));
         state.success = true;
         state.loading = false;
+        localStorage.setItem("logined", true);
       })
       .addCase(NewUserAsync.pending, (state, action) => {
         state.loading = true;

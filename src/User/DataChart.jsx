@@ -30,32 +30,18 @@ function DataChart() {
   const dispatch = useDispatch();
   const chartdata = useSelector((state) => state.chardata.data);
   const success = useSelector((state) => state.chardata.success);
+  const user = useSelector((state) => state.users.userrealtime);
   const data2 = success ? chartdata : [];
   const handleOptionChange = (e) => {
     setSelectedOption(e.target.value);
   };
- /* const getlastDays = (num) => {
-    const result = [];
-    const today = new Date();
-    for (let i = 0; i < num; i++) {
-      const date = new Date(
-        today.getFullYear(),
-        today.getMonth(),
-        today.getDate() - i
-      );
-      const options = { day: "numeric", weekday: "long", month: "long" };
-      result.push(date.toLocaleDateString("tr-TR", options));
-    }
-    return result;
-  };
-*/
   const data0 = {
     datasets: [
       {
         type: "line",
         label: "Kazanç",
         fill: false,
-        data:  data2.balanceChart,
+        data: data2.balanceChart,
         backgroundColor: "rgba(252, 103, 54, 1)",
         borderColor: "rgba(252, 103, 54, 1)",
         borderWidth: 3,
@@ -99,22 +85,34 @@ function DataChart() {
   const days = selectedOption === "weekly" ? 7 : 30;
   useEffect(() => {
     dispatch(GetDataByUserIDAsync(days));
-  }, [dispatch,selectedOption]);
-  console.log(chartdata);
+  }, [dispatch, selectedOption]);
+
+  //günlük görüntülenme
+  var lastValueBalance  = null
+  var lastViews = null;
+  if( chartdata != null) {
+    const views = Object.values(chartdata.viewsChart);
+    lastViews = views[views.length - 1];
+    //günlük kazanç
+    const balance = Object.values(chartdata.balanceChart);
+   lastValueBalance = balance[balance.length - 1];
+    lastValueBalance = parseInt(lastValueBalance);
+  } 
+  console.log(user)
   return (
     <div>
       <div className="urls-details">
         <div className="urls-detail">
-          <span>123</span>
+          <span>{ user !== null && user.UrlCount}</span>
           <span>Link</span>
         </div>
         <div className="urls-detail">
-          <span>123</span>
-          <span>Tıklama</span>
+          <span>{lastValueBalance} &#8378;</span>
+          <span>Günlük Kazanç</span>
         </div>
         <div className="urls-detail">
-          <span>123</span>
-          <span>görüntülenme</span>
+          <span>{lastViews}</span>
+          <span>Günlük Görüntülenme</span>
         </div>
       </div>
       <div className="chart-container">

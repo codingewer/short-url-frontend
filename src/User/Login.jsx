@@ -33,7 +33,7 @@ const dispatch = useDispatch();
     <div className="register-form-div">
       <form className="register-form" onSubmit={formik.handleSubmit}>
         { 
-        !success &&
+        error &&
         <p style={{color:"red"}} >{error}</p>
         }
         <h3>Giriş Yap</h3>

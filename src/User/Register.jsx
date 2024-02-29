@@ -1,90 +1,88 @@
+import { useDispatch } from 'react-redux';
 import axios from "axios";
 import React, { useState } from "react";
 import { Navigate } from "react-router";
 import "./UserForm.css";
-
+import { useFormik } from "formik";
+import * as yup from "yup"; 
+import { useSelector } from "react-redux";
+import { NewUserAsync } from '../Api/User/UserSlice';
+const validationSchema = yup.object({
+    UserName: yup.string().required("Kullanıcı adı gerekli"),
+    Password: yup.string().required("Şifre gerekli"),
+    Mail: yup.string().email("Geçerli bir email adresi giriniz").required("Email gerekli"),
+    passwordRepeat: yup.string().oneOf([yup.ref("Password"), null], "Şifreler uyuşmuyor"),
+})
 function Register() {
-  const [info, setInfo] = useState({
-    username: "",
-    password: "",
+  const success = useSelector((state) => state.users.success)
+  const error = useSelector((state) => state.users.error)
+  const loading = useSelector((state) => state.users.loading)
+  const dispatch = useDispatch()
+ const registerForm = useFormik({
+  initialValues: {
+    UserName: "",
+    Mail: "",
+    Password: "",
     passwordRepeat: "",
-  });
-
-  //Değişkenler
-  const [status, setStatus] = useState(false)
-  const [error, setError] = useState(false)
-  const [message, setMessage] = useState("")
-
-  //Kullanıcıyı API'ye kayeden fonksiyon
-  const SaveUser = (e) => {
-    axios.post("https://shorturl-backend-vn3o.onrender.com/user/new", {
-        UserName: info.username,
-        Password: info.password,
-      }
-      )
-      .then(function (response) {
-        localStorage.setItem("user", response.data.UserName)
-        localStorage.setItem("logined", true)
-        setStatus(true)
-      })
-      .catch(function (error) {
-        setMessage(error.response.data.ERROR);
-        setError(true)
-      });
-    setInfo({
-      username: "",
-      password: "",
-      passwordRepeat: "",
-    });
-    e.preventDefault();
-  };
+  },
+  validationSchema:validationSchema,
+  onSubmit: async (values) => {
+    console.log(values);
+    dispatch(NewUserAsync(values));
+  } 
+ }
+ )
   return (
     //Sayfa tasarımı bileşenleri
     <div className="register-form-div">
-      <form className="register-form" onSubmit={(e)=>SaveUser(e)}>
-      { 
+      <form className="register-form" onSubmit={registerForm.handleSubmit}>
+      { /*
         error&&<p style={{color:"red"}} >{message}</p>
-        }
+  */}
         <h3>Kayıt Ol</h3>
         <input
           type="text"
-          value={info.username}
-          onChange={(e) =>
-            setInfo({
-              username: e.target.value,
-              passwordRepeat: info.passwordRepeat,
-              password: info.password,
-            })
-          }
+          name="UserName"
+          value={registerForm.values.UserName}
+          onChange={registerForm.handleChange}
+          
           placeholder="Kullanıcı adı"
         />
+        {registerForm.errors.UserName && registerForm.touched.UserName ?
+          <div>{registerForm.errors.UserName}</div>
+        : null}
+        <input
+          type="email"
+          name="Mail"
+          value={registerForm.values.Mail}
+          onChange={registerForm.handleChange}
+          placeholder="Email"
+        />
+        {registerForm.errors.Mail && registerForm.touched.Mail ?
+          <div>{registerForm.errors.Mail}</div>
+          : null}
         <input
           type="password"
-          value={info.password}
-          onChange={(e) =>
-            setInfo({
-              password: e.target.value,
-              passwordRepeat: info.passwordRepeat,
-              username: info.username,
-            })
-          }
+          name="Password"
+          value={registerForm.values.Password}
+          onChange={registerForm.handleChange}
           placeholder="Şifre"
         />
+        {registerForm.errors.Password && registerForm.touched.Password ?
+          <div>{registerForm.errors.Password}</div>
+          : null}
         <input
           type="password"
-          value={info.passwordRepeat}
-          onChange={(e) =>
-            setInfo({
-              passwordRepeat: e.target.value,
-              password: info.password,
-              username: info.username,
-            })
-          }
-          placeholder="Şifre Tekrarı"
+          name="passwordRepeat"
+          value={registerForm.values.passwordRepeat}
+          onChange={registerForm.handleChange}
+          placeholder="Şifre Tekrar"
         />
+        {registerForm.errors.passwordRepeat && registerForm.touched.passwordRepeat ?
+          <div>{registerForm.errors.passwordRepeat}</div>
+          : null}
         <button className="form-btn" type="submit">Kayıt ol</button>
       </form>
-      {status && <Navigate to="/login" />}
     </div>
   );
 }
