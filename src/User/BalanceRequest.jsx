@@ -6,11 +6,12 @@ import { GetBalanceByUserIDAsync, NewBalanceRequestAsync } from "../Api/Balance/
 import { formatDate } from "./Profile";
 
 function BalanceRequest(props) {
+  const sitedata = useSelector((state) => state.settings.data);
   const usersuccess = useSelector((state)=> state.users.success);
   const user0 =  useSelector((state)=> state.users.userrealtime);
   const user = usersuccess ? user0 : {};
   const items = useSelector((state)=> state.balance.balanceRequests);
-  const balanceM = 10;
+  const balanceM = sitedata !==null ? sitedata.WithdrawnBalance : 100;
   const balanceW =  user.Balance;
   const barWidht = (balanceW / balanceM) * 100 + "%";
   const [status, setStatus] = useState(false);
@@ -34,7 +35,7 @@ console.log(items)
   return (
     <div className="balance-container">
       <div className="balance-info">
-        {balanceW < 10 && <span>Çekmek için en az 10 &#8378; gerekiyor</span>}
+        {balanceW < 10 && <span>Çekmek için en az {balanceM} &#8378; gerekiyor</span>}
         <div className="balance-amount">
           <span>
             Bakiyeniz: {" "}

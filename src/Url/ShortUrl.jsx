@@ -7,6 +7,11 @@ import copyicon from "../assets/icons/copy-icon.png";
 import { useDispatch, useSelector } from "react-redux";
 import { GetUrlByCreatedByAsync, NewUrlAsync } from "../Api/Url/UrlSlice";
 import { useFormik } from "formik";
+import * as yup from "yup";
+
+const validationSchema = yup.object({
+    OrginalUrl: yup.string().required("Url boş olamaz"),
+})
 
 function ShortUrl() {
   const dispatch = useDispatch();
@@ -31,8 +36,9 @@ function ShortUrl() {
     initialValues: {
       OrginalUrl: "",
       Description: "",
-      Title: "",
+      ShortenedUrl: "",
     },
+    validationSchema: validationSchema,
     onSubmit: async () => {
       dispatch(NewUrlAsync(formik.values));
       formik.resetForm();
@@ -58,16 +64,14 @@ function ShortUrl() {
         >
           <input
             type="text"
-            name="Title"
-            id="Title"
+            name="ShortenedUrl"
             onChange={formik.handleChange}
-            value={formik.values.Title}
+            value={formik.values.ShortenedUrl}
             placeholder="Başlık(opsiyonel)"
           />
           <input
             type="text"
             name="Description"
-            id="Description"
             onChange={formik.handleChange}
             value={formik.values.Description}
             placeholder="Açıklama(opsiyonel)"
@@ -87,6 +91,9 @@ function ShortUrl() {
             <img src={sendicon} alt="" />
           </button>
         </div>
+          {formik.errors.OrginalUrl && formik.touched.OrginalUrl ? (
+            <span className="error-message">{formik.errors.OrginalUrl}</span>
+          ) : null}
       </form>
       {displayItems.length !== 0 && (
         <div className="last-shortened-urls">

@@ -43,12 +43,9 @@ function Faq() {
               </button>
               <span className="faq-card-content" id={faq.id}>
                 {faq.answer}
-              </span>
+              </span>Bakiye  TL'den az
             </div>
           ))}
-          <Link className="pages-links" to="/contactus">
-            Sormaktan Çekinmeyin
-          </Link>
         </div>
       </div>
       <Footer />

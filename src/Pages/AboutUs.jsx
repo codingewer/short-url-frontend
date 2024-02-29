@@ -1,10 +1,22 @@
-import React from "react";
+import { useDispatch } from 'react-redux';
+import React, { useEffect } from "react";
 import "./AboutUs.css";
 import TopBar from "../Bars/TopBar";
 import Footer from "../Bars/Footer";
 import "./Faq.css";
+import { useSelector } from "react-redux";
+import { GetSiteDataBySiteName } from '../Api/Settings/SettingsSlice';
 
 function AboutUs() {
+  const dispatch = useDispatch();
+  const sitedata = useSelector((state)=> state.settings.data)
+  console.log(sitedata)
+  useEffect(() => {
+    dispatch(GetSiteDataBySiteName());
+  },[dispatch]);
+  const data = sitedata !== null ? sitedata : {
+    AboutUs:"Hakkımızda"
+  }
   return (
     <>
       <TopBar />
@@ -14,16 +26,7 @@ function AboutUs() {
           <div className="about-us-text">
             <span style={{ fontSize: 24, fontWeight: 500 }}>Hakkımızda</span>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam
-              accusantium, temporibus ab aut deserunt, quis corrupti unde ipsum
-              non provident fuga soluta facilis. Nulla dolor natus esse odit
-              quaerat illum! Lorem ipsum dolor sit amet consectetur adipisicing
-              elit. Neque autem, hic illo excepturi quam animi dicta dolore
-              nesciunt voluptatibus adipisci voluptas ducimus at nisi! Sequi
-              perferendis et tempore iure vero? Lorem ipsum dolor sit amet
-              consectetur adipisicing elit. Et eaque voluptatum eius ad non ea.
-              Quisquam quam sit dolor sint. Ullam voluptatibus quae iste cumque,
-              quo excepturi quod culpa porro?
+              {data.AboutUs}
             </p>
           </div>
         </div>

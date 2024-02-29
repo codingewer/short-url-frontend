@@ -1,3 +1,4 @@
+import { useDispatch, useSelector } from "react-redux";
 import "./Home.css";
 import economyicon from "../assets/icons/economy.png";
 import freeicon from "../assets/icons/free-pay.png";
@@ -5,8 +6,12 @@ import quickicon from "../assets/icons/quick-start.png";
 import { Link } from "react-router-dom";
 import Footer from "../Bars/Footer";
 import TopBar from "../Bars/TopBar";
+import { useEffect } from "react";
+import { GetSiteDataBySiteName } from "../Api/Settings/SettingsSlice";
 
 function Home() {
+  const sitedata = useSelector((state) => state.settings.data);
+  const dispatch = useDispatch();
   const wwu = [
     {
       title: "Başlaması çok kolay",
@@ -25,11 +30,14 @@ function Home() {
       iconUrl: economyicon,
     },
   ];
-
+  useEffect(() => {
+    dispatch(GetSiteDataBySiteName());
+  },[dispatch]);
+  console.log(sitedata);
   return (
     //sayfa tasarımı
     <>
-      <TopBar/>
+      <TopBar />
       <div className="home">
         <div className="home-bg-banner"></div>
         <div className="home-content">

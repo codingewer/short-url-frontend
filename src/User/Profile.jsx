@@ -13,6 +13,7 @@ import HelpReq from "./HelpReq";
 import UpdateUser from "./UpdateUser";
 import { GetUserByIDAsync } from "../Api/User/UserSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { GetSiteDataBySiteName } from "../Api/Settings/SettingsSlice";
 
 function Profile() {
   const logined = Boolean(localStorage.getItem("logined"));
@@ -32,6 +33,7 @@ function Profile() {
   };
   useEffect(() => {
     dispatch(GetUserByIDAsync(user.UserName));
+    dispatch(GetSiteDataBySiteName())
   }, [dispatch,balancesatatus]);
   return (
     <>
