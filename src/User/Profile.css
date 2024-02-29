@@ -3,6 +3,7 @@
     align-items: start;
     justify-content: center;
     width: 100vw;
+    min-height: calc(100vh - 100px);
     padding-top: 100px;
     gap: 24px;
 }

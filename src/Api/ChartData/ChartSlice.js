@@ -30,9 +30,14 @@ const ChartSlice = createSlice({
       .addCase(GetDataByUserIDAsync.fulfilled, (state, action) => {
         state.success = true;
         state.data = action.payload;
+        state.loading = false;
+      })
+      .addCase(GetDataByUserIDAsync.pending, (state) => {
+        state.loading = true;
       })
       .addCase(GetDataByUserIDAsync.rejected, (state, action) => {
-        state.error = action.payload.ERROR;
+        state.error = "Bir sorun oluştu";
+        state.loading = false;
       });
   },
 });

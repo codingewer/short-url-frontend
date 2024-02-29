@@ -11,7 +11,7 @@ function BalanceRequest(props) {
   const user = usersuccess ? user0 : {};
   const items = useSelector((state)=> state.balance.balanceRequests);
   const balanceM = 10;
-  const balanceW = user.Balance;
+  const balanceW =  user.Balance;
   const barWidht = (balanceW / balanceM) * 100 + "%";
   const [status, setStatus] = useState(false);
 const dispatch = useDispatch()
@@ -22,8 +22,11 @@ const dispatch = useDispatch()
     onSubmit: async (values) => {
       await dispatch(NewBalanceRequestAsync(values));
       formik.resetForm();
-    }
+    },
+
   })
+
+  const data = items !== null ? items : []
 useEffect(()=>{
   dispatch(GetBalanceByUserIDAsync())  
 },[dispatch])
@@ -31,11 +34,11 @@ console.log(items)
   return (
     <div className="balance-container">
       <div className="balance-info">
-        {balanceM < 10 && <span>Çekmek için en az 10 &#8378; gerekiyor</span>}
+        {balanceW < 10 && <span>Çekmek için en az 10 &#8378; gerekiyor</span>}
         <div className="balance-amount">
           <span>
             Bakiyeniz: {" "}
-            { balanceM < 10 &&  balanceM + "/"} {balanceW} &#8378;
+            { balanceW < 10 &&  balanceM + "/"} {balanceW} &#8378;
           </span>
           <div className="balance-bar">
             <div
@@ -44,13 +47,14 @@ console.log(items)
           </div>
         </div>
       </div>
-      <form className="balance-form" onSubmit={formik.handleSubmit}>
+      <form  className="balance-form" onSubmit={formik.handleSubmit}>
         {status && (
           <span style={{ color: "red", fontSize: 12 }}>
             bakiye yetersiz! En fazla {balanceW} TL çekebilirisiniz.
           </span>
         )}
         <input
+        disabled = {balanceW <10 ? true : false}
           min={10}
           max={balanceW}
           value={formik.values.amount}
@@ -65,8 +69,8 @@ console.log(items)
       <div className="balance-requests">
         <h4>Para çekme geçmişi</h4>
         {
-          items.length > 0 && items.map((item,index)=>(
-        <div className="balance-request">
+          data.length > 0 && data.map((item,index)=>(
+        <div key ={item.ID} className="balance-request">
           <span style={{ color: "red", fontWeight: "bold" }}>-{item.amount} &#8378;</span>
           <span>{formatDate(item.createdAt)}</span>
           {

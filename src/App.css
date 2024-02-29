@@ -7,3 +7,8 @@ input:focus{
     -moz-appearance: textfield;
 
 }
+
+.loading-icon{
+    height: 96px;
+    width: 96px;
+}

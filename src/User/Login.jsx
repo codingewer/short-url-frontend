@@ -55,7 +55,7 @@ const dispatch = useDispatch();
         />
         <button className="form-btn" type="submit">Giriş yap </button>
       </form>
-     { status && <Navigate to="/dashboard"/>}
+     { status && (window.location.href="/")}
     </div>
   );
 }

@@ -1,100 +1,132 @@
-import React from "react";
-import { Field, FieldArray, FormikProvider, useFormik } from "formik";
+import { useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import { useFormik } from "formik";
 import * as Yup from "yup";
 import "./UserForm.css";
-
-const validationSchema = Yup.object({
-  userName: Yup.string().required("Kullanıcı adı gerekli"),
-  email: Yup.string()
+import { useSelector } from "react-redux";
+import { UpdatePasswordAsync, UpdateUserAsync } from "../Api/User/UserSlice";
+import loadingico from "../assets/icons/loading.gif";
+const validationSchema = Yup.object().shape({
+  UserName: Yup.string().required("Kullanıcı adı gerekli"),
+  Mail: Yup.string()
     .email("Geçerli bir email adresi giriniz")
     .required("Email gerekli"),
-  iban: Yup.string().required("IBAN gerekli"),
-  ibanName: Yup.string().required("IBAN adı gerekli"),
-  password: Yup.string().required("Şifre gerekli"),
-  confirmPassword: Yup.string()
-    .oneOf([Yup.ref("password"), null], "Şifreler uyuşmuyor")
-    .required("Şifre gerekli"),
+});
+
+const passwordValidationSchema = Yup.object().shape({
+  password: Yup.string().required("Eski Şifre gerekli"),
+  newPassword: Yup.string().required("Yeni Şifre gerekli"),
+  ConfirmPassword: Yup.string()
+    .required("Yeni Onayı Şifre gerekli")
+    .oneOf([Yup.ref("newPassword"), null], "Şifreler uyuşmuyor"),
 });
 
 function UpdateUser() {
+  const user = useSelector((state) => state.users.userrealtime);
+  const success = useSelector((state) => state.users.success);
+  const error = useSelector((state) => state.users.error);
+  const loading = useSelector((state) => state.users.loading);
+  const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
-      userName: "",
-      email: "",
-      iban: "",
-      ibanName: "",
-      password: "",
-      confirmPassword: "",
+      UserName: "",
+      Mail: "",
     },
-    validationSchema: validationSchema,
+    validationSchema,
     onSubmit: async () => {
-      console.log(formik.values);
-      alert("Details Updated Successfully");
+      await dispatch(UpdateUserAsync(formik.values));
     },
   });
+  const PasswordForm = useFormik({
+    initialValues: {
+      password: "",
+      newPassword: "",
+      ConfirmPassword: "",
+    },
+    passwordValidationSchema,
+    onSubmit: () => {
+      dispatch(UpdatePasswordAsync(PasswordForm.values));
+      PasswordForm.resetForm();
+      console.log("2323");
+      return;
+    },
+  });
+  useEffect(() => {
+    success == true &&
+      formik.setValues({
+        UserName: user.UserName,
+        Mail: user.Mail,
+      });
+  }, [success]);
+  console.log("l", loading);
   return (
     <div id="update-user-form" className="update-from-div">
       <span style={{ marginTop: 24, fontSize: 18, fontWeight: 700 }}>
         Bilgileri Güncelle
       </span>
       <form className="register-form" onSubmit={formik.handleSubmit}>
-        <label htmlFor="userName">Kullanıcı Adı</label>
+        {!success &&  <span style={{ color: "red" }}>Bilgiler güncellenirken Hata Oluştu.</span>}
+        <label htmlFor="UserName">Kullanıcı Adı</label>
         <input
           type="text"
-          id="userName"
-          name="userName"
-          value={formik.values.userName}
+          id="UserName"
+          name="UserName"
+          value={formik.values.UserName}
           onChange={formik.handleChange}
         />
         {
           //validate with validationSchema
-          formik.errors.userName && formik.touched.userName ? (
-            <div>{formik.errors.userName}</div>
+          formik.errors.UserName && formik.touched.UserName ? (
+            <div>{formik.errors.UserName}</div>
           ) : null
         }
-        <label htmlFor="email">Email</label>
+        <label htmlFor="Mail">Email</label>
         <input
           type="email"
-          id="email"
-          name="email"
-          value={formik.values.email}
+          name="Mail"
+          value={formik.values.Mail}
           onChange={formik.handleChange}
         />
-        {formik.errors.email && formik.touched.email ? (
-          <div>{formik.errors.email}</div>
+        {formik.errors.Mail && formik.touched.Mail ? (
+          <div>{formik.errors.Mail}</div>
         ) : null}
-        <label htmlFor="iban">IBAN</label>
-        <input
-          type="text"
-          id="iban"
-          name="iban"
-          value={formik.values.iban}
-          onChange={formik.handleChange}
-        />
-        {formik.errors.iban && formik.touched.iban ? (
-          <div>{formik.errors.iban}</div>
-        ) : null}
-        <label htmlFor="ibanName">IBAN Alıcı Adı</label>
-        <input
-          type="text"
-          id="ibanName"
-          name="ibanName"
-          value={formik.values.ibanName}
-          onChange={formik.handleChange}
-        />
-        {formik.errors.ibanName && formik.touched.ibanName ? (
-          <div>{formik.errors.ibanName}</div>
-        ) : null}
-        <label htmlFor="password">Şifre</label>
+        <button className="form-btn" type="submit">
+          Güncelle
+        </button>
+      </form>
+      {loading && <img className="loading-icon" src={loadingico} alt="" />}
+
+      <form className="register-form" onSubmit={PasswordForm.handleSubmit}>
+        <label htmlFor="password">Eski Şifre</label>
         <input
           type="password"
-          id="password"
           name="password"
-          value={formik.values.password}
-          onChange={formik.handleChange}
+          value={PasswordForm.values.password}
+          onChange={PasswordForm.handleChange}
         />
-        {formik.errors.password && formik.touched.password ? (
-          <div>{formik.errors.password}</div>
+        {PasswordForm.errors.password && PasswordForm.touched.password ? (
+          <div>{PasswordForm.errors.password}</div>
+        ) : null}
+        <label htmlFor="newPassword">Yeni Şifre</label>
+        <input
+          type="password"
+          name="newPassword"
+          value={PasswordForm.values.newPassword}
+          onChange={PasswordForm.handleChange}
+        />
+        {PasswordForm.errors.newPassword && PasswordForm.touched.newPassword ? (
+          <div>{PasswordForm.errors.newPassword}</div>
+        ) : null}
+        <label htmlFor="ConfirmPassword">Yeni Şifre Onayı</label>
+        <input
+          type="password"
+          name="ConfirmPassword"
+          value={PasswordForm.values.ConfirmPassword}
+          onChange={PasswordForm.handleChange}
+        />
+        {PasswordForm.errors.ConfirmPassword &&
+        PasswordForm.touched.ConfirmPassword ? (
+          <div>{PasswordForm.errors.ConfirmPassword}</div>
         ) : null}
         <button className="form-btn" type="submit">
           Güncelle

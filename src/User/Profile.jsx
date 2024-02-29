@@ -11,7 +11,7 @@ import SideBar from "../Bars/SideBar";
 import ShortUrl from "../Url/ShortUrl";
 import HelpReq from "./HelpReq";
 import UpdateUser from "./UpdateUser";
-import { GetUserByUserNameAsync } from "../Api/User/UserSlice";
+import { GetUserByIDAsync } from "../Api/User/UserSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 function Profile() {
@@ -31,7 +31,7 @@ function Profile() {
     window.location.href = "/";
   };
   useEffect(() => {
-    dispatch(GetUserByUserNameAsync(user.UserName));
+    dispatch(GetUserByIDAsync(user.UserName));
   }, [dispatch,balancesatatus]);
   return (
     <>

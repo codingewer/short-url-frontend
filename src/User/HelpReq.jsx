@@ -28,6 +28,7 @@ function HelpReq() {
       formik.resetForm();
     },
   });
+  const data = items !== null? items : [] 
   useEffect(() => {
     dispatch(GetHelpRequestsByUserAsync());
     console.log("uese effect");
@@ -64,16 +65,16 @@ function HelpReq() {
       </div>
       <div className="last-helpreqs">
         {success &&
-          items.map((req, index) => (
+          data.map((req, index) => (
             <div key={index} className="helpreq-card">
               <span className="helpreq-card-titles">Mesajınız: </span>
               <p>{req.Content}</p>
               <span className="helpreq-card-titles">Tarih: </span>
               <p>{formatDate(req.createdAt)}</p>
-              {req.answered ? (
+              {req.status ? (
                 <>
                   <span className="helpreq-card-titles">Cevaplandı: </span>
-                  <p>{req.status}</p>
+                  <p>{req.Answer}</p>
                 </>
               ) : (
                 <p style={{ color: "orange", fontSize: 14, fontWeight: 500 }}>

@@ -1,5 +1,5 @@
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./ControlPanel.css";
 import UpdateUser from "../User/UpdateUser";
 import NotFound from "../Url/NotFound";
@@ -66,17 +66,6 @@ function ControlPanel() {
             </Link>
             <Link
               className={
-                selected === "allusers"
-                  ? "cp-navbar-item-selected"
-                  : "cp-navbar-item"
-              }
-              onClick={() => handleActiveLink("allusers")}
-              to="/controlpanel/allusers"
-            >
-              Tüm Kullanıcılar
-            </Link>
-            <Link
-              className={
                 selected === "allfaq"
                   ? "cp-navbar-item-selected"
                   : "cp-navbar-item"
@@ -101,7 +90,7 @@ function ControlPanel() {
             />
             <Route
               path="/help-requests-notanswered"
-              element={<HelpRequests asnswered={false} />}
+              element={<HelpRequests answered={false} />}
             />
             <Route path="/AllUsers" element={<AllUsers />} />
             <Route path="/allfaq" element={<AllFaq />} />
@@ -113,3 +102,11 @@ function ControlPanel() {
 }
 
 export default ControlPanel;
+
+export const formatDate1 = (date) => {
+  const d = new Date(date);
+  const year = d.getFullYear();
+  const month = d.toLocaleString("tr-TR", { month: "long" });
+  const day = d.getDate();
+  return `${day}-${month}-${year}`;
+};

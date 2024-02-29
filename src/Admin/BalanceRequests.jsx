@@ -1,106 +1,52 @@
-import React, { useState } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useState } from "react";
 import rejecticon from "../assets/icons/reject-icon.png";
 import doneicon from "../assets/icons/done-icon.png";
+import { GetByStatusBalanceRequestsAsync, UpdateBalanceStatusAsync } from '../Api/Balance/BalanceSlice';
+import { formatDate } from '../User/Profile';
+import loadingico from '../assets/icons/loading.gif';
+
+
 
 function BalanceRequests(props) {
-  const [balancereqsTrue, setbalancereqsTrue] = useState([
-    {
-      id: 1,
-      name: "John Doe",
-      iban: "TR123456678909876543",
-      email: "john@example.com",
-      balance: 13,
-      date: "12.01.2024",
-      paid: true,
-    },
-    {
-      id: 2,
-      name: "John Doe",
-      iban: "TR1234566789fgjgf09876543",
-      email: "john@example.com",
-      balance: 24,
-      date: "12.01.2024",
-      paid: true,
-    },
-    {
-      id: 3,
-      name: "John Doe",
-      iban: "TR123456678909876543",
-      email: "john@example.com",
-      balance: 10,
-      date: "12.01.2024",
-      paid: true,
-    },
-  ]);
+  const dispatch = useDispatch();
+  const items = useSelector((state)=> state.balance.items)
+  const status = useSelector((state)=> state.balance.success)
+  const loading = useSelector((state)=> state.balance.loading)
+  const error = useSelector((state)=> state.balance.error)
+ 
+ useEffect(()=>{
+  dispatch(GetByStatusBalanceRequestsAsync(props.paid))
+ },[props.paid, dispatch])
 
-  const [balancereqsFalse, setbalancereqsFalse] = useState([
-    {
-      id: 4,
-      name: "John Doe",
-      iban: "TR123456678909876543",
-      email: "john@example.com",
-      balance: 12,
-      date: "12.01.2024",
-      paid: false,
-    },
-    {
-      id: 5,
-      name: "John Doe",
-      iban: "TR123456678909876543",
-      email: "john@example.com",
-      balance: 100,
-      date: "12.01.2024",
-      paid: false,
-    },
-    {
-      id: 6,
-      name: "John Doe",
-      iban: "TR123456678909876543",
-      email: "john@example.com",
-      balance: 25,
-      date: "12.01.2024",
-      paid: false,
-    },
-  ]);
 
-  const balancereqs = props.paid ? balancereqsTrue : balancereqsFalse;
-  const changePaid = (id) => {
-    const request = balancereqs.find((req) => req.id === id);
-    const paidStatus = request.paid ? "ödemediğinzde" : "ödediğinizden";
-    if (
-      window.confirm(
-        request.name + " kişisinin parasını " + paidStatus + " emin misiniz?"
-      )
-    ) {
-      request.paid = !request.paid;
-      if (request.paid === true) {
-        const updateReqs = balancereqsFalse.filter((requ) => requ.id !== id);
-        setbalancereqsFalse(updateReqs);
-        balancereqsTrue.push(request);
-      } else {
-        const updateReqs = balancereqsTrue.filter((requ) => requ.id !== id);
-        setbalancereqsTrue(updateReqs);
-        balancereqsFalse.push(request);
-      }
-    }
+ console.log(status)
+
+  const changePaid = async (status, id ) => {
+     dispatch(UpdateBalanceStatusAsync({
+      ID: id,
+      status: !status
+     }));
   };
-
+const balanceReqs = items !== null ? items : []
+console.log(balanceReqs)
   return (
     <div className="cp-data-container">
-      {balancereqs.map((balancereq) => (
-        <div key={balancereq.id} className="cp-data-card">
-          <h4>{balancereq.name}</h4>
-          <p>{balancereq.email}</p>
-          <p>{balancereq.iban}</p>
-          <p>{balancereq.balance} <span> &#8378;</span></p>
-          <p>{balancereq.date}</p>
-          <p style={{ color: balancereq.paid ? "green" : "red" }}>
-            {balancereq.paid ? "ödendi" : "Ödenmedi"}
+    {loading && <img className="loading-icon" src={loadingico} alt="" />}
+      { status && balanceReqs.map((balancereq) => (
+        <div key={balancereq.ID} className="cp-data-card">
+          <h4>{balancereq.user.UserName}</h4>
+          <p>{balancereq.user.Mail}</p>
+          <p>{balancereq.user.BalanceInfo.iban}</p>
+          <p>{balancereq.amount} <span> &#8378;</span></p>
+          <p>{ formatDate(balancereq.createdAt)}</p>
+          <p style={{ color: balancereq.status ? "green" : "red" }}>
+            {balancereq.status ? "ödendi" : "Ödenmedi"}
           </p>
           <div className="cp-card-btns">
-            <button onClick={() => changePaid(balancereq.id)}>
+            <button type='button' onClick={()=> changePaid(balancereq.status , balancereq.ID)}>
               <img
-                src={balancereq.paid ? rejecticon : doneicon}
+                src={balancereq.status ? rejecticon : doneicon}
                 alt="ödendi/ödenmedi"
               />
             </button>

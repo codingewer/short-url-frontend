@@ -14,15 +14,12 @@ export const NewUrlAsync = createAsyncThunk("url/NewUrlAsync", async (data) => {
 
 export const GetUrlByCreatedByAsync = createAsyncThunk(
   "url/GetUrlByCreatedByAsync",
-  async (userName) => {
-    const response = await axios.get(
-      `${apiUrl}/url/getbycreatedby/${userName}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+  async () => {
+    const response = await axios.get(`${apiUrl}/url/getbycreatedby`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return response.data;
   }
 );
@@ -66,30 +63,54 @@ const UrlSlice = createSlice({
     builder
       .addCase(NewUrlAsync.fulfilled, (state, action) => {
         state.success = true;
+        state.loading = false;
         state.items.unshift(action.payload);
+      })
+      .addCase(NewUrlAsync.pending, (state) => {
+        state.loading = true;
+        state.success = false;
       })
       .addCase(NewUrlAsync.rejected, (state, action) => {
         state.success = false;
+        state.loading = false;
       })
       .addCase(GetUrlByCreatedByAsync.fulfilled, (state, action) => {
         state.items = action.payload;
         state.success = true;
+        state.loading = false;
+      })
+      .addCase(GetUrlByCreatedByAsync.pending, (state) => {
+        state.loading = true;
+        state.success = false;
       })
       .addCase(GetUrlByCreatedByAsync.rejected, (state, action) => {
         state.success = false;
+        state.loading = false;
       })
       .addCase(DeleteUrlByIdAsync.fulfilled, (state, action) => {
         state.success = true;
+        state.loading = false;
+      })
+      .addCase(DeleteUrlByIdAsync.pending, (state) => {
+        state.success = false;
+        state.loading = true;
       })
       .addCase(DeleteUrlByIdAsync.rejected, (state, action) => {
         state.success = false;
+        state.loading = false;
       })
       .addCase(GetUrlByShortenedUrlAsync.fulfilled, (state, action) => {
         state.url = action.payload;
         state.success = true;
+        state.loading = false;
+      })
+      .addCase(GetUrlByShortenedUrlAsync.pending, (state) => {
+        state.success = false;
+        state.loading = true;
       })
       .addCase(GetUrlByShortenedUrlAsync.rejected, (state, action) => {
         state.success = false;
+        state.loading = false;
       });
   },
 });

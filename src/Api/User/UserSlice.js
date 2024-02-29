@@ -6,23 +6,20 @@ const token = localStorage.getItem("token");
 export const NewUserAsync = createAsyncThunk(
   "users/NewUserAsync",
   async (data) => {
-    const res = await axios.post(
-      `${apiUrl}/user/new`,
-      data
-      /*  {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            }*/
-    );
+    const res = await axios.post(`${apiUrl}/user/new`, data);
     return res.data;
   }
 );
 
-export const GetUserByUserNameAsync = createAsyncThunk(
+export const GetUserByIDAsync = createAsyncThunk(
   "users/GetUserByUserNameAsync",
-  async (userName) => {
-    const res = await axios.get(`${apiUrl}/user/get/${userName}`);
+  async () => {
+    const res = await axios.get(`${apiUrl}/user/getbyId`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
     return res.data;
   }
 );
@@ -72,40 +69,71 @@ const UserSlice = createSlice({
         localStorage.setItem("token", action.payload.token);
         localStorage.setItem("user", JSON.stringify(action.payload.user));
         state.success = true;
+        state.loading = false;
         localStorage.setItem("logined", true);
+      })
+      .addCase(LoginAsync.pending, (state) => {
+        state.loading = true;
+        state.success = false;
       })
       .addCase(LoginAsync.rejected, (state, action) => {
         console.log(action);
         state.error =
           "Giriş başarısız şifrenizi ve Kullanıcı adınızı kontrol edin";
         state.success = false;
+        state.loading = false;
       })
-      .addCase(GetUserByUserNameAsync.fulfilled, (state, action) => {
+      .addCase(GetUserByIDAsync.fulfilled, (state, action) => {
         state.success = true;
+        state.loading = false;
         state.userrealtime = action.payload;
       })
-      .addCase(GetUserByUserNameAsync.rejected, (state, action) => {
+      .addCase(GetUserByIDAsync.pending, (state) => {
+        state.loading = true;
         state.success = false;
+      })
+      .addCase(GetUserByIDAsync.rejected, (state, action) => {
+        state.success = false;
+        state.loading = false;
       })
       .addCase(UpdateUserAsync.fulfilled, (state, action) => {
         state.success = true;
+        state.loading = false;
+      })
+      .addCase(UpdateUserAsync.pending, (state, action) => {
+        state.loading = true;
+        state.success = false;
       })
       .addCase(UpdateUserAsync.rejected, (state, action) => {
         state.error = "Bilgiler güncellenirken hata oluştu";
         state.success = false;
+        state.loading = false;
       })
       .addCase(UpdatePasswordAsync.fulfilled, (state, action) => {
         state.success = true;
+        console.log(action);
+        state.loading = false;
+      })
+      .addCase(UpdatePasswordAsync.pending, (state, action) => {
+        state.loading = true;
+        state.success = false;
       })
       .addCase(UpdatePasswordAsync.rejected, (state, action) => {
         state.success = false;
+        state.loading = false;
         state.error = "Eski şifre hatalı";
       })
       .addCase(NewUserAsync.fulfilled, (state, action) => {
         state.success = true;
+        state.loading = false;
+      })
+      .addCase(NewUserAsync.pending, (state, action) => {
+        state.loading = true;
+        state.success = false;
       })
       .addCase(NewUserAsync.rejected, (state, action) => {
         state.success = false;
+        state.loading = false;
         state.error =
           "Kayıt olunurken hata oluştu kullanıcı adı daha önce kullanılmış olabilir";
       });
