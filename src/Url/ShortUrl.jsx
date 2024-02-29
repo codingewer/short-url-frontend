@@ -115,6 +115,36 @@ function ShortUrl() {
                 >
                   <img src={trashicon} alt="Sil" />
                 </button>
+                <button
+                  className="delete-btn"
+                  //  onClick={() => DeleteLink(item.ID)}
+                >
+                  <img src={trashicon} alt="Sil" />
+                </button>
+                <button
+                  className="delete-btn"
+                  //  onClick={() => DeleteLink(item.ID)}
+                >
+                  <img src={trashicon} alt="Sil" />
+                </button>
+                <button
+                  className="delete-btn"
+                  //  onClick={() => DeleteLink(item.ID)}
+                >
+                  <img src={trashicon} alt="Sil" />
+                </button>
+                <button
+                  className="delete-btn"
+                  //  onClick={() => DeleteLink(item.ID)}
+                >
+                  <img src={trashicon} alt="Sil" />
+                </button>
+                <button
+                  className="delete-btn"
+                  //  onClick={() => DeleteLink(item.ID)}
+                >
+                  <img src={trashicon} alt="Sil" />
+                </button>
               </div>
             </div>
           ))}
