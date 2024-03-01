@@ -38,7 +38,7 @@ function ShortenedUrl() {
     <>
       <div className="ads-container">
         <div className="ad-content">
-          <AdsComponent dataAdSlot="3634852612" />
+          <AdsComponent />
           <button disabled={adBlockDetected} onClick={handleSkip}>
             {index > 3 ? "Linke Git!" : "Reklamı Geç"}
           </button>

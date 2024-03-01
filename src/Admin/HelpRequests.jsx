@@ -30,24 +30,26 @@ function Helphelpreqs(props) {
 
     validationSchema: validationSchema,
     onSubmit: async (values) => {
-      await dispatch(UpdateHelpRequestStatusAsync({
-        Answer: values.Answer,
-        status: true,
-        ID: helpID,
-      }));
+      await dispatch(
+        UpdateHelpRequestStatusAsync({
+          Answer: values.Answer,
+          status: true,
+          ID: helpID,
+        })
+      );
       formik.resetForm();
       HandldeTogleForm("Başlık", "");
     },
   });
   const [isToggled, setToggled] = useState(true);
-  const HandldeTogleForm = (title, id ) => {
-    setFormTitle(title)
-    setHelpID(id)
+  const HandldeTogleForm = (title, id) => {
+    setFormTitle(title);
+    setHelpID(id);
     const linksMenu = document.getElementById("cp-help-form-25t");
     setToggled(!isToggled);
     isToggled
-    ? linksMenu.classList.add("cphelp-form-close")
-    : linksMenu.classList.remove("cphelp-form-close");
+      ? linksMenu.classList.add("cphelp-form-close")
+      : linksMenu.classList.remove("cphelp-form-close");
   };
   console.log(formik.values);
   const helpReqs = items !== null ? items : [];
@@ -56,8 +58,19 @@ function Helphelpreqs(props) {
   }, [props.answered, dispatch]);
   return (
     <div className="cp-data-container">
-          {loading && <img className="loading-icon" src={loadingico} alt="" />}
-      <form id="cp-help-form-25t" className="cphelpreq-form" onSubmit={formik.handleSubmit}>
+      {loading && <img className="loading-icon" src={loadingico} alt="" />}
+      <form
+        id="cp-help-form-25t"
+        className="cphelpreq-form"
+        onSubmit={formik.handleSubmit}
+      >
+        <button
+          type="button"
+          onClick={() => HandldeTogleForm("başlık", "")}
+          style={{ background: "none" , border:"none" }}
+        >
+          <img style={{ height: 18 }} src={rejecticon} alt="kapat" />
+        </button>
         <h4>{formTitle}</h4>
         <textarea
           className="contacus-from-inputs"
@@ -71,9 +84,9 @@ function Helphelpreqs(props) {
         {formik.errors.Answer && formik.touched.Answer ? (
           <div>{formik.errors.Answer}</div>
         ) : null}
-        <button type="submit">Cevapla</button>
+        <button className="form-btn" type="submit">Gönder</button>
       </form>
-      {helpReqs.length !== 0  ?
+      {helpReqs.length !== 0 ? (
         helpReqs.map((helpreq) => (
           <div key={helpreq.ID} className="cp-data-card">
             <h4>{helpreq.user.UserName}</h4>
@@ -84,9 +97,19 @@ function Helphelpreqs(props) {
             <p style={{ color: helpreq.status ? "green" : "red" }}>
               {helpreq.status ? "cevaplandı" : "cevaplanmadı"}
             </p>
-            <button onClick={() => HandldeTogleForm(helpreq.Content, helpreq.ID)}>Cevapla</button>
+            {!helpreq.status && (
+              <button
+                className="form-btn"
+                onClick={() => HandldeTogleForm(helpreq.Content, helpreq.ID)}
+              >
+              Cevapla
+              </button>
+            )}
           </div>
-        )) : <span>Boş</span> } 
+        ))
+      ) : (
+        <span>Boş</span>
+      )}
     </div>
   );
 }

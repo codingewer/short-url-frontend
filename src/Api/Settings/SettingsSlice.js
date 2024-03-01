@@ -6,7 +6,25 @@ const token = localStorage.getItem("token");
 export const GetSiteDataBySiteName = createAsyncThunk(
   "settings/GetSiteDataBySiteName",
   async () => {
-    const response = await axios.get(`${apiUrl}/sitesettings/getbysite/short-url`);
+    const response = await axios.get(
+      `${apiUrl}/sitesettings/getbysite/short-url`
+    );
+    return response.data;
+  }
+);
+
+export const UpdateSiteDataBySiteName = createAsyncThunk(
+  "settings/UpdateSiteDataBySiteName",
+  async (data) => {
+    const response = await axios.put(
+      `${apiUrl}/sitesettings/update/short-url`,
+      data,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
     return response.data;
   }
 );

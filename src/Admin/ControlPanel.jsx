@@ -1,20 +1,25 @@
-import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import "./ControlPanel.css";
-import UpdateUser from "../User/UpdateUser";
-import NotFound from "../Url/NotFound";
-import Urls from "./Urls";
 import AllUsers from "./AllUsers";
 import AllFaq from "./AllFaq";
 import BalanceRequests from "./BalanceRequests";
 import HelpRequests from "./HelpRequests";
 import TopBar from "../Bars/TopBar";
+import UpdateSiteSettings from "./UpdateSiteSettings";
 
 function ControlPanel() {
+  const user = JSON.parse(localStorage.getItem("user"));
   const [selected, setSelect] = useState("/");
   const handleActiveLink = (select) => {
     setSelect(select);
   };
+  const domain = window.location.href;
+  const dom2 = domain.split("/controlpanel/");
+  useEffect(() => {
+    setSelect(dom2[1]);
+    console.log(dom2[1]);
+  },[])
   return (
     <>
       <TopBar />
@@ -74,6 +79,17 @@ function ControlPanel() {
             >
               Sıkça sorulan Sorular
             </Link>
+            <Link
+              className={
+                selected === "settings"
+                  ? "cp-navbar-item-selected"
+                  : "cp-navbar-item"
+              }
+              onClick={() => handleActiveLink("settings")}
+              to="/controlpanel/settings"
+            >
+              Ayarlar
+            </Link>
           </div>
         </div>
         <div className="requests">
@@ -93,19 +109,13 @@ function ControlPanel() {
             />
             <Route path="/AllUsers" element={<AllUsers />} />
             <Route path="/allfaq" element={<AllFaq />} />
+            <Route path="/settings" element={<UpdateSiteSettings />} />
           </Routes>
         </div>
       </div>
+      {!user.Admin && (window.location.href= "/dashboard") }
     </>
   );
 }
 
 export default ControlPanel;
-
-export const formatDate1 = (date) => {
-  const d = new Date(date);
-  const year = d.getFullYear();
-  const month = d.toLocaleString("tr-TR", { month: "long" });
-  const day = d.getDate();
-  return `${day}-${month}-${year}`;
-};
