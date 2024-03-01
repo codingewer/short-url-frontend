@@ -9,17 +9,16 @@
 
 .ad-content{
     background-color: white;
-    height: 50%;
+    max-height: 70%;
     max-width: calc(100% - 72px);
     padding: 24px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 24px;
-    width: fit-content;
     border-radius: 24px;
-    text-align: center;
 }
 
 .ad-content button{
@@ -35,7 +34,8 @@
 
 .ad-content span{
     font-weight: 600;
-    margin-top: 24px;
     color: var(--color-1);
     font-size: 18px;
+    width: 100%;
+    text-align: center;
 }

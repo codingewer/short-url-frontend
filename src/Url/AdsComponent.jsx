@@ -47,11 +47,9 @@ const AdsComponent = () => {
       data-ad-client= {ads.client}  
       data-ad-slot={ads.slot}
       data-ad-format="auto"
-      data-ad-test="on"
       data-full-width-responsive="true"
-      data-ad-status="filled"
       >
-        Reklam
+      Reklam
       </ins>
       }
     </>

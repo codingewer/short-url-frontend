@@ -24,20 +24,23 @@ function ShortenedUrl() {
     }
   };
   useEffect(() => {
-    if(index === 4) {
+    if (index === 4) {
       axios
-      .get("https://shorturl-backend-vn3o.onrender.com/url/get/" + shortenedUrl)
-      .then(function (response) {
-        setUrl(response.data);
-      })
-      .catch(function (error) {});
+        .get(
+          "https://shorturl-backend-vn3o.onrender.com/url/get/" + shortenedUrl
+        )
+        .then(function (response) {
+          setUrl(response.data);
+        })
+        .catch(function (error) {});
     }
   }, []);
-  console.log(adBlockDetected);
+  console.log(url);
   return (
     <>
       <div className="ads-container">
         <div className="ad-content">
+          <span>{url?.Description}</span>
           <AdsComponent />
           <button disabled={adBlockDetected} onClick={handleSkip}>
             {index > 3 ? "Linke Git!" : "Reklamı Geç"}
