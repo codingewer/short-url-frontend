@@ -13,6 +13,8 @@ function Footer() {
           <Link to="/">Ana Sayfa</Link>
           <Link to="/login">Kayıt Ol</Link>
           <Link to="/aboutus" >Hakkımızda</Link>
+          <Link to="/terms" >Kullanım Şartları</Link>
+          <Link to="/privacy" >Gizlilik Politikası</Link>
           <Link to="/faq" >S.S.S</Link>
         </div>
       </div>

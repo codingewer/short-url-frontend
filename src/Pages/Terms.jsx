@@ -7,7 +7,7 @@ import "./Faq.css";
 import { useSelector } from "react-redux";
 import { GetSiteDataBySiteName } from '../Api/Settings/SettingsSlice';
 
-function AboutUs() {
+function Terms() {
   const dispatch = useDispatch();
   const sitedata = useSelector((state)=> state.settings.data)
   console.log(sitedata)
@@ -15,7 +15,7 @@ function AboutUs() {
     dispatch(GetSiteDataBySiteName());
   },[dispatch]);
   const data = sitedata !== null ? sitedata : {
-    AboutUs:"Hakkımızda"
+    Terms:"Gizlilik"
   }
   return (
     <>
@@ -24,9 +24,9 @@ function AboutUs() {
         <div className="faq-banner"></div>
         <div className="contactus-content">
           <div className="about-us-text">
-            <span style={{ fontSize: 24, fontWeight: 500 }}>Hakkımızda</span>
+            <span style={{ fontSize: 24, fontWeight: 500 }}>Kullanım Şartları</span>
 
-            <div  dangerouslySetInnerHTML={{ __html: data.AboutUs }}>
+            <div  dangerouslySetInnerHTML={{ __html: data.TermsConditions }}>
             </div>
           </div>
         </div>
@@ -36,4 +36,4 @@ function AboutUs() {
   );
 }
 
-export default AboutUs;
+export default Terms;

@@ -52,6 +52,18 @@ const SettingsSlice = createSlice({
       .addCase(GetSiteDataBySiteName.rejected, (state, action) => {
         state.error = "Bir sorun oluştu";
         state.loading = false;
+      })
+      .addCase(UpdateSiteDataBySiteName.fulfilled, (state, action) => {
+        state.success = true;
+        state.data = action.payload;
+        state.loading = false;
+      })
+      .addCase(UpdateSiteDataBySiteName.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(UpdateSiteDataBySiteName.rejected, (state, action) => {
+        state.error = "Bir sorun oluştu";
+        state.loading = false;
       });
   },
 });

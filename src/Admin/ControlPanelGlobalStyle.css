@@ -68,3 +68,19 @@
     display: flex;
 }
 
+.editors-btns{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    flex-wrap: wrap;
+    padding: 24px;
+    gap: 12px;
+    justify-content: space-around;
+}
+
+.editors-btns button{
+    background: none;
+    padding: 6px 24px 6px 24px;
+    border-radius: 6px;
+    border: solid 1px var(--shadow-color);
+}

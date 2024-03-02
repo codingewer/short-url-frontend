@@ -14,6 +14,7 @@
     "draft-js-export-html": "^1.4.1",
     "draftjs-to-html": "^0.9.1",
     "formik": "^2.4.5",
+    "html-to-draftjs": "^1.5.0",
     "react": "^18.2.0",
     "react-adsense": "^0.1.0",
     "react-chartjs-2": "^5.2.0",

@@ -14,6 +14,9 @@ import Faq from "./Pages/Faq";
 import BalanceRequest from "./User/BalanceRequest";
 import Home from "./Pages/Home";
 import AboutUs from "./Pages/AboutUs";
+import Privacy from "./Pages/Privacy";
+import Terms from "./Pages/Terms";
+import UserRegister from "./User/UserRegister";
 
 function App() {
   return (
@@ -22,9 +25,12 @@ function App() {
     <SideBar/>
         <Routes>
           <Route path="/login" element={<Userlogin />} />
+          <Route path="/register" element={<UserRegister/>} />
           <Route path="/" element={<Home />} />
           <Route path="/faq" element={<Faq />} />
           <Route path="/aboutus" element={<AboutUs />} />
+          <Route path="/privacy" element={<Privacy/>} />
+          <Route path = "/terms" element={<Terms/>} />
           <Route path="/l/:shortenedUrl/r/:adIndex" element={<ShortenedUrl />} />
           <Route path="*" element={<NotFound />} />
           <Route path="/dashboard/*" element={<Profile />} />

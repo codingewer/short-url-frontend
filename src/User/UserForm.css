@@ -9,6 +9,7 @@
 
 }
 
+
 .switch-form-btn {
     color: var(--color-1);
     background-color: var(--shadow-color);
@@ -88,4 +89,17 @@
     padding: 8px;
     min-width: 120px;
     border-radius: 8px;
+}
+
+.checkbox-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 12px;
+}
+
+.checkbox-container input{
+    height: 24px;
+    width: 24px;
 }

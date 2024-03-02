@@ -38,8 +38,9 @@ console.log(items)
         {balanceW < 10 && <span>Çekmek için en az {balanceM} &#8378; gerekiyor</span>}
         <div className="balance-amount">
           <span>
-            Bakiyeniz: {" "}
-            { balanceW < 10 &&  balanceM + "/"} {balanceW} &#8378;
+            Bakiyeniz: 
+            { balanceW < balanceM ?
+             ( balanceW + "/" + balanceM) : balanceW} &#8378;
           </span>
           <div className="balance-bar">
             <div

@@ -1,56 +1,62 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 import axios from "axios";
 import React, { useState } from "react";
 import { Navigate } from "react-router";
 import "./UserForm.css";
 import { useFormik } from "formik";
-import * as yup from "yup"; 
+import * as yup from "yup";
 import { useSelector } from "react-redux";
-import { NewUserAsync } from '../Api/User/UserSlice';
+import { NewUserAsync } from "../Api/User/UserSlice";
+import { Link } from "react-router-dom";
 const validationSchema = yup.object({
-    UserName: yup.string().required("Kullanıcı adı gerekli"),
-    Password: yup.string().required("Şifre gerekli"),
-    Mail: yup.string().email("Geçerli bir email adresi giriniz").required("Email gerekli"),
-    passwordRepeat: yup.string().oneOf([yup.ref("Password"), null], "Şifreler uyuşmuyor"),
-})
+  UserName: yup.string().required("Kullanıcı adı gerekli"),
+  Password: yup.string().required("Şifre gerekli"),
+  Mail: yup
+    .string()
+    .email("Geçerli bir email adresi giriniz")
+    .required("Email gerekli"),
+  passwordRepeat: yup
+    .string()
+    .oneOf([yup.ref("Password"), null], "Şifreler uyuşmuyor"),
+});
 function Register() {
-  const success = useSelector((state) => state.users.success)
-  const error = useSelector((state) => state.users.error)
-  const loading = useSelector((state) => state.users.loading)
-  const dispatch = useDispatch()
- const registerForm = useFormik({
-  initialValues: {
-    UserName: "",
-    Mail: "",
-    Password: "",
-    passwordRepeat: "",
-  },
-  validationSchema:validationSchema,
-  onSubmit: async (values) => {
-    console.log(values);
-    dispatch(NewUserAsync(values));
-  } 
- }
- )
+  const success = useSelector((state) => state.users.success);
+  const error = useSelector((state) => state.users.error);
+  const logined = localStorage.getItem("logined");
+  const status = logined || success;
+  const dispatch = useDispatch();
+  const registerForm = useFormik({
+    initialValues: {
+      UserName: "",
+      Mail: "",
+      Password: "",
+      passwordRepeat: "",
+    },
+    validationSchema: validationSchema,
+    onSubmit: async (values) => {
+      console.log(values);
+      dispatch(NewUserAsync(values));
+    },
+  });
+
+  const [approved, setApproved] = useState(false);
+  console.log(approved);
   return (
     //Sayfa tasarımı bileşenleri
     <div className="register-form-div">
       <form className="register-form" onSubmit={registerForm.handleSubmit}>
-      { /*
-        error&&<p style={{color:"red"}} >{message}</p>
-  */}
+        {!status && <p style={{ color: "red" }}>{error}</p>}
         <h3>Kayıt Ol</h3>
         <input
           type="text"
           name="UserName"
           value={registerForm.values.UserName}
           onChange={registerForm.handleChange}
-          
           placeholder="Kullanıcı adı"
         />
-        {registerForm.errors.UserName && registerForm.touched.UserName ?
+        {registerForm.errors.UserName && registerForm.touched.UserName ? (
           <div>{registerForm.errors.UserName}</div>
-        : null}
+        ) : null}
         <input
           type="email"
           name="Mail"
@@ -58,9 +64,9 @@ function Register() {
           onChange={registerForm.handleChange}
           placeholder="Email"
         />
-        {registerForm.errors.Mail && registerForm.touched.Mail ?
+        {registerForm.errors.Mail && registerForm.touched.Mail ? (
           <div>{registerForm.errors.Mail}</div>
-          : null}
+        ) : null}
         <input
           type="password"
           name="Password"
@@ -68,9 +74,9 @@ function Register() {
           onChange={registerForm.handleChange}
           placeholder="Şifre"
         />
-        {registerForm.errors.Password && registerForm.touched.Password ?
+        {registerForm.errors.Password && registerForm.touched.Password ? (
           <div>{registerForm.errors.Password}</div>
-          : null}
+        ) : null}
         <input
           type="password"
           name="passwordRepeat"
@@ -78,11 +84,30 @@ function Register() {
           onChange={registerForm.handleChange}
           placeholder="Şifre Tekrar"
         />
-        {registerForm.errors.passwordRepeat && registerForm.touched.passwordRepeat ?
+        {registerForm.errors.passwordRepeat &&
+        registerForm.touched.passwordRepeat ? (
           <div>{registerForm.errors.passwordRepeat}</div>
-          : null}
-        <button className="form-btn" type="submit">Kayıt ol</button>
+        ) : null}
+        <div className="checkbox-container">
+          <input type="checkbox" onChange={() => setApproved(!approved)} />
+          <span>
+            {" "}
+            <Link to="/terms">Kullanım Şartlarını</Link> ve{" "}
+            <Link to="/privacy">Gizlilik Politikasını</Link>
+            kabul ediyorum.
+          </span>
+        </div>
+        <button disabled={!approved} className="form-btn" type="submit">
+          Kayıt ol
+        </button>
+        <Link
+          style={{ textDecoration: "none", fontWeight: 700, fontSize: 18 }}
+          to="/login"
+        >
+          Giriş Yap
+        </Link>
       </form>
+      {status && (window.location.href = "/")}
     </div>
   );
 }

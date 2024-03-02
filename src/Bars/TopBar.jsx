@@ -3,9 +3,8 @@ import "./TopBar.css";
 import logo from "../assets/logo.jpeg";
 import { Link } from "react-router-dom";
 
-
 function TopBar() {
-  const user =  JSON.parse(localStorage.getItem("user"));
+  const user = JSON.parse(localStorage.getItem("user"));
   const [scrollPosition, setScrollPosition] = useState(0);
   useEffect(() => {
     const handleScroll = () => {
@@ -60,25 +59,6 @@ function TopBar() {
             ></div>
           </button>
           <div className="bar-btns">
-            {
-              user && user.Role === "admin" &&
-              <Link
-              to="/controlpanel"
-              className={
-                scrollPosition > 300 ? "window-scrolled-links" : "topbar-links"
-              }
-              >
-              Controlpanel
-            </Link>
-            }
-            <Link
-              className={
-                scrollPosition > 300 ? "window-scrolled-links" : "topbar-links"
-              }
-              to="/faq"
-            >
-              S.S.S
-            </Link>
             <Link
               to="/aboutus"
               onClick={handleCloseMenu}
@@ -88,6 +68,11 @@ function TopBar() {
             >
               Hakkımızda
             </Link>
+            {user && user.Role === "admin" && (
+              <Link to="/controlpanel" className="menu-login-btn">
+                Controlpanel
+              </Link>
+            )}
             <Link
               className="menu-login-btn"
               to={logined ? "/dashboard" : "/login"}

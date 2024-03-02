@@ -8,10 +8,18 @@ import {
   GetSiteDataBySiteName,
   UpdateSiteDataBySiteName,
 } from "../Api/Settings/SettingsSlice";
-import { EditorState, convertFromHTML, convertToRaw,ContentState } from "draft-js";
+import {
+  EditorState,
+  convertFromHTML,
+  convertToRaw,
+  ContentState,
+} from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { Editor } from "react-draft-wysiwyg";
 import draftToHtml from "draftjs-to-html";
+import htmlToDraft from "html-to-draftjs";
+
+import loadingico from "../assets/icons/loading.gif"
 
 const validationSchema = yup.object({
   AboutUs: yup.string().required("Hakkımızda boş olamaz!"),
@@ -26,15 +34,22 @@ function UpdateSiteSettingsForm() {
   const loading = useSelector((state) => state.settings.loading);
   const error = useSelector((state) => state.settings.error);
   const status = useSelector((state) => state.settings.success);
+  const data = sitedata !== null ? sitedata : {};
   const dispatch = useDispatch();
-  const [editorState, setEditorState] = useState(()=>EditorState.createEmpty())
+
+  const [dataName, SetdataName] = useState("");
+  const [editorState, setEditorState] = useState(() =>
+    EditorState.createEmpty()
+  );
   useEffect(() => {
     !status && dispatch(GetSiteDataBySiteName());
     status &&
       UpdateSiteSettingsForm.setValues({
-        AboutUs: sitedata.AboutUs,
         AdSlot: sitedata.AdSlot,
         AdClient: sitedata.AdClient,
+        AboutUs: sitedata.AboutUs,
+        PrivacyPolicy: sitedata.PrivacyPolicy,
+        TermsConditions: sitedata.TermsConditions,
         RevenuePerClick: sitedata.RevenuePerClick,
         WithdrawnBalance: sitedata.WithdrawnBalance,
       });
@@ -43,6 +58,8 @@ function UpdateSiteSettingsForm() {
   const UpdateSiteSettingsForm = useFormik({
     initialValues: {
       AboutUs: "",
+      PrivacyPolicy: "",
+      TermsConditions: "",
       AdSlot: "",
       AdClient: "",
       RevenuePerClick: 0.1,
@@ -50,23 +67,60 @@ function UpdateSiteSettingsForm() {
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
-      await dispatch(UpdateSiteDataBySiteName(values));
+      dispatch(UpdateSiteDataBySiteName(values));
     },
   });
-
+console.log(UpdateSiteSettingsForm.values);
+console.log(loading);
   const onChangeEditor = (newEditorState) => {
+    switch (dataName) {
+      case "ABOUTUS":
+        UpdateSiteSettingsForm.setFieldValue(
+          "AboutUs",
+          draftToHtml(convertToRaw(newEditorState.getCurrentContent()))
+        );
+        break;
+      case "TERMS":
+        UpdateSiteSettingsForm.setFieldValue(
+          "TermsConditions",
+          draftToHtml(convertToRaw(newEditorState.getCurrentContent()))
+        );
+        break;
+
+        case "PRIVACY":
+        UpdateSiteSettingsForm.setFieldValue(
+          "PrivacyPolicy",
+          draftToHtml(convertToRaw(newEditorState.getCurrentContent()))
+        );
+        break;
+    }
     setEditorState(newEditorState);
   };
 
-  const text = draftToHtml(convertToRaw(editorState.getCurrentContent()));
-
-  const ChangeEditorData = (data) => {
-    setEditorState(EditorState.createWithContent(ContentState.createFromBlockArray(convertFromHTML(data))));
-  }
+  const ChangeEditorData = (data, datname) => {
+    SetdataName(datname);
+    setEditorState(
+      EditorState.createWithContent(
+        ContentState.createFromBlockArray(htmlToDraft(data))
+      )
+    );
+  };
   return (
-    <div>
-      <div dangerouslySetInnerHTML={{ __html: text }} />{" "}
+    <div style={{display:"flex" , flexDirection:"column", alignItems:"center"}} >
+            {loading && <img className="loading-icon" src={loadingico} alt="" />}
+
       <div>
+        <div className="editors-btns">
+          <button onClick={() => ChangeEditorData(data.AboutUs, "ABOUTUS")}>
+            Hakkımızda
+          </button>
+          <button onClick={() => ChangeEditorData(data.PrivacyPolicy, "PRIVACY")}>
+            Gizlilik Politikası
+          </button>
+          <button onClick={() => ChangeEditorData(data.TermsConditions, "TERMS")}>
+            Kullanım Şartları
+          </button>
+        </div>
         <Editor
           editorState={editorState}
           toolbarClassName="toolbarClassName"
@@ -80,19 +134,6 @@ function UpdateSiteSettingsForm() {
         onSubmit={UpdateSiteSettingsForm.handleSubmit}
       >
         <h3>Site Ayarları</h3>
-        <label htmlFor="AboutUs">Hakkımızda</label>
-        <textarea
-          className="cpupdate-inputs"
-          name="AboutUs"
-          cols={40}
-          rows={10}
-          onChange={UpdateSiteSettingsForm.handleChange}
-          value={UpdateSiteSettingsForm.values.AboutUs}
-        />
-        {UpdateSiteSettingsForm.errors.AboutUs &&
-        UpdateSiteSettingsForm.touched.AboutUs ? (
-          <div>{UpdateSiteSettingsForm.errors.AboutUs}</div>
-        ) : null}
         <label htmlFor="AdSlot">Reklam Slot</label>
         <input
           className="cpupdate-inputs"
@@ -141,7 +182,7 @@ function UpdateSiteSettingsForm() {
         UpdateSiteSettingsForm.touched.WithdrawnBalance ? (
           <div>{UpdateSiteSettingsForm.errors.WithdrawnBalance}</div>
         ) : null}
-        <button className="form-btn" type="submit">
+        <button disabled={loading} className="form-btn" type="submit">
           Güncelle
         </button>
       </form>

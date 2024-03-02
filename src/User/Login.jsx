@@ -4,7 +4,7 @@ import "./UserForm.css";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { LoginAsync } from '../Api/User/UserSlice';
-import { Navigate } from 'react-router';
+import { Link } from 'react-router-dom';
 
 const validationSchema = Yup.object({
   userName: Yup.string().required("Kullanıcı adı gerekli"),
@@ -54,6 +54,7 @@ const dispatch = useDispatch();
           placeholder="Şifre"
         />
         <button className="form-btn" type="submit">Giriş yap </button>
+        <Link style={{textDecoration:"none", fontWeight:700, fontSize:18}} to="/register">Kayıt Ol</Link>
       </form>
      { status && (window.location.href="/")}
     </div>
