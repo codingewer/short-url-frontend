@@ -1,11 +1,17 @@
 import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import * as yup from "yup";
 import "./ControlPanelGlobalStyle.css";
 import { useSelector } from "react-redux";
-import { useEffect } from "react";
-import { GetSiteDataBySiteName, UpdateSiteDataBySiteName } from "../Api/Settings/SettingsSlice";
+import {
+  GetSiteDataBySiteName,
+  UpdateSiteDataBySiteName,
+} from "../Api/Settings/SettingsSlice";
+import { EditorState, convertFromHTML, convertToRaw,ContentState } from "draft-js";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import { Editor } from "react-draft-wysiwyg";
+import draftToHtml from "draftjs-to-html";
 
 const validationSchema = yup.object({
   AboutUs: yup.string().required("Hakkımızda boş olamaz!"),
@@ -14,12 +20,26 @@ const validationSchema = yup.object({
   RevenuePerClick: yup.number().required("Gerekli"),
   WithdrawnBalance: yup.number().required("Gerekli"),
 });
+
 function UpdateSiteSettingsForm() {
   const sitedata = useSelector((state) => state.settings.data);
   const loading = useSelector((state) => state.settings.loading);
   const error = useSelector((state) => state.settings.error);
   const status = useSelector((state) => state.settings.success);
   const dispatch = useDispatch();
+  const [editorState, setEditorState] = useState(()=>EditorState.createEmpty())
+  useEffect(() => {
+    !status && dispatch(GetSiteDataBySiteName());
+    status &&
+      UpdateSiteSettingsForm.setValues({
+        AboutUs: sitedata.AboutUs,
+        AdSlot: sitedata.AdSlot,
+        AdClient: sitedata.AdClient,
+        RevenuePerClick: sitedata.RevenuePerClick,
+        WithdrawnBalance: sitedata.WithdrawnBalance,
+      });
+  }, [status]);
+
   const UpdateSiteSettingsForm = useFormik({
     initialValues: {
       AboutUs: "",
@@ -33,20 +53,28 @@ function UpdateSiteSettingsForm() {
       await dispatch(UpdateSiteDataBySiteName(values));
     },
   });
-  console.log(status);
-  useEffect(() => {
-    !status && dispatch(GetSiteDataBySiteName());
-    status &&
-      UpdateSiteSettingsForm.setValues({
-        AboutUs: sitedata.AboutUs,
-        AdSlot: sitedata.AdSlot,
-        AdClient: sitedata.AdClient,
-        RevenuePerClick: sitedata.RevenuePerClick,
-        WithdrawnBalance: sitedata.WithdrawnBalance,
-      });
-  }, [status]);
+
+  const onChangeEditor = (newEditorState) => {
+    setEditorState(newEditorState);
+  };
+
+  const text = draftToHtml(convertToRaw(editorState.getCurrentContent()));
+
+  const ChangeEditorData = (data) => {
+    setEditorState(EditorState.createWithContent(ContentState.createFromBlockArray(convertFromHTML(data))));
+  }
   return (
     <div>
+      <div dangerouslySetInnerHTML={{ __html: text }} />{" "}
+      <div>
+        <Editor
+          editorState={editorState}
+          toolbarClassName="toolbarClassName"
+          wrapperClassName="wrapperClassName"
+          editorClassName="editorClassName"
+          onEditorStateChange={onChangeEditor}
+        />
+      </div>
       <form
         className="update-site-settings-form"
         onSubmit={UpdateSiteSettingsForm.handleSubmit}
@@ -117,7 +145,7 @@ function UpdateSiteSettingsForm() {
           Güncelle
         </button>
       </form>
-     </div>
+    </div>
   );
 }
 

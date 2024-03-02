@@ -1,6 +1,5 @@
 import "./ShortUrl.css";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import sendicon from "../assets/icons/send-icon.png";
 import trashicon from "../assets/icons/trash-icon.png";
 import copyicon from "../assets/icons/copy-icon.png";
