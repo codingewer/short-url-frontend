@@ -48,6 +48,26 @@ export const GetUrlByShortenedUrlAsync = createAsyncThunk(
   }
 );
 
+export const UpdateUrlByIdAsync = createAsyncThunk(
+  "url/UpdateUrlByIdAsync",
+  async (data) => {
+    const response = await axios.put(`${apiUrl}/url/update`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  }
+);
+
+export const GetUrlByIdAsync = createAsyncThunk(
+  "url/GetUrlByIdAsync",
+  async (id) => {
+    const response = await axios.get(`${apiUrl}/url/getbyid/${id}`);
+    return response.data;
+  }
+);
+
 const UrlSlice = createSlice({
   name: "url",
   initialState: {
@@ -78,6 +98,7 @@ const UrlSlice = createSlice({
         state.items = action.payload;
         state.success = true;
         state.loading = false;
+        state.url = null
       })
       .addCase(GetUrlByCreatedByAsync.pending, (state) => {
         state.loading = true;
@@ -90,6 +111,8 @@ const UrlSlice = createSlice({
       .addCase(DeleteUrlByIdAsync.fulfilled, (state, action) => {
         state.success = true;
         state.loading = false;
+        state.items = state.items.filter((item) => item.ID !== action.payload);
+
       })
       .addCase(DeleteUrlByIdAsync.pending, (state) => {
         state.success = false;
@@ -111,6 +134,35 @@ const UrlSlice = createSlice({
       .addCase(GetUrlByShortenedUrlAsync.rejected, (state, action) => {
         state.success = false;
         state.loading = false;
+      })
+      .addCase(UpdateUrlByIdAsync.fulfilled, (state, action) => {
+        state.success = true;
+        state.loading = false;
+        state.items = state.items.map((item) =>
+          item.ID === action.payload.ID ? action.payload : item
+        );
+      })
+      .addCase(UpdateUrlByIdAsync.pending, (state) => {
+        state.success = false;
+        state.loading = true;
+      })
+      .addCase(UpdateUrlByIdAsync.rejected, (state, action) => {
+        state.success = false;
+        state.loading = false;
+      }).addCase(GetUrlByIdAsync.fulfilled, (state, action) => {
+        state.url = action.payload;
+        state.success = true;
+        state.loading = false;
+      })
+      .addCase(GetUrlByIdAsync.pending, (state) => {
+        state.success = false;
+        state.loading = true;
+        state.url = null;
+      })
+      .addCase(GetUrlByIdAsync.rejected, (state, action) => {
+        state.success = false;
+        state.loading = false;
+        state.url = null;
       });
   },
 });

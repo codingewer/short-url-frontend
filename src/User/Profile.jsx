@@ -11,6 +11,7 @@ import SideBar from "../Bars/SideBar";
 import ShortUrl from "../Url/ShortUrl";
 import HelpReq from "./HelpReq";
 import UpdateUser from "./UpdateUser";
+import UpdateUrl from "../Url/UpdateUrl";
 import { GetUserByIDAsync } from "../Api/User/UserSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { GetSiteDataBySiteName } from "../Api/Settings/SettingsSlice";
@@ -109,6 +110,7 @@ function Profile() {
             <Route path="/" element={<DataChart />} />
             <Route path="/balance" element={<BalanceRequest />} />
             <Route path="/shorturl" element={<ShortUrl />} />
+            <Route path="/updateurl/:Id" element={<UpdateUrl />} />
             <Route path="/help" element={<HelpReq />} />
             <Route path="/settings" element={<UpdateUser />} />
           </Routes>

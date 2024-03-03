@@ -21,9 +21,7 @@ function AllFaq() {
        iste modi fugit quod fugiat? Alias incidunt atque sed ad earum praesentium vero tempore? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Adipisci beatae minima fugit cumque, maiores possimus mollitia earum ipsa est nemo alias tempore, in blanditiis reprehenderit, laboriosam ut officiis consequatur dolorum?`,
     },
   ]);
-  //remove item from array by id
   const removeItem = (id) => {
-    //require alert aprove
     if (window.confirm("Bu soru/cevabı silmekten emin misiniz?")) {
       const updatedFaqs = faqs.filter((faq) => faq.id !== id);
       setFaqs(updatedFaqs);

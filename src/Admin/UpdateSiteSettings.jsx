@@ -10,7 +10,6 @@ import {
 } from "../Api/Settings/SettingsSlice";
 import {
   EditorState,
-  convertFromHTML,
   convertToRaw,
   ContentState,
 } from "draft-js";
@@ -70,8 +69,6 @@ function UpdateSiteSettingsForm() {
       dispatch(UpdateSiteDataBySiteName(values));
     },
   });
-  console.log(UpdateSiteSettingsForm.values);
-  console.log(loading);
   const onChangeEditor = (newEditorState) => {
     switch (dataName) {
       case "ABOUTUS":
@@ -110,7 +107,7 @@ function UpdateSiteSettingsForm() {
       style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
     >
       {loading && <img className="loading-icon" src={loadingico} alt="" />}
-
+      {!status && error && <div style={{color:"red"}} >{error}</div>}
       <div>
         <div className="editors-btns">
           <button onClick={() => ChangeEditorData(data.AboutUs, "ABOUTUS")}>

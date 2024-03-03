@@ -51,6 +51,20 @@ function UpdateUser() {
       return;
     },
   });
+
+  const balanceInfoFrom = useFormik({
+    initialValues: {
+      iban: "",
+      ibanOwner:"",
+      paparaNo:""
+    },
+    onSubmit: () => {
+      dispatch(UpdatePasswordAsync(PasswordForm.values));
+      PasswordForm.resetForm();
+      console.log("2323");
+      return;
+    },
+  })
   useEffect(() => {
     success == true &&
       formik.setValues({
@@ -58,7 +72,7 @@ function UpdateUser() {
         Mail: user.Mail,
       });
   }, [success]);
-  console.log("l", loading);
+  console.log("l", user);
   return (
     <div id="update-user-form" className="update-from-div">
       <span style={{ marginTop: 24, fontSize: 18, fontWeight: 700 }}>

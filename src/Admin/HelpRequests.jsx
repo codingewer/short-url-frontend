@@ -51,7 +51,6 @@ function Helphelpreqs(props) {
       ? linksMenu.classList.add("cphelp-form-close")
       : linksMenu.classList.remove("cphelp-form-close");
   };
-  console.log(formik.values);
   const helpReqs = items !== null ? items : [];
   useEffect(() => {
     dispatch(GetHelpRequestsByStatusAsync(props.answered));
@@ -67,7 +66,7 @@ function Helphelpreqs(props) {
         <button
           type="button"
           onClick={() => HandldeTogleForm("başlık", "")}
-          style={{ background: "none" , border:"none" }}
+          style={{ background: "none", border: "none" }}
         >
           <img style={{ height: 18 }} src={rejecticon} alt="kapat" />
         </button>
@@ -84,7 +83,9 @@ function Helphelpreqs(props) {
         {formik.errors.Answer && formik.touched.Answer ? (
           <div>{formik.errors.Answer}</div>
         ) : null}
-        <button className="form-btn" type="submit">Gönder</button>
+        <button className="form-btn" type="submit">
+          Gönder
+        </button>
       </form>
       {helpReqs.length !== 0 ? (
         helpReqs.map((helpreq) => (
@@ -102,7 +103,7 @@ function Helphelpreqs(props) {
                 className="form-btn"
                 onClick={() => HandldeTogleForm(helpreq.Content, helpreq.ID)}
               >
-              Cevapla
+                Cevapla
               </button>
             )}
           </div>
