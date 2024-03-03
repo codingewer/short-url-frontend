@@ -18,6 +18,8 @@ const validationSchema = yup.object({
   passwordRepeat: yup
     .string()
     .oneOf([yup.ref("Password"), null], "Şifreler uyuşmuyor"),
+
+    CheckBox : yup.boolean().oneOf([true], "Şartları kabul etmelisiniz"),
 });
 function Register() {
   const success = useSelector((state) => state.users.success);
@@ -31,6 +33,7 @@ function Register() {
       Mail: "",
       Password: "",
       passwordRepeat: "",
+      CheckBox : false,
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
@@ -97,7 +100,10 @@ function Register() {
             kabul ediyorum.
           </span>
         </div>
-        <button disabled={!approved} className="form-btn" type="submit">
+        {registerForm.errors.CheckBox && registerForm.touched.CheckBox ? (
+          <div>{registerForm.errors.CheckBox}</div>
+        ) : null}
+        <button  className="form-btn" type="submit">
           Kayıt ol
         </button>
         <Link

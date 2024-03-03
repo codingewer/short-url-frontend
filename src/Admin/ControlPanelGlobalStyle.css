@@ -1,4 +1,4 @@
-.cp-data-card{
+.cp-data-card {
     box-shadow: 0px 0px 11px var(--shadow-color);
     padding: 24px;
     display: flex;
@@ -10,7 +10,7 @@
     text-align: center;
 }
 
-.cp-data-container{
+.cp-data-container {
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -18,25 +18,28 @@
     align-items: center;
     height: 50vh;
     overflow: auto;
-    padding:48px 0px 48px 0px ;
+    padding: 48px 0px 48px 0px;
 
 }
-.cp-card-btns button{
-    background:none;
+
+.cp-card-btns button {
+    background: none;
     border: none;
 }
-.cp-card-btns img{
+
+.cp-card-btns img {
     height: 28px;
 }
 
-.cp-card-btns{
+.cp-card-btns {
     width: 100%;
     display: flex;
     gap: 12px;
     justify-content: center;
 }
 
-.cphelpreq-form, .update-site-settings-form {
+.cphelpreq-form,
+.update-site-settings-form {
     background-color: rgb(255, 255, 255);
     padding: 24px;
     flex-direction: column;
@@ -44,31 +47,32 @@
     border-radius: 12px;
 }
 
-.update-site-settings-form{
+.update-site-settings-form {
     display: flex;
     gap: 24px;
     min-width: 300px;
     text-align: center;
 }
 
-.cpupdate-inputs{
+.cpupdate-inputs {
     border: 1px solid var(--shadow-color);
     padding: 6px;
     text-align: center;
     border-radius: 6px;
     width: 90%;
 }
-.cphelpreq-form{
+
+.cphelpreq-form {
     display: none;
     position: absolute;
     box-shadow: 0px 0px 11px var(--shadow-color);
 }
 
-.cphelp-form-close{
+.cphelp-form-close {
     display: flex;
 }
 
-.editors-btns{
+.editors-btns {
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -78,9 +82,17 @@
     justify-content: space-around;
 }
 
-.editors-btns button{
+.editors-btns button {
     background: none;
     padding: 6px 24px 6px 24px;
     border-radius: 6px;
     border: solid 1px var(--shadow-color);
+}
+
+div.DraftEditor-root {
+    border: 2px solid var(--shadow-color);
+    min-height: 200px;
+    border-radius: 12px;
+    width: 99.5% ;
+    overflow: auto;
 }

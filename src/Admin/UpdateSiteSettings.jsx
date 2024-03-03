@@ -19,7 +19,7 @@ import { Editor } from "react-draft-wysiwyg";
 import draftToHtml from "draftjs-to-html";
 import htmlToDraft from "html-to-draftjs";
 
-import loadingico from "../assets/icons/loading.gif"
+import loadingico from "../assets/icons/loading.gif";
 
 const validationSchema = yup.object({
   AboutUs: yup.string().required("Hakkımızda boş olamaz!"),
@@ -70,8 +70,8 @@ function UpdateSiteSettingsForm() {
       dispatch(UpdateSiteDataBySiteName(values));
     },
   });
-console.log(UpdateSiteSettingsForm.values);
-console.log(loading);
+  console.log(UpdateSiteSettingsForm.values);
+  console.log(loading);
   const onChangeEditor = (newEditorState) => {
     switch (dataName) {
       case "ABOUTUS":
@@ -87,7 +87,7 @@ console.log(loading);
         );
         break;
 
-        case "PRIVACY":
+      case "PRIVACY":
         UpdateSiteSettingsForm.setFieldValue(
           "PrivacyPolicy",
           draftToHtml(convertToRaw(newEditorState.getCurrentContent()))
@@ -106,18 +106,24 @@ console.log(loading);
     );
   };
   return (
-    <div style={{display:"flex" , flexDirection:"column", alignItems:"center"}} >
-            {loading && <img className="loading-icon" src={loadingico} alt="" />}
+    <div
+      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+    >
+      {loading && <img className="loading-icon" src={loadingico} alt="" />}
 
       <div>
         <div className="editors-btns">
           <button onClick={() => ChangeEditorData(data.AboutUs, "ABOUTUS")}>
             Hakkımızda
           </button>
-          <button onClick={() => ChangeEditorData(data.PrivacyPolicy, "PRIVACY")}>
+          <button
+            onClick={() => ChangeEditorData(data.PrivacyPolicy, "PRIVACY")}
+          >
             Gizlilik Politikası
           </button>
-          <button onClick={() => ChangeEditorData(data.TermsConditions, "TERMS")}>
+          <button
+            onClick={() => ChangeEditorData(data.TermsConditions, "TERMS")}
+          >
             Kullanım Şartları
           </button>
         </div>

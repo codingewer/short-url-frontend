@@ -12,9 +12,8 @@ function BalanceRequest(props) {
   const user = usersuccess ? user0 : {};
   const items = useSelector((state)=> state.balance.balanceRequests);
   const balanceM = sitedata !==null ? sitedata.WithdrawnBalance : 100;
-  const balanceW =  user.Balance;
+  const balanceW =  parseInt(user.Balance);
   const barWidht = (balanceW / balanceM) * 100 + "%";
-  const [status, setStatus] = useState(false);
 const dispatch = useDispatch()
   const formik = useFormik({
     initialValues: {
@@ -35,7 +34,7 @@ console.log(items)
   return (
     <div className="balance-container">
       <div className="balance-info">
-        {balanceW < 10 && <span>Çekmek için en az {balanceM} &#8378; gerekiyor</span>}
+        {balanceW < balanceM && <span style={{color:"red"}} >Çekmek için en az {balanceM} &#8378; gerekiyor</span>}
         <div className="balance-amount">
           <span>
             Bakiyeniz: 
@@ -50,22 +49,20 @@ console.log(items)
         </div>
       </div>
       <form  className="balance-form" onSubmit={formik.handleSubmit}>
-        {status && (
+        {formik.values.amount > balanceW && (
           <span style={{ color: "red", fontSize: 12 }}>
             bakiye yetersiz! En fazla {balanceW} TL çekebilirisiniz.
           </span>
         )}
         <input
-        disabled = {balanceW <10 ? true : false}
-          min={10}
-          max={balanceW}
+        disabled = {balanceW < balanceM ? true : false}
           value={formik.values.amount}
           name="amount"
           onChange={formik.handleChange}
           type="number"
           placeholder="Çekmek istediğiniz tutar"
         />
-        <button disabled={status ? true : false}>Çek</button>
+        <button type="submit" >Çek</button>
       </form>
 
       <div className="balance-requests">

@@ -103,9 +103,9 @@ function ShortUrl() {
                 target="_blank"
                 rel="noreferrer"
                 className="url-name"
-                href={domain + "/l" + item.ShortenedUrl + "/r/1"}
+                href={domain + "/l/" + item.ShortenedUrl + "/r/1"}
               >
-                {domain + item.ShortenedUrl}
+                {domain + "/l/" + item.ShortenedUrl}
               </a>
               <div className="card-btns">
                 <button

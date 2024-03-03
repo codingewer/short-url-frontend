@@ -11,7 +11,7 @@ function Footer() {
         </div>
         <div className="footer-urls">
           <Link to="/">Ana Sayfa</Link>
-          <Link to="/login">Kayıt Ol</Link>
+          <Link to="/register">Kayıt Ol</Link>
           <Link to="/aboutus" >Hakkımızda</Link>
           <Link to="/terms" >Kullanım Şartları</Link>
           <Link to="/privacy" >Gizlilik Politikası</Link>

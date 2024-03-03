@@ -43,7 +43,7 @@ function Faq() {
               </button>
               <span className="faq-card-content" id={faq.id}>
                 {faq.answer}
-              </span>Bakiye  TL'den az
+              </span>
             </div>
           ))}
         </div>
