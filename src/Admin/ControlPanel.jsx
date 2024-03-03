@@ -7,6 +7,7 @@ import BalanceRequests from "./BalanceRequests";
 import HelpRequests from "./HelpRequests";
 import TopBar from "../Bars/TopBar";
 import UpdateSiteSettings from "./UpdateSiteSettings";
+import UpdateFaq from "./UpdateFaq";
 
 function ControlPanel() {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -109,6 +110,7 @@ function ControlPanel() {
             />
             <Route path="/AllUsers" element={<AllUsers />} />
             <Route path="/allfaq" element={<AllFaq />} />
+            <Route path="/faqs/update/:id" element={<UpdateFaq />} />
             <Route path="/settings" element={<UpdateSiteSettings />} />
           </Routes>
         </div>

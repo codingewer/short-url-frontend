@@ -96,3 +96,7 @@ div.DraftEditor-root {
     width: 99.5% ;
     overflow: auto;
 }
+
+.cp-form-inputs{
+    min-width: 300px;
+}

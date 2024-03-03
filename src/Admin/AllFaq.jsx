@@ -1,60 +1,80 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import "./ControlPanelGlobalStyle.css";
 import trashicon from "../assets/icons/trash-icon.png";
+import editicon from "../assets/icons/edit-icon.png";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  CreateNewFaqAsync,
+  DeleteFaqByIdAsync,
+  GetAllFaqsAsync,
+} from "../Api/Faq/FaqSlice";
+import { useFormik } from "formik";
+import { Link } from "react-router-dom";
 
 function AllFaq() {
-  const [faqs, setFaqs] = useState([
-    {
-      id: 1,
-      question: "Nasıl Kullanılır?",
-      answer: "Linik girin kısaltın ve reklamlardan para kazanın",
+  const dispatch = useDispatch();
+  const faqs = useSelector((state) => state.faqs.items);
+
+  const FaqFrom = useFormik({
+    initialValues: {
+      Question: "",
+      Answer: "",
     },
-    {
-      id: 2,
-      question: "Nasıl Kullanılır?",
-      answer: "Linik girin kısaltın ve reklamlardan para kazanın",
+    onSubmit: async (values) => {
+      await dispatch(CreateNewFaqAsync(values));
+      FaqFrom.resetForm();
     },
-    {
-      id: 3,
-      question: "Nasıl Kullanılır?",
-      answer: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero commodi cupiditate culpa eaque, rem odit natus
-       iste modi fugit quod fugiat? Alias incidunt atque sed ad earum praesentium vero tempore? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Adipisci beatae minima fugit cumque, maiores possimus mollitia earum ipsa est nemo alias tempore, in blanditiis reprehenderit, laboriosam ut officiis consequatur dolorum?`,
-    },
-  ]);
-  const removeItem = (id) => {
-    if (window.confirm("Bu soru/cevabı silmekten emin misiniz?")) {
-      const updatedFaqs = faqs.filter((faq) => faq.id !== id);
-      setFaqs(updatedFaqs);
-    }
-    return;
+  });
+
+  useEffect(() => {
+    dispatch(GetAllFaqsAsync());
+  }, [dispatch]);
+  console.log(faqs);
+  const DeleteFaq = async (id) => {
+    await dispatch(DeleteFaqByIdAsync(id));
   };
   return (
     <div className="cp-data-container">
       <div className="faq-container">
-        <form className="cp-details-form">
+        <form className="cp-details-form" onSubmit={FaqFrom.handleSubmit}>
           <h4>Sıkça Sorulan Sorular</h4>
           <label htmlFor="">Soru:</label>
-          <textarea className="cp-form-inputs" type="text" />
+          <textarea
+            className="cp-form-inputs"
+            type="text"
+            style={{ height: 100 }}
+            name="Question"
+            value={FaqFrom.values.Question}
+            onChange={FaqFrom.handleChange}
+          />
           <label htmlFor="">Cevap:</label>
           <textarea
             className="cp-form-inputs"
-            name="answer"
-            id="answer"
+            style={{ height: 100 }}
+            name="Answer"
+            value={FaqFrom.values.Answer}
+            onChange={FaqFrom.handleChange}
           ></textarea>
-          <button className="cp-form-btn">Yeni Soru Ekle</button>
+          <button type="submit" className="cp-form-btn">
+            Yeni Soru Ekle
+          </button>
         </form>
       </div>
-      {faqs.map((faq) => (
-        <div key={faq.id} className="cp-data-card">
-          <h3>{faq.question}</h3>
-          <p>{faq.answer}</p>
-          <div className="cp-card-btns">
-            <button onClick={() => removeItem(faq.id)}>
-              <img src={trashicon} alt="sil" />
-            </button>
+      {faqs !== null &&
+        faqs.map((faq) => (
+          <div key={faq.ID} className="cp-data-card">
+            <h3>{faq.Question}</h3>
+            <p>{faq.Answer}</p>
+            <div className="cp-card-btns">
+              <button type="button" onClick={() => DeleteFaq(faq.ID)}>
+                <img src={trashicon} alt="sil" />
+              </button>
+              <Link to={"/controlpanel/faqs/update/" + faq.ID}>
+                <img src={editicon} alt="guncelle" />
+              </Link>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
     </div>
   );
 }

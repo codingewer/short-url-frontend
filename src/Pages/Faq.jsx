@@ -1,24 +1,16 @@
-import React, { useState } from "react";
+import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from "react";
 import TopBar from "../Bars/TopBar";
 import Footer from "../Bars/Footer";
 import "./Faq.css";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { GetAllFaqsAsync } from '../Api/Faq/FaqSlice';
 
 function Faq() {
-  const faqs = [
-    {
-      id: 1,
-      question: "Nasıl Kullanılır?",
-      answer:
-        "Kayıt olun ve Dashboard kısmından ayarlardan ödeme bilgilerinizi girin ondan sonra kısalttığınız linklere basıldıkça reklam geliri elde edin.",
-    },
-    {
-      id: 2,
-      question: "Bakiyemi nasıl çekebilirim?",
-      answer:
-        "Açılır menüden veya dashboard kısmındaki menüden bakiye sekmesine basıp bakiyenizi öğrenip 10 lira ve üzeri istediğinz miktarı talep edebilirsiniz.",
-    }
-  ];
+  
+  const faqs = useSelector(((state) => state.faqs.items))
+  const dispatch = useDispatch();
   const [isToggled, setToggled] = useState(false);
   const handleTogleMenu = (id) => {
     const linksMenu = document.getElementById(id);
@@ -27,6 +19,10 @@ function Faq() {
       ? (linksMenu.style.display = "flex")
       : (linksMenu.style.display = "none");
   };
+
+  useEffect(() => {
+    dispatch(GetAllFaqsAsync())
+  }, [dispatch]);
   return (
     <>
       <TopBar />
@@ -36,16 +32,20 @@ function Faq() {
           <span style={{ fontSize: 28, marginBottom: 100 }}>
             Sıkça sorulan Sorular
           </span>
-          {faqs.map((faq, index) => (
+          {
+          faqs !== null ?
+          faqs.map((faq, index) => (
             <div className="faq-card" key={index}>
-              <button onClick={() => handleTogleMenu(faq.id)}>
-                <span>{faq.question}</span>
+              <button onClick={() => handleTogleMenu(faq.ID)}>
+                <span>{faq.Question}</span>
               </button>
-              <span className="faq-card-content" id={faq.id}>
-                {faq.answer}
+              <span className="faq-card-content" id={faq.ID}>
+                {faq.Answer}
               </span>
             </div>
-          ))}
+          ))  : null
+        
+        }
         </div>
       </div>
       <Footer />

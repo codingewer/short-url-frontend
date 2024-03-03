@@ -13,7 +13,6 @@ function BalanceRequests(props) {
   const items = useSelector((state)=> state.balance.items)
   const status = useSelector((state)=> state.balance.success)
   const loading = useSelector((state)=> state.balance.loading)
-  const error = useSelector((state)=> state.balance.error)
  
  useEffect(()=>{
   dispatch(GetByStatusBalanceRequestsAsync(props.paid))
@@ -35,9 +34,14 @@ console.log(balanceReqs)
     {loading && <img className="loading-icon" src={loadingico} alt="" />}
       { status && balanceReqs.map((balancereq) => (
         <div key={balancereq.ID} className="cp-data-card">
-          <h4>{balancereq.user.UserName}</h4>
+          <h3>{balancereq.user.UserName}</h3>
           <p>{balancereq.user.Mail}</p>
-          <p>{balancereq.user.BalanceInfo.iban}</p>
+          <span>İBAN:</span>
+          <span>{balancereq.user.BalanceInfo.iban}</span>
+          <span>İBAN Sahibi:</span>
+          <span>{balancereq.user.BalanceInfo.ibanOwner}</span>
+          <span>Papara No:</span>
+          <span>{balancereq.user.BalanceInfo.paparaNo}</span>
           <p>{balancereq.amount} <span> &#8378;</span></p>
           <p>{ formatDate(balancereq.createdAt)}</p>
           <p style={{ color: balancereq.status ? "green" : "red" }}>

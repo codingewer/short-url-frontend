@@ -59,7 +59,7 @@ export const UpdateUserBalanceInfoAsync = createAsyncThunk(
   "balance/UpdateUserBalanceInfoAsync",
   async (data, { rejectWithValue }) => {
     try {
-      const response = await axios.put(`${apiUrl}/balance/update`, data, {
+      const response = await axios.put(`${apiUrl}/balance/info/updateinfo`, data, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -106,7 +106,7 @@ const BalanceSlice = createSlice({
     builder
       .addCase(NewBalanceRequestAsync.fulfilled, (state, action) => {
         state.success = true;
-        state.balanceRequests.unshift(action.payload);
+        state.items !== 0 ? state.balanceRequests.unshift(action.payload) : state.items.push(action.payload) ;
         state.loading = false;
       })
       .addCase(NewBalanceRequestAsync.pending, (state) => {

@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./BalanceRequest.css";
 import { useFormik } from "formik";
+import loadingicon from "../assets/icons/loading.gif";
 import { useDispatch, useSelector } from "react-redux";
 import { GetBalanceByUserIDAsync, NewBalanceRequestAsync } from "../Api/Balance/BalanceSlice";
 import { formatDate } from "./Profile";
 
 function BalanceRequest(props) {
   const sitedata = useSelector((state) => state.settings.data);
+  const loading = useSelector((state)=> state.balance.loading);
   const usersuccess = useSelector((state)=> state.users.success);
   const user0 =  useSelector((state)=> state.users.userrealtime);
   const user = usersuccess ? user0 : {};
@@ -49,6 +51,7 @@ console.log(items)
         </div>
       </div>
       <form  className="balance-form" onSubmit={formik.handleSubmit}>
+      {loading &&  <img src ={loadingicon} className="loading-icon"/>}
         {formik.values.amount > balanceW && (
           <span style={{ color: "red", fontSize: 12 }}>
             bakiye yetersiz! En fazla {balanceW} TL çekebilirisiniz.

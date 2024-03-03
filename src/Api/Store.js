@@ -5,6 +5,7 @@ import UrlSlice from './Url/UrlSlice'
 import HelpSlice from './Help/HelpSlice'
 import ChartSlice from './ChartData/ChartSlice'
 import SettingsSlice from './Settings/SettingsSlice'
+import FaqSlice from './Faq/FaqSlice'
 
 export default configureStore({
   reducer: {
@@ -13,6 +14,7 @@ export default configureStore({
       url: UrlSlice,
       help:HelpSlice,
       chardata: ChartSlice,
-      settings: SettingsSlice
+      settings: SettingsSlice,
+      faqs:FaqSlice
   },
 })

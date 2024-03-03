@@ -87,7 +87,7 @@ function Helphelpreqs(props) {
           Gönder
         </button>
       </form>
-      {helpReqs.length !== 0 ? (
+      {helpReqs.length !== 0 && (
         helpReqs.map((helpreq) => (
           <div key={helpreq.ID} className="cp-data-card">
             <h4>{helpreq.user.UserName}</h4>
@@ -108,8 +108,6 @@ function Helphelpreqs(props) {
             )}
           </div>
         ))
-      ) : (
-        <span>Boş</span>
       )}
     </div>
   );

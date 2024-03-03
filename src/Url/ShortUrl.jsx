@@ -59,6 +59,7 @@ function ShortUrl() {
   }, []);
 
   const displayItems =  items !== null ? items : [];
+  console.log(displayItems);
   return (
     <div className="short-url-container">
       <form className="short-url-form" onSubmit={formik.handleSubmit}>
