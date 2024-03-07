@@ -22,18 +22,10 @@ const passwordValidationSchema = Yup.object().shape({
     .oneOf([Yup.ref("newPassword"), null], "Şifreler uyuşmuyor"),
 });
 
-const balanceValidationSchema = Yup.object().shape({
-  iban: Yup.string().required("IBAN gerekli"),
-  ibanOwner: Yup.string().required("IBAN Sahibi gerekli"),
-  paparaNo: Yup.string(),
-});
-
 function UpdateUser() {
   const user = useSelector((state) => state.users.userrealtime);
   const success = useSelector((state) => state.users.success);
-  const error = useSelector((state) => state.users.error);
   const loading = useSelector((state) => state.users.loading);
-  const balanceloading = useSelector((state) => state.balance.loading);
   const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
@@ -59,33 +51,11 @@ function UpdateUser() {
       return;
     },
   });
-
-  const balanceInForm = useFormik({
-    initialValues: {
-      ID:"",
-      iban: "",
-      ibanOwner: "",
-      paparaNo: "",
-    },
-    validationSchema: balanceValidationSchema,
-    onSubmit: async (values) => {
-      await dispatch(UpdateUserBalanceInfoAsync(values));
-      PasswordForm.resetForm();
-      console.log("2323");
-    },
-  });
   useEffect(() => {
     success == true &&
       formik.setValues({
         UserName: user.UserName,
         Mail: user.Mail,
-      });
-    user !== null &&
-      balanceInForm.setValues({
-        ID: user.BalanceInfo.ID,
-        iban: user.BalanceInfo.iban,
-        ibanOwner: user.BalanceInfo.ibanOwner,
-        paparaNo: user.BalanceInfo.paparaNo,
       });
   }, [success]);
   return (
@@ -159,34 +129,6 @@ function UpdateUser() {
         {PasswordForm.errors.ConfirmPassword &&
         PasswordForm.touched.ConfirmPassword ? (
           <div>{PasswordForm.errors.ConfirmPassword}</div>
-        ) : null}
-        <button className="form-btn" type="submit">
-          Güncelle
-        </button>
-      </form>
-      {balanceloading && <img className="loading-icon" src={loadingico} alt="" />}
-      <form className="register-form" onSubmit={balanceInForm.handleSubmit}>
-        <h3>Ödeme Bilgileri</h3>
-        <label htmlFor="password">IBAN</label>
-        <input
-          type="text"
-          name="iban"
-          value={balanceInForm.values.iban}
-          onChange={balanceInForm.handleChange}
-        />
-        {balanceInForm.errors.iban && balanceInForm.touched.iban ? (
-          <div>{balanceInForm.errors.iban}</div>
-        ) : null}
-
-        <label htmlFor="password">IBAN Sahibi Adı Soyadı</label>
-        <input
-          type="text"
-          name="ibanOwner"
-          value={balanceInForm.values.ibanOwner}
-          onChange={balanceInForm.handleChange}
-        />
-        {balanceInForm.errors.ibanOwner && balanceInForm.touched.ibanOwner ? (
-          <div>{balanceInForm.errors.ibanOwner}</div>
         ) : null}
         <button className="form-btn" type="submit">
           Güncelle

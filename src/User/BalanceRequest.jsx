@@ -131,8 +131,10 @@ function BalanceRequest(props) {
               )}
             </div>
           ))}
+          
       </div>
       <div className="balanceinfos-forms">
+        {}
         <div  className="togle-form-btns" >
       <button onClick={()=>handleToggleForm("iban-noform")} >IBAN Ekle</button>
       <button onClick={()=>handleToggleForm("papara-noform")} >Papara No Ekle</button>
