@@ -86,3 +86,26 @@
     border-radius: 999px;
     overflow: hidden;
 }
+
+.balanceinfos-forms{
+    width: 100%;
+    overflow: auto;
+}
+
+.togle-form-btns{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+}
+
+.togle-form-btns button{
+    background: none;
+    border: 2px solid var(--color-1);
+    padding: 6px 12px 6px 12px;
+    color: var(--color-1);
+    font-weight: 500;
+    font-size: 16px;
+    min-width: 100px;
+    border-radius: 99px;
+}

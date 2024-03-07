@@ -18,8 +18,6 @@ const validationSchema = yup.object({
   passwordRepeat: yup
     .string()
     .oneOf([yup.ref("Password"), null], "Şifreler uyuşmuyor"),
-
-    CheckBox : yup.boolean().oneOf([true], "Şartları kabul etmelisiniz"),
 });
 function Register() {
   const success = useSelector((state) => state.users.success);
@@ -100,10 +98,7 @@ function Register() {
             kabul ediyorum.
           </span>
         </div>
-        {registerForm.errors.CheckBox && registerForm.touched.CheckBox ? (
-          <div>{registerForm.errors.CheckBox}</div>
-        ) : null}
-        <button  className="form-btn" type="submit">
+        <button disabled={!approved}  className="form-btn" type="submit">
           Kayıt ol
         </button>
         <Link

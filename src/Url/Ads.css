@@ -3,7 +3,7 @@
      flex-direction: column;
      align-items: center;
      justify-content: center;
-     height: 100vh;
+     min-height: 100vh;
      width: 100vw;
 }
 
@@ -21,15 +21,24 @@
     border-radius: 24px;
 }
 
-.ad-content button{
+.skip-btn, .intereste-btn{
     border: none;
-    background-color: var(--color-1);
-    color: white;
     padding: 12px;
     border-radius: 99px;
     font-weight: 500;
     font-size: 15px;
 
+}
+
+.skip-btn{
+    color: white;
+    background-color: var(--color-1);
+}
+
+.intereste-btn{
+    background: none;
+    color: var(--color-1);
+    border: 2px solid var(--color-1);
 }
 
 .ad-content span{

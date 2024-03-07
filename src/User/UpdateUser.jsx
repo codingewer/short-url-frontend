@@ -128,7 +128,6 @@ function UpdateUser() {
         </button>
       </form>
       {loading && <img className="loading-icon" src={loadingico} alt="" />}
-
       <form className="register-form" onSubmit={PasswordForm.handleSubmit}>
         <label htmlFor="password">Eski Şifre</label>
         <input
@@ -166,7 +165,6 @@ function UpdateUser() {
         </button>
       </form>
       {balanceloading && <img className="loading-icon" src={loadingico} alt="" />}
-
       <form className="register-form" onSubmit={balanceInForm.handleSubmit}>
         <h3>Ödeme Bilgileri</h3>
         <label htmlFor="password">IBAN</label>
@@ -189,16 +187,6 @@ function UpdateUser() {
         />
         {balanceInForm.errors.ibanOwner && balanceInForm.touched.ibanOwner ? (
           <div>{balanceInForm.errors.ibanOwner}</div>
-        ) : null}
-        <label htmlFor="password">Papara numarası(isteğe bağlı)</label>
-        <input
-          type="text"
-          name="paparaNo"
-          value={balanceInForm.values.paparaNo}
-          onChange={balanceInForm.handleChange}
-        />
-        {balanceInForm.errors.paparaNo && balanceInForm.touched.paparaNo ? (
-          <div>{balanceInForm.errors.paparaNo}</div>
         ) : null}
         <button className="form-btn" type="submit">
           Güncelle
