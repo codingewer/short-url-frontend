@@ -54,7 +54,7 @@ function UpdateUrl() {
   return (
     <div className="short-url-container">
       <form className="short-url-form" onSubmit={formik.handleSubmit}>
-        <span className="form-title">Linkinizi kısaltın</span>
+        <span className="form-title">Linkinizi Güncelleyin</span>
         <div
           style={{
             display: "flex",
