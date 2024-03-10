@@ -41,6 +41,9 @@ function TopBar() {
               <img src={logo} alt="" />
             </Link>
           </div>
+          <Link className="menu-short-btn" to="/dashboard/shorturl">
+            link Kısalt
+          </Link>
           <button onClick={handleTogleMenu} type="button" className="menu-btn">
             <div
               className={

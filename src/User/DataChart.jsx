@@ -102,6 +102,10 @@ function DataChart() {
   return (
     <div>
       <div className="urls-details">
+      <div className="urls-detail">
+          <span>{ user !== null &&parseInt(user.Balance)} &#8378;</span>
+          <span>Güncel Bakiye</span>
+        </div>
         <div className="urls-detail">
           <span>{ user !== null && user.UrlCount}</span>
           <span>Link</span>

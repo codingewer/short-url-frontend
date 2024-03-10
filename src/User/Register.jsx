@@ -8,9 +8,14 @@ import * as yup from "yup";
 import { useSelector } from "react-redux";
 import { NewUserAsync } from "../Api/User/UserSlice";
 import { Link } from "react-router-dom";
+import ReCAPTCHA from "react-google-recaptcha";
 const validationSchema = yup.object({
   UserName: yup.string().required("Kullanıcı adı gerekli"),
-  Password: yup.string().required("Şifre gerekli"),
+  Password: yup
+    .string()
+    .required("Şifre gerekli")
+    .min(6, "Şifre en az 6 karakter olmalıdır")
+    .max(20, "Şifre en fazla 20 karakter olmalıdır"),
   Mail: yup
     .string()
     .email("Geçerli bir email adresi giriniz")
@@ -31,7 +36,7 @@ function Register() {
       Mail: "",
       Password: "",
       passwordRepeat: "",
-      CheckBox : false,
+      CheckBox: false,
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
@@ -98,7 +103,12 @@ function Register() {
             kabul ediyorum.
           </span>
         </div>
-        <button disabled={!approved}  className="form-btn" type="submit">
+        <ReCAPTCHA
+        onChange={console.log("asdsd")}
+        sitekey="6Leb8pMpAAAAANNw8-Ft-Kl3SnO_3zJ4Psj18D9K"
+        >
+        </ReCAPTCHA>
+        <button disabled={!approved} className="form-btn" type="submit">
           Kayıt ol
         </button>
         <Link
