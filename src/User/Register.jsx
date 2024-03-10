@@ -105,7 +105,7 @@ function Register() {
         </div>
         <ReCAPTCHA
         onChange={console.log("asdsd")}
-        sitekey="6Leb8pMpAAAAANNw8-Ft-Kl3SnO_3zJ4Psj18D9K"
+        sitekey="6Lea8pMpAAAAANOZPfyh4D-s8M_Wpxrc0-WYJnnK"
         >
         </ReCAPTCHA>
         <button disabled={!approved} className="form-btn" type="submit">
