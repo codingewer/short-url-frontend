@@ -103,11 +103,6 @@ function Register() {
             kabul ediyorum.
           </span>
         </div>
-        <ReCAPTCHA
-        onChange={console.log("asdsd")}
-        sitekey="6Lea8pMpAAAAANOZPfyh4D-s8M_Wpxrc0-WYJnnK"
-        >
-        </ReCAPTCHA>
         <button disabled={!approved} className="form-btn" type="submit">
           Kayıt ol
         </button>
