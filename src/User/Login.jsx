@@ -55,7 +55,12 @@ const dispatch = useDispatch();
           placeholder="Şifre"
         />
         <ReCAPTCHA
-        sitekey='6Lea8pMpAAAAANOZPfyh4D-s8M_Wpxrc0-WYJnnK'
+        sitekey='6LdVw5YpAAAAABsnsv9q6_EY_DsRiQIIPXxK2r0m'
+        onChange={value => {
+          if (value) {
+            console.log(value);
+          }
+        }}
         />
         <Link to="/forgotpassword" >Şifremi unuttum?</Link>
         <button className="form-btn" type="submit">Giriş yap </button>
