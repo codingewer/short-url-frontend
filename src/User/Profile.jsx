@@ -131,5 +131,7 @@ export const formatDate = (date) => {
   const year = d.getFullYear();
   const month = d.toLocaleString("tr-TR", { month: "long" });
   const day = d.getDate();
-  return `${day}-${month}-${year}`;
+  const hour = d.getHours();
+  const minute = d.getMinutes();
+  return `${day}-${month}-${year} - ${hour}:${minute}`;
 };

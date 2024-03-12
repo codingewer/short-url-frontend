@@ -53,6 +53,22 @@ export const LoginAsync = createAsyncThunk("users/LoginAsync", async (data) => {
   return res.data;
 });
 
+export const ForgotPasswordAsync = createAsyncThunk(
+  "users/ForgotPasswordAsync",
+  async (data) => {
+    const res = await axios.post(`${apiUrl}/user/forgotpassword`, data);
+    return res.data;
+  }
+);
+
+export const ResetPasswordAsync = createAsyncThunk(
+  "users/ResetPasswordAsync",
+  async (data, token) => {
+    const res = await axios.post(`${apiUrl}/user/resetpassword/${token}`, data);
+    return res.data;
+  }
+);
+
 const UserSlice = createSlice({
   name: "users",
   initialState: {
@@ -139,6 +155,36 @@ const UserSlice = createSlice({
         state.loading = false;
         state.error =
           "Kayıt olunurken hata oluştu kullanıcı adı daha önce kullanılmış olabilir";
+      })
+      .addCase(ForgotPasswordAsync.fulfilled, (state, action) => {
+        state.success = true;
+        state.loading = false;
+        console.log("hi 1");
+
+      })
+      .addCase(ForgotPasswordAsync.pending, (state, action) => {
+        state.loading = true;
+        state.success = false;
+        console.log("hi 1");
+      })
+      .addCase(ForgotPasswordAsync.rejected, (state, action) => {
+        state.success = false;
+        state.loading = false;
+        console.log("hi 1");
+        state.error = "Bir hata oluştu e-mail adresinizi kontrol edin";
+      })
+      .addCase(ResetPasswordAsync.fulfilled, (state, action) => {
+        state.success = true;
+        state.loading = false;
+      })
+      .addCase(ResetPasswordAsync.pending, (state, action) => {
+        state.loading = true;
+        state.success = false;
+      })
+      .addCase(ResetPasswordAsync.rejected, (state, action) => {
+        state.success = false;
+        state.loading = false;
+        state.error = "Bir hata oluştu";
       });
   },
 });

@@ -54,6 +54,7 @@ const dispatch = useDispatch();
           onChange={formik.handleChange}
           placeholder="Şifre"
         />
+        <Link to="/forgotpassword" >Şifremi unuttum?</Link>
         <button className="form-btn" type="submit">Giriş yap </button>
         <Link style={{textDecoration:"none", fontWeight:700, fontSize:18}} to="/register">Kayıt Ol</Link>
       </form>

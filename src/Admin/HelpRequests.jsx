@@ -87,17 +87,54 @@ function Helphelpreqs(props) {
           Gönder
         </button>
       </form>
-      {helpReqs.length !== 0 && (
+      {helpReqs.length !== 0 &&
         helpReqs.map((helpreq) => (
           <div key={helpreq.ID} className="cp-data-card">
             <h4>{helpreq.user.UserName}</h4>
             <p>{helpreq.Title}</p>
             <p>{helpreq.Content}</p>
+            <div className="help-card-media">
+              <h4>Dosyalar</h4>
+              {helpreq.ImageUrl && (
+                <div className="uploaded-img">
+                  <a target="_blank" href={helpreq.ImageUrl} rel="noreferrer">
+                    <img
+                      className="uploaded-content"
+                      src={helpreq.ImageUrl}
+                      alt="fotoğraf"
+                    />
+                  </a>
+                </div>
+              )}
+              {helpreq.VideoUrl && (
+                <div className="uploaded-img">
+                  <a target="_blank" href={helpreq.VideoUrl} rel="noreferrer">
+                    <video
+                      className="uploaded-content"
+                      controls={false}
+                      autoPlay={false}
+                      muted
+                    >
+                      <source src={helpreq.VideoUrl} type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                  </a>
+                </div>
+              )}
+            </div>
             {helpreq.status && <p>{helpreq.Answer}</p>}
             <p>{formatDate(helpreq.createdAt)}</p>
-            <p style={{ color: helpreq.status ? "green" : "red" }}>
-              {helpreq.status ? "cevaplandı" : "cevaplanmadı"}
-            </p>
+            <div style={{ color: helpreq.status ? "green" : "red" }}>
+              {helpreq.status ? (
+                <div>
+                  <p>Cevaplandı:</p>
+                  <p>{formatDate(helpreq.updatedAt)}</p>
+                </div>
+              ) : (
+                "cevaplanmadı"
+              )}
+            </div>
+
             {!helpreq.status && (
               <button
                 className="form-btn"
@@ -107,8 +144,7 @@ function Helphelpreqs(props) {
               </button>
             )}
           </div>
-        ))
-      )}
+        ))}
     </div>
   );
 }

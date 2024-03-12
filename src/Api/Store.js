@@ -6,6 +6,7 @@ import HelpSlice from './Help/HelpSlice'
 import ChartSlice from './ChartData/ChartSlice'
 import SettingsSlice from './Settings/SettingsSlice'
 import FaqSlice from './Faq/FaqSlice'
+import FileSlice from './File/FileSlice'
 
 export default configureStore({
   reducer: {
@@ -15,6 +16,7 @@ export default configureStore({
       help:HelpSlice,
       chardata: ChartSlice,
       settings: SettingsSlice,
-      faqs:FaqSlice
+      faqs:FaqSlice,
+      file: FileSlice
   },
 })

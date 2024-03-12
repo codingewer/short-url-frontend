@@ -12,7 +12,7 @@
     gap: 24px;
 }
 
-.helpreq-form button {
+.helpreq-form-btn {
     color: white;
     background-color: var(--color-1);
     padding: 6px;
@@ -67,4 +67,53 @@
 .helpreq-card-titles {
     font-size: 16px;
     font-weight: 600;
+}
+
+.file-upload-container{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+}
+.file-upload-container-button{
+    border: none;
+    background: none;
+    border: solid 2px var(--color-1);
+    color:var(--color-1);
+    width: fit-content;
+    border-radius: 999px;
+    padding: 6px;
+}
+
+.uploaded-img{
+    width: 200px;
+    height: 100px;
+    position: relative;
+}
+
+.uploaded-content {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.remove-file-btn{
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    height: 24px;
+    border: none;
+    border-radius: 6px;
+    background-color: white;
+}
+
+.remove-file-btn img{
+    height: 90%;
+}
+
+.help-card-media{
+    display: flex;
+    flex-direction: column;
+    gap:24px;
+    position: relative;
 }

@@ -17,6 +17,7 @@ import AboutUs from "./Pages/AboutUs";
 import Privacy from "./Pages/Privacy";
 import Terms from "./Pages/Terms";
 import UserRegister from "./User/UserRegister";
+import ForgotPassword from "./User/ForgotPassword";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
           <Route path="/dashboard/*" element={<Profile />} />
           <Route path="/balancereqs" element={<BalanceRequest/> } />
           <Route path="/controlpanel/*" element={<ControlPanel />} />
+          <Route path="/forgotpassword" element={<ForgotPassword/>} />
         </Routes>
 
       </BrowserRouter>
