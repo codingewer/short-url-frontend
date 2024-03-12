@@ -23,6 +23,7 @@ const validationSchema = yup.object({
   passwordRepeat: yup
     .string()
     .oneOf([yup.ref("Password"), null], "Şifreler uyuşmuyor"),
+  isVerified: yup.boolean().required("ReCAPTCHA Doğrulaması gerekli"),
 });
 function Register() {
   const success = useSelector((state) => state.users.success);
@@ -36,6 +37,7 @@ function Register() {
       Mail: "",
       Password: "",
       passwordRepeat: "",
+      isVerified: null,
       CheckBox: false,
     },
     validationSchema: validationSchema,
@@ -45,6 +47,14 @@ function Register() {
     },
   });
 
+  const handleVerify = (response) => {
+    registerForm.setFieldValue("isVerified", true);
+    console.log("doğrulandı");
+  };
+
+  const handleExpired = () => {
+    registerForm.setFieldValue("isVerified", false);
+  };
   const [approved, setApproved] = useState(false);
   console.log(approved);
   return (
@@ -61,7 +71,7 @@ function Register() {
           placeholder="Kullanıcı adı"
         />
         {registerForm.errors.UserName && registerForm.touched.UserName ? (
-          <div>{registerForm.errors.UserName}</div>
+          <div style={{ color: "red" }} >{registerForm.errors.UserName}</div>
         ) : null}
         <input
           type="email"
@@ -71,7 +81,7 @@ function Register() {
           placeholder="Email"
         />
         {registerForm.errors.Mail && registerForm.touched.Mail ? (
-          <div>{registerForm.errors.Mail}</div>
+          <div style={{ color: "red" }} >{registerForm.errors.Mail}</div>
         ) : null}
         <input
           type="password"
@@ -81,7 +91,7 @@ function Register() {
           placeholder="Şifre"
         />
         {registerForm.errors.Password && registerForm.touched.Password ? (
-          <div>{registerForm.errors.Password}</div>
+          <div style={{ color: "red" }} >{registerForm.errors.Password}</div>
         ) : null}
         <input
           type="password"
@@ -92,7 +102,7 @@ function Register() {
         />
         {registerForm.errors.passwordRepeat &&
         registerForm.touched.passwordRepeat ? (
-          <div>{registerForm.errors.passwordRepeat}</div>
+          <div style={{ color: "red" }} >{registerForm.errors.passwordRepeat}</div>
         ) : null}
         <div className="checkbox-container">
           <input type="checkbox" onChange={() => setApproved(!approved)} />
@@ -103,6 +113,16 @@ function Register() {
             kabul ediyorum.
           </span>
         </div>
+        <ReCAPTCHA
+          sitekey="6LdVw5YpAAAAABsnsv9q6_EY_DsRiQIIPXxK2r0m"
+          name="isVerified"
+          value={registerForm.values.isVerified}
+          onChange={handleVerify}
+          onExpired={handleExpired}
+        />
+        {registerForm.errors.isVerified && registerForm.touched.isVerified ? (
+          <div style={{ color: "red" }}>{registerForm.errors.isVerified}</div>
+        ) : null}
         <button disabled={!approved} className="form-btn" type="submit">
           Kayıt ol
         </button>

@@ -72,18 +72,19 @@
 .file-upload-container{
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 48px;
     align-items: center;
+    padding: 48px 0px 48px 0px;
 }
 .file-upload-container-button{
     border: none;
     background: none;
-    border: solid 2px var(--color-1);
     color:var(--color-1);
     width: fit-content;
     border-radius: 999px;
     padding: 6px;
 }
+
 
 .uploaded-img{
     width: 200px;

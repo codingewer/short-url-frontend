@@ -76,6 +76,7 @@ const UserSlice = createSlice({
     error: null,
     userrealtime: null,
     success: false,
+    logined:false,
     message: null,
   },
   reducers: {},
@@ -84,19 +85,19 @@ const UserSlice = createSlice({
       .addCase(LoginAsync.fulfilled, (state, action) => {
         localStorage.setItem("token", action.payload.token);
         localStorage.setItem("user", JSON.stringify(action.payload.user));
-        state.success = true;
+        state.logined = true;
         state.loading = false;
         localStorage.setItem("logined", true);
       })
       .addCase(LoginAsync.pending, (state) => {
         state.loading = true;
-        state.success = false;
+        state.logined = false;
       })
       .addCase(LoginAsync.rejected, (state, action) => {
         console.log(action);
         state.error =
           "Giriş başarısız şifrenizi ve Kullanıcı adınızı kontrol edin";
-        state.success = false;
+        state.logined = false;
         state.loading = false;
       })
       .addCase(GetUserByIDAsync.fulfilled, (state, action) => {
@@ -142,16 +143,16 @@ const UserSlice = createSlice({
       .addCase(NewUserAsync.fulfilled, (state, action) => {
         localStorage.setItem("token", action.payload.token);
         localStorage.setItem("user", JSON.stringify(action.payload.user));
-        state.success = true;
+        state.logined = true;
         state.loading = false;
         localStorage.setItem("logined", true);
       })
       .addCase(NewUserAsync.pending, (state, action) => {
         state.loading = true;
-        state.success = false;
+        state.logined = false;
       })
       .addCase(NewUserAsync.rejected, (state, action) => {
-        state.success = false;
+        state.logined = false;
         state.loading = false;
         state.error =
           "Kayıt olunurken hata oluştu kullanıcı adı daha önce kullanılmış olabilir";
@@ -159,18 +160,14 @@ const UserSlice = createSlice({
       .addCase(ForgotPasswordAsync.fulfilled, (state, action) => {
         state.success = true;
         state.loading = false;
-        console.log("hi 1");
-
       })
       .addCase(ForgotPasswordAsync.pending, (state, action) => {
         state.loading = true;
         state.success = false;
-        console.log("hi 1");
       })
       .addCase(ForgotPasswordAsync.rejected, (state, action) => {
         state.success = false;
         state.loading = false;
-        console.log("hi 1");
         state.error = "Bir hata oluştu e-mail adresinizi kontrol edin";
       })
       .addCase(ResetPasswordAsync.fulfilled, (state, action) => {

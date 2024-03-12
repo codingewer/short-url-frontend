@@ -4,6 +4,8 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import trashicon from "../assets/icons/trash-icon.png";
 import { useDispatch, useSelector } from "react-redux";
+import loadingico from "../assets/icons/loading.gif";
+import uploadicon from "../assets/icons/uploadicon.png";
 import {
   GetHelpRequestsByUserAsync,
   NewHelpRequestAsync,
@@ -20,6 +22,7 @@ function HelpReq() {
   const success = useSelector((state) => state.help.success);
   const url = useSelector((state) => state.file.url);
   const videoUrl = useSelector((state) => state.file.videoUrl);
+  const fileloading = useSelector((state) => state.file.loading);
   const [inValidType, setİnvalidType] = useState(false);
   const dispatch = useDispatch();
   const formik = useFormik({
@@ -59,18 +62,32 @@ function HelpReq() {
   const handleUploadVideo = async (file) => {
     file == null ? setİnvalidType(true) : dispatch(UploadVideo(file));
   };
+
+  const handleUploadFile = () => {
+    if (file.type === "video/mp4") {
+      handleUploadVideo(file);
+    } else {
+      handleUpload(file);
+    }
+  };
+
   useEffect(() => {
     if (url) {
       setFormikValue("ImageUrl", url);
+      document.getElementById('fileInput').value = '';
+      setFile(null);
     }
   }, [url]);
 
   useEffect(() => {
     if (videoUrl) {
+      setFile(null);
+      document.getElementById('fileInput').value = '';
       setFormikValue("VideoUrl", videoUrl);
+      console.log(videoUrl);
     }
   }, [videoUrl]);
-  console.log(items);
+
   return (
     <div className="help-container">
       <div className="help-form-container">
@@ -95,84 +112,73 @@ function HelpReq() {
             placeholder="Mesajınız"
             rows="5"
           ></textarea>
-          <div className="file-upload-container">
-            <h3>Fotoğraf Ekle(opsiyonel)</h3>
-            {formik.values.ImageUrl && (
-              <div className="uploaded-img">
-                <img
-                  className="uploaded-content"
-                  src={formik.values.ImageUrl}
-                  alt="fotoğraf"
-                />
-                <button
-                  className="remove-file-btn"
-                  type="button"
-                  onClick={() => setFormikValue("ImageUrl", "")}
-                >
-                  <img src={trashicon} alt="" />
-                </button>
-              </div>
-            )}
-            {inValidType && (
-              <span style={{ color: "red" }}>File not selected</span>
-            )}
-            <input
-              accept=".jpg, .jpeg, .png, .gif"
-              className="upload-file"
-              onChange={(event) => handleFileChange(event)}
-              type="file"
-            />
-            <button
-              className="file-upload-container-button"
-              type="button"
-              onClick={() => handleUpload(file)}
-            >
-              Yükle
-            </button>
-          </div>
-
-          <div className="file-upload-container">
-            <h3>Video Ekle(opsiyonel)</h3>
-            {formik.values.VideoUrl && (
-              <div className="uploaded-img">
-                <video
-                  className="uploaded-content"
-                  controls={false}
-                  autoPlay={false}
-                  muted
-                >
-                  <source src={formik.values.VideoUrl} type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-                <button
-                  className="remove-file-btn"
-                  type="button"
-                  onClick={() => setFormikValue("ImageUrl", "")}
-                >
-                  <img src={trashicon} alt="" />
-                </button>
-              </div>
-            )}
-            {inValidType && (
-              <span style={{ color: "red" }}>File not selected</span>
-            )}
-            <input
-              accept=".mp4"
-              className="upload-file"
-              onChange={(event) => handleFileChange(event)}
-              type="file"
-            />
-            <button
-              className="file-upload-container-button"
-              type="button"
-              onClick={() => handleUploadVideo(file)}
-            >
-              Yükle
-            </button>
-          </div>
           {formik.errors.Content && formik.touched.Content ? (
             <div>{formik.errors.Content}</div>
           ) : null}
+          <div className="file-upload-container">
+            <h3>Dosya Ekle(opsiyonel)</h3>
+            {formik.values.ImageUrl && (
+              <div className="uploaded-img">
+                <a
+                  target="_blank"
+                  href={formik.values.ImageUrl}
+                  rel="noreferrer"
+                >
+                  <img
+                    className="uploaded-content"
+                    src={formik.values.ImageUrl}
+                    alt="fotoğraf"
+                  />
+                </a>
+                <button
+                  className="remove-file-btn"
+                  type="button"
+                  onClick={() => setFormikValue("ImageUrl", "")}
+                >
+                  <img src={trashicon} alt="sil" />
+                </button>
+              </div>
+            )}
+            {formik.values.VideoUrl && (
+              <div className="uploaded-img">
+                <a
+                  target="_blank"
+                  href={formik.values.VideoUrl}
+                  rel="noreferrer"
+                >
+                  <video
+                    className="uploaded-content"
+                    controls={false}
+                    autoPlay={false}
+                    muted
+                  >
+                    <source src={formik.values.VideoUrl} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                </a>
+              </div>
+            )}
+            {inValidType && (
+              <span style={{ color: "red" }}>File not selected</span>
+            )}
+            <input
+            id="fileInput" 
+              accept=".jpg, .jpeg, .png, .gif, .mp4"
+              className="upload-file"
+              onChange={(event) => handleFileChange(event)}
+              type="file"
+            />
+            {fileloading && (
+              <img className="loading-icon" src={loadingico} alt="loading" />
+            )}
+            <button
+              className="file-upload-container-button"
+              type="button"
+              onClick={handleUploadFile}
+            >
+             <img src={uploadicon} alt="Yükle" />
+            </button>
+          </div>
           <button className="helpreq-form-btn" type="submit">
             Gönder
           </button>
@@ -185,29 +191,29 @@ function HelpReq() {
               <span className="helpreq-card-titles">Mesajınız: </span>
               <p>{req.Content}</p>
               <div className="help-card-media">
-              <h4>Dosyalar</h4>
-              {req.ImageUrl && (
-                <div className="uploaded-img">
-                  <img
-                    className="uploaded-content"
-                    src={req.ImageUrl}
-                    alt="fotoğraf"
-                  />
-                </div>
-              )}
-              {req.VideoUrl && (
-                <div className="uploaded-img">
-                  <video
-                    className="uploaded-content"
-                    controls={false}
-                    autoPlay={false}
-                    muted
+                <h4>Dosyalar</h4>
+                {req.ImageUrl && (
+                  <div className="uploaded-img">
+                    <img
+                      className="uploaded-content"
+                      src={req.ImageUrl}
+                      alt="fotoğraf"
+                    />
+                  </div>
+                )}
+                {req.VideoUrl && (
+                  <div className="uploaded-img">
+                    <video
+                      className="uploaded-content"
+                      controls={false}
+                      autoPlay={false}
+                      muted
                     >
-                    <source src={req.VideoUrl} type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
-                </div>
-              )}
+                      <source src={req.VideoUrl} type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                  </div>
+                )}
               </div>
               <span className="helpreq-card-titles">Tarih: </span>
               <p>{formatDate(req.createdAt)}</p>
