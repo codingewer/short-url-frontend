@@ -54,6 +54,9 @@ const dispatch = useDispatch();
           onChange={formik.handleChange}
           placeholder="Şifre"
         />
+        <ReCAPTCHA
+        sitekey='6Lea8pMpAAAAANOZPfyh4D-s8M_Wpxrc0-WYJnnK'
+        />
         <Link to="/forgotpassword" >Şifremi unuttum?</Link>
         <button className="form-btn" type="submit">Giriş yap </button>
         <Link style={{textDecoration:"none", fontWeight:700, fontSize:18}} to="/register">Kayıt Ol</Link>
