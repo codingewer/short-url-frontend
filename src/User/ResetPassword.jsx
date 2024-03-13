@@ -6,6 +6,7 @@ import { useFormik } from "formik";
 import {  ResetPasswordAsync } from "../Api/User/UserSlice";
 import TopBar from "../Bars/TopBar";
 import loadingico from "../assets/icons/loading.gif";
+import { useEffect } from 'react';
 
 const passwordValidationSchema = Yup.object().shape({
   password: Yup.string().required("Yeni Şifre gerekli"),
@@ -21,18 +22,28 @@ function ResetPassword() {
   const dispatch = useDispatch();
   const PasswordForm = useFormik({
     initialValues: {
+      token:"",
       password: "",
       ConfirmPassword: "",
     },
     validationSchema: passwordValidationSchema,
     onSubmit: () => {
-      dispatch(ResetPasswordAsync(PasswordForm.values, token));
+      dispatch(ResetPasswordAsync(PasswordForm.values));
       PasswordForm.resetForm();
       console.log("2323");
       return;
     },
   });
-  console.log(token);
+  useEffect(()=>{
+    PasswordForm.setFieldValue("token", token)
+  },[token])
+
+  useEffect(() => {
+    setTimeout(() => {
+      success == true && (window.location.href = "/login");
+    }, 2000);
+  }, [success]);
+
   return (
     <>
       <TopBar />
