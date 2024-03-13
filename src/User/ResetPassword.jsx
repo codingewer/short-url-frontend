@@ -8,11 +8,10 @@ import TopBar from "../Bars/TopBar";
 import loadingico from "../assets/icons/loading.gif";
 
 const passwordValidationSchema = Yup.object().shape({
-  password: Yup.string().required("Eski Şifre gerekli"),
-  newPassword: Yup.string().required("Yeni Şifre gerekli"),
+  password: Yup.string().required("Yeni Şifre gerekli"),
   ConfirmPassword: Yup.string()
     .required("Yeni Onayı Şifre gerekli")
-    .oneOf([Yup.ref("newPassword"), null], "Şifreler uyuşmuyor"),
+    .oneOf([Yup.ref("password"), null], "Şifreler uyuşmuyor"),
 });
 function ResetPassword() {
   const loading = useSelector((state) => state.users.loading);
@@ -63,7 +62,7 @@ function ResetPassword() {
               />
               {PasswordForm.errors.password &&
               PasswordForm.touched.password ? (
-                <div>{PasswordForm.errors.password}</div>
+                <div style={{color:"red"}} >{PasswordForm.errors.password}</div>
               ) : null}
               <label htmlFor="ConfirmPassword">Yeni Şifre Onayı</label>
               <input
@@ -74,7 +73,7 @@ function ResetPassword() {
               />
               {PasswordForm.errors.ConfirmPassword &&
               PasswordForm.touched.ConfirmPassword ? (
-                <div>{PasswordForm.errors.ConfirmPassword}</div>
+                <div style={{color:"red"}} >{PasswordForm.errors.ConfirmPassword}</div>
               ) : null}
               <button className="form-btn" type="submit">
                 Güncelle
