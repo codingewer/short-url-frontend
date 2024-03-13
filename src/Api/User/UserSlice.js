@@ -181,7 +181,7 @@ const UserSlice = createSlice({
       .addCase(ResetPasswordAsync.rejected, (state, action) => {
         state.success = false;
         state.loading = false;
-        state.error = "Bir hata oluştu";
+        state.error = "Bir hata oluştu şifre yenileme linki geçersiz";
       });
   },
 });
