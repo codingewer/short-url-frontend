@@ -98,25 +98,32 @@ function DataChart() {
    lastValueBalance = balance[balance.length - 1];
     lastValueBalance = parseInt(lastValueBalance);
   } 
-  console.log(user)
+
+  var allViews = 0;
+  var allBalance = 0;
+  if(chartdata !== null){
+    allViews = Object.values(chartdata.viewsChart).reduce((acc, curr) => acc + curr, 0);
+    allBalance = Object.values(chartdata.balanceChart).reduce((acc, curr) => acc + curr, 0);
+  }
+console.log(chartdata)
   return (
     <div>
-      <div className="urls-details">
-      <div className="urls-detail">
+       <div style={{height:100, fontSize:22, fontWeight:500}} className="urls-detail">
           <span>{ user !== null &&parseInt(user.Balance)} &#8378;</span>
           <span>Güncel Bakiye</span>
         </div>
+      <div className="urls-details">
         <div className="urls-detail">
           <span>{ user !== null && user.UrlCount}</span>
           <span>Link</span>
         </div>
         <div className="urls-detail">
-          <span>{lastValueBalance} &#8378;</span>
-          <span>Günlük Kazanç</span>
+          <span>{parseInt(allBalance)} &#8378;</span>
+          <span> Kazanç</span>
         </div>
         <div className="urls-detail">
-          <span>{lastViews}</span>
-          <span>Günlük Görüntülenme</span>
+          <span>{allViews}</span>
+          <span>Görüntülenme</span>
         </div>
       </div>
       <div className="chart-container">

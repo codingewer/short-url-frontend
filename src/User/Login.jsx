@@ -10,7 +10,7 @@ import ReCAPTCHA from 'react-google-recaptcha';
 const validationSchema = Yup.object({
   userName: Yup.string().required("Kullanıcı adı gerekli"),
   password: Yup.string().required("Şifre gerekli"),
-  isVerified:  Yup.boolean().required("ReCAPTCHA Doğrulaması gerekli"),
+ // isVerified:  Yup.boolean().required("ReCAPTCHA Doğrulaması gerekli"),
 })
 function Login() {
   const success = useSelector((state) => state.users.logined)
@@ -73,16 +73,16 @@ const dispatch = useDispatch();
         {formik.errors.password && formik.touched.password ? (
           <div style={{color:"red"}} >{formik.errors.password}</div>
         ) : null}
-        <ReCAPTCHA
+      { /* <ReCAPTCHA
         sitekey='6LdVw5YpAAAAABsnsv9q6_EY_DsRiQIIPXxK2r0m'
         name="isVerified"
         value={formik.values.isVerified}
         onChange={handleVerify}
         onExpired={handleExpired}
-        />
+        />}
         {formik.errors.isVerified && formik.touched.isVerified ? (
           <div style={{color:"red"}} >{formik.errors.isVerified}</div>
-        ) : null}
+        ) : null*/}
         <br />
         <br />
         <br />

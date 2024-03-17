@@ -94,7 +94,7 @@ function Helphelpreqs(props) {
             <p>{helpreq.Title}</p>
             <p>{helpreq.Content}</p>
             <div className="help-card-media">
-              <h4>Dosyalar</h4>
+              <h4>Dosyalar:</h4>
               {helpreq.ImageUrl && (
                 <div className="uploaded-img">
                   <a target="_blank" href={helpreq.ImageUrl} rel="noreferrer">
@@ -122,6 +122,7 @@ function Helphelpreqs(props) {
                 </div>
               )}
             </div>
+
             {helpreq.status && <p>{helpreq.Answer}</p>}
             <p>{formatDate(helpreq.createdAt)}</p>
             <div style={{ color: helpreq.status ? "green" : "red" }}>

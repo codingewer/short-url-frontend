@@ -33,7 +33,7 @@ function Profile() {
     window.location.href = "/";
   };
   useEffect(() => {
-    dispatch(GetUserByIDAsync(user.UserName));
+    dispatch(GetUserByIDAsync());
     dispatch(GetSiteDataBySiteName())
   }, [dispatch,balancesatatus]);
   console.log(user);

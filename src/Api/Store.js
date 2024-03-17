@@ -7,6 +7,8 @@ import ChartSlice from './ChartData/ChartSlice'
 import SettingsSlice from './Settings/SettingsSlice'
 import FaqSlice from './Faq/FaqSlice'
 import FileSlice from './File/FileSlice'
+import BankInfoSlice from './Balance/BankInfoSlice'
+import PaparaSlice from './Balance/PaparaSlice'
 
 export default configureStore({
   reducer: {
@@ -17,6 +19,8 @@ export default configureStore({
       chardata: ChartSlice,
       settings: SettingsSlice,
       faqs:FaqSlice,
-      file: FileSlice
+      file: FileSlice,
+      bankinfo:BankInfoSlice,
+      papara:PaparaSlice
   },
 })

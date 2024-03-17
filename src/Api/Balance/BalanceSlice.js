@@ -55,22 +55,6 @@ export const UpdateBalanceStatusAsync = createAsyncThunk(
   }
 );
 
-export const UpdateUserBalanceInfoAsync = createAsyncThunk(
-  "balance/UpdateUserBalanceInfoAsync",
-  async (data, { rejectWithValue }) => {
-    try {
-      const response = await axios.put(`${apiUrl}/balance/info/updateinfo`, data, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      return response.data;
-    } catch (error) {
-      return rejectWithValue(error.response.data);
-    }
-  }
-);
-
 export const GetByStatusBalanceRequestsAsync = createAsyncThunk(
   "balance/GetByStatusBalanceRequestsAsync",
   async (status) => {
@@ -90,21 +74,6 @@ export const GetByStatusBalanceRequestsAsync = createAsyncThunk(
   }
 );
 
-export const NewBalanceIBANtAsync = createAsyncThunk(
-  "balance/NewBalanceIBANtAsync",
-  async (data, { rejectWithValue }) => {
-    try {
-      const response = await axios.post(`${apiUrl}/balance/info/new`, data, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      return response.data;
-    } catch (error) {
-      return rejectWithValue(error.response.data);
-    }
-  }
-);
 
 const BalanceSlice = createSlice({
   name: "balance",
@@ -161,17 +130,6 @@ const BalanceSlice = createSlice({
         state.error = "Hata";
         state.loading = false;
       })
-      .addCase(UpdateUserBalanceInfoAsync.fulfilled, (state, action) => {
-        state.success = true;
-        state.loading = false;
-      })
-      .addCase(UpdateUserBalanceInfoAsync.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(UpdateUserBalanceInfoAsync.rejected, (state, action) => {
-        state.error = "Bir hata oluştu";
-        state.loading = false;
-      })
       .addCase(GetByStatusBalanceRequestsAsync.fulfilled, (state, action) => {
         state.items = action.payload;
         state.loading = false;
@@ -187,17 +145,6 @@ const BalanceSlice = createSlice({
         state.loading = false;
         state.success = false;
       })
-      .addCase(NewBalanceIBANtAsync.fulfilled, (state, action) => {
-        state.success = true;
-        state.loading = false;
-      })
-      .addCase(NewBalanceIBANtAsync.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(NewBalanceIBANtAsync.rejected, (state, action) => {
-        state.error = "Bir hata oluştu";
-        state.loading = false;
-      });
   },
 });
 
