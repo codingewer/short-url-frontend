@@ -27,17 +27,6 @@ const AdsComponent = () => {
     };
   };
 
-  const [adLoaded, setAdLoaded] = useState(false);
-
-  useEffect(() => {
-    // Reklamın yüklendiğini kontrol etmek için bir DOM query seçicisi kullan.
-    const adElement = document.querySelector('.adsbygoogle');
-    if (adElement && adElement.offsetHeight > 0) {
-      setAdLoaded(true);
-    }
-  }, []);
-
-  console.log("dedected", adLoaded);
   const ads =
     sitedata !== null
       ? {

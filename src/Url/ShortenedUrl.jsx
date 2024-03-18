@@ -86,7 +86,19 @@ const urlfaqssuccess = useSelector((state) => state.urlfaqs.success);
     },
   ];
   const faqs = urlfaqssuccess && urlfaqs !== null ? urlfaqs : faqsdata;
-  console.log(urlfaqs);
+
+
+  const [adLoaded, setAdLoaded] = useState(false);
+
+  useEffect(() => {
+    // Reklamın yüklendiğini kontrol etmek için bir DOM query seçicisi kullan.
+    const adElement = document.querySelector('.adsbygoogle');
+    if (adElement && adElement.offsetHeight > 0) {
+      setAdLoaded(true);
+    }
+  }, []);
+  console.log("loaded", adLoaded);
+  console.log("adblock", adBlockDetected);
   return (
     <>
       <div className="ads-container">
