@@ -4,14 +4,13 @@ import "./Ads.css";
 import AdsComponent from "./AdsComponent";
 import Footer from "../Bars/Footer";
 import "../Pages/Faq.css";
-import { useDetectAdBlock } from "adblock-detect-react";
 import { useEffect, useState } from "react";
 import { GetUrlByShortenedUrlAsync } from "../Api/Url/UrlSlice";
 import { GetAllUrlfaqsAsync } from "../Api/Faq/UrlFaqSlice";
+import { DetectAdblock } from "@scthakuri/adblock-detector";
 
 function ShortenedUrl() {
   const { adIndex, shortenedUrl } = useParams();
-  const adBlockDetected = useDetectAdBlock();
   const dispatch = useDispatch();
   const url = useSelector((state) => state.url.url);
   const success = useSelector((state) => state.url.success);
@@ -88,28 +87,29 @@ const urlfaqssuccess = useSelector((state) => state.urlfaqs.success);
   const faqs = urlfaqssuccess && urlfaqs !== null ? urlfaqs : faqsdata;
 
 
-  const [adLoaded, setAdLoaded] = useState(false);
+  const [adblockDedected, setAdblockDedected] = useState(false);
 
-  useEffect(() => {
-    // Reklamın yüklendiğini kontrol etmek için bir DOM query seçicisi kullan.
-    const adElement = document.querySelector('.adsbygoogle');
-    if (adElement && adElement.offsetHeight > 0) {
-      setAdLoaded(true);
+  DetectAdblock((detected) => {
+    if( detected ){
+       alert("Reklam engelleyiciniz kapatın")
+       setAdblockDedected(true);
+    }else{
+        console.log("adblock not detected");
+        setAdblockDedected(false);
     }
-  }, []);
-  console.log("loaded", adLoaded);
-  console.log("adblock", adBlockDetected);
+});
   return (
     <>
       <div className="ads-container">
         <div className="ad-content">
           <span>{url?.Description}</span>
           <AdsComponent />
+          {adblockDedected && <span style={{color:"red"}}>Reklam engelleyiciniz kapatın</span>}
           <div style={{ display: "flex", gap: 12 }}>
-            <button className="skip-btn" onClick={handleSkip}>
+            <button disabled={adblockDedected}  className="skip-btn" onClick={handleSkip}>
               Reklamı Geç
             </button>
-            <button className="intereste-btn" onClick={handleStart}>
+            <button disabled={adblockDedected} className="intereste-btn" onClick={handleStart}>
               İlgimi Çekti
             </button>
           </div>
