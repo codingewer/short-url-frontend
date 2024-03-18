@@ -11,6 +11,8 @@ import UpdateFaq from "./UpdateFaq";
 import UserPage from "../User/UserPage";
 import { useDispatch, useSelector } from "react-redux";
 import { GetAllSeenLengthAsync } from "../Api/ChartData/ChartSlice";
+import UpdateUrlFaq from "./UpdateUrlFaq";
+import UrlFaqs from "./UrlFaqs";
 
 function ControlPanel() {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -87,7 +89,18 @@ function ControlPanel() {
               onClick={() => handleActiveLink("allfaq")}
               to="/controlpanel/allfaq"
             >
-              Sıkça sorulan Sorular
+              S.S.S
+            </Link>
+            <Link
+              className={
+                selected === "allursfaqs"
+                  ? "cp-navbar-item-selected"
+                  : "cp-navbar-item"
+              }
+              onClick={() => handleActiveLink("allursfaqs")}
+              to="/controlpanel/allursfaqs"
+            >
+              Link Sayafası S.S.S
             </Link>
             <Link
               className={
@@ -130,7 +143,9 @@ function ControlPanel() {
             />
             <Route path="/AllUsers" element={<AllUsers />} />
             <Route path="/allfaq" element={<AllFaq />} />
+            <Route path="/allursfaqs" element={<UrlFaqs/>} />
             <Route path="/faqs/update/:id" element={<UpdateFaq />} />
+            <Route path="/urlfaqs/update/:id" element={<UpdateUrlFaq/>} />
             <Route path="/settings" element={<UpdateSiteSettings />} />
             <Route path="/users" element={<AllUsers/>}  />
             <Route path="/user/:id" element={<UserPage/>}  />

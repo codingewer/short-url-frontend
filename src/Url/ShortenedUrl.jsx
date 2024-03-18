@@ -6,8 +6,8 @@ import Footer from "../Bars/Footer";
 import "../Pages/Faq.css";
 import { useDetectAdBlock } from "adblock-detect-react";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { GetUrlByShortenedUrlAsync } from "../Api/Url/UrlSlice";
+import { GetAllUrlfaqsAsync } from "../Api/Faq/UrlFaqSlice";
 
 function ShortenedUrl() {
   const { adIndex, shortenedUrl } = useParams();
@@ -55,6 +55,10 @@ function ShortenedUrl() {
   const handleStart = () => {
     setStarted(true);
   };
+useEffect(() => {
+  dispatch(GetAllUrlfaqsAsync());
+}, [dispatch]);
+
 
   const [isToggled, setToggled] = useState(false);
   const handleTogleMenu = (id) => {
@@ -64,22 +68,25 @@ function ShortenedUrl() {
       ? (linksMenu.style.display = "flex")
       : (linksMenu.style.display = "none");
   };
+const urlfaqs = useSelector((state) => state.urlfaqs.items);
+const urlfaqssuccess = useSelector((state) => state.urlfaqs.success);
 
-  const faqs = [
+  const faqsdata = [
     {
-      id:1,
-      question: "Neden reklam engelleyici kullanmamalıyım?",
-      answer:
+      ID:1,
+      Question: "Neden reklam engelleyici kullanmamalıyım?",
+      Answer:
         "Sitenin  çalışması için reklam engelleyici olmaması gerekir.",
     },
     {
-      id:2,
-      question: "Nasıl linke yönlendirilirim?",
-      answer:
+      ID:2,
+      Question: "Nasıl linke yönlendirilirim?",
+      Answer:
         "İlgimi çekti butonuna basıp ortalama 5 saniye bekledikten sonra linke yönlendiriliceksiniz.",
     },
   ];
-console.log(url)
+  const faqs = urlfaqssuccess && urlfaqs !== null ? urlfaqs : faqsdata;
+  console.log(urlfaqs);
   return (
     <>
       <div className="ads-container">
@@ -107,11 +114,11 @@ console.log(url)
           {
             faqs.map((faq, index) => (
               <div className="faq-card" key={index}>
-              <button onClick={() => handleTogleMenu(faq.id)}>
-                <span>{faq.question}</span>
+              <button onClick={() => handleTogleMenu(faq.ID)}>
+                <span>{faq.Question}</span>
               </button>
-              <span className="faq-card-content" id={faq.id}>
-                {faq.answer}
+              <span className="faq-card-content" id={faq.ID}>
+                {faq.Answer}
               </span>
             </div>
           ))

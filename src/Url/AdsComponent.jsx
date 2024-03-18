@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { GetSiteDataBySiteName } from "../Api/Settings/SettingsSlice";
 
@@ -27,6 +27,17 @@ const AdsComponent = () => {
     };
   };
 
+  const [adLoaded, setAdLoaded] = useState(false);
+
+  useEffect(() => {
+    // Reklamın yüklendiğini kontrol etmek için bir DOM query seçicisi kullan.
+    const adElement = document.querySelector('.adsbygoogle');
+    if (adElement && adElement.offsetHeight > 0) {
+      setAdLoaded(true);
+    }
+  }, []);
+
+  console.log("dedected", adLoaded);
   const ads =
     sitedata !== null
       ? {

@@ -9,6 +9,7 @@ import FaqSlice from './Faq/FaqSlice'
 import FileSlice from './File/FileSlice'
 import BankInfoSlice from './Balance/BankInfoSlice'
 import PaparaSlice from './Balance/PaparaSlice'
+import UrlFaqSlice from './Faq/UrlFaqSlice'
 
 export default configureStore({
   reducer: {
@@ -19,6 +20,7 @@ export default configureStore({
       chardata: ChartSlice,
       settings: SettingsSlice,
       faqs:FaqSlice,
+      urlfaqs:UrlFaqSlice,
       file: FileSlice,
       bankinfo:BankInfoSlice,
       papara:PaparaSlice
