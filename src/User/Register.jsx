@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Navigate } from "react-router";
 import "./UserForm.css";
 import { useFormik } from "formik";
@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import { NewUserAsync } from "../Api/User/UserSlice";
 import { Link } from "react-router-dom";
 import ReCAPTCHA from "react-google-recaptcha";
+import { GetSiteDataBySiteName } from "../Api/Settings/SettingsSlice";
 const validationSchema = yup.object({
   UserName: yup.string().required("Kullanıcı adı gerekli"),
   Password: yup
@@ -56,7 +57,15 @@ function Register() {
     registerForm.setFieldValue("isVerified", false);
   };
   const [approved, setApproved] = useState(false);
-  console.log(approved);
+ 
+  const sitedata = useSelector((state)=> state.settings.data)
+  const sitedatasuccess = useSelector((state)=> state.settings.success)
+  useEffect(() => {
+    dispatch(GetSiteDataBySiteName());
+  },[dispatch]);
+  const data = sitedata !== null ? sitedata : {
+    ReChapchaCode:""
+  }
   return (
     //Sayfa tasarımı bileşenleri
     <div className="register-form-div">
@@ -113,13 +122,13 @@ function Register() {
             kabul ediyorum.
           </span>
         </div>
-        <ReCAPTCHA
-          sitekey="6LdVw5YpAAAAABsnsv9q6_EY_DsRiQIIPXxK2r0m"
-          name="isVerified"
-          value={registerForm.values.isVerified}
-          onChange={handleVerify}
-          onExpired={handleExpired}
-        />
+        { sitedatasuccess && <ReCAPTCHA
+        sitekey={data.ReChapchaCode}
+        name="isVerified"
+        value={registerForm.values.isVerified}
+        onChange={handleVerify}
+        onExpired={handleExpired}
+        />}
         {registerForm.errors.isVerified && registerForm.touched.isVerified ? (
           <div style={{ color: "red" }}>{registerForm.errors.isVerified}</div>
         ) : null}

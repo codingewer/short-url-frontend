@@ -14,8 +14,8 @@ export const NewUrlAsync = createAsyncThunk("url/NewUrlAsync", async (data) => {
 
 export const GetUrlByCreatedByAsync = createAsyncThunk(
   "url/GetUrlByCreatedByAsync",
-  async () => {
-    const response = await axios.get(`${apiUrl}/url/getbycreatedby`, {
+  async (id) => {
+    const response = await axios.get(`${apiUrl}/url/getbycreatedby/` + id, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -68,11 +68,24 @@ export const GetUrlByIdAsync = createAsyncThunk(
   }
 );
 
+export const DeleteUrlByAdminAsync = createAsyncThunk(
+  "url/DeleteUrlByIDAsync",
+  async (id) => {
+    const response = await axios.delete(`${apiUrl}/url/deletebyadmin/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  }
+);
+
 const UrlSlice = createSlice({
   name: "url",
   initialState: {
     items: [],
     loading: false,
+    getloading: false,
     error: null,
     url: null,
     success: false,
@@ -84,39 +97,47 @@ const UrlSlice = createSlice({
       .addCase(NewUrlAsync.fulfilled, (state, action) => {
         state.success = true;
         state.loading = false;
+        state.error = null;
+        state.message = "Link başarıyla kısatıldı";
         state.items.unshift(action.payload);
       })
       .addCase(NewUrlAsync.pending, (state) => {
         state.loading = true;
         state.success = false;
+        state.message=null;
+        state.error = null;
       })
       .addCase(NewUrlAsync.rejected, (state, action) => {
         state.success = false;
         state.loading = false;
+        state.error = "Link kısaltırken hata oluştu girdiğiniz bilgileri kontrol edin";
       })
       .addCase(GetUrlByCreatedByAsync.fulfilled, (state, action) => {
         state.items = action.payload;
         state.success = true;
-        state.loading = false;
-        state.url = null
+        state.getloading = false;
+        state.url = null;
       })
       .addCase(GetUrlByCreatedByAsync.pending, (state) => {
-        state.loading = true;
+        state.getloading = true;
         state.success = false;
+        state.message=null;
+        state.error = null;
       })
       .addCase(GetUrlByCreatedByAsync.rejected, (state, action) => {
         state.success = false;
-        state.loading = false;
+        state.getloading = false;
       })
       .addCase(DeleteUrlByIdAsync.fulfilled, (state, action) => {
         state.success = true;
         state.loading = false;
         state.items = state.items.filter((item) => item.ID !== action.payload);
-
       })
       .addCase(DeleteUrlByIdAsync.pending, (state) => {
         state.success = false;
         state.loading = true;
+        state.message=null;
+        state.error = null;
       })
       .addCase(DeleteUrlByIdAsync.rejected, (state, action) => {
         state.success = false;
@@ -130,6 +151,8 @@ const UrlSlice = createSlice({
       .addCase(GetUrlByShortenedUrlAsync.pending, (state) => {
         state.success = false;
         state.loading = true;
+        state.message=null;
+        state.error = null;
       })
       .addCase(GetUrlByShortenedUrlAsync.rejected, (state, action) => {
         state.success = false;
@@ -145,11 +168,14 @@ const UrlSlice = createSlice({
       .addCase(UpdateUrlByIdAsync.pending, (state) => {
         state.success = false;
         state.loading = true;
+        state.message=null;
+        state.error = null;
       })
       .addCase(UpdateUrlByIdAsync.rejected, (state, action) => {
         state.success = false;
         state.loading = false;
-      }).addCase(GetUrlByIdAsync.fulfilled, (state, action) => {
+      })
+      .addCase(GetUrlByIdAsync.fulfilled, (state, action) => {
         state.url = action.payload;
         state.success = true;
         state.loading = false;
@@ -158,11 +184,28 @@ const UrlSlice = createSlice({
         state.success = false;
         state.loading = true;
         state.url = null;
+        state.message=null;
+        state.error = null;
       })
       .addCase(GetUrlByIdAsync.rejected, (state, action) => {
         state.success = false;
         state.loading = false;
         state.url = null;
+      })
+      .addCase(DeleteUrlByAdminAsync.fulfilled, (state, action) => {
+        state.success = true;
+        state.loading = false;
+        state.items = state.items.filter((item) => item.ID !== action.payload);
+      })
+      .addCase(DeleteUrlByAdminAsync.pending, (state) => {
+        state.success = false;
+        state.loading = true;
+        state.message=null;
+        state.error = null;
+      })
+      .addCase(DeleteUrlByAdminAsync.rejected, (state, action) => {
+        state.success = false;
+        state.loading = false;
       });
   },
 });

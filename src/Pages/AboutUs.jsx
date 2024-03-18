@@ -10,7 +10,6 @@ import { GetSiteDataBySiteName } from '../Api/Settings/SettingsSlice';
 function AboutUs() {
   const dispatch = useDispatch();
   const sitedata = useSelector((state)=> state.settings.data)
-  console.log(sitedata)
   useEffect(() => {
     dispatch(GetSiteDataBySiteName());
   },[dispatch]);

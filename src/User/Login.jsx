@@ -1,11 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./UserForm.css";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { LoginAsync } from '../Api/User/UserSlice';
 import { Link } from 'react-router-dom';
 import ReCAPTCHA from 'react-google-recaptcha';
+import { GetSiteDataBySiteName } from '../Api/Settings/SettingsSlice';
 
 const validationSchema = Yup.object({
   userName: Yup.string().required("Kullanıcı adı gerekli"),
@@ -40,8 +41,14 @@ const dispatch = useDispatch();
       dispatch(LoginAsync(formik.values))
     },
   });
-  console.log(success);
-  console.log(error);
+  const sitedata = useSelector((state)=> state.settings.data)
+  const sitedatasuccess = useSelector((state)=> state.settings.success)
+  useEffect(() => {
+    dispatch(GetSiteDataBySiteName());
+  },[dispatch]);
+  const data = sitedata !== null ? sitedata : {
+    ReChapchaCode:""
+  }
   return (
     //SAyfa tasarımı
     <div className="register-form-div">
@@ -73,8 +80,8 @@ const dispatch = useDispatch();
         {formik.errors.password && formik.touched.password ? (
           <div style={{color:"red"}} >{formik.errors.password}</div>
         ) : null}
-      { /* <ReCAPTCHA
-        sitekey='6LdVw5YpAAAAABsnsv9q6_EY_DsRiQIIPXxK2r0m'
+      { sitedatasuccess && <ReCAPTCHA
+        sitekey={data.ReChapchaCode}
         name="isVerified"
         value={formik.values.isVerified}
         onChange={handleVerify}
@@ -82,7 +89,7 @@ const dispatch = useDispatch();
         />}
         {formik.errors.isVerified && formik.touched.isVerified ? (
           <div style={{color:"red"}} >{formik.errors.isVerified}</div>
-        ) : null*/}
+        ) : null}
         <br />
         <br />
         <br />

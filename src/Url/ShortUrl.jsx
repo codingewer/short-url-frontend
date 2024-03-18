@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import "./ShortUrl.css";
 import React, { useEffect } from "react";
 import sendicon from "../assets/icons/send-icon.png";
@@ -5,6 +6,8 @@ import trashicon from "../assets/icons/trash-icon.png";
 import copyicon from "../assets/icons/copy-icon.png";
 import editicon from "../assets/icons/edit-icon.png";
 import { useDispatch, useSelector } from "react-redux";
+import loadingicon from "../assets/icons/loading.gif";
+
 import {
   DeleteUrlByIdAsync,
   GetUrlByCreatedByAsync,
@@ -21,8 +24,19 @@ const validationSchema = yup.object({
 function ShortUrl() {
   const dispatch = useDispatch();
   const items = useSelector((state) => state.url.items);
+  const loading = useSelector((state) => state.url.loading);
+  const error = useSelector((state) => state.url.error);
+  const status = useSelector((state) => state.url.success);
+  const message = useSelector((state) => state.url.message);
   const currentURL = window.location.href;
+  const urlgetloading = useSelector((state) => state.url.getloading);
   const domain = currentURL.split("/dashboard/shorturl")[0];
+
+  const usersuccess = useSelector((state) => state.users.success);
+  const user0 = useSelector((state) => state.users.userrealtime);
+  const user = usersuccess ? user0 : {};
+  const [showLimit, setShowLimit] = useState(25);
+
   const CopyContent = (urll) => {
     navigator.clipboard
       .writeText(domain + "/l/" + urll + "/r/1")
@@ -54,15 +68,26 @@ function ShortUrl() {
     }
   };
 
-  useEffect(() => {
-    dispatch(GetUrlByCreatedByAsync());
-  }, []);
+  const hanldeShowMore = () => {
+    setShowLimit(showLimit + 25);
+  };
 
-  const displayItems =  items !== null ? items : [];
-  console.log(displayItems);
+  useEffect(() => {
+    dispatch(GetUrlByCreatedByAsync(user.ID));
+  }, [usersuccess]);
+
+  const displayItems = items !== null ? items : [];
+  console.log(user)
   return (
     <div className="short-url-container">
+        { user.Blocked === true && <span style={{color:"red", textAlign:"center", fontWeight:600}} >Engellendiniz link kısaltamazsınız</span>}
       <form className="short-url-form" onSubmit={formik.handleSubmit}>
+        {status ? (
+          <span style={{ color: "green", textAlign: "center" }}>{message}</span>
+        ) : (
+          <span style={{ color: "red", textAlign: "center" }}>{error}</span>
+        )}
+        {loading && <img src={loadingicon} className="loading-icon" />}
         <span className="form-title">Linkinizi kısaltın</span>
         <div
           style={{
@@ -107,20 +132,23 @@ function ShortUrl() {
         ) : null}
       </form>
       <span className="contents-titles">Son Linkler</span>
+      {urlgetloading && <img src={loadingicon} className="loading-icon" />}
+
       {displayItems.length !== 0 && (
         <div className="last-shortened-urls">
           <table>
             <thead>
               <tr>
                 <th style={{ width: 100 }}>#</th>
-                <th style={{ width: 400 }}>Url</th>
+                <th style={{ width: 400 }}>Link</th>
+                <th style={{ width: 400 }}>Orijinal Link</th>
                 <th style={{ width: 200 }}>Tıklanma</th>
                 <th style={{ width: 200 }}>Gelir</th>
                 <th style={{ width: 200 }}>İşlem</th>
               </tr>
             </thead>
             <tbody>
-              {displayItems.map((item, index) => (
+              {displayItems.slice(0, showLimit ).map((item, index) => (
                 <tr key={index}>
                   <td style={{ width: 100 }}>{index + 1}</td>
                   <td style={{ width: 400 }}>
@@ -131,6 +159,16 @@ function ShortUrl() {
                       href={domain + "/l/" + item.ShortenedUrl + "/r/1"}
                     >
                       {domain + "/l/" + item.ShortenedUrl}
+                    </a>
+                  </td>
+                  <td style={{ width: 400 }}>
+                    <a
+                      className="url-name"
+                      target="_blank"
+                      rel="noreferrer"
+                      href={item.OrginalUrl}
+                    >
+                      {item.OrginalUrl}
                     </a>
                   </td>
                   <td style={{ width: 200 }}>{item.ClickCount}</td>
@@ -152,7 +190,7 @@ function ShortUrl() {
                         <img src={copyicon} alt="Kopyala" />
                       </button>
                       <button
-                      type="button"
+                        type="button"
                         className="card-btns"
                         onClick={() => DeleteContent(item.ID)}
                       >
@@ -160,7 +198,7 @@ function ShortUrl() {
                       </button>
                       <Link
                         className="card-btns"
-                       to={"/dashboard/updateurl/" + item.ID}
+                        to={"/dashboard/updateurl/" + item.ID}
                       >
                         <img src={editicon} alt="Kopyala" />
                       </Link>
@@ -170,6 +208,10 @@ function ShortUrl() {
               ))}
             </tbody>
           </table>
+          {
+            showLimit < displayItems.length &&
+          <button className='show-more-btn' onClick={hanldeShowMore} type='button'>Daha Falza Göster{displayItems.length}</button>
+          }
         </div>
       )}
     </div>

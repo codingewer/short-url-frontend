@@ -155,6 +155,16 @@
     display: grid;
 }
 
+.show-more-btn{
+    background: var(--color-1);
+    border:none;
+    padding: 12px;
+    width: 150px;
+    font-weight: 600;
+    color: white;
+    margin-top: 24px;
+}
+
 @media only screen and (max-width: 1080px) {
     .inputs-and-btn {
         flex-direction: column;

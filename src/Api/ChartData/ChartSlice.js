@@ -15,6 +15,14 @@ export const GetDataByUserIDAsync = createAsyncThunk(
   }
 );
 
+export const GetAllSeenLengthAsync = createAsyncThunk(
+  "chartdata/GetAllSeenLengthAsync",
+  async () => {
+    const response = await axios.get(`${apiUrl}/seen/allseen`);
+    return response.data;
+  }
+)
+
 const ChartSlice = createSlice({
   name: "chartdata",
   initialState: {
@@ -23,6 +31,7 @@ const ChartSlice = createSlice({
     data: null,
     success: false,
     message: null,
+    seenlenght:0
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -38,7 +47,19 @@ const ChartSlice = createSlice({
       .addCase(GetDataByUserIDAsync.rejected, (state, action) => {
         state.error = "Bir sorun oluştu";
         state.loading = false;
-      });
+      })
+      .addCase(GetAllSeenLengthAsync.fulfilled, (state, action) => {
+        state.success = true;
+        state.seenlenght = action.payload.data;
+        state.loading = false;
+      })
+      .addCase(GetAllSeenLengthAsync.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(GetAllSeenLengthAsync.rejected, (state, action) => {
+        state.error = "Bir sorun oluştu";
+        state.loading = false;
+      })
   },
 });
 

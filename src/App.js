@@ -15,6 +15,7 @@ import Terms from "./Pages/Terms";
 import UserRegister from "./User/UserRegister";
 import ForgotPassword from "./User/ForgotPassword";
 import ResetPassword from "./User/ResetPassword";
+import UserPage from "./User/UserPage";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
           <Route path="/controlpanel/*" element={<ControlPanel />} />
           <Route path="/forgotpassword" element={<ForgotPassword/>} />
           <Route path="/resetpassword/:token" element={<ResetPassword/>}/>
+          <Route path="/userpage/:id" element ={<UserPage/>}/>
         </Routes>
 
       </BrowserRouter>

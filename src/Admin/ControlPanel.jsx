@@ -8,9 +8,14 @@ import HelpRequests from "./HelpRequests";
 import TopBar from "../Bars/TopBar";
 import UpdateSiteSettings from "./UpdateSiteSettings";
 import UpdateFaq from "./UpdateFaq";
+import UserPage from "../User/UserPage";
+import { useDispatch, useSelector } from "react-redux";
+import { GetAllSeenLengthAsync } from "../Api/ChartData/ChartSlice";
 
 function ControlPanel() {
   const user = JSON.parse(localStorage.getItem("user"));
+  const allseen = useSelector((state) => state.chardata.seenlenght)
+  const dispatch = useDispatch()
   const [selected, setSelect] = useState("/");
   const handleActiveLink = (select) => {
     setSelect(select);
@@ -18,14 +23,18 @@ function ControlPanel() {
   const domain = window.location.href;
   const dom2 = domain.split("/controlpanel/");
   useEffect(() => {
+    dispatch(GetAllSeenLengthAsync())
     setSelect(dom2[1]);
-    console.log(dom2[1]);
-  },[])
+  },[dispatch])
   return (
     <>
       <TopBar />
       <div className="control-panel">
         <div className="site-details-faq">
+          <div className="allseens-length">
+          <span>{allseen}</span>
+          <h4>Toplam Görüntülenme</h4>
+          </div>
           <div className="request-navbar">
             <Link
               className={
@@ -82,6 +91,17 @@ function ControlPanel() {
             </Link>
             <Link
               className={
+                selected === "users"
+                  ? "cp-navbar-item-selected"
+                  : "cp-navbar-item"
+              }
+              onClick={() => handleActiveLink("users")}
+              to="/controlpanel/users"
+            >
+              Tüm Kullanıcılar
+            </Link>
+            <Link
+              className={
                 selected === "settings"
                   ? "cp-navbar-item-selected"
                   : "cp-navbar-item"
@@ -112,6 +132,8 @@ function ControlPanel() {
             <Route path="/allfaq" element={<AllFaq />} />
             <Route path="/faqs/update/:id" element={<UpdateFaq />} />
             <Route path="/settings" element={<UpdateSiteSettings />} />
+            <Route path="/users" element={<AllUsers/>}  />
+            <Route path="/user/:id" element={<UserPage/>}  />
           </Routes>
         </div>
       </div>

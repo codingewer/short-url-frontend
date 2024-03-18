@@ -8,11 +8,7 @@ import {
   GetSiteDataBySiteName,
   UpdateSiteDataBySiteName,
 } from "../Api/Settings/SettingsSlice";
-import {
-  EditorState,
-  convertToRaw,
-  ContentState,
-} from "draft-js";
+import { EditorState, convertToRaw, ContentState } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { Editor } from "react-draft-wysiwyg";
 import draftToHtml from "draftjs-to-html";
@@ -51,6 +47,8 @@ function UpdateSiteSettingsForm() {
         TermsConditions: sitedata.TermsConditions,
         RevenuePerClick: sitedata.RevenuePerClick,
         WithdrawnBalance: sitedata.WithdrawnBalance,
+        ReChapchaCode: sitedata.ReChapchaCode,
+        SmtpMail: sitedata.SmtpMail,
       });
   }, [status]);
 
@@ -63,6 +61,9 @@ function UpdateSiteSettingsForm() {
       AdClient: "",
       RevenuePerClick: 0.1,
       WithdrawnBalance: 0.0,
+      ReChapchaCode: "",
+      SmtpMail: "",
+      SmtpPassword: "",
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
@@ -107,7 +108,7 @@ function UpdateSiteSettingsForm() {
       style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
     >
       {loading && <img className="loading-icon" src={loadingico} alt="" />}
-      {!status && error && <div style={{color:"red"}} >{error}</div>}
+      {!status && error && <div style={{ color: "red" }}>{error}</div>}
       <div>
         <div className="editors-btns">
           <button onClick={() => ChangeEditorData(data.AboutUs, "ABOUTUS")}>
@@ -185,6 +186,38 @@ function UpdateSiteSettingsForm() {
         UpdateSiteSettingsForm.touched.WithdrawnBalance ? (
           <div>{UpdateSiteSettingsForm.errors.WithdrawnBalance}</div>
         ) : null}
+        <label htmlFor="ReChapchaCode">ReCaptcha Kodu</label>
+        <input
+          className="cpupdate-inputs"
+          type="text"
+          name="ReChapchaCode"
+          onChange={UpdateSiteSettingsForm.handleChange}
+          value={UpdateSiteSettingsForm.values.ReChapchaCode}
+        />
+        {UpdateSiteSettingsForm.errors.ReChapchaCode &&
+        UpdateSiteSettingsForm.touched.ReChapchaCode ? (
+          <div>{UpdateSiteSettingsForm.errors.ReChapchaCode}</div>
+        ) : null}
+        <label htmlFor="SmtpMail">SMTP Mail</label>
+        <input
+          className="cpupdate-inputs"
+          type="text"
+          name="SmtpMail"
+          onChange={UpdateSiteSettingsForm.handleChange}
+          value={UpdateSiteSettingsForm.values.SmtpMail}
+        />
+        <label htmlFor="SmtpPassword">SMTP Şifresi</label>
+        <input
+          className="cpupdate-inputs"
+          type="password"
+          name="SmtpPassword"
+          onChange={UpdateSiteSettingsForm.handleChange}
+          value={UpdateSiteSettingsForm.values.SmtpPassword}
+        />
+        <br />
+        <br />
+        <br />
+
         <button disabled={loading} className="form-btn" type="submit">
           Güncelle
         </button>

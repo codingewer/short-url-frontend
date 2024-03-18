@@ -1,0 +1,22 @@
+.user-page{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+}
+
+.user-details-card{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 48px;
+    color: gray;
+    padding: 0px 24px 48px 24px;
+}
+
+.user-manage-btns{
+   width: 100%; 
+   display: flex;
+   align-items: center;
+   gap: 12px;
+   justify-content: center;
+}

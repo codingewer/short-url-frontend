@@ -13,8 +13,8 @@ export const NewUserAsync = createAsyncThunk(
 
 export const GetUserByIDAsync = createAsyncThunk(
   "users/GetUserByUserNameAsync",
-  async () => {
-    const res = await axios.get(`${apiUrl}/user/getbyId`, {
+  async (id) => {
+    const res = await axios.get(`${apiUrl}/user/getbyId/`+ id, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -69,17 +69,55 @@ export const ResetPasswordAsync = createAsyncThunk(
   }
 );
 
+export const GetAllUserAsync = createAsyncThunk(
+  "user/GetAllUserAsync",
+  async () => {
+    const res = await axios.get(`${apiUrl}/user/getall`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return res.data;
+  }
+)
+
+export const DeleteUserByAdminAsync = createAsyncThunk(
+  "user/DeleteUserByAdminAsync",
+  async (id) => {
+    const res = await axios.delete(`${apiUrl}/user/deletebyadmin/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return res.data;
+  }
+);
+
+export const UpdateUserBlockedAsync = createAsyncThunk(
+  "user/UpdateUserBlockedAsync",
+  async (id) => {
+    const res = await axios.put(`${apiUrl}/user/updateblocked/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return res.data;
+  })
+
 const UserSlice = createSlice({
   name: "users",
   initialState: {
     loading: false,
     error: null,
+    users:[],
     userrealtime: null,
     success: false,
     logined:false,
     message: null,
+    deleted : false
   },
-  reducers: {},
+  reducers: {
+  },
   extraReducers: (builder) => {
     builder
       .addCase(LoginAsync.fulfilled, (state, action) => {
@@ -182,6 +220,48 @@ const UserSlice = createSlice({
         state.success = false;
         state.loading = false;
         state.error = "Bir hata oluştu şifre yenileme linki geçersiz";
+      })
+      .addCase(GetAllUserAsync.fulfilled, (state, action) => {
+        state.success = true;
+        state.loading = false;
+        state.users = action.payload;
+      })
+      .addCase(GetAllUserAsync.pending, (state, action) => {
+        state.loading = true;
+        state.success = false;
+      })
+      .addCase(GetAllUserAsync.rejected, (state, action) => {
+        state.success = false;
+        state.loading = false;
+        state.error = "Bir hata oluştu";
+      })
+      .addCase(DeleteUserByAdminAsync.fulfilled, (state, action) => {
+        state.success = true;
+        state.loading = false;
+        state.deleted = true;
+      })
+      .addCase(DeleteUserByAdminAsync.pending, (state, action) => {
+        state.loading = true;
+        state.success = false;
+      })
+      .addCase(DeleteUserByAdminAsync.rejected, (state, action) => {
+        state.success = false;
+        state.loading = false;
+        state.error = "Bir hata oluştu";
+      })
+      .addCase(UpdateUserBlockedAsync.fulfilled, (state, action) => {
+        state.success = true;
+        state.loading = false;
+        state.message= "İşlem Başarılı"
+      })
+      .addCase(UpdateUserBlockedAsync.pending, (state, action) => {
+        state.loading = true;
+        state.success = false;
+      })
+      .addCase(UpdateUserBlockedAsync.rejected, (state, action) => {
+        state.success = false;
+        state.loading = false;
+        state.error = "Bir hata oluştu";
       });
   },
 });

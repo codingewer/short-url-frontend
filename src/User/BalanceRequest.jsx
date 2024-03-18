@@ -43,7 +43,7 @@ function BalanceRequest(props) {
   const formik = useFormik({
     initialValues: {
       amount: 0,
-      option:"banka",
+      option: "banka",
     },
     onSubmit: async (values) => {
       dispatch(NewBalanceRequestAsync(values));
@@ -115,8 +115,7 @@ function BalanceRequest(props) {
       });
       paparaImfoForm.setFieldValue("PaparaNo", user.PaparaNo.PaparaNo);
     }
-    console.log(user.PaparaNo);
-  }, [dispatch, user0]);
+  }, [user0]);
   return (
     <div className="balance-container">
       <div className="balance-info">
@@ -149,27 +148,41 @@ function BalanceRequest(props) {
           </span>
         )}
         <label>Para Çekme Seçeneği</label>
-         <select
+        {
+         usersuccess && user.BalanceInfo.userId !== user.ID  && user.PaparaNo.UserId  !== user.ID ? (
+            <p
+            style={{color:"red", textAlign:"center"}}
+            >
+              Banka veya Papara bilgileriniz bulunmamaktadır lütfen ekleyin. Aksi taktirde paranızı çekemezsiniz!
+              <a href="#detailsforms-forbalance">  Burdan Ekleyin</a>
+            </p>
+          ) : null
+        }
+        <select
           className="chart-select"
           name="option"
           value={formik.values.option}
           onChange={formik.handleChange}
-          >
-          <option value="banka">Banka</option>
-          <option value="papara">Papara</option>
+        >
+          {usersuccess && user.BalanceInfo.userId === user.ID ? (
+            <option value="banka">Banka</option>
+          ) : null}
+          {usersuccess && user.PaparaNo.UserId === user.ID ? (
+            <option value="papara">Papara</option>
+          ) : null}
         </select>
         <label>Miktar</label>
         <div className="balance-input-btn">
-        <input
-          disabled={balanceW < balanceM ? true : false}
-          value={formik.values.amount}
-          name="amount"
-          onChange={formik.handleChange}
-          type="number"
-          placeholder="Çekmek istediğiniz tutar"
+          <input
+            disabled={balanceW < balanceM ? true : false}
+            value={formik.values.amount}
+            name="amount"
+            onChange={formik.handleChange}
+            type="number"
+            placeholder="Çekmek istediğiniz tutar"
           />
-        <button type="submit">Çek</button>
-          </div>
+          <button type="submit">Çek</button>
+        </div>
       </form>
 
       <div className="balance-requests">
@@ -193,7 +206,7 @@ function BalanceRequest(props) {
             </div>
           ))}
       </div>
-      <div className="togle-form-btns">
+      <div id="detailsforms-forbalance" className="togle-form-btns">
         <div className="form-div-balancereguests-info">
           <div className="btn-container">
             <span>Banka Bilgileri</span>
@@ -263,7 +276,7 @@ function BalanceRequest(props) {
         {paparsuccess ? (
           <span style={{ color: "green" }}>{paparamessage}</span>
         ) : (
-          <span style={{ color: "red" }}>{paparamessage}</span>
+          <span style={{ color: "red" }}>{paparaerror}</span>
         )}
         <form
           style={{ display: "none" }}

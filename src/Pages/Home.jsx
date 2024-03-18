@@ -33,7 +33,6 @@ function Home() {
   useEffect(() => {
     dispatch(GetSiteDataBySiteName());
   },[dispatch]);
-  console.log(sitedata);
   return (
     //sayfa tasarımı
     <>
