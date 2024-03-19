@@ -14,7 +14,7 @@ function ShortenedUrl() {
   const dispatch = useDispatch();
   const url = useSelector((state) => state.url.url);
   const success = useSelector((state) => state.url.success);
-  const loading = useSelector((state) => state.url.loading);
+  const error = useSelector((state)=>state.url.error);
 
   const currentURL = window.location.href;
   const domain = currentURL.split("r/" + adIndex)[0];
@@ -49,6 +49,9 @@ function ShortenedUrl() {
     if ( counter === 0 && success) {
       window.location.href = url.OrginalUrl;
     }
+    if (counter < 0){
+      setStarted(false);
+      setCounter(0);}
   }, [success, counter]);
 
   const handleStart = () => {
@@ -91,7 +94,7 @@ const urlfaqssuccess = useSelector((state) => state.urlfaqs.success);
 
   DetectAdblock((detected) => {
     if( detected ){
-       alert("Reklam engelleyiciniz kapatın")
+       alert("Reklam engelleyicinizi kapatın")
        setAdblockDedected(true);
     }else{
         console.log("adblock not detected");
@@ -104,6 +107,7 @@ const urlfaqssuccess = useSelector((state) => state.urlfaqs.success);
         <div className="ad-content">
           <span>{url?.Description}</span>
           <AdsComponent />
+          {success ? null : <span  style={{color:"red"}} >{error}</span>}
           {adblockDedected && <span style={{color:"red"}}>Reklam engelleyiciniz kapatın</span>}
           <div style={{ display: "flex", gap: 12 }}>
             <button disabled={adblockDedected}  className="skip-btn" onClick={handleSkip}>

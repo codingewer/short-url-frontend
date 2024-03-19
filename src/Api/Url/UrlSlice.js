@@ -157,6 +157,9 @@ const UrlSlice = createSlice({
       .addCase(GetUrlByShortenedUrlAsync.rejected, (state, action) => {
         state.success = false;
         state.loading = false;
+        action.error.code === "ERR_BAD_REQUEST"
+          ? (state.error = "Çok Fazla istek gönderdiniz lütfen daha sonra tekrar deneyiniz.")
+          : (state.error = "Bir hata oluştu");
       })
       .addCase(UpdateUrlByIdAsync.fulfilled, (state, action) => {
         state.success = true;

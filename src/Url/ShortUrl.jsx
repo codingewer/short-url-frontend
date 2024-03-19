@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 import "./ShortUrl.css";
 import React, { useEffect } from "react";
 import sendicon from "../assets/icons/send-icon.png";
@@ -35,7 +35,7 @@ function ShortUrl() {
   const usersuccess = useSelector((state) => state.users.success);
   const user0 = useSelector((state) => state.users.userrealtime);
   const user = usersuccess ? user0 : {};
-  const [showLimit, setShowLimit] = useState(25);
+  const [showLimit, setShowLimit] = useState(10);
 
   const CopyContent = (urll) => {
     navigator.clipboard
@@ -76,11 +76,29 @@ function ShortUrl() {
     dispatch(GetUrlByCreatedByAsync(user.ID));
   }, [usersuccess]);
 
-  const displayItems = items !== null ? items : [];
-  console.log(user)
+  const [filtereUrls, setFiltereUrls] = useState([]);
+  var filteredurls = [];
+  const handleSearch = (searchTerm) => {
+    filteredurls = items.filter(
+      (url) =>
+        url.OrginalUrl.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        url.ShortenedUrl.includes(searchTerm.toLowerCase())
+    );
+    setFiltereUrls(filteredurls);
+
+  };
+  useEffect(() => {
+    setFiltereUrls(items);
+  }, [items]);
+
+  console.log(items)
   return (
     <div className="short-url-container">
-        { user.Blocked === true && <span style={{color:"red", textAlign:"center", fontWeight:600}} >Engellendiniz link kısaltamazsınız</span>}
+      {user.Blocked === true && (
+        <span style={{ color: "red", textAlign: "center", fontWeight: 600 }}>
+          Engellendiniz link kısaltamazsınız
+        </span>
+      )}
       <form className="short-url-form" onSubmit={formik.handleSubmit}>
         {status ? (
           <span style={{ color: "green", textAlign: "center" }}>{message}</span>
@@ -134,8 +152,13 @@ function ShortUrl() {
       <span className="contents-titles">Son Linkler</span>
       {urlgetloading && <img src={loadingicon} className="loading-icon" />}
 
-      {displayItems.length !== 0 && (
+      {items?.length !== 0 && (
         <div className="last-shortened-urls">
+          <input
+          placeholder="Ara(orneksite.com)"
+          className="searchurlinput"
+          
+          type="text" onChange={(e) => handleSearch(e.target.value)} />
           <table>
             <thead>
               <tr>
@@ -148,7 +171,7 @@ function ShortUrl() {
               </tr>
             </thead>
             <tbody>
-              {displayItems.slice(0, showLimit ).map((item, index) => (
+              {filtereUrls?.slice(0, showLimit).map((item, index) => (
                 <tr key={index}>
                   <td style={{ width: 100 }}>{index + 1}</td>
                   <td style={{ width: 400 }}>
@@ -171,8 +194,8 @@ function ShortUrl() {
                       {item.OrginalUrl}
                     </a>
                   </td>
-                  <td style={{ width: 200 }}>{item.ClickCount}</td>
-                  <td style={{ width: 200 }}>{parseInt(item.ClickEarning)}</td>
+                  <td style={{ width: 200 }}>{item?.ClickCount}</td>
+                  <td style={{ width: 200 }}>{parseInt(item?.ClickEarning)}</td>
 
                   <td style={{ width: 200 }}>
                     <div
@@ -185,14 +208,14 @@ function ShortUrl() {
                       <button
                         className="card-btns"
                         type="button"
-                        onClick={() => CopyContent(item.ShortenedUrl)}
+                        onClick={() => CopyContent(item?.ShortenedUrl)}
                       >
                         <img src={copyicon} alt="Kopyala" />
                       </button>
                       <button
                         type="button"
                         className="card-btns"
-                        onClick={() => DeleteContent(item.ID)}
+                        onClick={() => DeleteContent(item?.ID)}
                       >
                         <img src={trashicon} alt="Sil" />
                       </button>
@@ -208,10 +231,15 @@ function ShortUrl() {
               ))}
             </tbody>
           </table>
-          {
-            showLimit < displayItems.length &&
-          <button className='show-more-btn' onClick={hanldeShowMore} type='button'>Daha Falza Göster{displayItems.length}</button>
-          }
+          {showLimit < filtereUrls?.length && (
+            <button
+              className="show-more-btn"
+              onClick={hanldeShowMore}
+              type="button"
+            >
+              Daha Falza Göster{filtereUrls.length}
+            </button>
+          )}
         </div>
       )}
     </div>
