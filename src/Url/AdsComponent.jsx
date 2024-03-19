@@ -17,6 +17,7 @@ const AdsComponent = () => {
   }, [sitedata]);
 
   const loadAdScript = () => {
+    (adsbygoogle = window.adsbygoogle || []).push({})
     const script = document.createElement("script");
     script.src =
       "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
@@ -51,6 +52,7 @@ const AdsComponent = () => {
       >
       Reklam
       </ins>
+      
       }
     </>
   );
