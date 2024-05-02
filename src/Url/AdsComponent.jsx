@@ -15,7 +15,7 @@ const AdsComponent = () => {
   useEffect(() => {
     loadAdScript();
   }, [sitedata]);
-
+var adsbygoogle
   const loadAdScript = () => {
     (adsbygoogle = window.adsbygoogle || []).push({})
     const script = document.createElement("script");

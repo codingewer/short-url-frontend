@@ -1,90 +1,140 @@
 import { useDispatch, useSelector } from "react-redux";
 import "./Home.css";
-import economyicon from "../assets/icons/economy.png";
-import freeicon from "../assets/icons/free-pay.png";
-import quickicon from "../assets/icons/quick-start.png";
-import { Link } from "react-router-dom";
+import economyicon from "../assets/imgs/undraw_investing_re_bov7 1.svg";
+import freeicon from "../assets/imgs/undraw_share_link_re_54rx 1.svg";
+import quickicon from "../assets/imgs/undraw_maker_launch_re_rq81 1.svg";
+import bgbanner from "../assets/imgs/undraw_link_shortener_mvf6 1.svg";
 import Footer from "../Bars/Footer";
 import TopBar from "../Bars/TopBar";
 import { useEffect } from "react";
 import { GetSiteDataBySiteName } from "../Api/Settings/SettingsSlice";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 function Home() {
   const sitedata = useSelector((state) => state.settings.data);
   const dispatch = useDispatch();
   const wwu = [
     {
-      title: "Başlaması çok kolay",
+      title: "Kolayca kaydol!",
       subTitle: `Hemen kaydolun ve kısalttığınız linklere basıldıkça para
       kazanın`,
       iconUrl: quickicon,
     },
     {
-      title: "Herhangi bir ücret ödemenize gerek yok!",
+      title: "Tamamen üctretsiz!",
       subTitle: `Kayıt olurken veya link kısaltırken herhangi bir ücret ödemenize gerek yok!`,
       iconUrl: freeicon,
     },
     {
-      title: "Linklerinizi kısaltın ve pasif gelir elde edin!",
-      subTitle: `Linklerinizi kısaltıp insanları bu linke yönlendirmeniz yeterli! Kazancınızı almak için IBAN bilgisi girip bakiyenizden çekmek istediğiniz miktarı belirtmeniz yeterli`,
+      title: "Link geçmek daha kolay!",
+      subTitle: `Piyasadaki diğer sitelere göre daha kolay link geçme sayfası.`,
       iconUrl: economyicon,
     },
   ];
   useEffect(() => {
+    Aos.init({ duration: 2000 });
     dispatch(GetSiteDataBySiteName());
-  },[dispatch]);
+  }, []);
   return (
     //sayfa tasarımı
     <>
       <TopBar />
       <div className="home">
-        <div className="home-bg-banner"></div>
-        <div className="home-content">
-          <div className="home-container">
-            <div className="get-started">
-              <div className="get-started-texts">
-                <span className="gs-title">Hızlı kolay ve anlışılır</span>
-                <span className="gs-sub-title">
-                  Linklerini kısalt paylaş linklerle reklam göster ve
-                  reklamlardan kazanç elde et hem başlaması çok kolay!
-                </span>
+        <div className="home-banner">
+          <div className="home-banner-inner">
+            <div className="frame-parent">
+              <div className="link-shortener-parent">
+                <div className="link-shortener">
+                  <h1 className="link-ksaltn">Link kısaltın,</h1>
+                  <h1 className="para-kazann">Para Kazanın!</h1>
+                </div>
+                <div className="linklerinizi-ksaltn-ksaltt">
+                  Linklerinizi kısaltın, kısalttığınız linke tıklandıkça pasif
+                  gelir elde edin.
+                </div>
               </div>
-              <div className="gs-links">
-                <a href="#work-with-us">Daha fazla bilgi edinin</a>
-                <Link className="gs-login-link" to="/login">
-                  Şimdi başlayın
-                </Link>
-              </div>
-            </div>
-            <div id="work-with-us" className="work-with-us">
-              <span className="contents-titles">Bizimle çalışın</span>
-              <div
-                style={{
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                  flexWrap: "wrap",
-                  gap: 48,
-                }}
-              >
-                {wwu.map((item, index) => (
-                  <div key={index} className="wwu-card">
-                    <div className="wwu-card-icon">
-                      <img src={item.iconUrl} alt={item.title} />
-                    </div>
-                    <div className="wwu-content">
-                      <span className="wwu-title">{item.title}</span>
-                      <span className="wwu-sub-title">{item.subTitle}</span>
-                    </div>
-                  </div>
-                ))}
+              <div className="login-barner-btn-parent">
+                <button className="login-barner-btn">Giriş Yap</button>
+                <button className="register-barner-btn">
+                  Ücretsiz Kayıt Ol
+                </button>
               </div>
             </div>
           </div>
+          <img
+            className="undraw-link-shortener-mvf6-1-icon"
+            loading="lazy"
+            alt=""
+            src={bgbanner}
+          />
         </div>
-
-        {/*!logined && <Navigate to="/home" />}
-      {status && <Navigate to="/home" />*/}
+        <div data-aos="fade-up" className="wwu-cards-container">
+          {wwu.map((item, index) => (
+            <div key={index} className="wwu-card-center">
+              <div className="tamamen-cretsiz-wrapper">
+                <h2 className="tamamen-cretsiz">{item.title}</h2>
+              </div>
+              <div className="registration">
+                <div className="balamak-ok-kolay">{item.subTitle}</div>
+              </div>
+              <img
+                className="undraw-freelancer-re-irh4-1-icon"
+                loading="lazy"
+                alt=""
+                src={item.iconUrl}
+              />
+            </div>
+          ))}
+        </div>
+        <div data-aos="fade-up" className="stats">
+          <section className="stats1">
+            <div className="stats-parent">
+              <div className="container">
+                <b className="b">100+</b>
+              </div>
+              <div className="sub-title">Yayıncı</div>
+            </div>
+            <div className="stats-parent">
+              <div className="container">
+                <b className="b">2000+</b>
+              </div>
+              <span className="sub-title">Kısaltılan Link</span>
+            </div>
+            <div className="stats-parent">
+              <div className="container">
+                <b className="b">45000+</b>
+              </div>
+              <div className="sub-title">Link Tıklanması</div>
+            </div>
+          </section>
+        </div>
+        <div data-aos="fade-up" className="hw-cards-container">
+          <div className="hw-cards">
+            <div className="hw-card">
+              <b className="hw-card-title">Hangi Ödeme Yöntemleri Var?</b>
+              <span className="hw-card-sub">
+                Ödemelerinizi hesabınıza tanımladığınız banka ya da Papara
+                hesabınıza kolaylıkla çekebilirsiniz.
+              </span>
+            </div>
+            <div className="hw-card">
+              <b className="hw-card-title">Hangi Ödeme Yöntemleri Var?</b>
+              <span className="hw-card-sub">
+                Ödemelerinizi hesabınıza tanımladığınız banka ya da Papara
+                hesabınıza kolaylıkla çekebilirsiniz.
+              </span>
+            </div>
+            <div className="hw-card">
+              <b className="hw-card-title">Hangi Ödeme Yöntemleri Var?</b>
+              <span className="hw-card-sub">
+                Ödemelerinizi hesabınıza tanımladığınız banka ya da Papara
+                hesabınıza kolaylıkla çekebilirsiniz.
+              </span>
+            </div>
+          </div>
+          <button className="register-hw-btn">Ücretsiz Kayıt Ol</button>
+        </div>
       </div>
       <Footer />
     </>

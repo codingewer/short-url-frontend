@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./TopBar.css";
 import logo from "../assets/logo.jpeg";
+import userico from "../assets/icons/icons8-login-50 1.svg";
+import signinico from "../assets/icons/icons8-user-48 1.svg";
+import menuico from "../assets/icons/menu-ico.svg";
 import { Link } from "react-router-dom";
 
 function TopBar() {
@@ -31,6 +34,7 @@ function TopBar() {
   };
   const logined = Boolean(localStorage.getItem("logined"));
   return (
+    /*
     <div>
       <div
         className={scrollPosition > 300 ? "window-scrolled navbar" : "navbar"}
@@ -88,6 +92,43 @@ function TopBar() {
             </Link>
           </div>
         </div>
+      </div>
+    </div>*/
+    <div className="top-bar-container">
+      <div className="top-bar">
+        <img className="logo-1-icon" loading="lazy" alt="" src={logo} />
+        <div className="component-1">
+          <div className="component-1-child" />
+          <div className="component-1-item" />
+          <div className="component-1-inner" />
+        </div>
+        <div className="top-bar-inner">
+          <div className="frame-parent-top">
+            <div className="deme-kantlar-wrapper">
+              <b className="deme-kantlar">Ödeme Kanıtları</b>
+            </div>
+            <div className="deme-kantlar-container">
+              <b className="deme-kantlar1">Ödeme Kanıtları</b>
+            </div>
+            <div className="button-bar">
+              <button className="bar-btn">
+                <img className="icons8-login-50-1" alt="" src={userico} />
+                <div className="giri-yap-wrapper">
+                  <div className="giri-yap">Giriş Yap</div>
+                </div>
+              </button>
+              <button className="bar-btn1">
+                <img className="icons8-user-48-1" alt="" src={signinico} />
+                <div className="kayt-ol-wrapper">
+                  <div className="kayt-ol">Kayıt Ol</div>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+        <button className="menu-btn" onClick={handleTogleMenu}>
+          <img className="menu-ico" alt="menu" src={menuico} />
+        </button>
       </div>
     </div>
   );
