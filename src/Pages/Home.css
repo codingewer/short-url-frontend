@@ -5,7 +5,9 @@
   align-items: center;
   min-height: 100vh;
   padding-top: 104px;
-  gap: 48px;
+  gap: 144px;
+  font-family: "Lexend", sans-serif;
+
 }
 
 .link-ksaltn,
@@ -383,7 +385,6 @@
 }
 
 .hw-cards {
-  padding-top: 48px;
   width: 100%;
   display: flex;
   gap: 48px;
@@ -419,6 +420,53 @@
   gap: 48px;
 }
 
+.gify-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gify-card {
+  width: 70%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.gify-texts {
+  width: 50%;
+  display: flex;
+  gap: 24px;
+  flex-direction: column;
+}
+
+.gify-sub-title {
+  font-size: 24px;
+  color: var(--color-darkslategray);
+  text-align: left;
+}
+
+.gify-title {
+  color: var(--color-1);
+  font-size: 48px;
+  font-weight: 700;
+}
+
+.gify-media{
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.gify-img{
+  width: 100%;
+  height: auto;
+}
+
+
 @media screen and (max-width: 900px) {
   .stats1 {
     flex-wrap: wrap;
@@ -433,6 +481,7 @@
   }
 
   .hw-card {
+    
     width: calc(100% - 48px);
 
   }
@@ -446,6 +495,47 @@
     max-width: 80%;
 
   }
+
+  .gify-card {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 48px;
+  }
+  
+  .gify-texts {
+    width: 90%;
+    display: flex;
+    gap: 24px;
+    text-align: center;
+    flex-direction: column;
+  }
+  
+  .gify-sub-title {
+    font-size: 18px;
+    color: var(--color-darkslategray);
+    text-align: center;
+  }
+  
+  .gify-title {
+    color: var(--color-1);
+    font-size: 36px;
+    font-weight: 700;
+  }
+  
+  .gify-media{
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .gify-img{
+    width: 100%;
+    height: auto;
+  }
+  
 
 
 }

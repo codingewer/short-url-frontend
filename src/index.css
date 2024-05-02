@@ -7,19 +7,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@600;700&display=swap");
-html {
-  font-size: undefined;
-}
-body {
-  margin: 0;
-  line-height: normal;
-}
+
 :root {
   /* fonts */
-  --font-inter: Inter;
-
   /* font sizes */
   --font-size-sm: 14px;
 

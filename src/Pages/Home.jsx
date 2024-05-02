@@ -4,12 +4,14 @@ import economyicon from "../assets/imgs/undraw_investing_re_bov7 1.svg";
 import freeicon from "../assets/imgs/undraw_share_link_re_54rx 1.svg";
 import quickicon from "../assets/imgs/undraw_maker_launch_re_rq81 1.svg";
 import bgbanner from "../assets/imgs/undraw_link_shortener_mvf6 1.svg";
+import buffer from "../assets/imgs/undraw_buffer_wq43 1.svg";
 import Footer from "../Bars/Footer";
 import TopBar from "../Bars/TopBar";
 import { useEffect } from "react";
 import { GetSiteDataBySiteName } from "../Api/Settings/SettingsSlice";
 import Aos from "aos";
 import "aos/dist/aos.css";
+import homegif from "../assets/imgs/home-png.png";
 
 function Home() {
   const sitedata = useSelector((state) => state.settings.data);
@@ -109,6 +111,22 @@ function Home() {
             </div>
           </section>
         </div>
+
+        <div data-aos="fade-up" className="gify-container">
+          <div className="gify-card">
+            <div className="gify-texts">
+              <span className="gify-title">Kullanımı Kolay</span>
+              <span className="gify-sub-title">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                Tenetur fugit aperiam, maxime dignissimos nulla velit delectus
+                quia debitis incidunt vitae.
+              </span>
+            </div>
+            <div className="gify-media">
+              <img className="gify-img" src={homegif} alt="gif" />
+            </div>
+          </div>
+        </div>
         <div data-aos="fade-up" className="hw-cards-container">
           <div className="hw-cards">
             <div className="hw-card">
@@ -134,6 +152,21 @@ function Home() {
             </div>
           </div>
           <button className="register-hw-btn">Ücretsiz Kayıt Ol</button>
+        </div>
+        <div data-aos="fade-up" className="gify-container">
+          <div className="gify-card">
+            <div className="gify-media">
+              <img className="gify-img" src={buffer} alt="linklerine değer kat" />
+            </div>
+            <div className="gify-texts">
+              <span className="gify-title">Linklerine Değer Kat!</span>
+              <span className="gify-sub-title">
+                Kolaylıkla kayıt olup linklerinizi değerlendirebilirisiniz. 1000
+                tıklanma başına 150 TL gelir elde edin! Paylaştığınız linkler
+                size pasif gelir sağlasın.
+              </span>
+            </div>
+          </div>
         </div>
       </div>
       <Footer />
