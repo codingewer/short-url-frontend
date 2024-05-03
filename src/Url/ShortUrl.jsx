@@ -85,13 +85,12 @@ function ShortUrl() {
         url.ShortenedUrl.includes(searchTerm.toLowerCase())
     );
     setFiltereUrls(filteredurls);
-
   };
   useEffect(() => {
     setFiltereUrls(items);
   }, [items]);
 
-  console.log(items)
+  console.log(items);
   return (
     <div className="short-url-container">
       {user.Blocked === true && (
@@ -99,6 +98,7 @@ function ShortUrl() {
           Engellendiniz link kısaltamazsınız
         </span>
       )}
+      <span className="form-title">Linkinizi kısaltın</span>
       <form className="short-url-form" onSubmit={formik.handleSubmit}>
         {status ? (
           <span style={{ color: "green", textAlign: "center" }}>{message}</span>
@@ -106,19 +106,20 @@ function ShortUrl() {
           <span style={{ color: "red", textAlign: "center" }}>{error}</span>
         )}
         {loading && <img src={loadingicon} className="loading-icon" />}
-        <span className="form-title">Linkinizi kısaltın</span>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 14,
-            width: "100%",
-            alignItems: "center",
-          }}
-        >
+        <input
+          className="url-input shorturl-form-input"
+          type="text"
+          name="OrginalUrl"
+          id="OrginalUrl"
+          onChange={formik.handleChange}
+          value={formik.values.OrginalUrl}
+          placeholder="Url(zorunlu)"
+        />
+        <div className="inputs-and-btn">
           <input
             type="text"
             name="ShortenedUrl"
+            className="shorturl-form-input sui1"
             onChange={formik.handleChange}
             value={formik.values.ShortenedUrl}
             placeholder="Başlık(opsiyonel)"
@@ -126,20 +127,10 @@ function ShortUrl() {
           <input
             type="text"
             name="Description"
+            className="shorturl-form-input sui1"
             onChange={formik.handleChange}
             value={formik.values.Description}
             placeholder="Açıklama(opsiyonel)"
-          />
-        </div>
-        <div className="inputs-and-btn">
-          <input
-            className="url-input"
-            type="text"
-            name="OrginalUrl"
-            id="OrginalUrl"
-            onChange={formik.handleChange}
-            value={formik.values.OrginalUrl}
-            placeholder="Url(zorunlu)"
           />
           <button className="form-short-btn" type="submit">
             <img src={sendicon} alt="" />
@@ -149,16 +140,17 @@ function ShortUrl() {
           <span className="error-message">{formik.errors.OrginalUrl}</span>
         ) : null}
       </form>
-      <span className="contents-titles">Son Linkler</span>
+      <span className="content-title">Son Linkler</span>
       {urlgetloading && <img src={loadingicon} className="loading-icon" />}
 
       {items?.length !== 0 && (
         <div className="last-shortened-urls">
           <input
-          placeholder="Ara(orneksite.com)"
-          className="searchurlinput"
-          
-          type="text" onChange={(e) => handleSearch(e.target.value)} />
+            placeholder="Ara(orneksite.com)"
+            className="searchurlinput"
+            type="text"
+            onChange={(e) => handleSearch(e.target.value)}
+          />
           <table>
             <thead>
               <tr>

@@ -1,202 +1,206 @@
 .short-url-container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .short-url-form {
-    height: auto;
-    display: flex;
-    justify-content: center;
-    position: relative;
-    height: 300px;
+  height: auto;
+  display: flex;
+  position: relative;
+  width: 100%;
+  padding: 24px;
+  gap: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+  margin-bottom: 48px;
 }
 
-.short-url-form{
-    width: 80%;
-    padding: 24px;
-    gap: 24px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border-radius: 24px;
-    background-color: rgb(255, 255, 255);
+.shorturl-form-input {
+  height: 36px;
+  font-size: 14px;
+  text-align: center;
+  border: 2px solid var(--shadow-color);
+  padding: 6px;
+  border-radius: 12px;
+  background: none;
 }
-
-.short-url-form input {
-    height: 36px;
-    font-size: 14px;
-    text-align: center;
-    border: 2px solid var(--shadow-color);
-    width: 70%;
-    padding: 6px;
-    border-radius: 99px;
-    background: none;
+.url-input {
+  width: calc(100% - 16px);
 }
 
 .short-url-form input:focus {
-    outline: none;
-
+  outline: none;
 }
 
 .form-short-btn {
-    width: 80px;
-    background-color: var(--color-1);
-    display: grid;
-    place-content: center;
-    color: white;
-    border: none;
-    padding: 8px;
-    border-radius: 999px;
-    font-size: 16px;
-    height: 50px;
-    font-weight: 600;
+  width: 80px;
+  background-color: var(--color-1);
+  display: grid;
+  place-content: center;
+  color: white;
+  border: none;
+  padding: 8px;
+  border-radius: 12px;
+  font-size: 16px;
+  height: 50px;
+  font-weight: 600;
 }
 .inputs-and-btn {
-    display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: center
+  color: var(--color-darkslategray);
+  display: flex;
+  width: 100%;
+  gap: 24px;
+  align-items: flex-start;
 }
 
 .form-short-btn img {
-    height: 36px;
-    width: 36px;
+  height: 36px;
+  width: 36px;
 }
-
 
 .short-url-content {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    position: relative;
-    align-items: center;
-    top: 150px;
-    padding-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+  align-items: center;
+  top: 150px;
+  padding-bottom: 50px;
 }
 
-.form-title {
-    font-size: 28px;
+.form-title,
+.content-title {
+  font-size: 36px;
+  font-weight: 600;
+  color: var(--color-darkslategray);
 }
 
 /* Last Shorted*/
 .last-shortened-urls {
-    width: 100%;
-    overflow: scroll;
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    border-collapse: collapse;
-  }
-  table{
-    width: 1190px;
-  }
-  thead, tbody {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-  }
-  tr{
-   width: 100%;
-  }
-  th, td {
-    border-radius: 12px;
-    border: 1px solid var(--shadow-color);
-    padding: 8px;
-    overflow: auto;
-    text-align: center;
-  }
-  
-  th {
-    text-align: center;
-  }
-  
+  width: 100%;
+  overflow: scroll;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  border-collapse: collapse;
+}
+table {
+  min-width: 1500px;
+}
+thead,
+tbody {
+  width: 100%;
+  gap: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+tr {
+  width: 100%;
+}
+th,
+td {
+  border-radius: 12px;
+  border: 1px solid var(--shadow-color);
+  padding: 8px;
+  overflow: scroll;
+  text-align: center;
+}
+
+th {
+  text-align: center;
+}
+
 .card-btns {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-    padding-right: 12px;
-    border: none;
-    background:none;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  padding-right: 12px;
+  border: none;
+  background: none;
 }
 
 .url-name {
-    overflow: hidden;
-    text-decoration: none;
-    color: var(--color-1);
-    font-weight: 600;
-    font-size: 16px
+  overflow: hidden;
+  text-decoration: none;
+  color: var(--color-1);
+  font-weight: 500;
+  font-size: 16px;
 }
 
 .card-btns img {
-    height: 24px;
-    width: auto;
+  height: 24px;
+  width: auto;
 }
 
 .last-shorted-urls::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
-
-.edit-url-form-container{
-    position: relative;
-    width: 700px;
-    background-color: white;;
-    z-index: 99;
-    left: 25%;
-    display: none;
-    border-radius: 12px;
+.edit-url-form-container {
+  position: relative;
+  width: 700px;
+  background-color: white;
+  z-index: 99;
+  left: 25%;
+  display: none;
+  border-radius: 12px;
 }
 
-.edit-url-form-container-close{
-    display: grid;
+.edit-url-form-container-close {
+  display: grid;
 }
 
-.show-more-btn{
-    background: var(--color-1);
-    border:none;
-    padding: 12px;
-    width: 150px;
-    font-weight: 600;
-    color: white;
-    margin-top: 24px;
+.show-more-btn {
+  background: var(--color-1);
+  border: none;
+  padding: 12px;
+  width: 150px;
+  font-weight: 600;
+  color: white;
+  margin-top: 24px;
 }
 
-.searchurlinput{
-    border: 2px solid var(--shadow-color);
-    padding: 12px;
-    margin: 24px;
-    text-align: center;
-    font-size: 16px;
-    font-weight: 500;
-    border-radius: 999px;
+.searchurlinput {
+  color: var(--color-darkslategray);
+  border: 2px solid var(--shadow-color);
+  padding: 12px;
+  margin: 24px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 999px;
 }
 
 @media only screen and (max-width: 1080px) {
-    .inputs-and-btn {
-        flex-direction: column;
-        align-items: center;
-        gap: 12px;
-        position: relative;
-    }
+  .inputs-and-btn {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    position: relative;
+  }
 
-    .short-url-form {
-        height: 300px;
-    }
+  .short-url-form {
+    height: 300px;
+  }
+  .sui1 {
+    width: calc(100% - 16px);
+  }
 }
 
 @media only screen and (min-width: 1080px) {
+  .form-short-btn {
+    position: relative;
+  }
 
-    .form-short-btn {
-        position: absolute;
-        right: 60px;
-    }
+  .sui1 {
+    width: calc(100% / 2 - 72px);
+  }
 
-    .short-url-form input {
-        padding-right: 72px;
-    }
-
+  .short-url-form input {
+  }
 }

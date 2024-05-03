@@ -61,7 +61,7 @@ function Profile() {
                   : "navlink"
               }
             >
-              link Kısalt
+              Link Kısalt
             </Link>
             <Link
               to="/dashboard/balance"

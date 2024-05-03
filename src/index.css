@@ -17,6 +17,8 @@ body {
   /* Colors */
   --color-white: #fff;
   --color-1: #7215fc;
+  --color-2:#B888FF;
+  --shadow-color:rgba(184, 136, 255, 0.25);
   --color-darkslategray: #464a5f;
 
   /* Gaps */
@@ -40,19 +42,11 @@ body {
     --font-size-32xl: 51px;
     --font-size-19xl: 38px;
   
-    /* Colors */
-    --color-white: #fff;
-    --color-1: #7215fc;
-  
     /* Gaps */
     --gap-5xl: 24px;
   
     /* Border radiuses */
     --br-xs: 12px;
-
-    /* Colors */
-    --color-1: #7215fc;
-  
     /* Paddings */
     --padding-7xs: 6px;
 
