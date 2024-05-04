@@ -186,7 +186,6 @@
 }
 
 .top-bar {
-  width: 70%;
   background-color: var(--color-white);
   overflow: hidden;
   flex-direction: row;
@@ -219,7 +218,7 @@
   }
 
   .top-bar {
-    width: 70%;
+    width: 75%;
   }
 }
 

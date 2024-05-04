@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect, useState } from "react";
 import { Chart } from "react-chartjs-2";
+import settingsico from "../assets/icons/edit-icon.png";
 import {
   Chart as ChartJS,
   LineElement,
@@ -14,6 +15,10 @@ import {
 
 import "./Profile.css";
 import { GetDataByUserIDAsync } from "../Api/ChartData/ChartSlice";
+import { Link } from "react-router-dom";
+import LastUrls from "../Url/LastUrls";
+import LastBalanceRequests from "./LastBalanceReqs";
+import LastHelpeqs from "./LastHelpReqs";
 
 ChartJS.register(
   LineElement,
@@ -88,54 +93,74 @@ function DataChart() {
   }, [dispatch, selectedOption]);
 
   //günlük görüntülenme
-  var lastValueBalance  = null
+  var lastValueBalance = null;
   var lastViews = null;
-  if( chartdata != null) {
+  if (chartdata != null) {
     const views = Object.values(chartdata.viewsChart);
     lastViews = views[views.length - 1];
     //günlük kazanç
     const balance = Object.values(chartdata.balanceChart);
-   lastValueBalance = balance[balance.length - 1];
+    lastValueBalance = balance[balance.length - 1];
     lastValueBalance = parseInt(lastValueBalance);
-  } 
+  }
 
   var allViews = 0;
   var allBalance = 0;
-  if(chartdata !== null){
-    allViews = Object.values(chartdata.viewsChart).reduce((acc, curr) => acc + curr, 0);
-    allBalance = Object.values(chartdata.balanceChart).reduce((acc, curr) => acc + curr, 0);
+  if (chartdata !== null) {
+    allViews = Object.values(chartdata.viewsChart).reduce(
+      (acc, curr) => acc + curr,
+      0
+    );
+    allBalance = Object.values(chartdata.balanceChart).reduce(
+      (acc, curr) => acc + curr,
+      0
+    );
   }
-console.log(chartdata)
+  console.log(chartdata);
   return (
     <div>
-       <div style={{height:100, fontSize:22, fontWeight:500}} className="urls-detail">
-          <span>{ user !== null &&parseInt(user.Balance)} &#8378;</span>
-          <span>Güncel Bakiye</span>
+      <div className="user-details-container">
+        <div className="url-details-container">
+          <select
+            className="chart-select"
+            value={selectedOption}
+            onChange={handleOptionChange}
+          >
+            <option value="weekly">Son bir hafta</option>
+            <option value="monthly">Son bir ay</option>
+          </select>
+          <div className="urls-details">
+            <div className="urls-detail">
+              <span>{parseInt(allBalance)} &#8378;</span>
+              <span> Kazanç</span>
+            </div>
+            <div className="urls-detail">
+              <span>{allViews}</span>
+              <span>Görüntülenme</span>
+            </div>
+          </div>
         </div>
-      <div className="urls-details">
-        <div className="urls-detail">
-          <span>{ user !== null && user.UrlCount}</span>
-          <span>Link</span>
-        </div>
-        <div className="urls-detail">
-          <span>{parseInt(allBalance)} &#8378;</span>
-          <span> Kazanç</span>
-        </div>
-        <div className="urls-detail">
-          <span>{allViews}</span>
-          <span>Görüntülenme</span>
+        <div className="user-details">
+          <div className="user-profile">
+            <span>@{user?.UserName}</span>
+            <Link to={"/dashboard/settings"}>
+              <img src={settingsico} alt="" />
+            </Link>
+          </div>
+          <div className="urls-details">
+            <div className="urls-detail">
+              <span>{user !== null && parseInt(user.Balance)} &#8378;</span>
+              <span>Güncel Bakiye</span>
+            </div>
+            <div className="urls-detail">
+              <span>{user !== null && user.UrlCount}</span>
+              <span>Link</span>
+            </div>
+          </div>
         </div>
       </div>
       <div className="chart-container">
-        <select
-          className="chart-select"
-          value={selectedOption}
-          onChange={handleOptionChange}
-        >
-          <option value="weekly">Son bir hafta</option>
-          <option value="monthly">Son bir ay</option>
-        </select>
-        <Chart height="300px" data={data0} options={options} />
+        <Chart height="500px" width={1000} data={data0} options={options} />
       </div>
       <div className="chart-legends">
         {legendItems.map((item, index) => (
@@ -166,6 +191,27 @@ console.log(chartdata)
             {item.label}
           </div>
         ))}
+      </div>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: 24,
+          width: "100%",
+        }}
+      >
+        <LastUrls />
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            flexWrap:"wrap",
+            justifyContent: "space-between",
+          }}
+        >
+          <LastBalanceRequests />
+          <LastHelpeqs />
+        </div>
       </div>
     </div>
   );

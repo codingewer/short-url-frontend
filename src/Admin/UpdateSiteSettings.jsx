@@ -178,6 +178,7 @@ function UpdateSiteSettingsForm() {
         <input
           className="cpupdate-inputs"
           type="number"
+          min={1}
           name="WithdrawnBalance"
           onChange={UpdateSiteSettingsForm.handleChange}
           value={UpdateSiteSettingsForm.values.WithdrawnBalance}

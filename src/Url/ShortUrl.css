@@ -81,7 +81,7 @@
 
 /* Last Shorted*/
 .last-shortened-urls {
-  width: 100%;
+  width: calc(100% - 48px);
   overflow: scroll;
   padding: 24px;
   display: flex;

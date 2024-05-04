@@ -4,8 +4,10 @@ import { useFormik } from "formik";
 import loadingicon from "../assets/icons/loading.gif";
 import trashico from "../assets/icons/trash-icon.png";
 import { useDispatch, useSelector } from "react-redux";
-import { NewBalanceRequestAsync } from "../Api/Balance/BalanceSlice";
-import { formatDate } from "./Profile";
+import {
+  GetBalanceByUserIDAsync,
+  NewBalanceRequestAsync,
+} from "../Api/Balance/BalanceSlice";
 import "./UserForm.css";
 import {
   DeleteBankInfoByIDAsync,
@@ -17,6 +19,7 @@ import {
   NewPaparaInfoAsync,
   UpdatePaparaInfoAsync,
 } from "../Api/Balance/PaparaSlice";
+import LastBalanceRequests from "./LastBalanceReqs";
 
 function BalanceRequest(props) {
   const sitedata = useSelector((state) => state.settings.data);
@@ -107,6 +110,7 @@ function BalanceRequest(props) {
 
   const data = items !== null ? items : [];
   useEffect(() => {
+    dispatch(GetBalanceByUserIDAsync());
     if (user0 !== null) {
       balanceInForm.setValues({
         ID: user.BalanceInfo.ID,
@@ -116,192 +120,209 @@ function BalanceRequest(props) {
       paparaImfoForm.setFieldValue("PaparaNo", user.PaparaNo.PaparaNo);
     }
   }, [user0]);
+  console.log(items);
   return (
     <div className="balance-container">
-      <div className="balance-info">
-        {balanceW < balanceM && (
-          <span style={{ color: "red" }}>
-            Çekmek için en az {balanceM} &#8378; gerekiyor
-          </span>
-        )}
-        <div className="balance-amount">
-          <span>
-            Bakiyeniz:
-            {balanceW < balanceM ? balanceW + "/" + balanceM : balanceW} &#8378;
-          </span>
-          <div className="balance-bar">
-            <div
-              style={{
-                height: 20,
-                width: barWidht,
-                backgroundColor: balanceM >= 10 ? "#7215fc" : "red",
-              }}
-            ></div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexWrap: "wrap",
+          gap: 48,
+        }}
+      >
+        <div className="balance-info">
+          <div className="urls-detail">
+            <span>{parseInt(balanceW)} &#8378;</span>
+            <span> Bakiye</span>
           </div>
+          {balanceW < balanceM && (
+            <span style={{ color: "red" }}>
+              Çekmek için en az {balanceM} &#8378; gerekiyor
+            </span>
+          )}
+          {balanceW < balanceM && (
+            <div className="balance-amount">
+              <span>
+                Bakiyeniz:
+                {balanceW < balanceM
+                  ? balanceW + "/" + balanceM
+                  : balanceW}{" "}
+                &#8378;
+              </span>
+
+              <div className="balance-bar">
+                <div
+                  style={{
+                    height: 20,
+                    width: barWidht,
+                    backgroundColor: balanceM >= balanceW ? "#7215fc" : "red",
+                  }}
+                ></div>
+              </div>
+            </div>
+          )}
         </div>
-      </div>
-      <form className="balance-form" onSubmit={formik.handleSubmit}>
-        {loading && <img src={loadingicon} className="loading-icon" />}
-        {formik.values.amount > balanceW && (
-          <span style={{ color: "red", fontSize: 12 }}>
-            bakiye yetersiz! En fazla {balanceW} TL çekebilirisiniz.
-          </span>
-        )}
-        <label>Para Çekme Seçeneği</label>
-        {
-         usersuccess && user.BalanceInfo.userId !== user.ID  && user.PaparaNo.UserId  !== user.ID ? (
-            <p
-            style={{color:"red", textAlign:"center"}}
-            >
-              Banka veya Papara bilgileriniz bulunmamaktadır lütfen ekleyin. Aksi taktirde paranızı çekemezsiniz!
-              <a href="#detailsforms-forbalance">  Burdan Ekleyin</a>
+        <form className="balance-form" onSubmit={formik.handleSubmit}>
+          {loading && <img src={loadingicon} className="loading-icon" />}
+          {formik.values.amount > balanceW && (
+            <span style={{ color: "red", fontSize: 16 }}>
+              bakiye yetersiz! En fazla {balanceW} &#8378; çekebilirisiniz.
+            </span>
+          )}
+          <label>Para Çekme Seçeneği</label>
+          {usersuccess &&
+          user.BalanceInfo.userId !== user.ID &&
+          user.PaparaNo.UserId !== user.ID ? (
+            <p style={{ color: "red", textAlign: "center" }}>
+              Banka veya Papara bilgileriniz bulunmamaktadır lütfen ekleyin.
+              Aksi taktirde paranızı çekemezsiniz!
+              <a href="#detailsforms-forbalance"> Burdan Ekleyin</a>
             </p>
-          ) : null
-        }
-        <select
-          className="chart-select"
-          name="option"
-          value={formik.values.option}
-          onChange={formik.handleChange}
-        >
-          {usersuccess && user.BalanceInfo.userId === user.ID ? (
-            <option value="banka">Banka</option>
           ) : null}
-          {usersuccess && user.PaparaNo.UserId === user.ID ? (
-            <option value="papara">Papara</option>
-          ) : null}
-        </select>
-        <label>Miktar</label>
-        <div className="balance-input-btn">
+          <select
+            className="chart-select"
+            name="option"
+            value={formik.values.option}
+            onChange={formik.handleChange}
+          >
+            {usersuccess && user.BalanceInfo.userId === user.ID ? (
+              <option value="banka">Banka</option>
+            ) : null}
+            {usersuccess && user.PaparaNo.UserId === user.ID ? (
+              <option value="papara">Papara</option>
+            ) : null}
+          </select>
+          <label>Miktar</label>
           <input
             disabled={balanceW < balanceM ? true : false}
             value={formik.values.amount}
+            min={balanceM}
             name="amount"
             onChange={formik.handleChange}
             type="number"
             placeholder="Çekmek istediğiniz tutar"
           />
           <button type="submit">Çek</button>
-        </div>
-      </form>
-
-      <div className="balance-requests">
-        <h4>Para çekme geçmişi</h4>
-        {data.length > 0 &&
-          data.map((item, index) => (
-            <div key={item.ID} className="balance-request">
-              <span style={{ color: "red", fontWeight: "bold" }}>
-                -{item.amount} &#8378;
-              </span>
-              <span>{formatDate(item.createdAt)}</span>
-              {item.status ? (
-                <span style={{ color: "green", fontWeight: "bold" }}>
-                  Onaylandı
-                </span>
-              ) : (
-                <span style={{ color: "orange", fontWeight: "bold" }}>
-                  Onay bekliyor...
-                </span>
-              )}
-            </div>
-          ))}
+        </form>
       </div>
-      <div id="detailsforms-forbalance" className="togle-form-btns">
-        <div className="form-div-balancereguests-info">
-          <div className="btn-container">
-            <span>Banka Bilgileri</span>
-            <button onClick={() => handleToggleForm("iban-noform")}>
-              {usersuccess && user.BalanceInfo.userId === user.ID
-                ? "Güncelle"
-                : "Ekle"}{" "}
-            </button>
-          </div>
-        </div>
-        {bankloading && <img src={loadingicon} className="loading-icon" />}
-        {banksuccess ? (
-          <span style={{ color: "green" }}>{bankmessage}</span>
-        ) : (
-          <span style={{ color: "red" }}>{bankerror}</span>
-        )}
-        <form
-          id="iban-noform"
-          style={{ display: "none" }}
-          className="register-form"
-          onSubmit={balanceInForm.handleSubmit}
-        >
-          <h3>IBAN Bilgileri</h3>
-          <label htmlFor="password">IBAN</label>
-          <input
-            type="text"
-            name="iban"
-            value={balanceInForm.values.iban}
-            onChange={balanceInForm.handleChange}
-          />
-          {balanceInForm.errors.iban && balanceInForm.touched.iban ? (
-            <div>{balanceInForm.errors.iban}</div>
-          ) : null}
 
-          <label htmlFor="password">IBAN Sahibi Adı Soyadı</label>
-          <input
-            type="text"
-            name="ibanOwner"
-            value={balanceInForm.values.ibanOwner}
-            onChange={balanceInForm.handleChange}
-          />
-          {balanceInForm.errors.ibanOwner && balanceInForm.touched.ibanOwner ? (
-            <div>{balanceInForm.errors.ibanOwner}</div>
-          ) : null}
-          <button className="form-btn" type="submit">
-            {usersuccess && user.BalanceInfo.userId === user.ID
-              ? "Güncelle"
-              : "Ekle"}
-          </button>
-          {usersuccess && user.BalanceInfo.userId === user.ID ? (
-            <button onClick={handleDeleteIBAN} type="button">
-              <img className="btn-icon" src={trashico} alt="Sil" />
-            </button>
-          ) : null}
-        </form>
-        <div className="form-div-balancereguests-infos">
-          <div className="btn-container">
-            <span>Papara Bilgileri</span>
-            <button onClick={() => handleToggleForm("papara-noform")}>
-              {usersuccess && user.PaparaNo.UserId === user.ID
-                ? "Güncelle"
-                : "Ekle"}
-            </button>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "flex-start",
+          flexWrap: "wrap",
+          gap: 24,
+          paddingTop: 48,
+        }}
+      >
+        <LastBalanceRequests />
+        <div className="balance-info-froms">
+          <div className="togle-form-btns">
+            <div>
+              <div className="btn-container">
+                <span>Banka Bilgileri</span>
+                <button onClick={() => handleToggleForm("iban-noform")}>
+                  {usersuccess && user.BalanceInfo.userId === user.ID
+                    ? "Güncelle"
+                    : "Ekle"}{" "}
+                </button>
+              </div>
+            </div>
+            {bankloading && <img src={loadingicon} className="loading-icon" />}
+            {banksuccess ? (
+              <span style={{ color: "green" }}>{bankmessage}</span>
+            ) : (
+              <span style={{ color: "red" }}>{bankerror}</span>
+            )}
+            <form
+              id="iban-noform"
+              style={{ display: "none" }}
+              className="register-form"
+              onSubmit={balanceInForm.handleSubmit}
+            >
+              <h3>IBAN Bilgileri</h3>
+              <label htmlFor="password">IBAN</label>
+              <input
+                type="text"
+                name="iban"
+                value={balanceInForm.values.iban}
+                onChange={balanceInForm.handleChange}
+              />
+              {balanceInForm.errors.iban && balanceInForm.touched.iban ? (
+                <div>{balanceInForm.errors.iban}</div>
+              ) : null}
+
+              <label htmlFor="password">IBAN Sahibi Adı Soyadı</label>
+              <input
+                type="text"
+                name="ibanOwner"
+                value={balanceInForm.values.ibanOwner}
+                onChange={balanceInForm.handleChange}
+              />
+              {balanceInForm.errors.ibanOwner &&
+              balanceInForm.touched.ibanOwner ? (
+                <div>{balanceInForm.errors.ibanOwner}</div>
+              ) : null}
+              <button className="form-btn" type="submit">
+                {usersuccess && user.BalanceInfo.userId === user.ID
+                  ? "Güncelle"
+                  : "Ekle"}
+              </button>
+              {usersuccess && user.BalanceInfo.userId === user.ID ? (
+                <button onClick={handleDeleteIBAN} type="button">
+                  <img className="btn-icon" src={trashico} alt="Sil" />
+                </button>
+              ) : null}
+            </form>
+            <div>
+              <div className="btn-container">
+                <span>Papara Bilgileri</span>
+                <button onClick={() => handleToggleForm("papara-noform")}>
+                  {usersuccess && user.PaparaNo.UserId === user.ID
+                    ? "Güncelle"
+                    : "Ekle"}
+                </button>
+              </div>
+            </div>
+
+            {paparaloading && (
+              <img src={loadingicon} className="loading-icon" />
+            )}
+            {paparsuccess ? (
+              <span style={{ color: "green" }}>{paparamessage}</span>
+            ) : (
+              <span style={{ color: "red" }}>{paparaerror}</span>
+            )}
+
+            <form
+              style={{ display: "none" }}
+              id="papara-noform"
+              className="register-form"
+              onSubmit={paparaImfoForm.handleSubmit}
+            >
+              <h3>Papara No</h3>
+              <input
+                type="text"
+                name="PaparaNo"
+                value={paparaImfoForm.values.PaparaNo}
+                onChange={paparaImfoForm.handleChange}
+              />
+              <button className="form-btn" type="submit">
+                {usersuccess && user.PaparaNo.UserId === user.ID
+                  ? "Güncelle"
+                  : "Ekle"}
+              </button>
+              {usersuccess && user.PaparaNo.UserId === user.ID ? (
+                <button onClick={handleDeletePaparaNo} type="button">
+                  <img className="btn-icon" src={trashico} alt="Sil" />
+                </button>
+              ) : null}
+            </form>
           </div>
         </div>
-        {paparaloading && <img src={loadingicon} className="loading-icon" />}
-        {paparsuccess ? (
-          <span style={{ color: "green" }}>{paparamessage}</span>
-        ) : (
-          <span style={{ color: "red" }}>{paparaerror}</span>
-        )}
-        <form
-          style={{ display: "none" }}
-          id="papara-noform"
-          className="register-form"
-          onSubmit={paparaImfoForm.handleSubmit}
-        >
-          <h3>Papara No</h3>
-          <input
-            type="text"
-            name="PaparaNo"
-            value={paparaImfoForm.values.PaparaNo}
-            onChange={paparaImfoForm.handleChange}
-          />
-          <button className="form-btn" type="submit">
-            {usersuccess && user.PaparaNo.UserId === user.ID
-              ? "Güncelle"
-              : "Ekle"}
-          </button>
-          {usersuccess && user.PaparaNo.UserId === user.ID ? (
-            <button onClick={handleDeletePaparaNo} type="button">
-              <img className="btn-icon" src={trashico} alt="Sil" />
-            </button>
-          ) : null}
-        </form>
       </div>
     </div>
   );
