@@ -46,6 +46,8 @@ function ShortenedUrl() {
   }, [counter]);
 
   useEffect(() => {
+    document.title=shortenedUrl
+    console.log(url)
     if ( counter === 0 && success) {
       window.location.href = url.OrginalUrl;
     }
@@ -61,15 +63,14 @@ useEffect(() => {
   dispatch(GetAllUrlfaqsAsync());
 }, [dispatch]);
 
-
-  const [isToggled, setToggled] = useState(false);
-  const handleTogleMenu = (id) => {
-    const linksMenu = document.getElementById(id);
-    setToggled(!isToggled);
-    isToggled
-      ? (linksMenu.style.display = "flex")
-      : (linksMenu.style.display = "none");
-  };
+const [isToggled, setToggled] = useState(false);
+const handleTogleMenu = (id) => {
+  const linksMenu = document.getElementById(id);
+  setToggled(!isToggled);
+  isToggled
+  ? (linksMenu.style.display = "flex")
+  : (linksMenu.style.display = "none");
+};
 const urlfaqs = useSelector((state) => state.urlfaqs.items);
 const urlfaqssuccess = useSelector((state) => state.urlfaqs.success);
 
@@ -105,7 +106,6 @@ const urlfaqssuccess = useSelector((state) => state.urlfaqs.success);
     <>
       <div className="ads-container">
         <div className="ad-content">
-          <span>{url?.Description}</span>
           <AdsComponent />
           {success ? null : <span  style={{color:"red"}} >{error}</span>}
           {adblockDedected && <span style={{color:"red"}}>Reklam engelleyiciniz kapatın</span>}
@@ -120,6 +120,7 @@ const urlfaqssuccess = useSelector((state) => state.urlfaqs.success);
           <span>
             {success && "@" + url?.CreatedBy}
           </span>
+          <span>{url?.Description}</span>
           {started && (
             <span>{counter} saniye sonra linke yönlendirileceksiniz.</span>
           )}

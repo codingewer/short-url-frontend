@@ -60,12 +60,13 @@
 
 .login-barner-btn {
   cursor: pointer;
-  border: 1px solid rgba(114, 21, 252, 0.5);
+  border: 2px solid rgba(114, 21, 252, 0.5);
   padding: 18px 36px 17px 37px;
   background-color: transparent;
   border-radius: var(--br-xs);
   overflow: hidden;
   display: flex;
+  text-decoration: none;
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
@@ -102,6 +103,7 @@
   font-family: var(--font-lexend);
   color: var(--color-white);
   text-align: left;
+  text-decoration: none;
 }
 
 .register-barner-btn:hover {
@@ -409,7 +411,12 @@
   border: none;
   color: var(--color-white);
   font-size: 16px;
-  height: 48px;
+  height: 36px;
+  text-align: center;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
   border-radius: var(--br-xs);
 }
 

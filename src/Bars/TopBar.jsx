@@ -7,7 +7,6 @@ import menuico from "../assets/icons/menu-ico.svg";
 import { Link } from "react-router-dom";
 
 function TopBar() {
-  const user = JSON.parse(localStorage.getItem("user"));
   const [scrollPosition, setScrollPosition] = useState(0);
   useEffect(() => {
     const handleScroll = () => {
@@ -96,7 +95,9 @@ function TopBar() {
     </div>*/
     <div className="top-bar-container">
       <div className="top-bar">
+        <Link to="/" relative="path" >
         <img className="logo-1-icon" loading="lazy" alt="" src={logo} />
+        </Link>
         <div className="component-1">
           <div className="component-1-child" />
           <div className="component-1-item" />
@@ -105,24 +106,39 @@ function TopBar() {
         <div className="top-bar-inner">
           <div className="frame-parent-top">
             <div className="deme-kantlar-wrapper">
-              <b className="deme-kantlar">Ödeme Kanıtları</b>
+            <Link
+              to="/aboutus"
+              onClick={handleCloseMenu}
+              className="deme-kantlar"
+            >
+              Hakkımızda
+            </Link>
             </div>
             <div className="deme-kantlar-container">
               <b className="deme-kantlar1">Ödeme Kanıtları</b>
             </div>
             <div className="button-bar">
               <button className="bar-btn">
-                <img className="icons8-login-50-1" alt="" src={userico} />
+                <img className="icons8-login-50-1" alt="" src={logined ? signinico : userico } />
                 <div className="giri-yap-wrapper">
-                  <div className="giri-yap">Giriş Yap</div>
+                <Link
+              className="giri-yap"
+              to={logined ? "/dashboard" : "/login"}
+              relative="path"
+            >
+              {logined ? "Dashbord" : "Giriş Yap"}
+            </Link>
                 </div>
               </button>
+              {
+                !logined &&
               <button className="bar-btn1">
                 <img className="icons8-user-48-1" alt="" src={signinico} />
                 <div className="kayt-ol-wrapper">
                   <div className="kayt-ol">Kayıt Ol</div>
                 </div>
               </button>
+              }
             </div>
           </div>
         </div>

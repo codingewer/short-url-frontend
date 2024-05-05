@@ -8,7 +8,6 @@
 }
 
 .ad-content{
-    background-color: white;
     max-height: 70%;
     max-width: calc(100% - 72px);
     padding: 24px;
@@ -24,9 +23,10 @@
 .skip-btn, .intereste-btn{
     border: none;
     padding: 12px;
+    min-width: 150px;
     border-radius: 99px;
-    font-weight: 500;
-    font-size: 15px;
+    font-weight: 600;
+    font-size: 16px;
 
 }
 

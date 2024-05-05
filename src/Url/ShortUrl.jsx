@@ -1,21 +1,12 @@
-import { useState } from "react";
 import "./ShortUrl.css";
 import React, { useEffect } from "react";
 import sendicon from "../assets/icons/send-icon.png";
-import trashicon from "../assets/icons/trash-icon.png";
-import copyicon from "../assets/icons/copy-icon.png";
-import editicon from "../assets/icons/edit-icon.png";
 import { useDispatch, useSelector } from "react-redux";
 import loadingicon from "../assets/icons/loading.gif";
 
-import {
-  DeleteUrlByIdAsync,
-  GetUrlByCreatedByAsync,
-  NewUrlAsync,
-} from "../Api/Url/UrlSlice";
+import { GetUrlByCreatedByAsync, NewUrlAsync } from "../Api/Url/UrlSlice";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { Link } from "react-router-dom";
 import LastUrls from "./LastUrls";
 
 const validationSchema = yup.object({
@@ -29,26 +20,9 @@ function ShortUrl() {
   const error = useSelector((state) => state.url.error);
   const status = useSelector((state) => state.url.success);
   const message = useSelector((state) => state.url.message);
-  const currentURL = window.location.href;
-  const urlgetloading = useSelector((state) => state.url.getloading);
-  const domain = currentURL.split("/dashboard/shorturl")[0];
-
   const usersuccess = useSelector((state) => state.users.success);
   const user0 = useSelector((state) => state.users.userrealtime);
   const user = usersuccess ? user0 : {};
-  const [showLimit, setShowLimit] = useState(10);
-
-  const CopyContent = (urll) => {
-    navigator.clipboard
-      .writeText(domain + "/l/" + urll + "/r/1")
-      .then(() => {
-        alert("Kopyalandı: " + domain + urll);
-      })
-      .catch((err) => {
-        console.error("Metin kopyalanırken bir hata oluştu:", err);
-        alert("Metin kopyalanırken bir hata oluştu!");
-      });
-  };
 
   const formik = useFormik({
     initialValues: {
@@ -63,33 +37,9 @@ function ShortUrl() {
     },
   });
 
-  const DeleteContent = async (id) => {
-    if (window.confirm("Silmek istediğinize emin misiniz?")) {
-      dispatch(DeleteUrlByIdAsync(id));
-    }
-  };
-
-  const hanldeShowMore = () => {
-    setShowLimit(showLimit + 25);
-  };
-
   useEffect(() => {
     dispatch(GetUrlByCreatedByAsync(user.ID));
   }, [usersuccess]);
-
-  const [filtereUrls, setFiltereUrls] = useState([]);
-  var filteredurls = [];
-  const handleSearch = (searchTerm) => {
-    filteredurls = items.filter(
-      (url) =>
-        url.OrginalUrl.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        url.ShortenedUrl.includes(searchTerm.toLowerCase())
-    );
-    setFiltereUrls(filteredurls);
-  };
-  useEffect(() => {
-    setFiltereUrls(items);
-  }, [items]);
 
   console.log(items);
   return (
@@ -142,7 +92,7 @@ function ShortUrl() {
         ) : null}
       </form>
       <span className="content-title">Son Linkler</span>
-      <LastUrls/>
+      <LastUrls />
     </div>
   );
 }

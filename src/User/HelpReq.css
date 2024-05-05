@@ -1,5 +1,6 @@
 .help-container,
 .last-helpreqs {
+    font-family: "Lexend", sans-serif;
     display: flex;
     flex-direction: column;
 }
@@ -26,23 +27,20 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 12px;
-    color: gray;
+    gap: 24px;
+    color: var(--color-darkslategray);
 }
 
-.helpreq-form label {
-    font-size: 18px;
-    font-weight: 500;
-}
 
 .contacus-from-inputs {
-    border: 1px solid var(--shadow-color);
-    width: 80%;
-    padding: 6px;
+    border: 2px solid var(--shadow-color);
+    max-width: 100%;
+    min-width: 80%;
+    padding: 12px;
     font-size: 16px;
     border-radius: 12px;
-    margin-bottom: 24px;
     text-align: center;
+    font-family: "Lexend", sans-serif;
 }
 
 .contacus-from-inputs:focus {
@@ -55,18 +53,20 @@
 }
 
 .helpreq-card {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-shadow: 0px 0px 11px var(--shadow-color);
+    border: solid 2px var(--shadow-color);
     padding: 24px;
+    gap:24px;
     border-radius: 12px;
     text-align: center;
 }
 
 .helpreq-card-titles {
-    font-size: 16px;
-    font-weight: 600;
+    font-size: 24px;
+    font-weight: 700;
 }
 
 .file-upload-container{
@@ -115,6 +115,27 @@
 .help-card-media{
     display: flex;
     flex-direction: column;
-    gap:24px;
+    gap:12px;
+    align-items: center;
     position: relative;
+}
+
+.supports-url{
+    width: 80%;
+    display: flex;
+    gap: 12px;
+    overflow: hidden;
+}
+
+.support-url-text{
+    max-width: calc(100% - 36px);
+    overflow: hidden;
+    height:auto;
+    color: var(--color-1);
+}
+
+.helpreq-status-ico{
+    position: absolute;
+    right: 24px;
+    top: 24;
 }

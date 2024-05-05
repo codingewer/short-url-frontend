@@ -4,8 +4,12 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import trashicon from "../assets/icons/trash-icon.png";
 import { useDispatch, useSelector } from "react-redux";
-import loadingico from "../assets/icons/loading.gif";
+import urlico from "../assets/icons/urlico.svg";
+import doneicon from "../assets/icons/Done.svg";
+import pendingico from "../assets/icons/Hourglass.svg";
+
 import uploadicon from "../assets/icons/uploadicon.png";
+import uploadicongif from "../assets/icons/uploadico.gif";
 import {
   GetHelpRequestsByUserAsync,
   NewHelpRequestAsync,
@@ -74,7 +78,7 @@ function HelpReq() {
   useEffect(() => {
     if (url) {
       setFormikValue("ImageUrl", url);
-      document.getElementById('fileInput').value = '';
+      document.getElementById("fileInput").value = "";
       setFile(null);
     }
   }, [url]);
@@ -82,12 +86,12 @@ function HelpReq() {
   useEffect(() => {
     if (videoUrl) {
       setFile(null);
-      document.getElementById('fileInput').value = '';
+      document.getElementById("fileInput").value = "";
       setFormikValue("VideoUrl", videoUrl);
       console.log(videoUrl);
     }
   }, [videoUrl]);
-
+  console.log(data);
   return (
     <div className="help-container">
       <div className="help-form-container">
@@ -116,118 +120,169 @@ function HelpReq() {
             <div>{formik.errors.Content}</div>
           ) : null}
           <div className="file-upload-container">
-            <h3>Dosya Ekle(opsiyonel)</h3>
-            {formik.values.ImageUrl && (
-              <div className="uploaded-img">
-                <a
-                  target="_blank"
-                  href={formik.values.ImageUrl}
-                  rel="noreferrer"
-                >
-                  <img
-                    className="uploaded-content"
-                    src={formik.values.ImageUrl}
-                    alt="fotoğraf"
-                  />
-                </a>
-                <button
-                  className="remove-file-btn"
-                  type="button"
-                  onClick={() => setFormikValue("ImageUrl", "")}
-                >
-                  <img src={trashicon} alt="sil" />
-                </button>
-              </div>
-            )}
-            {formik.values.VideoUrl && (
-              <div className="uploaded-img">
-                <a
-                  target="_blank"
-                  href={formik.values.VideoUrl}
-                  rel="noreferrer"
-                >
-                  <video
-                    className="uploaded-content"
-                    controls={false}
-                    autoPlay={false}
-                    muted
-                  >
-                    <source src={formik.values.VideoUrl} type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
-                </a>
-              </div>
-            )}
-            {inValidType && (
-              <span style={{ color: "red" }}>File not selected</span>
-            )}
-            <input
-            id="fileInput" 
-              accept=".jpg, .jpeg, .png, .gif, .mp4"
-              className="upload-file"
-              onChange={(event) => handleFileChange(event)}
-              type="file"
-            />
-            {fileloading && (
-              <img className="loading-icon" src={loadingico} alt="loading" />
-            )}
-            <button
-              className="file-upload-container-button"
-              type="button"
-              onClick={handleUploadFile}
+            <h3>Ek Dosyalar</h3>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                flexWrap: "wrap",
+                gap: 24,
+              }}
             >
-             <img src={uploadicon} alt="Yükle" />
-            </button>
-          </div>
-          <button className="helpreq-form-btn" type="submit">
-            Gönder
-          </button>
-        </form>
-      </div>
-      <div className="last-helpreqs">
-        {success &&
-          data.map((req, index) => (
-            <div key={index} className="helpreq-card">
-              <span className="helpreq-card-titles">Mesajınız: </span>
-              <p>{req.Content}</p>
-              <div className="help-card-media">
-                <h4>Dosyalar</h4>
-                {req.ImageUrl && (
-                  <div className="uploaded-img">
+              {formik.values.ImageUrl && (
+                <div className="uploaded-img">
+                  <a
+                    target="_blank"
+                    href={formik.values.ImageUrl}
+                    rel="noreferrer"
+                  >
                     <img
                       className="uploaded-content"
-                      src={req.ImageUrl}
+                      src={formik.values.ImageUrl}
                       alt="fotoğraf"
                     />
-                  </div>
-                )}
-                {req.VideoUrl && (
-                  <div className="uploaded-img">
+                  </a>
+                  <button
+                    className="remove-file-btn"
+                    type="button"
+                    onClick={() => setFormikValue("ImageUrl", "")}
+                  >
+                    <img src={trashicon} alt="sil" />
+                  </button>
+                </div>
+              )}
+              {formik.values.VideoUrl && (
+                <div className="uploaded-img">
+                  <a
+                    target="_blank"
+                    href={formik.values.VideoUrl}
+                    rel="noreferrer"
+                  >
                     <video
                       className="uploaded-content"
                       controls={false}
                       autoPlay={false}
                       muted
                     >
-                      <source src={req.VideoUrl} type="video/mp4" />
+                      <source src={formik.values.VideoUrl} type="video/mp4" />
                       Your browser does not support the video tag.
                     </video>
+                  </a>
+                  <button
+                    className="remove-file-btn"
+                    type="button"
+                    onClick={() => setFormikValue("VideoUrl", "")}
+                  >
+                    <img src={trashicon} alt="sil" />
+                  </button>
+                </div>
+              )}
+              {inValidType && (
+                <span style={{ color: "red" }}>File not selected</span>
+              )}
+            </div>
+
+            <div>
+              <input
+                id="fileInput"
+                accept=".jpg, .jpeg, .png, .gif, .mp4"
+                className="upload-file"
+                onChange={(event) => handleFileChange(event)}
+                type="file"
+              />
+              <button
+                className="file-upload-container-button"
+                type="button"
+                onClick={handleUploadFile}
+              >
+                <img
+                  style={{
+                    height: 32,
+                  }}
+                  src={fileloading ? uploadicongif : uploadicon}
+                  alt="Yükle"
+                />
+              </button>
+            </div>
+            <button className="helpreq-form-btn" type="submit">
+              Gönder
+            </button>
+          </div>
+        </form>
+      </div>
+      <div className="last-helpreqs">
+        {success &&
+          data.map((req, index) => (
+            <div key={index} className="helpreq-card">
+              <span className="helpreq-card-titles">{req.Title} </span>
+              <p>{req.Content}</p>
+              {req.ImageUrl !== "" && req.VideoUrl !== "" && (
+                <div className="help-card-media">
+                  <span
+                    style={{
+                      fontSize: 16,
+                      fontWeight: 700,
+                    }}
+                  >
+                    Dosyalar
+                  </span>
+
+                  <div className="supports-url">
+                    <img
+                      style={{
+                        height: 24,
+                      }}
+                      src={urlico}
+                      alt="imageurl"
+                    />
+                    <a
+                      a
+                      target="_blank"
+                      href={req.ImageUrl}
+                      rel="noreferrer"
+                      className="support-url-text"
+                    >
+                      {req.ImageUrl}
+                    </a>
                   </div>
-                )}
-              </div>
-              <span className="helpreq-card-titles">Tarih: </span>
+                  <a
+                    a
+                    target="_blank"
+                    href={req.VideoUrl}
+                    rel="noreferrer"
+                    className="supports-url"
+                  >
+                    <img
+                      style={{
+                        height: 24,
+                      }}
+                      src={urlico}
+                      alt="imageurl"
+                    />
+                    <span className="support-url-text">{req.VideoUrl}</span>
+                  </a>
+                </div>
+              )}
               <p>{formatDate(req.createdAt)}</p>
               {req.status ? (
                 <>
-                  <span className="helpreq-card-titles">
+                  {" "}
+                  <img  className="helpreq-status-ico" src={doneicon} style={{ height: 32 }} />
+                  <span 
+                  
+                  style={{
+                    fontSize: 16,
+                    fontWeight: 700,
+                    color: "green",
+                  }}
+                  >
                     Cevaplandı: {formatDate(req.updatedAt)}{" "}
                   </span>
                   <p>{req.Answer}</p>
                 </>
               ) : (
-                <p style={{ color: "orange", fontSize: 14, fontWeight: 500 }}>
-                  Cevap bekliyor...
-                </p>
+                <img className="helpreq-status-ico" src={pendingico} style={{ height: 32 }} />
               )}
             </div>
           ))}

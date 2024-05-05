@@ -12,6 +12,7 @@ import { GetSiteDataBySiteName } from "../Api/Settings/SettingsSlice";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import homegif from "../assets/imgs/home-png.png";
+import { Link } from "react-router-dom";
 
 function Home() {
   const sitedata = useSelector((state) => state.settings.data);
@@ -38,6 +39,7 @@ function Home() {
     Aos.init({ duration: 2000 });
     dispatch(GetSiteDataBySiteName());
   }, []);
+  const logined = Boolean(localStorage.getItem("logined"));
   return (
     //sayfa tasarımı
     <>
@@ -56,12 +58,14 @@ function Home() {
                   gelir elde edin.
                 </div>
               </div>
-              <div className="login-barner-btn-parent">
-                <button className="login-barner-btn">Giriş Yap</button>
-                <button className="register-barner-btn">
-                  Ücretsiz Kayıt Ol
-                </button>
-              </div>
+              {!logined && (
+                <div className="login-barner-btn-parent">
+                  <Link to="/login" className="login-barner-btn">Giriş Yap</Link>
+                  <Link to="/register" className="register-barner-btn">
+                    Ücretsiz Kayıt Ol
+                  </Link>
+                </div>
+              )}
             </div>
           </div>
           <img
@@ -151,12 +155,18 @@ function Home() {
               </span>
             </div>
           </div>
-          <button className="register-hw-btn">Ücretsiz Kayıt Ol</button>
+          {!logined && (
+            <Link to="/register" className="register-hw-btn">Ücretsiz Kayıt Ol</Link>
+          )}
         </div>
         <div data-aos="fade-up" className="gify-container">
           <div className="gify-card">
             <div className="gify-media">
-              <img className="gify-img" src={buffer} alt="linklerine değer kat" />
+              <img
+                className="gify-img"
+                src={buffer}
+                alt="linklerine değer kat"
+              />
             </div>
             <div className="gify-texts">
               <span className="gify-title">Linklerine Değer Kat!</span>

@@ -39,7 +39,7 @@ function BalanceRequest(props) {
   const user = usersuccess ? user0 : {};
   const items = useSelector((state) => state.balance.balanceRequests);
   const balanceM = sitedata !== null ? sitedata.WithdrawnBalance : 100;
-  const balanceW = parseInt(user.Balance);
+  const balanceW =  parseInt(user.Balance);
   const barWidht = (balanceW / balanceM) * 100 + "%";
   const dispatch = useDispatch();
 
@@ -127,9 +127,9 @@ function BalanceRequest(props) {
         style={{
           display: "flex",
           justifyContent: "center",
-          alignItems: "center",
+          alignItems: "flex-start",
           flexWrap: "wrap",
-          gap: 48,
+          gap: 24,
         }}
       >
         <div className="balance-info">
@@ -138,19 +138,9 @@ function BalanceRequest(props) {
             <span> Bakiye</span>
           </div>
           {balanceW < balanceM && (
-            <span style={{ color: "red" }}>
-              Çekmek için en az {balanceM} &#8378; gerekiyor
-            </span>
-          )}
-          {balanceW < balanceM && (
             <div className="balance-amount">
-              <span>
-                Bakiyeniz:
-                {balanceW < balanceM
-                  ? balanceW + "/" + balanceM
-                  : balanceW}{" "}
-                &#8378;
-              </span>
+                                  {barWidht}
+
 
               <div className="balance-bar">
                 <div
@@ -159,19 +149,35 @@ function BalanceRequest(props) {
                     width: barWidht,
                     backgroundColor: balanceM >= balanceW ? "#7215fc" : "red",
                   }}
-                ></div>
+                  >
+                  </div>
               </div>
             </div>
           )}
+          {balanceW < balanceM && (
+            <span style={{ color: "red", 
+            width:"100%",
+            textAlignLast:"left"
+
+            }}>
+              Çekmek için en az {balanceM} &#8378; gerekli
+            </span>
+          )}
         </div>
         <form className="balance-form" onSubmit={formik.handleSubmit}>
+          <span
+          style={{
+            fontSize:28,
+            fontWeight:600
+          }}
+          >Para Çek</span>
           {loading && <img src={loadingicon} className="loading-icon" />}
           {formik.values.amount > balanceW && (
             <span style={{ color: "red", fontSize: 16 }}>
               bakiye yetersiz! En fazla {balanceW} &#8378; çekebilirisiniz.
             </span>
           )}
-          <label>Para Çekme Seçeneği</label>
+          <label>Para Çekme Seçeneği:</label>
           {usersuccess &&
           user.BalanceInfo.userId !== user.ID &&
           user.PaparaNo.UserId !== user.ID ? (

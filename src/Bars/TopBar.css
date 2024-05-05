@@ -48,6 +48,10 @@
   position: relative;
   display: inline-block;
   min-width: 110px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--color-darkslategray);
 }
 
 .deme-kantlar-wrapper {
@@ -87,7 +91,8 @@
   color: var(--color-white);
   text-align: left;
   display: inline-block;
-  min-width: 61px;
+  min-width: 70px;
+  text-decoration: none;
 }
 
 .bar-btn,
@@ -127,7 +132,7 @@
   color: var(--color-white);
   text-align: left;
   display: inline-block;
-  min-width: 53px;
+  min-width: 70px;
 }
 
 .kayt-ol-wrapper {
@@ -154,14 +159,14 @@
 .frame-parent-top {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  width: fit-content;
+  justify-content: flex-end;
 }
 
 .button-bar {
   flex: 1;
-  align-items: flex-start;
+  align-items: flex-end;
   gap: 12px;
-  min-width: 162px;
 }
 
 .frame-parent-top {
@@ -173,14 +178,14 @@
 .top-bar,
 .top-bar-inner {
   display: flex;
-  align-items: flex-start;
+  align-items: flex-end;
   box-sizing: border-box;
 }
 
 .top-bar-inner {
-  width: 518px;
+  width: fit-content;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: flex-end;
   padding: 1px 0 0;
   max-width: 100%;
 }
@@ -210,6 +215,7 @@
   left: 0;
   width: 100%;
   z-index: 1;
+  background-color: var(--color-white);
 }
 
 @media screen and (min-width: 900px) {
