@@ -16,6 +16,7 @@ function LastBalanceRequests(props) {
 
 
   const data = items !== null ? items : [];
+  const data2 = props.page ==="profile" ? items?.slice(0,2) : items;
   useEffect(() => {
     dispatch(GetBalanceByUserIDAsync());
      
@@ -23,8 +24,9 @@ function LastBalanceRequests(props) {
   console.log(items);
   return (
     <div className="balance-requests">
-       {data.length > 0 &&
-        data.map((item, index) => (
+      <h1>Para Çekme Geçmişi</h1>
+       {data2.length > 0 &&
+        data2.map((item, index) => (
           <div key={item.ID} className="balance-request">
             <span style={{ color: "red", fontSize:18, fontWeight: "bold" }}>
               -{item.amount} &#8378;

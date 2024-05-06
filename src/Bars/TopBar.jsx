@@ -134,12 +134,14 @@ function TopBar() {
               </button>
               {
                 !logined &&
-              <button className="bar-btn1">
+              <Link
+              to="/register"
+              className="bar-btn1">
                 <img className="icons8-user-48-1" alt="" src={signinico} />
                 <div className="kayt-ol-wrapper">
                   <div className="kayt-ol">Kayıt Ol</div>
                 </div>
-              </button>
+              </Link>
               }
             </div>
           </div>

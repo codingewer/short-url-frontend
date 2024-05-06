@@ -1,7 +1,7 @@
 .footer-bar{
     width: calc(100vw - 48px);
     padding: 50px 24px 50px 24px;
-    background-color: var(--color-darkslategray);
+    background-color: var(--color-3);
     position: relative;
     display: flex;
     bottom: -200px;

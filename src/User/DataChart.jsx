@@ -46,7 +46,7 @@ function DataChart() {
         type: "line",
         label: "Kazanç",
         fill: false,
-        data: data2.balanceChart,
+        data: data2?.balanceChart,
         backgroundColor: "rgba(252, 103, 54, 1)",
         borderColor: "rgba(252, 103, 54, 1)",
         borderWidth: 3,
@@ -55,7 +55,7 @@ function DataChart() {
       {
         type: "bar",
         label: "Görüntülenme",
-        data: data2.viewsChart,
+        data: data2?.viewsChart,
         backgroundColor: "rgba(114, 20, 252, 1)",
         borderColor: "rgba(114, 20, 252, 1)",
         borderWidth: 0,
@@ -209,7 +209,7 @@ function DataChart() {
             justifyContent: "space-between",
           }}
         >
-          <LastBalanceRequests />
+          <LastBalanceRequests page="profile" />
           <LastHelpeqs />
         </div>
       </div>

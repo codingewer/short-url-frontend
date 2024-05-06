@@ -1,12 +1,14 @@
 import "./ShortUrl.css";
 import React, { useEffect } from "react";
 import sendicon from "../assets/icons/send-icon.png";
+import loadingicon from "../assets/icons/loading.gif";
 import { useDispatch, useSelector } from "react-redux";
 import {
   DeleteUrlByIdAsync,
   GetUrlByCreatedByAsync,
   GetUrlByIdAsync,
   NewUrlAsync,
+  UpdateUrlByIdAsync,
 } from "../Api/Url/UrlSlice";
 import { useFormik } from "formik";
 import * as yup from "yup";
@@ -19,6 +21,13 @@ const validationSchema = yup.object({
 function UpdateUrl() {
   const url = useSelector((state) => state.url.url);
   const success = useSelector((state) => state.url.success);
+  const items = useSelector((state) => state.url.items);
+  const loading = useSelector((state) => state.url.loading);
+  const error = useSelector((state) => state.url.error);
+  const status = useSelector((state) => state.url.success);
+  const message = useSelector((state) => state.url.message);
+  const usersuccess = useSelector((state) => state.users.success);
+  const user0 = useSelector((state) => state.users.userrealtime);
   const data = url !== null ? url : {};
   const dispatch = useDispatch();
   const { Id } = useParams();
@@ -31,8 +40,7 @@ function UpdateUrl() {
     },
     validationSchema: validationSchema,
     onSubmit: async () => {
-      dispatch(NewUrlAsync(formik.values));
-      formik.resetForm();
+      dispatch(UpdateUrlByIdAsync(formik.values));
     },
   });
 
@@ -54,40 +62,39 @@ function UpdateUrl() {
   return (
     <div className="short-url-container">
       <form className="short-url-form" onSubmit={formik.handleSubmit}>
-        <span className="form-title">Linkinizi Güncelleyin</span>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 14,
-            width: "100%",
-            alignItems: "center",
-          }}
-        >
+        {status ? (
+          <span style={{ color: "green", textAlign: "center" }}>{message}</span>
+        ) : (
+          <span style={{ color: "red", textAlign: "center" }}>{error}</span>
+        )}
+        {loading && <img src={loadingicon} className="loading-icon" />}
+        <input
+          className="url-input shorturl-form-input"
+          type="text"
+          name="OrginalUrl"
+          id="OrginalUrl"
+          onChange={formik.handleChange}
+          value={formik.values.OrginalUrl}
+          placeholder="Url(zorunlu)"
+        />
+        <div className="inputs-and-btn">
+          <label htmlFor="ShortenedUrl">Başlık</label>
           <input
             type="text"
             name="ShortenedUrl"
+            className="shorturl-form-input sui1"
             onChange={formik.handleChange}
             value={formik.values.ShortenedUrl}
             placeholder="Başlık(opsiyonel)"
           />
+          <label htmlFor="Description">Açıklama</label>
           <input
             type="text"
             name="Description"
+            className="shorturl-form-input sui1"
             onChange={formik.handleChange}
             value={formik.values.Description}
             placeholder="Açıklama(opsiyonel)"
-          />
-        </div>
-        <div className="inputs-and-btn">
-          <input
-            className="url-input"
-            type="text"
-            name="OrginalUrl"
-            id="OrginalUrl"
-            onChange={formik.handleChange}
-            value={formik.values.OrginalUrl}
-            placeholder="Url(zorunlu)"
           />
           <button className="form-short-btn" type="submit">
             <img src={sendicon} alt="" />

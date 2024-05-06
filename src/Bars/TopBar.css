@@ -151,6 +151,7 @@
   border-radius: var(--br-xs);
   overflow: hidden;
   align-items: flex-end;
+  text-decoration: none;
   gap: var(--gap-7xs);
 }
 
