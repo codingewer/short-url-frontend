@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import "./SideBar.css";
 import "../User/Profile.css";
+import userico from "../assets/icons/icons8-login-50 1.svg";
+import signinico from "../assets/icons/icons8-user-48 1.svg";
+
 import logo from "../assets/logo.jpeg";
 import logouticon from "../assets/icons/logout.png";
 import { Link } from "react-router-dom";
@@ -55,13 +58,80 @@ function SideBar() {
           src={logo}
         />
       </Link>
+      {
+        !logined &&
+      <div
+      style={{
+        display: "flex",
+        justifyContent: "flex-start",
+        flexDirection: "column",
+        position: "relative",
+        gap: 24,
+        top: 12,
+        width: "80%",
+      }}
+      >
+        <Link
+          style={{
+            display: "flex",
+            justifyContent: "flex-start",
+            position: "relative",
+            top: 12,
+            color: "#B888FF",
+            backgroundColor: "#464a5f",
+            width: "100%",
+          }}
+          to="/register"
+          className="bar-btn1"
+          >
+          <img className="icons8-user-48-1" alt="" src={userico} />
+          <div className="kayt-ol-wrapper">
+            <div
+              style={{
+                color: "#B888FF",
+              }}
+              className="kayt-ol"
+              >
+              Kayıt Ol
+            </div>
+          </div>
+        </Link>
+        <Link
+          style={{
+            display: "flex",
+            justifyContent: "flex-start",
+            position: "relative",
+            top: 12,
+            color: "#B888FF",
+            backgroundColor: "#464a5f",
+            width: "100%",
+          }}
+          to="/register"
+          className="bar-btn1"
+          >
+          <img className="icons8-user-48-1" alt="" src={signinico} />
+          <div className="kayt-ol-wrapper">
+            <div
+              style={{
+                color: "#B888FF",
+              }}
+              className="kayt-ol"
+              >
+              Kayıt Ol
+            </div>
+          </div>
+        </Link>
+      </div>
+      }
       {logined && (
         <div className="side-bar-navs">
-          <Link
-            to="/dashboard"
-            onClick={() => handleActiveLink("/dashboard")}
-            className={
-              selected === "/dashboard" ? "side-bar-item side-bar-item-active": "side-bar-item"
+        <Link
+        to="/dashboard"
+        onClick={() => handleActiveLink("/dashboard")}
+        className={
+          selected === "/dashboard"
+                ? "side-bar-item side-bar-item-active"
+                : "side-bar-item"
             }
           >
             <img
@@ -79,7 +149,9 @@ function SideBar() {
             to="/dashboard/shorturl"
             onClick={() => handleActiveLink("shorturl")}
             className={
-              selected === "shorturl" ? "side-bar-item side-bar-item-active": "side-bar-item"
+              selected === "shorturl"
+                ? "side-bar-item side-bar-item-active"
+                : "side-bar-item"
             }
           >
             <img
@@ -97,7 +169,9 @@ function SideBar() {
             to="/dashboard/balance"
             onClick={() => handleActiveLink("balance")}
             className={
-              selected === "balance" ? "side-bar-item side-bar-item-active": "side-bar-item"
+              selected === "balance"
+                ? "side-bar-item side-bar-item-active"
+                : "side-bar-item"
             }
           >
             <img
@@ -115,7 +189,9 @@ function SideBar() {
             to="/dashboard/help"
             onClick={() => handleActiveLink("help")}
             className={
-              selected === "help" ? "side-bar-item side-bar-item-active" : "side-bar-item"
+              selected === "help"
+                ? "side-bar-item side-bar-item-active"
+                : "side-bar-item"
             }
           >
             <img
@@ -128,7 +204,7 @@ function SideBar() {
             />
             Destek
           </Link>
-         
+
           {user.Role === "admin" && (
             <Link
               to="/controlpanel"
@@ -147,8 +223,8 @@ function SideBar() {
           justifyContent: "center",
           alignItems: "center",
           gap: "10px",
-          position:"absolute",
-          bottom:24
+          position: "absolute",
+          bottom: 24,
         }}
       >
         {logined && (
