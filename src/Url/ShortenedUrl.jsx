@@ -14,7 +14,7 @@ function ShortenedUrl() {
   const dispatch = useDispatch();
   const url = useSelector((state) => state.url.url);
   const success = useSelector((state) => state.url.success);
-  const error = useSelector((state)=>state.url.error);
+  const error = useSelector((state) => state.url.error);
 
   const currentURL = window.location.href;
   const domain = currentURL.split("r/" + adIndex)[0];
@@ -30,15 +30,14 @@ function ShortenedUrl() {
   useEffect(() => {
     let interval;
     if (started) {
-      dispatch(GetUrlByShortenedUrlAsync(shortenedUrl));
-        console.log("started")
-        interval = setInterval(() => {
-          setCounter((prevCounter) => prevCounter - 1);
-        }, 1000);
+      console.log("started");
+      interval = setInterval(() => {
+        setCounter((prevCounter) => prevCounter - 1);
+      }, 1000);
     }
     return () => clearInterval(interval);
   }, [started]);
-  
+
   useEffect(() => {
     if (counter === 0) {
       setStarted(false);
@@ -46,43 +45,40 @@ function ShortenedUrl() {
   }, [counter]);
 
   useEffect(() => {
-    document.title=shortenedUrl
-    console.log(url)
-    if ( counter === 0 && success) {
+    document.title = shortenedUrl;
+    console.log(url);
+    if (counter === 0 && success) {
       window.location.href = url.OrginalUrl;
     }
-    if (counter < 0){
+    if (counter < 0) {
       setStarted(false);
-      setCounter(0);}
+      setCounter(0);
+    }
   }, [success, counter]);
 
   const handleStart = () => {
     setStarted(true);
   };
-useEffect(() => {
-  dispatch(GetAllUrlfaqsAsync());
-}, [dispatch]);
 
-const [isToggled, setToggled] = useState(false);
-const handleTogleMenu = (id) => {
-  const linksMenu = document.getElementById(id);
-  setToggled(!isToggled);
-  isToggled
-  ? (linksMenu.style.display = "flex")
-  : (linksMenu.style.display = "none");
-};
-const urlfaqs = useSelector((state) => state.urlfaqs.items);
-const urlfaqssuccess = useSelector((state) => state.urlfaqs.success);
+  const [isToggled, setToggled] = useState(false);
+  const handleTogleMenu = (id) => {
+    const linksMenu = document.getElementById(id);
+    setToggled(!isToggled);
+    isToggled
+      ? (linksMenu.style.display = "flex")
+      : (linksMenu.style.display = "none");
+  };
+  const urlfaqs = useSelector((state) => state.urlfaqs.items);
+  const urlfaqssuccess = useSelector((state) => state.urlfaqs.success);
 
   const faqsdata = [
     {
-      ID:1,
+      ID: 1,
       Question: "Neden reklam engelleyici kullanmamalıyım?",
-      Answer:
-        "Sitenin  çalışması için reklam engelleyici olmaması gerekir.",
+      Answer: "Sitenin  çalışması için reklam engelleyici olmaması gerekir.",
     },
     {
-      ID:2,
+      ID: 2,
       Question: "Nasıl linke yönlendirilirim?",
       Answer:
         "İlgimi çekti butonuna basıp ortalama 5 saniye bekledikten sonra linke yönlendiriliceksiniz.",
@@ -90,47 +86,116 @@ const urlfaqssuccess = useSelector((state) => state.urlfaqs.success);
   ];
   const faqs = urlfaqssuccess && urlfaqs !== null ? urlfaqs : faqsdata;
 
-
-  const [adblockDedected, setAdblockDedected] = useState(false);
+  const [adblockDedected, setAdblockDedected] = useState(true);
 
   DetectAdblock((detected) => {
-    if( detected ){
-       alert("Reklam engelleyicinizi kapatın")
-       setAdblockDedected(true);
-    }else{
-        console.log("adblock not detected");
-        setAdblockDedected(false);
+    if (detected) {
+      alert("Reklam engelleyicinizi kapatın");
+      setAdblockDedected(true);
+    } else {
+      console.log("adblock not detected");
+      setAdblockDedected(false);
     }
-});
+  });
+
+  useEffect(() => {
+    if (!adblockDedected) {
+      dispatch(GetUrlByShortenedUrlAsync(shortenedUrl));
+      dispatch(GetAllUrlfaqsAsync());
+      console.log("çlaışıyor bura");
+    }
+  }, [dispatch, adblockDedected]);
+  console.log(url);
   return (
     <>
       <div className="ads-container">
         <div className="ad-content">
           <AdsComponent />
-          {success ? null : <span  style={{color:"red"}} >{error}</span>}
-          {adblockDedected && <span style={{color:"red"}}>Reklam engelleyiciniz kapatın</span>}
+          {success ? null : <span style={{ color: "red" }}>{error}</span>}
+          {adblockDedected && (
+            <span style={{ color: "red" }}>Reklam engelleyiciniz kapatın</span>
+          )}
           <div style={{ display: "flex", gap: 12 }}>
-            <button disabled={adblockDedected}  className="skip-btn" onClick={handleSkip}>
+            <button
+              disabled={adblockDedected}
+              className="skip-btn"
+              onClick={handleSkip}
+            >
               Reklamı Geç
             </button>
-            <button disabled={adblockDedected} className="intereste-btn" onClick={handleStart}>
+            <button
+              disabled={adblockDedected}
+              className="intereste-btn"
+              onClick={handleStart}
+            >
               İlgimi Çekti
             </button>
           </div>
-          <span>
-            {success && "@" + url?.CreatedBy}
-          </span>
-          <span>{url?.Description}</span>
           {started && (
             <span>{counter} saniye sonra linke yönlendirileceksiniz.</span>
           )}
-          {counter ===0 && <span>Linke yönlendiriliyorsunuz...</span>}
+          {counter === 0 && <span>Linke yönlendiriliyorsunuz...</span>}
+          <div className="url-info-public">
+            <div
+              className="url-info-pub"
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                color: "white",
+                flexWrap: "wrap",
+                gap: "1px",
+              }}
+            >
+              <span>{success && "@" + url?.CreatedBy}</span>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  padding: "10px",
+                  flexWrap: "wrap",
+                  gap: "12px",
+                }}
+              >
+                <span>Tıklanma:</span>
+                <span>{url?.ClickCount}</span>
+              </div>
+            </div>
+            <div
+              className="url-info-pub"
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "flex-start",
+                flexWrap: "wrap",
+                gap: "12px",
+                textAlign:"left"
+              }}
+            >
+              <span
+                style={{
+                  textDecoration: "underline",
+                  fontWeight: "bold",
+                  fontSize: 24,
+                }}
+              >
+                {url?.ShortenedUrl}
+              </span>
+              <span
+               style={{
+                textAlign:"left"
+              }}
+              
+              >{url?.Description}
+              </span>
+            </div>
+          </div>
         </div>
         <div className="faq-content">
-          <h3>Sıkça Sorulan Sorular</h3>
-          {
-            faqs.map((faq, index) => (
-              <div className="faq-card" key={index}>
+          <h2>Sıkça Sorulan Sorular</h2>
+          {faqs.map((faq, index) => (
+            <div className="faq-card" key={index}>
               <button onClick={() => handleTogleMenu(faq.ID)}>
                 <span>{faq.Question}</span>
               </button>
@@ -138,8 +203,7 @@ const urlfaqssuccess = useSelector((state) => state.urlfaqs.success);
                 {faq.Answer}
               </span>
             </div>
-          ))
-        }
+          ))}
         </div>
       </div>
       <Footer />

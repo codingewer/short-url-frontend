@@ -17,6 +17,7 @@ const AdsComponent = () => {
   }, [sitedata]);
 var adsbygoogle
   const loadAdScript = () => {
+    if (adsbygoogle && !adsbygoogle.loaded)
     (adsbygoogle = window.adsbygoogle || []).push({})
     const script = document.createElement("script");
     script.src =

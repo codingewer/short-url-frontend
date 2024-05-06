@@ -108,14 +108,16 @@ function TopBar() {
             <div className="deme-kantlar-wrapper">
             <Link
               to="/aboutus"
-              onClick={handleCloseMenu}
               className="deme-kantlar"
             >
               Hakkımızda
             </Link>
             </div>
             <div className="deme-kantlar-container">
-              <b className="deme-kantlar1">Ödeme Kanıtları</b>
+            <Link
+              to="/paid"
+              className="deme-kantlar"
+            >Ödeme Kanıtları</Link>
             </div>
             <div className="button-bar">
               <button className="bar-btn">

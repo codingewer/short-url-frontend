@@ -12,3 +12,15 @@ input:focus{
     height: 96px;
     width: 96px;
 }
+
+.show-more-btn {
+    background: var(--color-1);
+    border: none;
+    padding: 12px;
+    min-width: 150px;
+    font-weight: 600;
+    color: white;
+    margin-top: 24px;
+    font-size: 14px;
+    border-radius: 6px;
+  }

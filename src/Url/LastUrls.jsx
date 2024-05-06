@@ -24,26 +24,26 @@ function LastUrls() {
   const usersuccess = useSelector((state) => state.users.success);
   const user0 = useSelector((state) => state.users.userrealtime);
   const user = usersuccess ? user0 : {};
-  const [showLimit, setShowLimit] = useState(10);
-
+  
   const CopyContent = (urll) => {
     navigator.clipboard
-      .writeText(domain + "/l/" + urll + "/r/1")
-      .then(() => {
-        alert("Kopyalandı: " + domain + urll);
-      })
-      .catch((err) => {
-        console.error("Metin kopyalanırken bir hata oluştu:", err);
-        alert("Metin kopyalanırken bir hata oluştu!");
-      });
+    .writeText(domain + "/l/" + urll + "/r/1")
+    .then(() => {
+      alert("Kopyalandı: " + domain + urll);
+    })
+    .catch((err) => {
+      console.error("Metin kopyalanırken bir hata oluştu:", err);
+      alert("Metin kopyalanırken bir hata oluştu!");
+    });
   };
-
+  
   const DeleteContent = async (id) => {
     if (window.confirm("Silmek istediğinize emin misiniz?")) {
       dispatch(DeleteUrlByIdAsync(id));
     }
   };
-
+  
+  const [showLimit, setShowLimit] = useState(10);
   const hanldeShowMore = () => {
     setShowLimit(showLimit + 25);
   };
@@ -157,7 +157,7 @@ function LastUrls() {
               onClick={hanldeShowMore}
               type="button"
               >
-              Daha Falza Göster{filtereUrls.length}
+              Daha Falza Göster({filtereUrls.length - showLimit})
             </button>
           )}
           </>

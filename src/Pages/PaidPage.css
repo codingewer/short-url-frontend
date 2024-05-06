@@ -1,0 +1,30 @@
+.paid-list{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    top: 104px;
+    width: 75%;
+    color: var(--color-darkslategray);
+}
+
+.paid-card{
+    background-color: var(--color-white);
+    border-top: 2px solid var(--shadow-color);
+    padding: 12px;
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    height: auto;
+    font-weight: 500;
+    font-size: 18px;
+    font-family: "Lexend", sans-serif;
+}
+
+
+@media screen and (max-width: 900px) {
+    
+    .paid-card{
+        width: 100%;
+    } 
+}

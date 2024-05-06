@@ -74,6 +74,19 @@ export const GetByStatusBalanceRequestsAsync = createAsyncThunk(
   }
 );
 
+export const GetPaidBalanceRequestsAsync = createAsyncThunk(
+  "balance/GetPaidBalanceRequestsAsync",
+  async (status) => {
+    try {
+      const response = await axios.get(
+        `${apiUrl}/balance/getpaid`
+      );
+      return response.data;
+    } catch (error) {
+      return error.response.data;
+    }
+  }
+);
 
 const BalanceSlice = createSlice({
   name: "balance",
@@ -85,6 +98,7 @@ const BalanceSlice = createSlice({
     balance: null,
     success: false,
     message: null,
+    paidlist: [],
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -141,6 +155,21 @@ const BalanceSlice = createSlice({
         state.items = [];
       })
       .addCase(GetByStatusBalanceRequestsAsync.rejected, (state, action) => {
+        state.error = "Bir hata oluştu";
+        state.loading = false;
+        state.success = false;
+      })
+      .addCase(GetPaidBalanceRequestsAsync.fulfilled, (state, action) => {
+        state.paidlist = action.payload;
+        state.loading = false;
+        state.success = true;
+      })
+      .addCase(GetPaidBalanceRequestsAsync.pending, (state) => {
+        state.loading = true;
+        state.success = false;
+        state.paidlist = [];
+      })
+      .addCase(GetPaidBalanceRequestsAsync.rejected, (state, action) => {
         state.error = "Bir hata oluştu";
         state.loading = false;
         state.success = false;
