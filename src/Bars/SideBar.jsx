@@ -27,6 +27,7 @@ function SideBar() {
     linksMenu.classList.remove("side-bar-open");
     setSelect(select);
   };
+
   return (
     <div id="side-bar-options" className="side-bar">
       <Link
@@ -41,6 +42,7 @@ function SideBar() {
           top: 12,
         }}
         to="/"
+        onClick={() => handleActiveLink("/")}
         relative="path"
       >
         <img
@@ -59,7 +61,7 @@ function SideBar() {
         />
       </Link>
       {
-        !logined &&
+        logined &&
       <div
       style={{
         display: "flex",
@@ -82,6 +84,7 @@ function SideBar() {
             width: "100%",
           }}
           to="/login"
+          onClick={() => handleActiveLink("/")}
           className="bar-btn1"
           >
           <img className="icons8-user-48-1" alt="" src={userico} />
@@ -107,6 +110,7 @@ function SideBar() {
             width: "100%",
           }}
           to="/register"
+          onClick={() => handleActiveLink("/")}
           className="bar-btn1"
           >
           <img className="icons8-user-48-1" alt="" src={signinico} />
