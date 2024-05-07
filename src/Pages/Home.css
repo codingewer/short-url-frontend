@@ -185,14 +185,14 @@
 
   .wwu-cards-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 70%;
-    align-items: flex-start;
+    align-items: center;
     gap: 24px;
   }
 
   .wwu-card-center {
-    width: calc(100% / 2 - 72px);
+    width: 80%;
   }
 }
 
@@ -382,7 +382,7 @@
   align-items: center;
   justify-content: center;
   gap: 12px;
-  text-align: center;
+  text-align: left;
   width: calc(100% / 4 - 72px);
 }
 
@@ -394,8 +394,10 @@
 }
 
 .hw-card-title {
-  font-size: 22px;
-  font-weight: 600;
+  font-size: 36px;
+  font-weight: 700;
+  text-align: left;
+  width: 100%;
   color: var(--color-darkslategray);
 }
 

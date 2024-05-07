@@ -21,17 +21,17 @@ function Home() {
     {
       title: "Kolayca kaydol!",
       subTitle: `Hemen kaydolun ve kısalttığınız linklere basıldıkça para
-      kazanın`,
+      kazanın. Kayıt olurken numara vb. biligilere ihtiyaç duymadan hızlıca kayıt olun ve kazanmaya başalyın`,
       iconUrl: quickicon,
     },
     {
-      title: "Tamamen üctretsiz!",
-      subTitle: `Kayıt olurken veya link kısaltırken herhangi bir ücret ödemenize gerek yok!`,
+      title: "Güvenilir ve Kolay!",
+      subTitle: `+18 reklamların olmamasının ysnı sıra link geçmek diğer sitelere göre daha kolay!`,
       iconUrl: freeicon,
     },
     {
-      title: "Link geçmek daha kolay!",
-      subTitle: `Piyasadaki diğer sitelere göre daha kolay link geçme sayfası.`,
+      title: "Grafiklerle Kazancınızı Takip Edin!",
+      subTitle: `Grafiklerle hızlıca linklerinizin durumunu takip edin ve kazancınızı nasıl daha iyi yükseltebileceğiniz hakkında fikir sahibi olun.`,
       iconUrl: economyicon,
     },
   ];
@@ -40,6 +40,8 @@ function Home() {
     dispatch(GetSiteDataBySiteName());
   }, []);
   const logined = Boolean(localStorage.getItem("logined"));
+
+  console.log(sitedata);
   return (
     //sayfa tasarımı
     <>
@@ -60,7 +62,9 @@ function Home() {
               </div>
               {!logined && (
                 <div className="login-barner-btn-parent">
-                  <Link to="/login" className="login-barner-btn">Giriş Yap</Link>
+                  <Link to="/login" className="login-barner-btn">
+                    Giriş Yap
+                  </Link>
                   <Link to="/register" className="register-barner-btn">
                     Ücretsiz Kayıt Ol
                   </Link>
@@ -97,19 +101,19 @@ function Home() {
           <section className="stats1">
             <div className="stats-parent">
               <div className="container">
-                <b className="b">100+</b>
+                <b className="b">{sitedata?.AllUsersLenght}+</b>
               </div>
               <div className="sub-title">Yayıncı</div>
             </div>
             <div className="stats-parent">
               <div className="container">
-                <b className="b">2000+</b>
+                <b className="b">{sitedata?.AllLinksLenght}+</b>
               </div>
               <span className="sub-title">Kısaltılan Link</span>
             </div>
             <div className="stats-parent">
               <div className="container">
-                <b className="b">45000+</b>
+                <b className="b">{sitedata?.AllClicksLenght}+</b>
               </div>
               <div className="sub-title">Link Tıklanması</div>
             </div>
@@ -119,11 +123,10 @@ function Home() {
         <div data-aos="fade-up" className="gify-container">
           <div className="gify-card">
             <div className="gify-texts">
-              <span className="gify-title">Kullanımı Kolay</span>
+              <span className="gify-title">Kullanımı Kolay ve Anlaşılır</span>
               <span className="gify-sub-title">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Tenetur fugit aperiam, maxime dignissimos nulla velit delectus
-                quia debitis incidunt vitae.
+                Link kısaltıp kayıt olmak çok kolay. Sadece mail adresi ile
+                kayıt olun link kısaltıp kazancınızı grafiklerle takip edin.
               </span>
             </div>
             <div className="gify-media">
@@ -136,27 +139,34 @@ function Home() {
             <div className="hw-card">
               <b className="hw-card-title">Hangi Ödeme Yöntemleri Var?</b>
               <span className="hw-card-sub">
-                Ödemelerinizi hesabınıza tanımladığınız banka ya da Papara
-                hesabınıza kolaylıkla çekebilirsiniz.
+                Ödemelerinizi hesabınıza tanımladığınız banka IBAN bilgisi ya da
+                Papara numarası ile hesabınıza kolaylıkla çekebilirsiniz.
               </span>
             </div>
             <div className="hw-card">
-              <b className="hw-card-title">Hangi Ödeme Yöntemleri Var?</b>
+              <b className="hw-card-title">Nasıl link kısaltabilirim?</b>
               <span className="hw-card-sub">
-                Ödemelerinizi hesabınıza tanımladığınız banka ya da Papara
-                hesabınıza kolaylıkla çekebilirsiniz.
+                Kayıt olduktan sonra link kısaltma sayafasına girip istediğiniz
+                linki kısaltıp istediğiniz ismi verebilirsiniz. dilerseniz
+                açıklama ekleyip link hakkında bilgi verebilirsiniz.
               </span>
             </div>
             <div className="hw-card">
-              <b className="hw-card-title">Hangi Ödeme Yöntemleri Var?</b>
+              <b className="hw-card-title">
+                Reklam engelleyicisi ne tür sorunlar yaratır?
+              </b>
               <span className="hw-card-sub">
-                Ödemelerinizi hesabınıza tanımladığınız banka ya da Papara
-                hesabınıza kolaylıkla çekebilirsiniz.
+                Reklam engelleyicisi kullanılırsa sayfa yüklenmez ve linkten
+                herhangi bir şekilde gelir elde edemezsiniz. linki
+                göndereceğiniz kişilere reklam engelleyici kullanmamaları
+                gerektiğini iletmenizde fayda var.
               </span>
             </div>
           </div>
           {!logined && (
-            <Link to="/register" className="register-hw-btn">Ücretsiz Kayıt Ol</Link>
+            <Link to="/register" className="register-hw-btn">
+              Ücretsiz Kayıt Ol
+            </Link>
           )}
         </div>
         <div data-aos="fade-up" className="gify-container">
@@ -172,8 +182,8 @@ function Home() {
               <span className="gify-title">Linklerine Değer Kat!</span>
               <span className="gify-sub-title">
                 Kolaylıkla kayıt olup linklerinizi değerlendirebilirisiniz. 1000
-                tıklanma başına 150 TL gelir elde edin! Paylaştığınız linkler
-                size pasif gelir sağlasın.
+                tıklanma başına {sitedata?.RevenuePerClick * 1000} &#8378; gelir
+                elde edin! Paylaştığınız linkler size pasif gelir sağlasın.
               </span>
             </div>
           </div>
