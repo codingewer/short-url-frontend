@@ -67,7 +67,7 @@ function SideBar() {
         flexDirection: "column",
         position: "relative",
         gap: 24,
-        top: 12,
+        top: 24,
         width: "80%",
       }}
       >
@@ -81,7 +81,7 @@ function SideBar() {
             backgroundColor: "#464a5f",
             width: "100%",
           }}
-          to="/register"
+          to="/login"
           className="bar-btn1"
           >
           <img className="icons8-user-48-1" alt="" src={userico} />
@@ -92,7 +92,7 @@ function SideBar() {
               }}
               className="kayt-ol"
               >
-              Kayıt Ol
+              Giriş Yap
             </div>
           </div>
         </Link>

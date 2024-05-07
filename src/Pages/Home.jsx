@@ -46,7 +46,7 @@ function Home() {
     //sayfa tasarımı
     <>
       <TopBar />
-      <div className="home">
+      <div data-aos="fade-up" className="home">
         <div className="home-banner">
           <div className="home-banner-inner">
             <div className="frame-parent">
@@ -81,7 +81,7 @@ function Home() {
         </div>
         <div data-aos="fade-up" className="wwu-cards-container">
           {wwu.map((item, index) => (
-            <div key={index} className="wwu-card-center">
+            <div data-aos="fade-up" key={index} className="wwu-card-center">
               <div className="tamamen-cretsiz-wrapper">
                 <h2 className="tamamen-cretsiz">{item.title}</h2>
               </div>
@@ -135,7 +135,7 @@ function Home() {
           </div>
         </div>
         <div data-aos="fade-up" className="hw-cards-container">
-          <div className="hw-cards">
+          <div data-aos="fade-up" className="hw-cards">
             <div className="hw-card">
               <b className="hw-card-title">Hangi Ödeme Yöntemleri Var?</b>
               <span className="hw-card-sub">
@@ -143,7 +143,7 @@ function Home() {
                 Papara numarası ile hesabınıza kolaylıkla çekebilirsiniz.
               </span>
             </div>
-            <div className="hw-card">
+            <div data-aos="fade-up" className="hw-card">
               <b className="hw-card-title">Nasıl link kısaltabilirim?</b>
               <span className="hw-card-sub">
                 Kayıt olduktan sonra link kısaltma sayafasına girip istediğiniz
@@ -151,7 +151,7 @@ function Home() {
                 açıklama ekleyip link hakkında bilgi verebilirsiniz.
               </span>
             </div>
-            <div className="hw-card">
+            <div data-aos="fade-up" className="hw-card">
               <b className="hw-card-title">
                 Reklam engelleyicisi ne tür sorunlar yaratır?
               </b>

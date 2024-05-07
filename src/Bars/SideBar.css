@@ -33,9 +33,9 @@
   .side-bar-navs{
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 12px;
     position: relative;
-    top: 48px;
+    top: 60px;
     width: 100%;
   }
 
