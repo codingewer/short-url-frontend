@@ -5,6 +5,8 @@
 input:focus{
     outline: none;
     -moz-appearance: textfield;
+    -ms-overflow-style: none;
+    overflow: -moz-scrollbars-none;
 
 }
 
