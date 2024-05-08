@@ -390,7 +390,7 @@
 .hw-cards {
   width: 100%;
   display: flex;
-  gap: 48px;
+  gap: 96px;
   flex-wrap: wrap;
 }
 
@@ -510,13 +510,13 @@
     width: 100%;
     flex-direction: column;
     align-items: center;
-    gap: 48px;
+    gap: 72px;
   }
   
   .gify-texts {
     width: 90%;
     display: flex;
-    gap: 24px;
+    gap: 48px;
     text-align: center;
     flex-direction: column;
   }

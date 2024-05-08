@@ -47,7 +47,7 @@
     padding: 24px;
     gap: 12px;
     align-items: center;
-    height: 500px;
+    max-height: 500px;
     overflow: auto;
     text-align: center;
     padding-bottom: 48px;

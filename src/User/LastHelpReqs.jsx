@@ -25,7 +25,7 @@ function LastHelpeqs(props) {
         data?.slice(0, 1).map((item, index) => (
           <div key={item.ID} className="balance-request">
             <span style={{ fontSize: 18, fontWeight: "bold" }}>
-              {item.Title};
+              {item.Title}
             </span>
             <span style={{ fontWeight: 600, fontSize: 18 }}>
               {formatDate(item.createdAt)}
