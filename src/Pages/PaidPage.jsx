@@ -3,10 +3,12 @@ import React, { useEffect, useState } from "react";
 import TopBar from "../Bars/TopBar";
 import Footer from "../Bars/Footer";
 import "./PaidPage.css";
+import loadingicon from "../assets/icons/loading.gif";
 import { GetPaidBalanceRequestsAsync } from '../Api/Balance/BalanceSlice';
 
 function PaidPage() {
     const paidlist = useSelector((state) => state.balance.paidlist);
+    const loading = useSelector((state) => state.balance.loading);
     const dispatch = useDispatch();
     const [showLimit, setShowLimit] = useState(15);
     const hanldeShowMore = () => {
@@ -29,6 +31,7 @@ function PaidPage() {
       >
         <div className="paid-list">
           <h1>Ödeme Kanıtları</h1>
+        {loading && <img src={loadingicon} className="loading-icon" />}
           {
             paidlist?.slice(0, showLimit).map((paid, index)=>(
 
