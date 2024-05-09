@@ -213,7 +213,7 @@ function HelpReq() {
       </div>
       <div className="last-helpreqs">
         {success &&
-          data.map((req, index) => (
+          data?.map((req, index) => (
             <div key={index} className="helpreq-card">
               <span className="helpreq-card-titles">{req.Title} </span>
               <p>{req.Content}</p>

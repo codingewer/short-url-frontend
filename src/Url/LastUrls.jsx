@@ -55,7 +55,7 @@ function LastUrls() {
   const [filtereUrls, setFiltereUrls] = useState([]);
   var filteredurls = [];
   const handleSearch = (searchTerm) => {
-    filteredurls = items.filter(
+    filteredurls = items?.filter(
       (url) =>
         url.OrginalUrl.toLowerCase().includes(searchTerm.toLowerCase()) ||
         url.ShortenedUrl.includes(searchTerm.toLowerCase())

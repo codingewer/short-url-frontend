@@ -21,12 +21,11 @@ function LastBalanceRequests(props) {
     dispatch(GetBalanceByUserIDAsync());
      
   }, [user0]);
-  console.log(items);
   return (
     <div className="balance-requests">
       <h1>Para Çekme Geçmişi</h1>
-       {data2.length > 0 &&
-        data2.map((item, index) => (
+       {data2?.length > 0 &&
+        data2?.map((item, index) => (
           <div key={item.ID} className="balance-request">
             <span style={{ color: "red", fontSize:18, fontWeight: "bold" }}>
               -{item.amount} &#8378;

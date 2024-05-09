@@ -41,10 +41,9 @@ function ShortUrl() {
     dispatch(GetUrlByCreatedByAsync(user.ID));
   }, [usersuccess]);
 
-  console.log(items);
   return (
     <div className="short-url-container">
-      {user.Blocked === true && (
+      {user?.Blocked === true && (
         <span style={{ color: "red", textAlign: "center", fontWeight: 600 }}>
           Engellendiniz link kısaltamazsınız
         </span>

@@ -47,15 +47,14 @@ function UpdateUser() {
     onSubmit: () => {
       dispatch(UpdatePasswordAsync(PasswordForm.values));
       PasswordForm.resetForm();
-      console.log("2323");
       return;
     },
   });
   useEffect(() => {
     success == true &&
       formik.setValues({
-        UserName: user.UserName,
-        Mail: user.Mail,
+        UserName: user?.UserName,
+        Mail: user?.Mail,
       });
   }, [success]);
   return (

@@ -80,7 +80,7 @@ const dispatch = useDispatch();
         {formik.errors.password && formik.touched.password ? (
           <div style={{color:"red"}} >{formik.errors.password}</div>
         ) : null}
-      {/* sitedatasuccess && <ReCAPTCHA
+      {sitedatasuccess && <ReCAPTCHA
         sitekey={data.ReChapchaCode}
         name="isVerified"
         value={formik.values.isVerified}
@@ -89,7 +89,8 @@ const dispatch = useDispatch();
         />}
         {formik.errors.isVerified && formik.touched.isVerified ? (
           <div style={{color:"red"}} >{formik.errors.isVerified}</div>
-        ) : null*/}
+        ) : null
+      }
         <br />
         <br />
         <br />
