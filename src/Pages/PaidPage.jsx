@@ -15,7 +15,6 @@ function PaidPage() {
     useEffect(() => {
       dispatch(GetPaidBalanceRequestsAsync());
     }, [dispatch]);
-    console.log(paidlist);
   return (
     <>
       <TopBar />

@@ -32,7 +32,6 @@ function LastUrls() {
       alert("Kopyalandı: " + domain + urll);
     })
     .catch((err) => {
-      console.error("Metin kopyalanırken bir hata oluştu:", err);
       alert("Metin kopyalanırken bir hata oluştu!");
     });
   };
@@ -66,7 +65,6 @@ function LastUrls() {
     setFiltereUrls(items);
   }, [items]);
 
-  console.log(items);
   return (
       <div className="last-shortened-urls">
       {urlgetloading && <img src={loadingicon} className="loading-icon" />}

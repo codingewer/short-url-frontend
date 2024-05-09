@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./BalanceRequest.css";
 import doneicon from "../assets/icons/Done.svg";
 import pending from "../assets/icons/Hourglass.svg";
 import { useDispatch, useSelector } from "react-redux";
-import { GetBalanceByUserIDAsync } from "../Api/Balance/BalanceSlice";
 import { formatDate } from "./Profile";
 import "./UserForm.css";
 import { GetHelpRequestsByUserAsync } from "../Api/Help/HelpSlice";
@@ -17,7 +16,6 @@ function LastHelpeqs(props) {
   useEffect(() => {
     dispatch(GetHelpRequestsByUserAsync());
   }, [user0]);
-  console.log(items);
   return (
     <div className="balance-requests">
       <h1>Son Destek Talepleri</h1>

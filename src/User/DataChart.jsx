@@ -116,7 +116,6 @@ function DataChart() {
       0
     );
   }
-  console.log(chartdata);
   return (
     <div>
       <div className="user-details-container">

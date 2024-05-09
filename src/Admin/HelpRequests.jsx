@@ -17,9 +17,7 @@ const validationSchema = yup.object({
 
 function Helphelpreqs(props) {
   const items = useSelector((state) => state.help.items);
-  const status = useSelector((state) => state.help.success);
   const loading = useSelector((state) => state.help.loading);
-  const error = useSelector((state) => state.help.error);
   const dispatch = useDispatch();
   const [formTitle, setFormTitle] = useState("Başlık");
   const [helpID, setHelpID] = useState("");

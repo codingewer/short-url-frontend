@@ -41,7 +41,6 @@ function Home() {
   }, []);
   const logined = Boolean(localStorage.getItem("logined"));
 
-  console.log(sitedata);
   return (
     //sayfa tasarımı
     <>

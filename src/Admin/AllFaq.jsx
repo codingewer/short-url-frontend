@@ -29,7 +29,6 @@ function AllFaq() {
   useEffect(() => {
     dispatch(GetAllFaqsAsync());
   }, [dispatch]);
-  console.log(faqs);
   const DeleteFaq = async (id) => {
     await dispatch(DeleteFaqByIdAsync(id));
   };

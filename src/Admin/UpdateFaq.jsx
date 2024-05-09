@@ -12,7 +12,6 @@ function UpdateFaq() {
 
   const faq = useSelector((state) => state.faqs.data);
   const success = useSelector((state) => state.faqs.success);
-  const postsuccess = useSelector((state) => state.faqs.postsuccess);
   const loading = useSelector((state) => state.faqs.loading);
   const FaqFrom = useFormik({
     initialValues: {

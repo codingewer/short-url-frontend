@@ -19,7 +19,6 @@ function BalanceRequests(props) {
     dispatch(GetByStatusBalanceRequestsAsync(props.paid));
   }, [props.paid, dispatch]);
 
-  console.log(status);
   const changePaid = async (status, id) => {
     window.confirm("Bu işlemi gerçekleştirmek istediğinize emin misiniz?") &&
       dispatch(
@@ -30,7 +29,6 @@ function BalanceRequests(props) {
       );
   };
   const balanceReqs = items !== null ? items : [];
-  console.log(balanceReqs);
   return (
     <div className="cp-data-container">
       {loading && <img className="loading-icon" src={loadingico} alt="" />}

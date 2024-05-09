@@ -26,7 +26,6 @@ function UrlFaqs() {
   useEffect(() => {
     dispatch(GetAllUrlfaqsAsync());
   }, [dispatch]);
-  console.log(faqs);
   const DeleteFaq = async (id) => {
     await dispatch(DeleteUrlfaqByIdAsync(id));
   };

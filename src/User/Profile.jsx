@@ -36,7 +36,6 @@ function Profile() {
     dispatch(GetUserByIDAsync(user.ID));
     dispatch(GetSiteDataBySiteName())
   }, [dispatch,balancesatatus]);
-  console.log(user);
   return (
     <>
       <SideBar />

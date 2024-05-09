@@ -12,11 +12,9 @@ function Urls() {
     navigator.clipboard
       .writeText(domain + urll)
       .then(() => {
-        console.log("Metin kopyalandı:", domain + urll);
         alert("Kopyalandı: " + domain + urll);
       })
       .catch((err) => {
-        console.error("Metin kopyalanırken bir hata oluştu:", err);
         alert("Metin kopyalanırken bir hata oluştu!");
       });
   };
