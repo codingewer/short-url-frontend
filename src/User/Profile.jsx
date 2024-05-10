@@ -14,6 +14,7 @@ import { GetUserByIDAsync } from "../Api/User/UserSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { GetSiteDataBySiteName } from "../Api/Settings/SettingsSlice";
 import SideBarDash from "../Bars/SideBarDash";
+import { Link } from "react-router-dom";
 
 function Profile() {
   const logined = Boolean(localStorage.getItem("logined"));
@@ -27,17 +28,60 @@ function Profile() {
     alert("Çıkış yapıldı");
     window.location.href = "/";
   };
+  const [width, setWidth] = useState(window.innerWidth);
+
   useEffect(() => {
     dispatch(GetUserByIDAsync(user?.ID));
     dispatch(GetSiteDataBySiteName());
   }, [dispatch, balancesatatus]);
+  useEffect(() => {
+    const handleWindowResize = () => setWidth(window.innerWidth);
+    window.addEventListener("resize", handleWindowResize);
+    return () => window.removeEventListener("resize", handleWindowResize);
+  }, []);
   return (
     <>
-      <TopBar />
+      {width < 1080 ? (
+        <TopBar />
+      ) : (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "100%",
+            position: "relative",
+            top: "48px",
+          }}
+        >
+          <div
+            style={{
+              width: "75%",
+              display: "flex",
+              justifyContent: "flex-end",
+              alignItems: "center",
+              textAlign: "center",
+            }}
+          >
+            <Link
+              className="form-btn"
+              to="/dashboard/shorturl"
+              style={{
+                marginRight: "24px",
+                textDecoration: "none",
+                textAlign: "center",
+                borderRadius: 12,
+              }}
+            >
+              Link Kısalt
+            </Link>
+          </div>
+        </div>
+      )}
       <SideBar />
       <div className="profile-container">
         <div className="profile-nav">
-          <SideBarDash/>
+          <SideBarDash />
         </div>
         <div className="profile-pages">
           <Routes>

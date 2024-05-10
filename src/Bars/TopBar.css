@@ -49,8 +49,8 @@
   display: inline-block;
   min-width: 110px;
   text-decoration: none;
-  font-weight: 700;
-  font-size: 18px;
+  font-weight: 600;
+  font-size: 16px;
   color: var(--color-darkslategray);
 }
 

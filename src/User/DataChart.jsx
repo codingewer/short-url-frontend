@@ -159,9 +159,9 @@ function DataChart() {
         </div>
       </div>
       <div className="chart-container">
-        <Chart height="500px" width={1000} data={data0} options={options} />
-      </div>
+        <Chart height="400px" width={1000} data={data0} options={options} />
       <div className="chart-legends">
+      </div>
         {legendItems.map((item, index) => (
           <div
             style={{
@@ -204,7 +204,7 @@ function DataChart() {
           style={{
             width: "100%",
             display: "flex",
-            flexWrap:"wrap",
+            flexWrap: "wrap",
             justifyContent: "space-between",
           }}
         >
