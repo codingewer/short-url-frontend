@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./SideBar.css";
 import "../User/Profile.css";
+import logo from "../assets/logo.jpeg";
 import logouticon from "../assets/icons/logout.png";
 import { Link } from "react-router-dom";
 import chartico from "../assets/icons/chartico.svg";
@@ -29,6 +30,35 @@ function SideBarDash() {
     <div id="side-bar-options" className="side-bar sidebar-dash">
       {logined && (
         <div className="side-bar-navs">
+          <Link
+            style={{              
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              position: "relative",
+              top: -48,
+              left:24,
+              width:72
+            }}
+            to="/"
+            onClick={() => handleActiveLink("/")}
+            relative="path"
+          >
+            <img
+              style={{
+                borderRadius: 16,
+                width: "72px",
+                height: "72px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+              className="logo-1-icon"
+              loading="lazy"
+              alt=""
+              src={logo}
+            />
+          </Link>
           <Link
             to="/dashboard"
             onClick={() => handleActiveLink("/dashboard")}
@@ -148,7 +178,7 @@ function SideBarDash() {
           alignItems: "center",
           gap: "10px",
           position: "absolute",
-          bottom: 24,
+          bottom: 144,
         }}
       >
         {logined && (

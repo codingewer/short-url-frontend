@@ -5,6 +5,7 @@
     position: relative;
     display: flex;
     bottom: -200px;
+    z-index: 3;
     paddingbottom: 50px;
     justify-content: center;
 }

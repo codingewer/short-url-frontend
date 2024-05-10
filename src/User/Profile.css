@@ -33,7 +33,9 @@
 .profile-nav {
     position: fixed;
     left: 0;
-    height: calc(100vh - 220px );
+    top: 0;
+    z-index: 2;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -42,7 +44,6 @@
     overflow: hidden;
     padding-bottom: 200px;
     background-color: var(--color-3);
-    border-radius: 0px 12px;
     font-family: "Lexend", sans-serif;
 }
 .navlinks{
@@ -117,13 +118,15 @@
 }
 
 .chart-select {
-    border: none;
+    border: 1px solid var(--color-darkslategray);
     background: none;
     margin: 12px 24px 12px 24px;
     width: calc(100% - 48px);
     text-align: center;
     font-size: 16px;
-    padding: 6px;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: 600;
     color: var(--color-darkslategray);
 }
 
