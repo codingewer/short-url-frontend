@@ -3,7 +3,7 @@
 }
 
 .balance-form{
-    width: calc(50% - 48px);
+    width: calc(70% - 48px);
     min-width: 400px;
     align-items: center;
     display: flex;
