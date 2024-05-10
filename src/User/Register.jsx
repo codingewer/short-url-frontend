@@ -142,7 +142,7 @@ function Register() {
           Giriş Yap
         </Link>
       </form>
-      {status && (window.location.href = "/")}
+      {status && (window.location.href = "/dashboard")}
     </div>
   );
 }

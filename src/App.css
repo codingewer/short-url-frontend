@@ -1,5 +1,6 @@
 .App{
     font-family: "Lexend", sans-serif;
+    position: relative;
 }
 
 input:focus{

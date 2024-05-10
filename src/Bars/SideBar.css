@@ -1,59 +1,78 @@
-.side-bar{
-    position: fixed;
-    transform: translateX(0);
-    height:100%;
-    padding: 0px 12px 0px 12px;
-    width:50vw;
-    z-index: 100;
-    flex-direction: column;
-    justify-content: flex-start;
-    background-color: var(--color-3);
-    align-items: flex-start;
-    top: 0;
-    left: -600px; /* Menüyü ekranın solundan dışarı çıkar */
-    transition: left 0.5s ease; /* Geçiş efekti */
-  }
-  
-  .side-bar-open {
-    left: 0; /* Menüyü ekranın soluna doğru kaydır */
+.side-bar {
+  display: flex;
+  transform: translateX(0);
+  z-index: 100;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: var(--color-3);
+  align-items: flex-start;
+  top: 0;
+  transition: left 0.5s ease; /* Geçiş efekti */
+}
+
+
+.mobile-side-bar {
+  position: fixed;
+  display: flex;
+  height: 100%;
+  padding: 0px 12px 0px 12px;
+  width: 50vw;
+  left: 0px;
+  left: -600px;
+}
+.side-bar-open {
+  left: 0; /* Menüyü ekranın soluna doğru kaydır */
+}
+
+
+.side-bar-item {
+  width:80% ;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 12px;
+  position: relative;
+  left: 12px;
+  color: var(--color-2);
+}
+
+.side-bar-navs {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  top: 60px;
+  width: 100%;
+}
+
+.side-bar-item-active {
+  border-radius: 6px;
+  border: 2px solid var(--color-2);
+}
+
+@media only screen and (min-width: 1080px) {
+  .mobile-side-bar {
+    display: none;
   }
 
-  .side-bar-item{
-    width: calc(100% - 28px);
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 16px;
-    padding: 12px;
-    color: var(--color-2);
-  }
-
-  .side-bar-navs{
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    position: relative;
-    top: 60px;
+  .sidebar-dash{
     width: 100%;
+    padding: 12px;
+    position: relative;
+    min-height: 70vh;
+    align-items: center;
   }
-
-  .side-bar-item-active{
-    border-radius: 6px;
-    border: 2px solid var(--color-2);
-  }
-
-  @media only screen and (min-width: 1080px) {
-    
-    .side-bar{
-        display: none;
-    }
 }
 
 @media only screen and (max-width: 1080px) {
-    .side-bar{
-        display: flex;
-    }
+  .mobile-side-bar {
+    position: fixed;
+    display: flex;
+    height: 100%;
+    padding: 0px 12px 0px 12px;
+    width: 50vw;
+  }
 }
- 

@@ -114,11 +114,6 @@ function TopBar() {
               </div>
             )}
             <div className="deme-kantlar-wrapper">
-              <Link to="/dashboard/shorturl" className="deme-kantlar">
-                Link Kısalt
-              </Link>
-            </div>
-            <div className="deme-kantlar-wrapper">
               <Link to="/aboutus" className="deme-kantlar">
                 Hakkımızda
               </Link>

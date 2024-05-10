@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import "./SideBar.css";
 import "../User/Profile.css";
-import userico from "../assets/icons/icons8-login-50 1.svg";
-import signinico from "../assets/icons/icons8-user-48 1.svg";
-
-import logo from "../assets/logo.jpeg";
 import logouticon from "../assets/icons/logout.png";
 import { Link } from "react-router-dom";
 import chartico from "../assets/icons/chartico.svg";
@@ -13,7 +9,7 @@ import walletico from "../assets/icons/walletico.svg";
 import supportico from "../assets/icons/supportico.svg";
 import settingsico from "../assets/icons/settings.svg";
 
-function SideBar() {
+function SideBarDash() {
   const logined = Boolean(localStorage.getItem("logined"));
   const user = JSON.parse(localStorage.getItem("user"));
   const [selected, setSelect] = useState("/");
@@ -30,111 +26,14 @@ function SideBar() {
   };
 
   return (
-    <div id="side-bar-options" className="side-bar mobile-side-bar">
-      <Link
-        style={{
-          borderRadius: "50%",
-          width: "48px",
-          height: "48px",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          position: "relative",
-          top: 12,
-        }}
-        to="/"
-        onClick={() => handleActiveLink("/")}
-        relative="path"
-      >
-        <img
-          style={{
-            borderRadius: 12,
-            width: "48px",
-            height: "48px",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-          className="logo-1-icon"
-          loading="lazy"
-          alt=""
-          src={logo}
-        />
-      </Link>
-      {
-        !logined &&
-      <div
-      style={{
-        display: "flex",
-        justifyContent: "flex-start",
-        flexDirection: "column",
-        position: "relative",
-        gap: 24,
-        top: 24,
-        width: "80%",
-      }}
-      >
-        <Link
-          style={{
-            display: "flex",
-            justifyContent: "flex-start",
-            position: "relative",
-            top: 12,
-            color: "#B888FF",
-            backgroundColor: "#464a5f",
-            width: "100%",
-          }}
-          to="/login"
-          onClick={() => handleActiveLink("/")}
-          className="bar-btn1"
-          >
-          <img className="icons8-user-48-1" alt="" src={userico} />
-          <div className="kayt-ol-wrapper">
-            <div
-              style={{
-                color: "#B888FF",
-              }}
-              className="kayt-ol"
-              >
-              Giriş Yap
-            </div>
-          </div>
-        </Link>
-        <Link
-          style={{
-            display: "flex",
-            justifyContent: "flex-start",
-            position: "relative",
-            top: 12,
-            color: "#B888FF",
-            backgroundColor: "#464a5f",
-            width: "100%",
-          }}
-          to="/register"
-          onClick={() => handleActiveLink("/")}
-          className="bar-btn1"
-          >
-          <img className="icons8-user-48-1" alt="" src={signinico} />
-          <div className="kayt-ol-wrapper">
-            <div
-              style={{
-                color: "#B888FF",
-              }}
-              className="kayt-ol"
-              >
-              Kayıt Ol
-            </div>
-          </div>
-        </Link>
-      </div>
-      }
+    <div id="side-bar-options" className="side-bar sidebar-dash">
       {logined && (
         <div className="side-bar-navs">
-        <Link
-        to="/dashboard"
-        onClick={() => handleActiveLink("/dashboard")}
-        className={
-          selected === "/dashboard"
+          <Link
+            to="/dashboard"
+            onClick={() => handleActiveLink("/dashboard")}
+            className={
+              selected === "/dashboard"
                 ? "side-bar-item side-bar-item-active"
                 : "side-bar-item"
             }
@@ -267,4 +166,4 @@ function SideBar() {
   );
 }
 
-export default SideBar;
+export default SideBarDash;

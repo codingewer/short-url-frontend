@@ -98,7 +98,7 @@ const dispatch = useDispatch();
         <button className="form-btn" type="submit">Giriş yap </button>
         <Link style={{textDecoration:"none", fontWeight:700, fontSize:18}} to="/register">Kayıt Ol</Link>
       </form>
-     { status && (window.location.href="/")}
+     { status && (window.location.href="/dashboard")}
     </div>
   );
 }
