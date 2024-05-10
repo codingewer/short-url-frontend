@@ -51,7 +51,7 @@ function Profile() {
             alignItems: "center",
             width: "100%",
             position: "relative",
-            top: "48px",
+            top: "24px",
           }}
         >
           <div
@@ -64,13 +64,21 @@ function Profile() {
             }}
           >
             <Link
-              className="form-btn"
               to="/dashboard/shorturl"
+              className="short-url-btn-top"
               style={{
                 marginRight: "24px",
                 textDecoration: "none",
                 textAlign: "center",
                 borderRadius: 12,
+                borderColor: "#7215fc",
+                borderStyle: "solid",
+                borderWidth: "2px",
+                padding: "12px",
+                fontWeight: "bold",
+                fontSize: "16px",
+                minWidth: "150px",
+                transition: "all 0.3s ease-in-out",
               }}
             >
               Link Kısalt

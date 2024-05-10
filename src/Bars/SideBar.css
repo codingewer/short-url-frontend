@@ -36,7 +36,12 @@
   padding: 12px;
   position: relative;
   left: 12px;
+  border-radius: 12px;
   color: var(--color-2);
+  transition: all 0.5s ease-in-out,
+}
+.side-bar-item:hover{
+background-color: var(--shadow-color);
 }
 
 .side-bar-navs {
