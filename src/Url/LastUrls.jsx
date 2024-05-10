@@ -81,8 +81,8 @@ function LastUrls() {
             <thead>
               <tr>
                 <th style={{ width: 100 }}>#</th>
-                <th style={{ width: 400 }}>Link</th>
-                <th style={{ width: 400 }}>Orijinal Link</th>
+                <th style={{ width: 200 }}>Başlık</th>
+                <th style={{ width: 300 }}>Orijinal Link</th>
                 <th style={{ width: 200 }}>Tıklanma</th>
                 <th style={{ width: 200 }}>Gelir</th>
                 <th style={{ width: 200 }}>İşlem</th>
@@ -92,24 +92,27 @@ function LastUrls() {
               {filtereUrls?.slice(0, showLimit).map((item, index) => (
                   <tr key={index}>
                   <td style={{ width: 100 }}>{index + 1}</td>
-                  <td style={{ width: 400 }}>
+                  <td style={{ width: 200 }}>
                     <a
                       className="url-name"
                       target="_blank"
                       rel="noreferrer"
                       href={domain + "/l/" + item.ShortenedUrl + "/r/1"}
                       >
-                      {domain + "/l/" + item.ShortenedUrl}
+                      {item.ShortenedUrl}
                     </a>
                   </td>
-                  <td style={{ width: 400 }}>
+                  <td style={{ width: 300 }}>
                     <a
                       className="url-name"
                       target="_blank"
                       rel="noreferrer"
                       href={item.OrginalUrl}
                       >
-                      {item.OrginalUrl}
+                      { 
+                      item.OrginalUrl.length > 25 ?
+                      item.OrginalUrl.substring(0, 25)+"...":
+                      item.OrginalUrl}
                     </a>
                   </td>
                   <td style={{ width: 200 }}>{item?.ClickCount}</td>

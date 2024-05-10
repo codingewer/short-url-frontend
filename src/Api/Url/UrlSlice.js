@@ -110,7 +110,7 @@ const UrlSlice = createSlice({
       .addCase(NewUrlAsync.rejected, (state, action) => {
         state.success = false;
         state.loading = false;
-        state.error = "Link kısaltırken hata oluştu girdiğiniz bilgileri kontrol edin";
+        state.error = "Link kısaltırken hata oluştu. Aynı başlığa veya orijinal linke sahip bir linkiniz var!";
       })
       .addCase(GetUrlByCreatedByAsync.fulfilled, (state, action) => {
         state.items = action.payload;
