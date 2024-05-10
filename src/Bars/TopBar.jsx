@@ -34,66 +34,6 @@ function TopBar() {
   };
   const logined = Boolean(localStorage.getItem("logined"));
   return (
-    /*
-    <div>
-      <div
-        className={scrollPosition > 300 ? "window-scrolled navbar" : "navbar"}
-      >
-        <div className="navbar-container">
-          <div className="top-bar-logo">
-            <Link to="/" relative="path">
-              <img src={logo} alt="" />
-            </Link>
-          </div>
-          {
-            logined &&
-          <Link className="menu-short-btn" to="/dashboard/shorturl">
-            link Kısalt
-          </Link>
-          }
-          <button onClick={handleTogleMenu} type="button" className="menu-btn">
-            <div
-              className={
-                scrollPosition > 300 ? "menu-bar-scrolled menu-bar" : "menu-bar"
-              }
-            ></div>
-            <div
-              className={
-                scrollPosition > 300 ? "menu-bar-scrolled menu-bar" : "menu-bar"
-              }
-            ></div>
-            <div
-              className={
-                scrollPosition > 300 ? "menu-bar-scrolled menu-bar" : "menu-bar"
-              }
-            ></div>
-          </button>
-          <div className="bar-btns">
-            <Link
-              to="/aboutus"
-              onClick={handleCloseMenu}
-              className={
-                scrollPosition > 300 ? "window-scrolled-links" : "topbar-links"
-              }
-            >
-              Hakkımızda
-            </Link>
-            {user && user.Role === "admin" && (
-              <Link to="/controlpanel" className="menu-login-btn">
-                Controlpanel
-              </Link>
-            )}
-            <Link
-              className="menu-login-btn"
-              to={logined ? "/dashboard" : "/login"}
-              relative="path"
-            >
-              {logined ? "Dashbord" : "Giriş Yap"}
-            </Link>
-          </div>
-        </div>
-      </div>
-    </div>*/
     <div className="top-bar-container">
       <div className="top-bar">
         <Link to="/" relative="path">
@@ -107,13 +47,13 @@ function TopBar() {
         <div className="top-bar-inner">
           <div className="frame-parent-top">
           {user && user.Role === "admin" && (
-                        <div className="deme-kantlar-wrapper">
+                        <div className="deme-kantlar-container">
               <Link to="/controlpanel" className="deme-kantlar">
                 Controlpanel
               </Link>
               </div>
             )}
-            <div className="deme-kantlar-wrapper">
+            <div className="deme-kantlar-container">
               <Link to="/aboutus" className="deme-kantlar">
                 Hakkımızda
               </Link>
