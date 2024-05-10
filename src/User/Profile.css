@@ -31,14 +31,18 @@
 }
 
 .profile-nav {
-    height: fit-content;
+    position: fixed;
+    left: 0;
+    height: calc(100vh - 220px );
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     color: var(--color-1);
     overflow: hidden;
-    border-radius: 6px;
+    padding-bottom: 200px;
+    background-color: var(--color-3);
+    border-radius: 0px 12px;
     font-family: "Lexend", sans-serif;
 }
 .navlinks{
@@ -67,8 +71,7 @@
     background-color: var(--color-1);
     color: white;
 }
-.profile-pages, .balance-request,
-.profile-nav {
+.profile-pages, .balance-request {
     border-radius: 12px;
 }
 .profile-page{
@@ -180,9 +183,10 @@
 @media only screen and (min-width: 1080px) {
     
     .profile-pages {
+        position: relative;
+        left: 98px;
         padding: 24px;
-        width: calc(65% - 144px);
-        box-shadow: 0px 0px 11px rgba(184, 136, 255, 0.25);
+        width: calc(75% - 250px);
     }
     
     .profile-nav {
@@ -208,10 +212,6 @@
     .profile-pages,.profile-nav  {
         width: calc(100% - 72px);
     }
-    
-    .profile-nav {
-        height: fit-content;
-        display: flex;    }
 
     .urls-detail h2, .urls-detail span{
         font-size: 16px;

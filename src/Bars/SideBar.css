@@ -62,7 +62,7 @@
     width: 100%;
     padding: 12px;
     position: relative;
-    min-height: 70vh;
+   height: 100%;
     align-items: center;
   }
 }
