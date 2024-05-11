@@ -11,6 +11,8 @@ import {
   BarElement,
   BarController,
   LineController,
+  Tooltip,
+  Legend,
 } from "chart.js";
 
 import "./Profile.css";
@@ -27,7 +29,9 @@ ChartJS.register(
   PointElement,
   BarElement,
   BarController,
-  LineController
+  LineController,
+  Tooltip,
+  Legend
 );
 
 function DataChart() {
@@ -74,19 +78,27 @@ function DataChart() {
   }
   const legendItems = generateLegendItems(data0);
   const options = {
-    responsive: true,
     plugins: {
+      tooltip: {
+        callbacks: {
+          title: function () {
+            return ;
+          },
+        },
+      },
+      legend: { display: false },
       title: {
         display: true,
-        text: "Line Chart: Monthly Sales Trend for Products A & B",
+        text: "Test chart",
+        position: "top",
       },
-      legend: {
-        display: true,
-        labels: ["Ocak", "Şubat", "Mart", "Nisan"],
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
       },
     },
   };
-
   const days = selectedOption === "weekly" ? 7 : 30;
   useEffect(() => {
     dispatch(GetDataByUserIDAsync(days));
@@ -160,8 +172,7 @@ function DataChart() {
       </div>
       <div className="chart-container">
         <Chart height="400px" width={1000} data={data0} options={options} />
-      <div className="chart-legends">
-      </div>
+        <div className="chart-legends"></div>
         {legendItems.map((item, index) => (
           <div
             style={{
