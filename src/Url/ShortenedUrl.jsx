@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { GetUrlByShortenedUrlAsync } from "../Api/Url/UrlSlice";
 import { GetAllUrlfaqsAsync } from "../Api/Faq/UrlFaqSlice";
 import { DetectAdblock } from "@scthakuri/adblock-detector";
+import { Link } from "react-router-dom";
 
 function ShortenedUrl() {
   const { adIndex, shortenedUrl } = useParams();
@@ -19,10 +20,9 @@ function ShortenedUrl() {
   const currentURL = window.location.href;
   const domain = currentURL.split("r/" + adIndex)[0];
   console.log(domain);
-  const index = parseInt(adIndex);
+  const [index, setIndex] = useState(1);
   const handleSkip = () => {
-    const nextIndex = index + 1;
-    window.location.href = domain + "r/" + nextIndex;
+    setIndex(index + 1);
   };
   const [counter, setCounter] = useState(5);
   const [started, setStarted] = useState(false);
@@ -105,24 +105,33 @@ function ShortenedUrl() {
       console.log("çlaışıyor bura");
     }
   }, [dispatch, adblockDedected]);
-  console.log(url);
+  const [seed, setSeed] = useState(1);
+  const resetSeed = () => {
+    setSeed(Math.random());
+  };
+
+  useEffect(() => {
+    resetSeed();
+    console.log(seed);
+  }, [index]);
   return (
     <>
       <div className="ads-container">
         <div className="ad-content">
-          <AdsComponent />
+          <AdsComponent key={seed} />
           {success ? null : <span style={{ color: "red" }}>{error}</span>}
           {adblockDedected && (
             <span style={{ color: "red" }}>Reklam engelleyiciniz kapatın</span>
           )}
           <div style={{ display: "flex", gap: 12 }}>
-            <button
+            <Link
               disabled={adblockDedected}
               className="skip-btn"
               onClick={handleSkip}
+              to={domain + "r/" + index}
             >
               Reklamı Geç
-            </button>
+            </Link>
             <button
               disabled={adblockDedected}
               className="intereste-btn"
@@ -170,7 +179,7 @@ function ShortenedUrl() {
                 alignItems: "flex-start",
                 flexWrap: "wrap",
                 gap: "12px",
-                textAlign:"left"
+                textAlign: "left",
               }}
             >
               <span
@@ -183,11 +192,11 @@ function ShortenedUrl() {
                 {url?.ShortenedUrl}
               </span>
               <span
-               style={{
-                textAlign:"left"
-              }}
-              
-              >{url?.Description}
+                style={{
+                  textAlign: "left",
+                }}
+              >
+                {url?.Description}
               </span>
             </div>
           </div>

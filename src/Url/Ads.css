@@ -66,6 +66,15 @@
     border-radius: 6px;
     gap: 24px;
 }
+@media screen and (min-width: 1080px) {
+.adsbygoogle{
+    max-width: 50%;
+    background-color: var(--color-darkslategray);
+}
+.url-info-public{
+    max-width: 50%;
+}
+}
 
 .adsbygoogle{
     background-color: var(--color-darkslategray);
