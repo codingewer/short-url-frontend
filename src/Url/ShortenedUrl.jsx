@@ -19,7 +19,6 @@ function ShortenedUrl() {
 
   const currentURL = window.location.href;
   const domain = currentURL.split("r/" + adIndex)[0];
-  console.log(domain);
   const [index, setIndex] = useState(1);
   const handleSkip = () => {
     setIndex(index + 1);
@@ -30,7 +29,6 @@ function ShortenedUrl() {
   useEffect(() => {
     let interval;
     if (started) {
-      console.log("started");
       interval = setInterval(() => {
         setCounter((prevCounter) => prevCounter - 1);
       }, 1000);
@@ -46,7 +44,6 @@ function ShortenedUrl() {
 
   useEffect(() => {
     document.title = shortenedUrl;
-    console.log(url);
     if (counter === 0 && success) {
       window.location.href = url.OrginalUrl;
     }
@@ -93,7 +90,6 @@ function ShortenedUrl() {
       alert("Reklam engelleyicinizi kapatın");
       setAdblockDedected(true);
     } else {
-      console.log("adblock not detected");
       setAdblockDedected(false);
     }
   });
@@ -102,7 +98,6 @@ function ShortenedUrl() {
     if (!adblockDedected) {
       dispatch(GetUrlByShortenedUrlAsync(shortenedUrl));
       dispatch(GetAllUrlfaqsAsync());
-      console.log("çlaışıyor bura");
     }
   }, [dispatch, adblockDedected]);
   const [seed, setSeed] = useState(1);
@@ -112,7 +107,6 @@ function ShortenedUrl() {
 
   useEffect(() => {
     resetSeed();
-    console.log(seed);
   }, [index]);
   return (
     <>
@@ -130,7 +124,7 @@ function ShortenedUrl() {
               onClick={handleSkip}
               to={domain + "r/" + index}
             >
-              Reklamı Geç
+              İlgimi Çekmedi
             </Link>
             <button
               disabled={adblockDedected}
