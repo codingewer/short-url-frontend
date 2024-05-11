@@ -31,7 +31,6 @@ ChartJS.register(
   BarController,
   LineController,
   Tooltip,
-  Legend
 );
 
 function DataChart() {
@@ -80,6 +79,10 @@ function DataChart() {
   const options = {
     plugins: {
       tooltip: {
+        //one toolptip for all datas
+        enabled: true,
+        mode: "index",
+        intersect: false,
         callbacks: {
           title: function () {
             return ;
