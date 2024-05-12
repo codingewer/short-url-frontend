@@ -19,7 +19,7 @@ function LastUrls() {
   const items = useSelector((state) => state.url.items);
   const currentURL = window.location.href;
   const urlgetloading = useSelector((state) => state.url.getloading);
-  const domain = currentURL.split("/dashboard/shorturl")[0];
+  const domain = currentURL.split("/dashboard")[0];
 
   const usersuccess = useSelector((state) => state.users.success);
   const user0 = useSelector((state) => state.users.userrealtime);
@@ -64,7 +64,7 @@ function LastUrls() {
   useEffect(() => {
     setFiltereUrls(items);
   }, [items]);
-
+console.log(domain)
   return (
       <div className="last-shortened-urls">
       {urlgetloading && <img src={loadingicon} className="loading-icon" />}
