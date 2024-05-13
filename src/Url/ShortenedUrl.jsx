@@ -9,6 +9,7 @@ import { GetUrlByShortenedUrlAsync } from "../Api/Url/UrlSlice";
 import { GetAllUrlfaqsAsync } from "../Api/Faq/UrlFaqSlice";
 import { DetectAdblock } from "@scthakuri/adblock-detector";
 import { Link } from "react-router-dom";
+import TopBar from "../Bars/TopBar";
 
 function ShortenedUrl() {
   const { adIndex, shortenedUrl } = useParams();
@@ -110,6 +111,7 @@ function ShortenedUrl() {
   }, [index]);
   return (
     <>
+    <TopBar/>
       <div className="ads-container">
         <div className="ad-content">
           <AdsComponent key={seed} />
