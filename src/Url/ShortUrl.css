@@ -155,8 +155,6 @@ th {
   display: grid;
 }
 
-
-
 .searchurlinput {
   color: var(--color-darkslategray);
   border: 2px solid var(--shadow-color);
@@ -195,4 +193,17 @@ th {
 
   .short-url-form input {
   }
+}
+
+.policy-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  text-align: left;
+  color: darkslategray;
+}
+
+.policy-list li {
+  font-size: 18px;
+  font-weight: 600;
 }

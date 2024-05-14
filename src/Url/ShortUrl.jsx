@@ -92,6 +92,84 @@ function ShortUrl() {
       </form>
       <span className="content-title">Son Linkler</span>
       <LastUrls />
+      <div
+      style={{
+        paddingTop:48
+      }}
+      >
+        <h1
+        style={{
+          color: "darkslategray",
+          fontSize: "32px",
+          fontWeight: "700",
+          textAlign: "left",
+        }}
+        
+        >POLİTİKALAR</h1>
+        <span
+        style={{
+          color: "darkslategray",
+          fontSize: "16px",
+          fontWeight: "500",
+          textAlign: "left",
+        }}
+        >
+          Tüm kullanıcıların aşağıdaki program politikalarına uyması
+          gerekmektedir. Bu ihlallerin gerçekleşmesi durumunda hesabınızın devre
+          dışı bırakılması hakkınımı saklı tutarız.
+        </span>
+        <ul className="policy-list">
+          <li>
+            Şiddeti yücelten, nefret söylemi içeren, tacize veya zorbalık ya da
+            müstehcenlikle ilgili içeriğe bağlantı verilmesine izin verilmez.
+          </li>
+          <li>
+            Yasa dışı uyuşturucularla ve diğerleri ile ilgili içeriğe bağlantı
+            verilmesine izin verilmez.
+          </li>
+          <li>
+            Bağlantılarının birbirine bağlanmasına ("döngü trafiği") veya
+            ziyaretçilerin kafasını karıştırmak için başka yöntemler
+            kullanılmasına izin verilmez.
+          </li>
+          <li>
+            Gerekli haklara sahip olmadan telif hakkını ihlal eden veya korunan
+            içeriğe bağlantı verilmesine izin verilmez. (müzik, film ve daha
+            fazlası).
+          </li>
+          <li>
+            Ziyaretçiyi yanıltmak amacı ile yanıltıcı veya aldatıcı yazılımlara
+            bağlantı verilmesine izin verilmez.
+          </li>
+          <li>
+            Kötü amaçlı yazılım veya reklam yazılımı içeriğine bağlantı
+            verilmesine izin verilmez.
+          </li>
+          <li>
+            Ziyaretçi sayısını gerçek dışı bir şekilde artırmak için kendi
+            bağlantılarınıza tıklamanıza veya başka yöntemler kullanmanıza izin
+            verilmez.
+          </li>
+          <li>
+            Tıklama oluşturmak için üçüncü taraf hizmetleri, Botlar, Tıklama
+            karşılığı ödeme, Otomatik Gezinme, Tıklama Değişim programları..
+            gibi uygulamalar yasaktır. Bu politikaların ihlali sonucunda
+            hesabınız para çekmenize izin verilmeden kapatılacaktır.
+          </li>
+          <span
+          style={{
+            color: "red",
+            fontSize: "16px",
+            fontWeight: "600",
+            textAlign: "left",
+          }}
+          >
+
+          Bu politikaların ihlali sonucunda hesabınız para çekmenize izin
+          verilmeden kapatılacaktır.
+          </span>
+        </ul>
+      </div>
     </div>
   );
 }
