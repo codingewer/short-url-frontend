@@ -10,11 +10,11 @@ export const UploadImage = createAsyncThunk("File/UploadImageAsync", async (file
 
     const formData = new FormData();
     formData.append('file', file);
-    formData.append('upload_preset', 'gfhbmczb');
-    formData.append('api_key', '641461484529384');
+    formData.append('upload_preset', 'pkps8e7sd');
+    formData.append('api_key', '457418124222745');
 
     const response = await axios.post(
-      'https://api.cloudinary.com/v1_1/ddeatrwxs/image/upload',
+      'https://api.cloudinary.com/v1_1/dsfggqsdp/image/upload',
       formData
     );
 
@@ -37,7 +37,7 @@ export const UploadVideo = createAsyncThunk("file/UploadVideo", async (file) => 
     formData.append('api_key', '641461484529384');
 
     const response = await axios.post(
-      'https://api.cloudinary.com/v1_1/ddeatrwxs/video/upload',
+      'https://api.cloudinary.com/v1_1/dsfggqsdp/video/upload',
       formData
     );
 
@@ -62,7 +62,6 @@ const FileSlice = createSlice({
         state.success = true
         state.url = action.payload
         state.loading = false
-        console.log(action.payload)
       })
       .addCase(UploadImage.pending, (state, action) => {
         state.loading = true
@@ -74,7 +73,6 @@ const FileSlice = createSlice({
         state.success = true
         state.videoUrl = action.payload
         state.loading = false
-        console.log(action.payload)
       })
       .addCase(UploadVideo.pending, (state, action) => {
         state.loading = true

@@ -11,7 +11,7 @@ import { useEffect } from "react";
 import { GetSiteDataBySiteName } from "../Api/Settings/SettingsSlice";
 import Aos from "aos";
 import "aos/dist/aos.css";
-import homegif from "../assets/imgs/home-png.png";
+import homegif from "../assets/imgs/shorturlgif.gif";
 import { Link } from "react-router-dom";
 
 function Home() {
@@ -125,11 +125,16 @@ function Home() {
               <span className="gify-title">Kullanımı Kolay ve Anlaşılır</span>
               <span className="gify-sub-title">
                 Link kısaltıp kayıt olmak çok kolay. Sadece mail adresi ile
-                kayıt olun link kısaltıp kazancınızı grafiklerle takip edin.
+                kayıt olun link kısaltıp kazancınızı ve görüntülenmelerinizi grafiklerle takip edin.
               </span>
             </div>
             <div className="gify-media">
-              <img className="gify-img" src={homegif} alt="gif" />
+              <img 
+              style={{
+                objectFit: "cover",
+              }}
+              
+              className="gify-img" src={homegif} alt="gif" />
             </div>
           </div>
         </div>

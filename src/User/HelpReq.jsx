@@ -45,13 +45,11 @@ function HelpReq() {
   const data = items !== null ? items : [];
   useEffect(() => {
     dispatch(GetHelpRequestsByUserAsync());
-    console.log("uese effect");
   }, [dispatch]);
 
   const [file, setFile] = useState(null);
   const handleFileChange = (event) => {
     const file = event.target.files[0];
-    console.log(event.target.files[0]);
     setFile(file);
   };
   const handleUpload = (file) => {
@@ -88,10 +86,8 @@ function HelpReq() {
       setFile(null);
       document.getElementById("fileInput").value = "";
       setFormikValue("VideoUrl", videoUrl);
-      console.log(videoUrl);
     }
   }, [videoUrl]);
-  console.log(data);
   return (
     <div className="help-container">
       <div className="help-form-container">
