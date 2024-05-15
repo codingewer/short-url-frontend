@@ -11,7 +11,7 @@ import { GetSiteDataBySiteName } from '../Api/Settings/SettingsSlice';
 const validationSchema = Yup.object({
   userName: Yup.string().required("Kullanıcı adı gerekli"),
   password: Yup.string().required("Şifre gerekli"),
- // isVerified:  Yup.boolean().required("ReCAPTCHA Doğrulaması gerekli"),
+ isVerified:  Yup.boolean().required("ReCAPTCHA Doğrulaması gerekli"),
 })
 function Login() {
   const success = useSelector((state) => state.users.logined)

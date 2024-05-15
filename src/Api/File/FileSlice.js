@@ -1,5 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+const cloudKey = process.env.REACT_APP_CLOUD_KEY;
+
 
 export const UploadImage = createAsyncThunk("File/UploadImageAsync", async (file) => {
   try {
@@ -11,7 +13,7 @@ export const UploadImage = createAsyncThunk("File/UploadImageAsync", async (file
     const formData = new FormData();
     formData.append('file', file);
     formData.append('upload_preset', 'pkps8e7sd');
-    formData.append('api_key', '457418124222745');
+    formData.append('api_key',`${cloudKey}`);
 
     const response = await axios.post(
       'https://api.cloudinary.com/v1_1/dsfggqsdp/image/upload',
@@ -24,6 +26,8 @@ export const UploadImage = createAsyncThunk("File/UploadImageAsync", async (file
   }
 });
 
+console.log(cloudKey)
+
 export const UploadVideo = createAsyncThunk("file/UploadVideo", async (file) => {
   try {
     if (!file) {
@@ -34,7 +38,7 @@ export const UploadVideo = createAsyncThunk("file/UploadVideo", async (file) => 
     const formData = new FormData();
     formData.append('file', file);
     formData.append('upload_preset', 'gfhbmczb');
-    formData.append('api_key', '641461484529384');
+    formData.append('api_key', `${cloudKey}`);
 
     const response = await axios.post(
       'https://api.cloudinary.com/v1_1/dsfggqsdp/video/upload',
