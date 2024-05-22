@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { GetSiteDataBySiteName } from '../Api/Settings/SettingsSlice';
 import Aos from "aos";
 import "aos/dist/aos.css";
+import bgbanner from "../assets/imgs/undraw_portfolio_website_re_jsdd.svg";
 
 function AboutUs() {
   const dispatch = useDispatch();
@@ -28,13 +29,27 @@ function AboutUs() {
     <>
       <TopBar />
       <div data-aos="fade-up"  className="contacus-page">
-        <div className="faq-banner"></div>
-        <div className="contactus-content">
-          <div className="about-us-text">
-            <span style={{ fontSize: 24, fontWeight: 500 }}>Hakkımızda</span>
-
-            <div  dangerouslySetInnerHTML={{ __html: data.AboutUs }}>
+      <div className="faq-banner">
+          <div className="home-banner">
+            <div className="home-banner-inner">
+              <div className="frame-parent">
+                <div className="link-shortener-parent">
+                  <div className="link-shortener">
+                    <h1 className="para-kazann">Hakkımızda</h1>
+                  </div>
+                </div>
+              </div>
             </div>
+            <img
+              className="undraw-link-shortener-mvf6-1-icon"
+              loading="lazy"
+              alt=""
+              src={bgbanner}
+            />
+          </div>
+        </div>
+        <div className="contactus-content">
+            <div  dangerouslySetInnerHTML={{ __html: data.AboutUs }}>
           </div>
         </div>
       </div>

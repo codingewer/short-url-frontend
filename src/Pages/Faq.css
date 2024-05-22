@@ -7,9 +7,10 @@
 }
 
 .faq-banner{
-    background-color: var(--color-1);
-    height: 200px;
+    padding-top: 104px;
     width: 100vw;
+    display: flex;
+    justify-content: center;
 }
 
 .faq-content,
