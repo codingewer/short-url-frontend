@@ -3,7 +3,8 @@ import React, { useEffect, useState } from "react";
 import TopBar from "../Bars/TopBar";
 import Footer from "../Bars/Footer";
 import "./Faq.css";
-import { Link } from "react-router-dom";
+import Aos from "aos";
+import "aos/dist/aos.css";
 import { useSelector } from "react-redux";
 import { GetAllFaqsAsync } from '../Api/Faq/FaqSlice';
 
@@ -23,10 +24,17 @@ function Faq() {
   useEffect(() => {
     dispatch(GetAllFaqsAsync())
   }, [dispatch]);
+
+  useEffect(() => {
+    document.title = 'Linkamon | S.S.S.';
+  }, []);
+  useEffect(() => {
+    Aos.init({ duration: 2000 });
+  }, []);
   return (
     <>
       <TopBar />
-      <div className="faq-page">
+      <div data-aos="fade-up"  className="faq-page">
         <div className="faq-banner"></div>
         <div className="faq-content">
           <span style={{ fontSize: 28, marginBottom: 100 }}>

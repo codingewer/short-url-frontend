@@ -61,80 +61,79 @@ function SideBar() {
           src={logo}
         />
       </Link>
-      {
-        !logined &&
-      <div
-      style={{
-        display: "flex",
-        justifyContent: "flex-start",
-        flexDirection: "column",
-        position: "relative",
-        gap: 24,
-        top: 24,
-        width: "80%",
-      }}
-      >
-        <Link
+      {!logined && (
+        <div
           style={{
             display: "flex",
             justifyContent: "flex-start",
+            flexDirection: "column",
             position: "relative",
-            top: 12,
-            color: "#B888FF",
-            backgroundColor: "#464a5f",
-            width: "100%",
+            gap: 24,
+            top: 24,
+            width: "80%",
           }}
-          to="/login"
-          onClick={() => handleActiveLink("/")}
-          className="bar-btn1"
+        >
+          <Link
+            style={{
+              display: "flex",
+              justifyContent: "flex-start",
+              position: "relative",
+              top: 12,
+              color: "#B888FF",
+              backgroundColor: "#464a5f",
+              width: "100%",
+            }}
+            to="/login"
+            onClick={() => handleActiveLink("/")}
+            className="bar-btn1"
           >
-          <img className="icons8-user-48-1" alt="" src={userico} />
-          <div className="kayt-ol-wrapper">
-            <div
-              style={{
-                color: "#B888FF",
-              }}
-              className="kayt-ol"
+            <img className="icons8-user-48-1" alt="" src={userico} />
+            <div className="kayt-ol-wrapper">
+              <div
+                style={{
+                  color: "#B888FF",
+                }}
+                className="kayt-ol"
               >
-              Giriş Yap
+                Giriş Yap
+              </div>
             </div>
-          </div>
-        </Link>
-        <Link
-          style={{
-            display: "flex",
-            justifyContent: "flex-start",
-            position: "relative",
-            top: 12,
-            color: "#B888FF",
-            backgroundColor: "#464a5f",
-            width: "100%",
-          }}
-          to="/register"
-          onClick={() => handleActiveLink("/")}
-          className="bar-btn1"
+          </Link>
+          <Link
+            style={{
+              display: "flex",
+              justifyContent: "flex-start",
+              position: "relative",
+              top: 12,
+              color: "#B888FF",
+              backgroundColor: "#464a5f",
+              width: "100%",
+            }}
+            to="/register"
+            onClick={() => handleActiveLink("/")}
+            className="bar-btn1"
           >
-          <img className="icons8-user-48-1" alt="" src={signinico} />
-          <div className="kayt-ol-wrapper">
-            <div
-              style={{
-                color: "#B888FF",
-              }}
-              className="kayt-ol"
+            <img className="icons8-user-48-1" alt="" src={signinico} />
+            <div className="kayt-ol-wrapper">
+              <div
+                style={{
+                  color: "#B888FF",
+                }}
+                className="kayt-ol"
               >
-              Kayıt Ol
+                Kayıt Ol
+              </div>
             </div>
-          </div>
-        </Link>
-      </div>
-      }
+          </Link>
+        </div>
+      )}
       {logined && (
         <div className="side-bar-navs">
-        <Link
-        to="/dashboard"
-        onClick={() => handleActiveLink("/dashboard")}
-        className={
-          selected === "/dashboard"
+          <Link
+            to="/dashboard"
+            onClick={() => handleActiveLink("/dashboard")}
+            className={
+              selected === "/dashboard"
                 ? "side-bar-item side-bar-item-active"
                 : "side-bar-item"
             }
@@ -241,6 +240,70 @@ function SideBar() {
           )}
         </div>
       )}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          position: "relative",
+          top: 96,
+          width: "75%",
+          padding: 24,
+          gap: 24,
+          borderTop:"solid 1px #B888FF"
+        }}
+      >
+        <Link
+          style={{
+            color: "#B888FF",
+            textDecoration: "none",
+            fontWeight: 700,
+          }}
+          to="/aboutus"
+        >
+          Hakkımızda
+        </Link>
+        <Link
+          style={{
+            color: "#B888FF",
+            textDecoration: "none",
+            fontWeight: 700,
+          }}
+          to="/terms"
+        >
+          Kullanım Şartları
+        </Link>
+        <Link
+          style={{
+            color: "#B888FF",
+            textDecoration: "none",
+            fontWeight: 700,
+          }}
+          to="/privacy"
+        >
+          Gizlilik Politikası
+        </Link>
+        <Link
+          style={{
+            color: "#B888FF",
+            textDecoration: "none",
+            fontWeight: 700,
+          }}
+          to="/paid"
+        >
+          Ödeme Kanıtları
+        </Link>
+        <Link
+          style={{
+            color: "#B888FF",
+            textDecoration: "none",
+            fontWeight: 700,
+          }}
+          to="/faq"
+        >
+          S.S.S
+        </Link>
+      </div>
+
       <div
         style={{
           display: "flex",

@@ -28,10 +28,6 @@ function TopBar() {
       ? linksMenu.classList.add("side-bar-open")
       : linksMenu.classList.remove("side-bar-open");
   };
-  const handleCloseMenu = () => {
-    const linksMenu = document.getElementById("link-drop-menu");
-    linksMenu.classList.add("side-bar-open");
-  };
   const logined = Boolean(localStorage.getItem("logined"));
   return (
     <div className="top-bar-container">
@@ -61,6 +57,11 @@ function TopBar() {
             <div className="deme-kantlar-container">
               <Link to="/paid" className="deme-kantlar">
                 Ödeme Kanıtları
+              </Link>
+            </div>
+            <div className="deme-kantlar-container">
+              <Link to="/aboutus" className="deme-kantlar">
+                İletişim
               </Link>
             </div>
             <div className="button-bar">

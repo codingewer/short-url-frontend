@@ -39,6 +39,9 @@ function Profile() {
     window.addEventListener("resize", handleWindowResize);
     return () => window.removeEventListener("resize", handleWindowResize);
   }, []);
+  useEffect(() => {
+    document.title = 'Linkamon | Dashboard';
+  }, []);
   return (
     <>
       {width < 1080 ? (

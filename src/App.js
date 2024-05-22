@@ -17,6 +17,7 @@ import ForgotPassword from "./User/ForgotPassword";
 import ResetPassword from "./User/ResetPassword";
 import UserPage from "./User/UserPage";
 import PaidPage from "./Pages/PaidPage";
+import Cookies from "./Pages/Cookies";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
           <Route path="/dashboard/*" element={<Profile />} />
           <Route path="/balancereqs" element={<BalanceRequest/> } />
           <Route path="/paid" element={<PaidPage/> } />
+          <Route path="/cookies" element={<Cookies/> } />
           <Route path="/controlpanel/*" element={<ControlPanel />} />
           <Route path="/forgotpassword" element={<ForgotPassword/>} />
           <Route path="/resetpassword/:token" element={<ResetPassword/>}/>

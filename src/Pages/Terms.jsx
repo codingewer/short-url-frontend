@@ -6,6 +6,8 @@ import Footer from "../Bars/Footer";
 import "./Faq.css";
 import { useSelector } from "react-redux";
 import { GetSiteDataBySiteName } from '../Api/Settings/SettingsSlice';
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 function Terms() {
   const dispatch = useDispatch();
@@ -16,10 +18,16 @@ function Terms() {
   const data = sitedata !== null ? sitedata : {
     Terms:"Gizlilik"
   }
+  useEffect(() => {
+    document.title = 'Linkamon | Kullanım Koşulları';
+  }, []);
+  useEffect(() => {
+    Aos.init({ duration: 2000 });
+  }, []);
   return (
     <>
       <TopBar />
-      <div className="contacus-page">
+      <div data-aos="fade-up" className="contacus-page">
         <div className="faq-banner"></div>
         <div className="contactus-content">
           <div className="about-us-text">

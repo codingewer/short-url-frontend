@@ -22,12 +22,11 @@
 @media only screen and (max-width: 1080px) {
     .contactus-content{
         flex-direction: column;
-        width: 100%;
+        width: calc(100% - 96px);
         align-items: center;
     }
     .about-us-text{
         width: 100%;
-        text-align: center;
     }
 }
 

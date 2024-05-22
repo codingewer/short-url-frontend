@@ -30,17 +30,19 @@
     background: none;
     border: none;
     color: gray;
-    font-size: 18px;
+    font-size: 24px;
+    font-weight: 700;
     cursor: pointer;
 
 }
 
 .faq-card {
-    color: gray;
+    color: var(--color-darkslategray);
     text-align: center;
     padding: 24px;
     gap: 12px;
     border-radius: 12px;
+    font-size: 18px;
     border: 1px solid var(--shadow-color)
 }
 
@@ -65,8 +67,8 @@
         width: calc(100% - 72px);
         color: gray;
         text-align: center;
-        gap: 12px;
         border-radius: 12px;
+        gap: 48px;
         border: 1px solid var(--shadow-color)
     }
 }
