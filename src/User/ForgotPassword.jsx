@@ -14,7 +14,6 @@ const validationSchema = Yup.object({
 });
 function ForgotPassword() {
   const url = window.location.href;
-  const domain = url.split("/forgotpassword")[0];
   const loading = useSelector((state) => state.users.loading);
   const success = useSelector((state) => state.users.success);
   const error = useSelector((state) => state.users.error);
@@ -27,13 +26,14 @@ function ForgotPassword() {
     validationSchema: validationSchema,
     onSubmit: async () => {
       dispatch(ForgotPasswordAsync(formik.values));
-      formik.resetForm();
     },
   });
-  console.log(success);
   useEffect(() => {
-    formik.setFieldValue("domain", domain +"/resetpassword/" );
-  }, [url]);
+    formik.setFieldValue("domain",  url.split("/forgotpassword")[0] + "/resetpassword/" );
+  }, [formik.values.mail]);
+  useEffect(()=>{
+    formik.resetForm();
+  },[success])
   return (
     //SAyfa tasarımı
     <>

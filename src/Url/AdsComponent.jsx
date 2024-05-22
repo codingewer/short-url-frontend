@@ -9,52 +9,30 @@ const AdsComponent = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(GetSiteDataBySiteName());
-    loadAdScript();
   }, [dispatch]);
 
-  useEffect(() => {
-    loadAdScript();
-  }, [sitedata]);
-var adsbygoogle
-  const loadAdScript = () => {
-    if (adsbygoogle && !adsbygoogle.loaded)
-    (adsbygoogle = window.adsbygoogle || []).push({})
-    const script = document.createElement("script");
-    script.src =
-      "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
-    script.async = true;
-    document.body.appendChild(script);
-    return () => {
-      document.body.removeChild(script);
-    };
-  };
+  useEffect(() => {}, [sitedata]);
 
-  const ads =
-    sitedata !== null
-      ? {
-          slot: sitedata.AdSlot,
-          client: sitedata.AdClient,
-        }
-      : {
-          slot: "",
-          client: "",
-        };
+  useEffect(() => {
+    if (window.adsbygoogle && !window.adsbygoogle.loaded)
+      try {
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+      } catch (e) {
+        console.error("AdSense error", e);
+      }
+  }, []);
+
   return (
     <>
-    {
-      status &&
-      <ins
-      className="adsbygoogle"
-      style={{ display: "block", width: "100%", height: "490px" }}
-      data-ad-client= {ads.client}  
-      data-ad-slot={ads.slot}
-      data-ad-format="auto"
-      data-full-width-responsive="true"
-      >
-      Reklam
-      </ins>
-      
-      }
+      {status && (
+        <ins
+          key={Math.random}
+          className="adsbygoogle"
+          style={{ display: "inline-block", width: "300px", height: "300px" }}
+          data-ad-client="ca-pub-5425176553873988"
+          data-ad-slot="7050201805"
+        ></ins>
+      )}
     </>
   );
 };
