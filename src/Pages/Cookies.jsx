@@ -10,6 +10,7 @@ import bgbanner from "../assets/imgs/undraw_personal_information_re_vw8a.svg";
 function Cookies() {
   useEffect(() => {
     Aos.init({ duration: 2000 });
+    window.scrollTo(0, 0); // Sayfanın en üstüne kaydır
   }, []);
   return (
     <>

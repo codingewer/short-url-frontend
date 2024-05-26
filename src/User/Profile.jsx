@@ -40,6 +40,7 @@ function Profile() {
     return () => window.removeEventListener("resize", handleWindowResize);
   }, []);
   useEffect(() => {
+    window.scrollTo(0, 0); // Sayfanın en üstüne kaydır
     document.title = 'Linkamon | Dashboard';
   }, []);
   return (

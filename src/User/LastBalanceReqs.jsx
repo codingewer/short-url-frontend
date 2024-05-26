@@ -15,8 +15,8 @@ function LastBalanceRequests(props) {
   const dispatch = useDispatch();
 
 
-  const data = items !== null ? items : [];
-  const data2 = props.page ==="profile" ? items?.slice(0,2) : items;
+  const data2 = props.page ==="profile" & items?.length > 2 ? items?.slice(0,2) : items;
+  
   useEffect(() => {
     dispatch(GetBalanceByUserIDAsync());
      

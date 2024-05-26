@@ -258,6 +258,8 @@ function SideBar() {
             textDecoration: "none",
             fontWeight: 700,
           }}
+          onClick={() => handleActiveLink(".")}
+
           to="/aboutus"
         >
           Hakkımızda
@@ -268,6 +270,8 @@ function SideBar() {
             textDecoration: "none",
             fontWeight: 700,
           }}
+          onClick={() => handleActiveLink(".")}
+
           to="/terms"
         >
           Kullanım Şartları
@@ -278,6 +282,8 @@ function SideBar() {
             textDecoration: "none",
             fontWeight: 700,
           }}
+          onClick={() => handleActiveLink(".")}
+
           to="/privacy"
         >
           Gizlilik Politikası
@@ -288,6 +294,8 @@ function SideBar() {
             textDecoration: "none",
             fontWeight: 700,
           }}
+          onClick={() => handleActiveLink(".")}
+
           to="/paid"
         >
           Ödeme Kanıtları
@@ -298,6 +306,7 @@ function SideBar() {
             textDecoration: "none",
             fontWeight: 700,
           }}
+          onClick={() => handleActiveLink(".")}
           to="/faq"
         >
           S.S.S

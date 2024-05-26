@@ -13,7 +13,6 @@ import Aos from "aos";
 import "aos/dist/aos.css";
 import homegif from "../assets/imgs/shorturlgif.gif";
 import { Link } from "react-router-dom";
-import CookieConsent from "react-cookie-consent";
 
 function Home() {
   const sitedata = useSelector((state) => state.settings.data);
@@ -42,43 +41,12 @@ function Home() {
   }, []);
   const logined = Boolean(localStorage.getItem("logined"));
   useEffect(() => {
+    window.scrollTo(0, 0); 
     document.title = "Linkamon | Ana Sayfa";
   }, []);
   return (
     //sayfa tasarımı
     <>
-      <CookieConsent
-        location="bottom"
-        buttonText="Anladım ve onaylıyorum"
-        cookieName="LinkamonCookies"
-        style={{ background: "#2B373B",
-        minHeight:150,
-        fontSize: "18px",
-        color: "#fff",
-        padding: "10px",
-        borderRadius: "5px",
-        fontWeight:700,
-        }}
-        buttonStyle={{ color: "white", fontSize: "18px",
-          background: "#7215fc",
-          borderRadius: "5px",
-          paddingBlock:12,
-          paddingInline:24,
-          fontWeight:700,
-         }}
-        expires={150}
-      >
-        Bu site daha iyi bir kullanıcı deneyimi için çerezlerinize ihtiyaç duyabilir.
-        <a target="_blank"
-        style={{
-          color: "#B888FF",
-          fontWeight:700,
-          marginLeft: "10px",
-          fontSize: "16px",
-        }}
-        
-        href="/cookies">Çerez politikası</a>
-      </CookieConsent>
       <TopBar />
       <div data-aos="fade-up" className="home">
         <div className="home-banner">

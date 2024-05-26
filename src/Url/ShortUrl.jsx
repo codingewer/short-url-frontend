@@ -41,6 +41,10 @@ function ShortUrl() {
     dispatch(GetUrlByCreatedByAsync(user.ID));
   }, [usersuccess]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0); // Sayfanın en üstüne kaydır
+  }, [])
+
   return (
     <div className="short-url-container">
       {user?.Blocked === true && (

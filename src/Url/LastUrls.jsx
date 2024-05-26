@@ -97,7 +97,7 @@ console.log(domain)
                       className="url-name"
                       target="_blank"
                       rel="noreferrer"
-                      href={domain + "/l/" + item.ShortenedUrl + "/r/1"}
+                      href={domain + "/" + user?.UserName + "/"+ item.ShortenedUrl + "/r/1"}
                       >
                       {item.ShortenedUrl}
                     </a>

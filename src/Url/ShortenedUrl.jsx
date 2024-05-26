@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 import TopBar from "../Bars/TopBar";
 
 function ShortenedUrl() {
-  const { adIndex, shortenedUrl } = useParams();
+  const { adIndex, shortenedUrl, username } = useParams();
   const dispatch = useDispatch();
   const url = useSelector((state) => state.url.url);
   const success = useSelector((state) => state.url.success);
@@ -97,7 +97,7 @@ function ShortenedUrl() {
 
   useEffect(() => {
     if (!adblockDedected) {
-      dispatch(GetUrlByShortenedUrlAsync(shortenedUrl));
+      dispatch(GetUrlByShortenedUrlAsync({username: username , shortenedUrl: shortenedUrl}));
       dispatch(GetAllUrlfaqsAsync());
     }
   }, [dispatch, adblockDedected]);

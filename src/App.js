@@ -5,7 +5,7 @@ import SideBar from "./Bars/SideBar"
 import Userlogin from "./User/Userlogin";
 import Profile from "./User/Profile";
 import ControlPanel from "./Admin/ControlPanel";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Faq from "./Pages/Faq";
 import BalanceRequest from "./User/BalanceRequest";
 import Home from "./Pages/Home";
@@ -18,6 +18,7 @@ import ResetPassword from "./User/ResetPassword";
 import UserPage from "./User/UserPage";
 import PaidPage from "./Pages/PaidPage";
 import Cookies from "./Pages/Cookies";
+import CookiesBar from "./Bars/CookiesBar";
 
 function App() {
   return (
@@ -32,7 +33,7 @@ function App() {
           <Route path="/aboutus" element={<AboutUs />} />
           <Route path="/privacy" element={<Privacy/>} />
           <Route path = "/terms" element={<Terms/>} />
-          <Route path="/l/:shortenedUrl/r/:adIndex" element={<ShortenedUrl />} />
+          <Route path="/:username/:shortenedUrl/r/:adIndex" element={<ShortenedUrl />} />
           <Route path="*" element={<NotFound />} />
           <Route path="/dashboard/*" element={<Profile />} />
           <Route path="/balancereqs" element={<BalanceRequest/> } />
@@ -43,8 +44,8 @@ function App() {
           <Route path="/resetpassword/:token" element={<ResetPassword/>}/>
           <Route path="/userpage/:id" element ={<UserPage/>}/>
         </Routes>
-
       </BrowserRouter>
+      <CookiesBar/>
     </div>
   );
 }

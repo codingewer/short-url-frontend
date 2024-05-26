@@ -12,7 +12,8 @@ import bgbanner from "../assets/imgs/undraw_questions_re_1fy7.svg";
 function Faq() {
   const faqs = useSelector((state) => state.faqs.items);
   const dispatch = useDispatch();
-  const [isToggled, setToggled] = useState(false);
+  const [isToggled, setToggled] = useState(true);
+
   const handleTogleMenu = (id) => {
     const linksMenu = document.getElementById(id);
     setToggled(!isToggled);
@@ -29,6 +30,7 @@ function Faq() {
     document.title = "Linkamon | S.S.S.";
   }, []);
   useEffect(() => {
+    window.scrollTo(0, 0); // Sayfanın en üstüne kaydır
     Aos.init({ duration: 2000 });
   }, []);
   return (

@@ -131,6 +131,9 @@ function DataChart() {
       0
     );
   }
+  useEffect(()=>{
+    window.scrollTo(0, 0); // Sayfanın en üstüne kaydır
+  },[])
   return (
     <div>
       <div className="user-details-container">

@@ -26,6 +26,7 @@ function Privacy() {
     document.title = "Linkamon | Gizlilik Politikası";
   }, []);
   useEffect(() => {
+    window.scrollTo(0, 0); // Sayfanın en üstüne kaydır
     Aos.init({ duration: 2000 });
   }, []);
   return (

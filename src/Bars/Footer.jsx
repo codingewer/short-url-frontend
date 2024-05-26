@@ -7,7 +7,7 @@ function Footer() {
     <div className="footer-bar">
       <div className="footer-container">
         <div className="footer-company">
-          <span>2024 tüm hakları saklıdır</span>
+          <span>&#169;2024 tüm hakları saklıdır</span>
         </div>
         <div className="footer-urls">
           <Link to="/">Ana Sayfa</Link>

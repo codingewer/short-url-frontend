@@ -38,8 +38,8 @@ export const DeleteUrlByIdAsync = createAsyncThunk(
 
 export const GetUrlByShortenedUrlAsync = createAsyncThunk(
   "url/GetUrlByShortenedUrlAsync",
-  async (shortenedUrl) => {
-    const response = await axios.get(`${apiUrl}/url/get/${shortenedUrl}`, {
+  async (data) => {
+    const response = await axios.get(`${apiUrl}/url/get/${data.username}/${data.shortenedUrl}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

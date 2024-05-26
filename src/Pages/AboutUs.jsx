@@ -23,6 +23,7 @@ function AboutUs() {
     document.title = 'Linkamon | Hakkımızda';
   }, []);
   useEffect(() => {
+    window.scrollTo(0, 0); // Sayfanın en üstüne kaydır
     Aos.init({ duration: 2000 });
   }, []);
   return (
