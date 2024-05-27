@@ -128,7 +128,7 @@ function Cookies() {
               söz konusudur.
             </p>
             <h2>Çerezler Nasıl Yönetilmektedir?</h2>
-            <p>
+            <span>
               Tüm bu açıklamalardan sonra, hangi çerezlerin kullanılacağı
               konusu, tamamen kullanıcılarımızın özgür iradelerine
               bırakılmıştır. Çerez tercihlerinizi, tarayıcınızın ayarlarından
@@ -137,7 +137,7 @@ function Cookies() {
               değiştirebilirsiniz. Daha ayrıntılı bilgi için Gizlilik
               Politikamıza göz atabilir ya da bizlerle contact@linkamon.com
               e-mail adresi üzerinden iletişime geçebilirsiniz.
-            </p>
+            </span>
           </div>
         </div>
       </div>

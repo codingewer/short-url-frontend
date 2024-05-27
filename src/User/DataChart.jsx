@@ -213,13 +213,13 @@ function DataChart() {
           display: "flex",
           flexDirection: "column",
           gap: 24,
-          width: "100%",
+          width: "100vw",
         }}
       >
         <LastUrls />
         <div
           style={{
-            width: "100%",
+            width: "100vw",
             display: "flex",
             flexWrap: "wrap",
             justifyContent: "space-between",

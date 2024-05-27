@@ -12,14 +12,10 @@ import bgbanner from "../assets/imgs/undraw_questions_re_1fy7.svg";
 function Faq() {
   const faqs = useSelector((state) => state.faqs.items);
   const dispatch = useDispatch();
-  const [isToggled, setToggled] = useState(true);
+  const [isToggled, setToggled] = useState("");
 
   const handleTogleMenu = (id) => {
-    const linksMenu = document.getElementById(id);
-    setToggled(!isToggled);
-    isToggled
-      ? (linksMenu.style.display = "flex")
-      : (linksMenu.style.display = "none");
+    setToggled(id)
   };
 
   useEffect(() => {
@@ -64,7 +60,12 @@ function Faq() {
                   <button onClick={() => handleTogleMenu(faq.ID)}>
                     <span>{faq.Question}</span>
                   </button>
-                  <span className="faq-card-content" id={faq.ID}>
+                  <span className="faq-card-content" 
+                  style={{
+                    display: isToggled === faq.ID ? "block" : "none",
+                  }}
+                  
+                  id={faq.ID}>
                     {faq.Answer}
                   </span>
                 </div>
