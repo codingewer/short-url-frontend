@@ -58,13 +58,9 @@ function ShortenedUrl() {
     setStarted(true);
   };
 
-  const [isToggled, setToggled] = useState(false);
+  const [isToggled, setToggled] = useState("");
   const handleTogleMenu = (id) => {
-    const linksMenu = document.getElementById(id);
-    setToggled(!isToggled);
-    isToggled
-      ? (linksMenu.style.display = "flex")
-      : (linksMenu.style.display = "none");
+    setToggled(id)
   };
   const urlfaqs = useSelector((state) => state.urlfaqs.items);
   const urlfaqssuccess = useSelector((state) => state.urlfaqs.success);
@@ -204,7 +200,11 @@ function ShortenedUrl() {
               <button onClick={() => handleTogleMenu(faq.ID)}>
                 <span>{faq.Question}</span>
               </button>
-              <span className="faq-card-content" id={faq.ID}>
+              <span
+                style={{
+                  display: isToggled === faq.ID ? "block" : "none",
+                }}
+              className="faq-card-content" id={faq.ID}>
                 {faq.Answer}
               </span>
             </div>
