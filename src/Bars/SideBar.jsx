@@ -240,79 +240,76 @@ function SideBar() {
           )}
         </div>
       )}
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          position: "relative",
-          top: 96,
-          width: "75%",
-          padding: 24,
-          gap: 24,
-          borderTop:"solid 1px #B888FF"
-        }}
-      >
-        <Link
+      {!logined && (
+        <div
           style={{
-            color: "#B888FF",
-            textDecoration: "none",
-            fontWeight: 700,
+            display: "flex",
+            flexDirection: "column",
+            position: "relative",
+            top: 96,
+            width: "75%",
+            padding: 24,
+            gap: 24,
+            borderTop: "solid 1px #B888FF",
           }}
-          onClick={() => handleActiveLink(".")}
-
-          to="/aboutus"
         >
-          Hakkımızda
-        </Link>
-        <Link
-          style={{
-            color: "#B888FF",
-            textDecoration: "none",
-            fontWeight: 700,
-          }}
-          onClick={() => handleActiveLink(".")}
-
-          to="/terms"
-        >
-          Kullanım Şartları
-        </Link>
-        <Link
-          style={{
-            color: "#B888FF",
-            textDecoration: "none",
-            fontWeight: 700,
-          }}
-          onClick={() => handleActiveLink(".")}
-
-          to="/privacy"
-        >
-          Gizlilik Politikası
-        </Link>
-        <Link
-          style={{
-            color: "#B888FF",
-            textDecoration: "none",
-            fontWeight: 700,
-          }}
-          onClick={() => handleActiveLink(".")}
-
-          to="/paid"
-        >
-          Ödeme Kanıtları
-        </Link>
-        <Link
-          style={{
-            color: "#B888FF",
-            textDecoration: "none",
-            fontWeight: 700,
-          }}
-          onClick={() => handleActiveLink(".")}
-          to="/faq"
-        >
-          S.S.S
-        </Link>
-      </div>
-
+          <Link
+            style={{
+              color: "#B888FF",
+              textDecoration: "none",
+              fontWeight: 700,
+            }}
+            onClick={() => handleActiveLink(".")}
+            to="/aboutus"
+          >
+            Hakkımızda
+          </Link>
+          <Link
+            style={{
+              color: "#B888FF",
+              textDecoration: "none",
+              fontWeight: 700,
+            }}
+            onClick={() => handleActiveLink(".")}
+            to="/terms"
+          >
+            Kullanım Şartları
+          </Link>
+          <Link
+            style={{
+              color: "#B888FF",
+              textDecoration: "none",
+              fontWeight: 700,
+            }}
+            onClick={() => handleActiveLink(".")}
+            to="/privacy"
+          >
+            Gizlilik Politikası
+          </Link>
+          <Link
+            style={{
+              color: "#B888FF",
+              textDecoration: "none",
+              fontWeight: 700,
+            }}
+            onClick={() => handleActiveLink(".")}
+            to="/paid"
+          >
+            Ödeme Kanıtları
+          </Link>
+          <Link
+            style={{
+              color: "#B888FF",
+              textDecoration: "none",
+              fontWeight: 700,
+            }}
+            onClick={() => handleActiveLink(".")}
+            to="/faq"
+          >
+            S.S.S
+          </Link>
+        </div>
+      )}
       <div
         style={{
           display: "flex",
