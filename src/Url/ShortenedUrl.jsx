@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector, React } from "react-redux";
 import { useParams } from "react-router";
 import "./Ads.css";
 import AdsComponent from "./AdsComponent";
@@ -10,6 +10,7 @@ import { GetAllUrlfaqsAsync } from "../Api/Faq/UrlFaqSlice";
 import { DetectAdblock } from "@scthakuri/adblock-detector";
 import { Link } from "react-router-dom";
 import TopBar from "../Bars/TopBar";
+import React from "react";
 
 function ShortenedUrl() {
   const { adIndex, shortenedUrl, username } = useParams();

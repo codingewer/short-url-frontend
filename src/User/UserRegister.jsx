@@ -1,5 +1,4 @@
 import React from "react";
-import Login from "./Login";
 import Register from "./Register";
 import loadingico from "../assets/icons/loading.gif";
 import TopBar from "../Bars/TopBar";

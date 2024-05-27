@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import { GetSiteDataBySiteName } from "../Api/Settings/SettingsSlice";
 import Aos from "aos";
 import "aos/dist/aos.css";
+import React from "react";
 import homegif from "../assets/imgs/shorturlgif.gif";
 import { Link } from "react-router-dom";
 

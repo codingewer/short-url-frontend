@@ -3,7 +3,6 @@ import "./UserPage.css";
 import React, { useEffect } from "react";
 import trashicon from "../assets/icons/trash-icon.png";
 import copyicon from "../assets/icons/copy-icon.png";
-import editicon from "../assets/icons/edit-icon.png";
 import { useDispatch, useSelector } from "react-redux";
 import blockicon from "../assets/icons/blockuser.png";
 import unblocicon from "../assets/icons/unblockuser.png";

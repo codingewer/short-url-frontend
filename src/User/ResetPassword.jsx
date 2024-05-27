@@ -7,6 +7,7 @@ import {  ResetPasswordAsync } from "../Api/User/UserSlice";
 import TopBar from "../Bars/TopBar";
 import loadingico from "../assets/icons/loading.gif";
 import { useEffect } from 'react';
+import React from "react";
 
 const passwordValidationSchema = Yup.object().shape({
   password: Yup.string().required("Yeni Şifre gerekli"),
