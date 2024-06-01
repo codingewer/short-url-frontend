@@ -25,9 +25,6 @@ export const UploadImage = createAsyncThunk("File/UploadImageAsync", async (file
     console.error('Error uploading file to Cloudinary:', error);
   }
 });
-
-console.log(cloudKey)
-
 export const UploadVideo = createAsyncThunk("file/UploadVideo", async (file) => {
   try {
     if (!file) {

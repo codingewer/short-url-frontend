@@ -9,6 +9,7 @@ import { GetSiteDataBySiteName } from "../Api/Settings/SettingsSlice";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import bgbanner from "../assets/imgs/undraw_terms_re_6ak4.svg";
+import { Helmet } from "react-helmet";
 
 function Terms() {
   const dispatch = useDispatch();
@@ -23,14 +24,28 @@ function Terms() {
           Terms: "Gizlilik",
         };
   useEffect(() => {
-    document.title = "Linkamon | Kullanım Koşulları";
-  }, []);
-  useEffect(() => {
     window.scrollTo(0, 0); // Sayfanın en üstüne kaydır
     Aos.init({ duration: 2000 });
   }, []);
   return (
     <>
+    <Helmet>
+        <title>Linkamon | Ana Sayfa</title>
+        <meta
+          name="description"
+          content="Linklerinizi kısaltın, kısalttığınız linke tıklandıkça pasif gelir elde edin."
+        />
+        <meta
+          name="keywords"
+          content="linkamon, link kısalt, link kısaltarak para kazan"
+        />
+        <meta property="og:title" content="Linklerinize değer katın" />
+        <meta property="og:url" content="https:/linkamon.com" />
+        <meta
+          property="og:image"
+          content="https://res.cloudinary.com/dsfggqsdp/image/upload/v1716366576/shorturl/ecrixcwzianjh4xtgpix.png"
+        />
+      </Helmet>
       <TopBar />
       <div data-aos="fade-up" className="contacus-page">
         <div className="faq-banner">

@@ -20,6 +20,7 @@ import UserPage from "./User/UserPage";
 import PaidPage from "./Pages/PaidPage";
 import Cookies from "./Pages/Cookies";
 import CookiesBar from "./Bars/CookiesBar";
+import ContactUs from "./Pages/ContactUs";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/faq" element={<Faq />} />
           <Route path="/aboutus" element={<AboutUs />} />
+          <Route path="/contactus" element={<ContactUs />} />
           <Route path="/privacy" element={<Privacy/>} />
           <Route path = "/terms" element={<Terms/>} />
           <Route path="/:username/:shortenedUrl/r/:adIndex" element={<ShortenedUrl />} />

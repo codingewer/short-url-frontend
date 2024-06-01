@@ -60,7 +60,7 @@ function TopBar() {
               </Link>
             </div>
             <div className="deme-kantlar-container">
-              <Link to="/aboutus" className="deme-kantlar">
+              <Link to="/contactus" className="deme-kantlar">
                 İletişim
               </Link>
             </div>

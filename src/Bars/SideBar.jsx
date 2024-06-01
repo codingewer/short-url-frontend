@@ -271,6 +271,17 @@ function SideBar() {
               fontWeight: 700,
             }}
             onClick={() => handleActiveLink(".")}
+            to="/contactus"
+          >
+            İletişim
+          </Link>
+          <Link
+            style={{
+              color: "#B888FF",
+              textDecoration: "none",
+              fontWeight: 700,
+            }}
+            onClick={() => handleActiveLink(".")}
             to="/terms"
           >
             Kullanım Şartları

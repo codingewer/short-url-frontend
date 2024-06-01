@@ -1,42 +1,80 @@
-.contacus-page{
-    display: flex;
-    width: 100vw;
-    min-height: 100vh;
-    flex-direction: column;
-    align-items: center;
+.contacus-page {
+  display: flex;
+  width: 100vw;
+  min-height: 100vh;
+  flex-direction: column;
+  align-items: center;
 }
-.contactus-content{
-    width: 100%;
-    display: flex;
-    padding-top: 100px;
-    justify-content: center;
-    gap: 48px;
+.contactus-content {
+  width: 100%;
+  display: flex;
+  padding-top: 100px;
+  justify-content: center;
+  gap: 48px;
 }
-.about-us-text{
-    gap: 24px;
-    display: flex;
-    flex-direction: column;
-    color: var(--color-darkslategray);
+.about-us-text {
+  gap: 24px;
+  display: flex;
+  flex-direction: column;
+  color: var(--color-darkslategray);
 }
 
+.contacus-banner {
+    display: flex;
+    flex-direction: row;
+    width: 75vw;
+  }
+  .contacus-title {
+    color: var(--color-1);
+    font-size: 64px;
+  }
+  .contactus-banner-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 700px;
+    width: 50%;
+  }
+  .contact-info-us-content {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    gap: 24px;
+  }
+  
+  .contactus-conten-title {
+    text-align: left;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--color-darkslategray);
+  }
+
 @media only screen and (max-width: 1080px) {
-    .contactus-content{
-        flex-direction: column;
-        width: calc(100% - 96px);
-        align-items: center;
-    }
-    .about-us-text{
-        width: 100%;
-    }
+  .contactus-content {
+    flex-direction: column;
+    width: calc(100% - 96px);
+    align-items: center;
+  }
+  .about-us-text {
+    width: 100%;
+  }
+  .contacus-banner {
+    position: relative;
+    top: 48px;
+    flex-direction: column-reverse;
+    width: 100vw;
+  }
 }
 
 @media only screen and (min-width: 1080px) {
-    .contactus-content{
-        flex-direction: row;
-        width: 60%;
-    }
-    .about-us-text{
-        width: 90%;
-        text-align: center;
-    }
+  .contactus-content {
+    flex-direction: row;
+    width: 60%;
+  }
+  .about-us-text {
+    width: 90%;
+    text-align: center;
+  }
 }

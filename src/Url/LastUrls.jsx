@@ -64,7 +64,7 @@ function LastUrls() {
   useEffect(() => {
     setFiltereUrls(items);
   }, [items]);
-console.log(domain)
+console.log(items)
   return (
       <div className="last-shortened-urls">
       {urlgetloading && <img src={loadingicon} className="loading-icon" />}

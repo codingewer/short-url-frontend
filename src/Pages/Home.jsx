@@ -14,6 +14,7 @@ import "aos/dist/aos.css";
 import React from "react";
 import homegif from "../assets/imgs/shorturlgif.gif";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 function Home() {
   const sitedata = useSelector((state) => state.settings.data);
@@ -42,12 +43,29 @@ function Home() {
   }, []);
   const logined = Boolean(localStorage.getItem("logined"));
   useEffect(() => {
-    window.scrollTo(0, 0); 
+    window.scrollTo(0, 0);
     document.title = "Linkamon | Ana Sayfa";
   }, []);
   return (
     //sayfa tasarımı
     <>
+      <Helmet>
+        <title>Linkamon | Ana Sayfa</title>
+        <meta
+          name="description"
+          content="Linklerinizi kısaltın, kısalttığınız linke tıklandıkça pasif gelir elde edin."
+        />
+        <meta
+          name="keywords"
+          content="linkamon, link kısalt, link kısaltarak para kazan"
+        />
+        <meta property="og:title" content="Linklerinize değer katın" />
+        <meta property="og:url" content="https:/linkamon.com" />
+        <meta
+          property="og:image"
+          content="https://res.cloudinary.com/dsfggqsdp/image/upload/v1716366576/shorturl/ecrixcwzianjh4xtgpix.png"
+        />
+      </Helmet>
       <TopBar />
       <div data-aos="fade-up" className="home">
         <div className="home-banner">

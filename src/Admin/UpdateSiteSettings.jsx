@@ -43,6 +43,9 @@ function UpdateSiteSettingsForm() {
         AdSlot: sitedata.AdSlot,
         AdClient: sitedata.AdClient,
         AboutUs: sitedata.AboutUs,
+        ContactEmail: sitedata.ContactEmail,
+        Address: sitedata.Address,
+        ContactNumber: sitedata.ContactNumber,
         PrivacyPolicy: sitedata.PrivacyPolicy,
         TermsConditions: sitedata.TermsConditions,
         RevenuePerClick: sitedata.RevenuePerClick,
@@ -55,6 +58,9 @@ function UpdateSiteSettingsForm() {
   const UpdateSiteSettingsForm = useFormik({
     initialValues: {
       AboutUs: "",
+      ContactEmail: "",
+      Address: "",
+      ContactNumber: "",
       PrivacyPolicy: "",
       TermsConditions: "",
       AdSlot: "",
@@ -138,6 +144,30 @@ function UpdateSiteSettingsForm() {
         onSubmit={UpdateSiteSettingsForm.handleSubmit}
       >
         <h3>Site Ayarları</h3>
+        <label htmlFor="AdSlot">İletişim Maili</label>
+        <input
+          className="cpupdate-inputs"
+          type="text"
+          name="ContactEmail"
+          onChange={UpdateSiteSettingsForm.handleChange}
+          value={UpdateSiteSettingsForm.values.ContactEmail}
+        />
+        <label htmlFor="AdSlot">İletişim Telefonu</label>
+        <input
+          className="cpupdate-inputs"
+          type="text"
+          name="ContactNumber"
+          onChange={UpdateSiteSettingsForm.handleChange}
+          value={UpdateSiteSettingsForm.values.ContactNumber}
+
+        /><label htmlFor="AdSlot">Adres</label>
+        <input
+          className="cpupdate-inputs"
+          type="text"
+          name="Address"
+          onChange={UpdateSiteSettingsForm.handleChange}
+          value={UpdateSiteSettingsForm.values.Address}
+        />
         <label htmlFor="AdSlot">Reklam Slot</label>
         <input
           className="cpupdate-inputs"

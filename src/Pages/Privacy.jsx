@@ -9,6 +9,7 @@ import { GetSiteDataBySiteName } from "../Api/Settings/SettingsSlice";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import bgbanner from "../assets/imgs/undraw_personal_information_re_vw8a.svg";
+import { Helmet } from "react-helmet";
 
 function Privacy() {
   const dispatch = useDispatch();
@@ -23,14 +24,25 @@ function Privacy() {
           Privacy: "Gizlilik",
         };
   useEffect(() => {
-    document.title = "Linkamon | Gizlilik Politikası";
-  }, []);
-  useEffect(() => {
     window.scrollTo(0, 0); // Sayfanın en üstüne kaydır
     Aos.init({ duration: 2000 });
   }, []);
   return (
     <>
+    <Helmet>
+        <title>Linkamon | Gizlilik Politikası</title>
+        <meta
+          name="description"
+          content="Kullanıcılarmızın gizliliğine linkamon.com olarak önem veriyoruz."
+        />
+        <meta
+          name="keywords"
+          content="gizlilik, gizlilik politikası"
+        />
+         <meta property="og:title" content="Linklerinize değer katın" />
+    <meta property="og:url" content="https:/linkamon.com" />
+    <meta property="og:image" content="https://res.cloudinary.com/dsfggqsdp/image/upload/v1716366576/shorturl/ecrixcwzianjh4xtgpix.png" />
+      </Helmet>
       <TopBar />
       <div data-aos="fade-up" className="contacus-page">
         <div className="faq-banner">

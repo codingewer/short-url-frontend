@@ -10,7 +10,6 @@ import { GetAllUrlfaqsAsync } from "../Api/Faq/UrlFaqSlice";
 import { DetectAdblock } from "@scthakuri/adblock-detector";
 import { Link } from "react-router-dom";
 import TopBar from "../Bars/TopBar";
-import React from "react";
 
 function ShortenedUrl() {
   const { adIndex, shortenedUrl, username } = useParams();

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { GetSiteDataBySiteName } from "../Api/Settings/SettingsSlice";
 
@@ -12,15 +12,6 @@ const AdsComponent = () => {
   }, [dispatch]);
 
   useEffect(() => {}, [sitedata]);
-
-  useEffect(() => {
-    if (window.adsbygoogle && !window.adsbygoogle.loaded)
-      try {
-        (window.adsbygoogle = window.adsbygoogle || []).push({});
-      } catch (e) {
-        console.error("AdSense error", e);
-      }
-  }, []);
 
   return (
     <>
