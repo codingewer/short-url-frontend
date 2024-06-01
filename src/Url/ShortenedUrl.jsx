@@ -10,7 +10,6 @@ import { GetAllUrlfaqsAsync } from "../Api/Faq/UrlFaqSlice";
 import { DetectAdblock } from "@scthakuri/adblock-detector";
 import { Link } from "react-router-dom";
 import TopBar from "../Bars/TopBar";
-import { Helmet } from "react-helmet";
 
 function ShortenedUrl() {
   const { adIndex, shortenedUrl, username } = useParams();
@@ -45,6 +44,7 @@ function ShortenedUrl() {
   }, [counter]);
 
   useEffect(() => {
+    document.title = shortenedUrl;
     if (counter === 0 && success) {
       window.location.href = url.OrginalUrl;
     }
@@ -60,7 +60,7 @@ function ShortenedUrl() {
 
   const [isToggled, setToggled] = useState("");
   const handleTogleMenu = (id) => {
-    setToggled(id);
+    setToggled(id)
   };
   const urlfaqs = useSelector((state) => state.urlfaqs.items);
   const urlfaqssuccess = useSelector((state) => state.urlfaqs.success);
@@ -93,12 +93,7 @@ function ShortenedUrl() {
 
   useEffect(() => {
     if (!adblockDedected) {
-      dispatch(
-        GetUrlByShortenedUrlAsync({
-          username: username,
-          shortenedUrl: shortenedUrl,
-        })
-      );
+      dispatch(GetUrlByShortenedUrlAsync({username: username , shortenedUrl: shortenedUrl}));
       dispatch(GetAllUrlfaqsAsync());
     }
   }, [dispatch, adblockDedected]);
@@ -112,18 +107,7 @@ function ShortenedUrl() {
   }, [index]);
   return (
     <>
-      <Helmet>
-        <title>Linkamon | {url?.ShortenedUrl}</title>
-        <meta name="description" content={url?.Description} />
-        <meta name="keywords" content="linkamon, kısaltılan link, link" />
-        <meta property="og:title" content="Linklerinize değer katın" />
-        <meta property="og:url" content="https:/linkamon.com" />
-        <meta
-          property="og:image"
-          content="https://res.cloudinary.com/dsfggqsdp/image/upload/v1716366576/shorturl/ecrixcwzianjh4xtgpix.png"
-        />
-      </Helmet>
-      <TopBar />
+    <TopBar/>
       <div className="ads-container">
         <div className="ad-content">
           <AdsComponent key={seed} />
@@ -220,9 +204,7 @@ function ShortenedUrl() {
                 style={{
                   display: isToggled === faq.ID ? "block" : "none",
                 }}
-                className="faq-card-content"
-                id={faq.ID}
-              >
+              className="faq-card-content" id={faq.ID}>
                 {faq.Answer}
               </span>
             </div>
