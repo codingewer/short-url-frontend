@@ -6,6 +6,7 @@ import "./Faq.css";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import bgbanner from "../assets/imgs/undraw_personal_information_re_vw8a.svg";
+import { Helmet } from "react-helmet";
 
 function Cookies() {
   useEffect(() => {
@@ -14,6 +15,17 @@ function Cookies() {
   }, []);
   return (
     <>
+      <Helmet>
+        <title>Linkamon | Çerez Politikası</title>
+        <meta name="description" content="Çerez politikamız." />
+        <meta name="keywords" content="çerezler, linkamon" />
+        <meta property="og:title" content="Linklerinize değer katın" />
+        <meta property="og:url" content="https:/linkamon.com" />
+        <meta
+          property="og:image"
+          content="https://res.cloudinary.com/dsfggqsdp/image/upload/v1716366576/shorturl/ecrixcwzianjh4xtgpix.png"
+        />
+      </Helmet>
       <TopBar />
       <div data-aos="fade-up" className="contacus-page">
         <div className="faq-banner">

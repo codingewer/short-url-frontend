@@ -29,19 +29,19 @@ function Privacy() {
   }, []);
   return (
     <>
-    <Helmet>
+      <Helmet>
         <title>Linkamon | Gizlilik Politikası</title>
         <meta
           name="description"
           content="Kullanıcılarmızın gizliliğine linkamon.com olarak önem veriyoruz."
         />
+        <meta name="keywords" content="gizlilik, gizlilik politikası" />
+        <meta property="og:title" content="Linklerinize değer katın" />
+        <meta property="og:url" content="https:/linkamon.com" />
         <meta
-          name="keywords"
-          content="gizlilik, gizlilik politikası"
+          property="og:image"
+          content="https://res.cloudinary.com/dsfggqsdp/image/upload/v1716366576/shorturl/ecrixcwzianjh4xtgpix.png"
         />
-         <meta property="og:title" content="Linklerinize değer katın" />
-    <meta property="og:url" content="https:/linkamon.com" />
-    <meta property="og:image" content="https://res.cloudinary.com/dsfggqsdp/image/upload/v1716366576/shorturl/ecrixcwzianjh4xtgpix.png" />
       </Helmet>
       <TopBar />
       <div data-aos="fade-up" className="contacus-page">

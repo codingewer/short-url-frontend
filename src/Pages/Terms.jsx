@@ -29,15 +29,15 @@ function Terms() {
   }, []);
   return (
     <>
-    <Helmet>
-        <title>Linkamon | Ana Sayfa</title>
+      <Helmet>
+        <title>Linkamon | Kullanım Koşulları</title>
         <meta
           name="description"
-          content="Linklerinizi kısaltın, kısalttığınız linke tıklandıkça pasif gelir elde edin."
+          content="Platformu daha iyi bir her haline getirmeye çalışıyoruz."
         />
         <meta
           name="keywords"
-          content="linkamon, link kısalt, link kısaltarak para kazan"
+          content="linkamon, kullanım koşulları, linkamon koşullar"
         />
         <meta property="og:title" content="Linklerinize değer katın" />
         <meta property="og:url" content="https:/linkamon.com" />
