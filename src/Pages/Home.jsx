@@ -59,8 +59,6 @@ function Home() {
           name="keywords"
           content="linkamon, link kısalt, link kısaltarak para kazan"
         />
-        <meta property="og:title" content="Linkamon | Ana Sayfa" />
-        <meta property="og:description" content="Linklerinizi kısaltın, kısalttığınız linke tıklandıkça pasif gelir elde edin." />
       </Helmet>
       <TopBar />
       <div data-aos="fade-up" className="home">

@@ -35,12 +35,6 @@ function Faq() {
           name="keywords"
           content="sorular, sıkça sorulan, sıkça sorulan sorular, destek, yardım"
         />
-        <meta property="og:title" content="Linklerinize değer katın" />
-        <meta property="og:url" content="https:/linkamon.com" />
-        <meta
-          property="og:image"
-          content="https://res.cloudinary.com/dsfggqsdp/image/upload/v1716366576/shorturl/ecrixcwzianjh4xtgpix.png"
-        />
       </Helmet>
       <TopBar />
       <div data-aos="fade-up" className="faq-page">

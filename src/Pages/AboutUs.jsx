@@ -1,46 +1,42 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 import React, { useEffect } from "react";
 import "./AboutUs.css";
 import TopBar from "../Bars/TopBar";
 import Footer from "../Bars/Footer";
 import "./Faq.css";
 import { useSelector } from "react-redux";
-import { GetSiteDataBySiteName } from '../Api/Settings/SettingsSlice';
+import { GetSiteDataBySiteName } from "../Api/Settings/SettingsSlice";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import bgbanner from "../assets/imgs/undraw_portfolio_website_re_jsdd.svg";
-import { Helmet } from 'react-helmet';
+import { Helmet } from "react-helmet";
 
 function AboutUs() {
   const dispatch = useDispatch();
-  const sitedata = useSelector((state)=> state.settings.data)
+  const sitedata = useSelector((state) => state.settings.data);
   useEffect(() => {
     dispatch(GetSiteDataBySiteName());
-  },[dispatch]);
-  const data = sitedata !== null ? sitedata : {
-    AboutUs:"Hakkımızda"
-  }
+  }, [dispatch]);
+  const data =
+    sitedata !== null
+      ? sitedata
+      : {
+          AboutUs: "Hakkımızda",
+        };
   useEffect(() => {
     window.scrollTo(0, 0); // Sayfanın en üstüne kaydır
     Aos.init({ duration: 2000 });
   }, []);
   return (
     <>
-    <Helmet>
+      <Helmet>
         <title>Linkamon | Hakkımızda</title>
         <meta name="description" content="Linkamon Hakkımızda." />
         <meta name="keywords" content="hakkımızda, linkamon hakkında" />
-        <meta property="og:title" content="Linkamon | Hakkımızda" />
-        <meta property="og:description" content="linkamon Hakkımızda." />
-        <meta property="og:url" content="https:/linkamon.com" />
-        <meta
-          property="og:image"
-          content="https://res.cloudinary.com/dsfggqsdp/image/upload/v1717322358/shorturl/trogjzz7cswjmax5wfgg.svg"
-        />
       </Helmet>
       <TopBar />
-      <div data-aos="fade-up"  className="contacus-page">
-      <div className="faq-banner">
+      <div data-aos="fade-up" className="contacus-page">
+        <div className="faq-banner">
           <div className="home-banner">
             <div className="home-banner-inner">
               <div className="frame-parent">
@@ -60,8 +56,7 @@ function AboutUs() {
           </div>
         </div>
         <div className="contactus-content">
-            <div  dangerouslySetInnerHTML={{ __html: data.AboutUs }}>
-          </div>
+          <div dangerouslySetInnerHTML={{ __html: data.AboutUs }}></div>
         </div>
       </div>
       <Footer />
