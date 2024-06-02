@@ -16,7 +16,7 @@ function CookiesBar() {
         cookieName="LinkamonCookies"
         style={{
           background: "#2B373B",
-          minHeight: 150,
+          minHeight: 80,
           fontSize: "18px",
           color: "#fff",
           padding: "10px",

@@ -22,6 +22,8 @@ function Footer() {
           <Link to="/privacy" >Gizlilik Politikası</Link>
           <Link to="/paid" >Ödeme Kanıtları</Link>
           <Link to="/faq" >S.S.S</Link>
+          <Link to="/cookies" >Çerez Politikası</Link>
+
         </div>
       </div>
     </div>

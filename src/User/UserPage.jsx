@@ -10,11 +10,11 @@ import loadingicon from "../assets/icons/loading.gif";
 
 import {
   DeleteUrlByAdminAsync,
-  DeleteUrlByIdAsync,
   GetUrlByCreatedByAsync,
 } from "../Api/Url/UrlSlice";
 import { Link, useParams } from "react-router-dom";
 import {
+  DeleteUserByAdminAsync,
   GetUserByIDAsync,
   UpdateUserBlockedAsync,
 } from "../Api/User/UserSlice";
@@ -53,9 +53,9 @@ function UserPage() {
     }
   };
 
-  const DeleteUser = () => {
+  const DeleteUserAsync = (userid) => {
     if (window.confirm("Silmek istediğinize emin misiniz?")) {
-      dispatch(DeleteUrlByIdAsync(id));
+      dispatch(DeleteUserByAdminAsync(userid));
     }
   };
 
@@ -78,7 +78,7 @@ function UserPage() {
   return (
     <div className="user-page">
       <div className="user-manage-btns">
-        <button type="button" className="card-btns" onClick={DeleteUser}>
+        <button type="button" className="card-btns" onClick={()=>DeleteUserAsync(user?.ID)}>
           <img src={trashicon} alt="kullanıcıyı sil" />
         </button>{" "}
         <button className="card-btns" onClick={ChangeUserBlocked}>

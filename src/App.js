@@ -39,7 +39,6 @@ function App() {
           <Route path="/:username/:shortenedUrl/r/:adIndex" element={<ShortenedUrl />} />
           <Route path="*" element={<NotFound />} />
           <Route path="/dashboard/*" element={<Profile />} />
-          <Route path="/balancereqs" element={<BalanceRequest/> } />
           <Route path="/paid" element={<PaidPage/> } />
           <Route path="/cookies" element={<Cookies/> } />
           <Route path="/controlpanel/*" element={<ControlPanel />} />
