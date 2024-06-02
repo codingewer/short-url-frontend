@@ -61,10 +61,6 @@ function Home() {
         />
         <meta property="og:title" content="Linkamon | Ana Sayfa" />
         <meta property="og:description" content="Linklerinizi kısaltın, kısalttığınız linke tıklandıkça pasif gelir elde edin." />
-        <meta
-          property="og:image"
-          content="https://res.cloudinary.com/dsfggqsdp/image/upload/v1716366576/shorturl/ecrixcwzianjh4xtgpix.png"
-        />
       </Helmet>
       <TopBar />
       <div data-aos="fade-up" className="home">

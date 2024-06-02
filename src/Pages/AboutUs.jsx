@@ -31,12 +31,8 @@ function AboutUs() {
         <meta name="description" content="Linkamon Hakkımızda." />
         <meta name="keywords" content="hakkımızda, linkamon hakkında" />
         <meta property="og:title" content="Linkamon | Hakkımızda" />
-        <meta property="og:description" content="linkamon Kakkımızda." />
+        <meta property="og:description" content="linkamon Hakkımızda." />
         <meta property="og:url" content="https:/linkamon.com" />
-        <meta
-          property="og:image"
-          content="https://res.cloudinary.com/dsfggqsdp/image/upload/v1717322358/shorturl/trogjzz7cswjmax5wfgg.svg"
-        />
       </Helmet>
       <TopBar />
       <div data-aos="fade-up"  className="contacus-page">

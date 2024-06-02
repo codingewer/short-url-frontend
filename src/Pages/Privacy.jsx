@@ -38,10 +38,6 @@ function Privacy() {
         <meta name="keywords" content="gizlilik, gizlilik politikası" />
         <meta property="og:title" content="Linkamon | Ana Sayfa" />
         <meta property="og:description" content="Linklerinizi kısaltın, kısalttığınız linke tıklandıkça pasif gelir elde edin." />
-        <meta
-          property="og:image"
-          content="https://res.cloudinary.com/dsfggqsdp/image/upload/v1717322360/shorturl/ohqcrxshtgjabzvr4w2n.svg"
-        />
       </Helmet>
       <TopBar />
       <div data-aos="fade-up" className="contacus-page">
