@@ -36,11 +36,11 @@ function Privacy() {
           content="Kullanıcılarmızın gizliliğine linkamon.com olarak önem veriyoruz."
         />
         <meta name="keywords" content="gizlilik, gizlilik politikası" />
-        <meta property="og:title" content="Linklerinize değer katın" />
-        <meta property="og:url" content="https:/linkamon.com" />
+        <meta property="og:title" content="Linkamon | Ana Sayfa" />
+        <meta property="og:description" content="Linklerinizi kısaltın, kısalttığınız linke tıklandıkça pasif gelir elde edin." />
         <meta
           property="og:image"
-          content="https://res.cloudinary.com/dsfggqsdp/image/upload/v1716366576/shorturl/ecrixcwzianjh4xtgpix.png"
+          content="https://res.cloudinary.com/dsfggqsdp/image/upload/v1717322360/shorturl/ohqcrxshtgjabzvr4w2n.svg"
         />
       </Helmet>
       <TopBar />

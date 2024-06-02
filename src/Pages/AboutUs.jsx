@@ -28,13 +28,14 @@ function AboutUs() {
     <>
     <Helmet>
         <title>Linkamon | Hakkımızda</title>
-        <meta name="description" content="Çerez politikamız." />
+        <meta name="description" content="Linkamon Hakkımızda." />
         <meta name="keywords" content="hakkımızda, linkamon hakkında" />
-        <meta property="og:title" content="Linklerinize değer katın" />
+        <meta property="og:title" content="Linkamon | Hakkımızda" />
+        <meta property="og:description" content="linkamon Kakkımızda." />
         <meta property="og:url" content="https:/linkamon.com" />
         <meta
           property="og:image"
-          content="https://res.cloudinary.com/dsfggqsdp/image/upload/v1716366576/shorturl/ecrixcwzianjh4xtgpix.png"
+          content="https://res.cloudinary.com/dsfggqsdp/image/upload/v1717322358/shorturl/trogjzz7cswjmax5wfgg.svg"
         />
       </Helmet>
       <TopBar />
