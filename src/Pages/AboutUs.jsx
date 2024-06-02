@@ -30,9 +30,6 @@ function AboutUs() {
         <title>Linkamon | Hakkımızda</title>
         <meta name="description" content="Linkamon Hakkımızda." />
         <meta name="keywords" content="hakkımızda, linkamon hakkında" />
-        <meta property="og:title" content="Linkamon | Hakkımızda" />
-        <meta property="og:description" content="linkamon Hakkımızda." />
-        <meta property="og:url" content="https:/linkamon.com" />
       </Helmet>
       <TopBar />
       <div data-aos="fade-up"  className="contacus-page">
