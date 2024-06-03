@@ -1,8 +1,5 @@
 User-agent: *
-
 Disallow: /controlpanel/
-
-Sitemap:
 Allow: /media/
-
 Allow: /images/
+Sitemap:https://linkamon.com/sitemap.xml

@@ -1,6 +1,6 @@
 .contacus-page {
   display: flex;
-  width: 100vw;
+  width: calc(100% - 24px);
   min-height: 100vh;
   flex-direction: column;
   align-items: center;

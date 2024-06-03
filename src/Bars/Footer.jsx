@@ -18,10 +18,10 @@ function Footer() {
           }
           <Link to="/aboutus" >Hakkımızda</Link>
           <Link to="/contactus" >İletişim</Link>
-          <Link to="/terms" >Kullanım Şartları</Link>
-          <Link to="/privacy" >Gizlilik Politikası</Link>
           <Link to="/paid" >Ödeme Kanıtları</Link>
           <Link to="/faq" >S.S.S</Link>
+          <Link to="/terms" >Kullanım Şartları</Link>
+          <Link to="/privacy" >Gizlilik Politikası</Link>
           <Link to="/cookies" >Çerez Politikası</Link>
 
         </div>

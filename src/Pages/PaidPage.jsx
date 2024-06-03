@@ -39,7 +39,7 @@ function PaidPage() {
       <div
         style={{
           minHeight: "100vh",
-          width: "100vw",
+          width: "100%",
           alignItems: "center",
           display: "flex",
           flexDirection: "column",

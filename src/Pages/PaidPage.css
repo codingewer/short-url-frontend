@@ -5,6 +5,7 @@
     position: relative;
     top: 104px;
     width: 75%;
+    background-color: green;
     color: var(--color-darkslategray);
 }
 

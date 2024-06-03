@@ -43,7 +43,7 @@ function Cookies() {
           </div>
         </div>
         <div className="contactus-content">
-          <div className="about-us-text">
+          <div >
             <h1>Çerez Politikası</h1>
             <p>Son güncellenme: 22/05/2024</p>
             <p>
