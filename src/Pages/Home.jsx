@@ -46,6 +46,18 @@ function Home() {
     window.scrollTo(0, 0);
     document.title = "Linkamon | Ana Sayfa";
   }, []);
+useEffect(() => {
+    const script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.text = `
+      aclib.runBanner({
+        zoneId: '8620998',
+      });
+    `;
+    document.getElementById('ad-banner').appendChild(script);
+  }, []);
+
+  
   return (
     //sayfa tasarımı
     <>
@@ -62,6 +74,7 @@ function Home() {
       </Helmet>
       <TopBar />
       <div data-aos="fade-up" className="home">
+         <div id="ad-banner"></div>
         <div className="home-banner">
           <div className="home-banner-inner">
             <div className="frame-parent">
