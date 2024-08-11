@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+Drimport React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { GetSiteDataBySiteName } from "../Api/Settings/SettingsSlice";
 
@@ -12,18 +12,20 @@ const AdsComponent = () => {
   }, [dispatch]);
 
   useEffect(() => {}, [sitedata]);
-
+useEffect(() => {
+    const script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.text = `
+      aclib.runBanner({
+        zoneId: '8620998',
+      });
+    `;
+    document.getElementById('ad-banner').appendChild(script);
+  }, []);
+  
   return (
     <>
-      {status && (
-        <ins
-          key={Math.random}
-          className="adsbygoogle"
-          style={{ display: "inline-block", width: "300px", height: "300px" }}
-          data-ad-client="ca-pub-5425176553873988"
-          data-ad-slot="7050201805"
-        ></ins>
-      )}
+       <div id="ad-banner"></div>
     </>
   );
 };
