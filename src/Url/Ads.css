@@ -8,7 +8,6 @@
 }
 
 .ad-content{
-    max-height: 70%;
     width: calc(100% - 72px);
     padding: 24px;
     overflow: hidden;

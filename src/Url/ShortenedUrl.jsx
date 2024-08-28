@@ -109,33 +109,8 @@ function ShortenedUrl() {
     <>
     <TopBar/>
       <div className="ads-container">
-        <div className="ad-content">
+        <div className="ad-cotent">
           <AdsComponent key={seed} />
-          {success ? null : <span style={{ color: "red" }}>{error}</span>}
-          {adblockDedected && (
-            <span style={{ color: "red" }}>Reklam engelleyiciniz kapatın</span>
-          )}
-          <div style={{ display: "flex", gap: 12 }}>
-            <Link
-              disabled={adblockDedected}
-              className="skip-btn"
-              onClick={handleSkip}
-              to={domain + "r/" + index}
-            >
-              İlgimi Çekmedi
-            </Link>
-            <button
-              disabled={adblockDedected}
-              className="intereste-btn"
-              onClick={handleStart}
-            >
-              İlgimi Çekti
-            </button>
-          </div>
-          {started && (
-            <span>{counter} saniye sonra linke yönlendirileceksiniz.</span>
-          )}
-          {counter === 0 && <span>Linke yönlendiriliyorsunuz...</span>}
           <div className="url-info-public">
             <div
               className="url-info-pub"

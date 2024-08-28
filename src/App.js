@@ -36,7 +36,7 @@ function App() {
           <Route path="/contactus" element={<ContactUs />} />
           <Route path="/privacy" element={<Privacy/>} />
           <Route path = "/terms" element={<Terms/>} />
-          <Route path="/:username/:shortenedUrl/r/:adIndex" element={<ShortenedUrl />} />
+          <Route path="/:username/:shortenedUrl/" element={<ShortenedUrl />} />
           <Route path="*" element={<NotFound />} />
           <Route path="/dashboard/*" element={<Profile />} />
           <Route path="/paid" element={<PaidPage/> } />
