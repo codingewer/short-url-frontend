@@ -27,9 +27,9 @@ function LastUrls() {
   
   const CopyContent = (urll) => {
     navigator.clipboard
-    .writeText(domain + "/l/" + urll + "/r/1")
+    .writeText(domain + "/link/" + urll)
     .then(() => {
-      alert("Kopyalandı: " + domain + urll);
+      alert("Kopyalandı:" + domain + "/link/" + urll);
     })
     .catch((err) => {
       alert("Metin kopyalanırken bir hata oluştu!");
@@ -64,7 +64,6 @@ function LastUrls() {
   useEffect(() => {
     setFiltereUrls(items);
   }, [items]);
-console.log(items)
   return (
       <div className="last-shortened-urls">
       {urlgetloading && <img src={loadingicon} className="loading-icon" />}
@@ -97,7 +96,7 @@ console.log(items)
                       className="url-name"
                       target="_blank"
                       rel="noreferrer"
-                      href={domain + "/" + user?.UserName + "/"+ item.ShortenedUrl + "/r/1"}
+                      href={domain + "/link/" + user?.UserName + "/"+ item.ShortenedUrl}
                       >
                       {item.ShortenedUrl}
                     </a>
