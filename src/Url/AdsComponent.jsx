@@ -19,11 +19,11 @@ const AdsComponent = () => {
   useEffect(() => { }, [sitedata]);
   const [getDetailsStatus, setGetDetailsStatus] = useState(false)
   const adConfigs = [
-    { zoneId: '8684242' },
-    { zoneId: '8691294' },
-    { zoneId: '8691326' },
-    { zoneId: '8691330' },
-    { zoneId: '8691334' },
+    { zoneId: '8735606' },
+    { zoneId: '8735762' },
+    { zoneId: '8735766' },
+    { zoneId: '8735770' },
+    { zoneId: '8735774' },
   ];
 console.log(url)
   useEffect(() => {
@@ -37,11 +37,11 @@ console.log(url)
           zoneId: '${adConfig.zoneId}',
         });
       `;
-      document.getElementById('ad-banner').innerHTML = `${adConfig.zoneId}`; // Clear previous ad content
+      document.getElementById('ad-banner').innerHTML = ""; // Clear previous ad content
       document.getElementById('ad-banner').appendChild(script);
     }
   }, [currentAdIndex]); // Re-run this effect when the currentAdIndex changes
-
+  
   // Function to handle "İlgimi Çekmedi" button click
   const handleNextAd = () => {
     if (currentAdIndex < adConfigs.length - 1) {
@@ -54,12 +54,14 @@ console.log(url)
     document.getElementById("btnsonsikpfgvcf").style.display = "none"
     document.getElementById("btndbnmdfnbfggb").style.display = "flex"
     document.getElementById("btnkytfvbhdtyhbrt245fe").style.display = "flex"
-
+      
   }
 
   const handleGetinfo = () => {
     setBarWidht("50%")
     setTimeout(() => {
+      const div = document.getElementById('ad-banner');
+      div.children[1].click()
       setGetDetailsStatus(true)
     }, 1500);
     setTimeout(() => {
