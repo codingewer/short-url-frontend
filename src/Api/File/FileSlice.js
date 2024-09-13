@@ -12,11 +12,11 @@ export const UploadImage = createAsyncThunk("File/UploadImageAsync", async (file
 
     const formData = new FormData();
     formData.append('file', file);
-    formData.append('upload_preset', 'pkps8e7sd');
+    formData.append('upload_preset', 'ml_default');
     formData.append('api_key',`${cloudKey}`);
 
     const response = await axios.post(
-      'https://api.cloudinary.com/v1_1/dsfggqsdp/image/upload',
+      'https://api.cloudinary.com/v1_1/dhllhyrrf/image/upload',
       formData
     );
 
@@ -34,11 +34,11 @@ export const UploadVideo = createAsyncThunk("file/UploadVideo", async (file) => 
 
     const formData = new FormData();
     formData.append('file', file);
-    formData.append('upload_preset', 'gfhbmczb');
+    formData.append('upload_preset', 'ml_default');
     formData.append('api_key', `${cloudKey}`);
 
     const response = await axios.post(
-      'https://api.cloudinary.com/v1_1/dsfggqsdp/video/upload',
+      'https://api.cloudinary.com/v1_1/dhllhyrrf/video/upload',
       formData
     );
 
